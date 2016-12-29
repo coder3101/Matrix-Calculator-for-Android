@@ -17,14 +17,17 @@
         <activity
             android:name=".AboutMe"
             android:label="@string/aboutme"
+            android:theme="@style/AppTheme"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RatingActivity"
             android:label="@string/rate"
+	    android:theme="@style/AppTheme"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".Settings" />
         <activity
             android:name=".SettingsTab"
+	    android:theme="@style/AppTheme"
             android:label="@string/action_settings"
             android:parentActivityName=".MainActivity" />
         <activity
@@ -34,6 +37,7 @@
             android:theme="@style/AppThemeDialog" />
         <activity
             android:name=".FillingMatrix"
+	    android:theme="@style/AppTheme"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -52,10 +56,12 @@
             android:theme="@style/AppThemeDialog" />
         <activity
             android:name=".faqs"
+	    android:theme="@style/AppTheme"
             android:label="@string/LabelHelp"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FeedBack"
+	    android:theme="@style/AppTheme"
             android:label="@string/feedback"
             android:parentActivityName=".MainActivity" />
         <activity
