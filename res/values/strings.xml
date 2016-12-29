@@ -1,0 +1,157 @@
+<resources>
+    <string name="app_name">Matrix Calculator</string>
+
+    <!--Menu Options-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="slogan">Matrix Made Easy</string>
+    <string name="feedback">Feedback</string>
+    <string name="rate">Rate Me</string>
+    <string name="share">Share</string>
+    <string name="aboutme">About</string>
+    <string name="matrix_opr">Matrix Operations</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Operations-->
+    <string name="addsub">Addition and Subtraction</string>
+    <string name="Home">Home</string>
+    <string name="swap">Swaping</string>
+    <string name="multiply">Multiplication</string>
+    <string name="inverse">Inverse</string>
+    <string name="adjoint">Adjoint</string>
+    <string name="custom">Custom Calculations</string>
+    <string name="function">Functional</string>
+    <string name="determinant">Determinant</string>
+    <string name="exponent">Exponential</string>
+
+    <!--About Me Section-->
+    <string name="app_dev">Md Ashar Khan </string>
+    <string name="about_app">Design and Developed by Ashar</string>
+    <string name="reserve">All Rights Reserved </string>
+    <string name="certificate">The Following App is being Prepared and Contains No Copyright Codes or Copyright Contents
+        However comes with a MIT Copyright License, Which You Should Check by Visiting the following link : www.github.com/coder3101/Matrix_Calculator
+    The Desktop Version of the Same App is Almost 90% Completed, it is for Windows above Win 7, You can see the Complete Source Code of the Project by Clicking the Same link
+    as i have kept it a Open Source Project.</string>
+    <string name="Chooser">Select the Fastest Browser</string>
+    <string name="Logo">Logo of the App</string>
+    <string name="ToastMessage">Thanks for Choosing to Visit My Profile</string>
+    <string name="FacebookLogo">Facebook</string>
+    <string name="FacebookLink">https://www.facebook.com/coder3101</string>
+    <string name="version">Developmental Version 0.40</string>
+
+    <string name="NocreateWaring">Upgrade to Pro, to add and use more Matrix Variable.</string>
+
+    <string name="ShareUsing">Share this App Using</string>
+    <string name="ShareMessage">Hey I Just Downloaded a Wonderful Android Application of Matrix Calulator, Check it out
+    its worth Downloading. Here will be My Link</string>
+
+    <!--Rate Screen-->
+    <string name="HintRater">Rate here in Decimals, Precisely</string>
+    <string name="RateReq">You can Rate My Work Here by Pressing at Stars</string>
+    <string name="RateButtonMsg">Submit</string>
+    <string name="More5">I am Thankful to You, Did you know You Just Rated me What Google Does not Accepts. </string>
+    <string name="DismissSnackbar">Dismiss</string>
+    <string name="ExitButton">Exit</string>
+    <string name="AddMessage">Click to Add a Matrix Variable</string>
+    <string name="SimpleInfo">After Development, This Front Page will be made more Dynamic</string>
+
+
+    <!--Settings Preference-->
+    <string name="UI">User Interface</string>
+    <string name="DarkTheme">Enable Dark Theme</string>
+    <string name="DarkThemeDesc">Use Application in Dark theme</string>
+    <string name="ExtraSmallFontT">Extra Small Fonts</string>
+    <string name="ExtraSmallFontD">Reduces the Font of Elements While Filling Matrix to Acquire up to 8 digits</string>
+    <string name="CardChange">Change Card Color</string>
+    <string name="CardSummary">Changing the Card color will change the Matrix Color</string>
+    <string name="CardElevate">Card Elevation</string>
+    <string name="CardElevateDesc">Set the Amount of Elevation of Card in dp.
+    Elevation Elevate Your Cards in z-axix More the Elevation Value More Elevated the Card will be. </string>
+    <string name="other">Extra Settings</string>
+    <string name="Saving">Save Result Automatically</string>
+    <string name="SavingDesc">Automatically Save the Result of All the Calculations in a New Matrix Variable</string>
+    <string name="AutoToast">Result Toast</string>
+    <string name="AutoToastDesc">Display a Toast Message after a Result has been Calculated</string>
+    <string name="RestoreDefault">Restore</string>
+    <string name="RestoreInfo">Restore All Settings to Default</string>
+    <string name="title2">Calculations</string>
+    <string name="EnableRounding">Result Rounding</string>
+    <string name="EnableRoundingDesc">Set the Precision of Number of Digits after Decimal to be Desplayed. The More Decimal Precision
+    you will have lesser will be the Element Integral Value</string>
+    <string name="NoFraction">No Fractional Result</string>
+    <string name="NoFractionDesc">The Result of a Matrix, Involving Fraction will be automatically casted to Respective No of Decimals</string>
+    <string name="RandT">Random Number Settings</string>
+    <string name="SignedTitle">Signed Values</string>
+    <string name="SignedTitleDesc">Fill the Matrix With Negative and Positive Random Values, Negative Values Generated follows the Same Limit.</string>
+    <string name="MaximiumT">Upper Limit</string>
+    <string name="MinimumT">Lower Limit</string>
+    <string name="RestoreComplete">Settings Restored Successfully</string>
+    <string name="MaximumD">The Signed Upper Limit of Random Number to Generate, to generate Negative Value See Above Settings</string>
+    <string name="MinimumD">The Signed Lower Limit of Random Number to Generate, to generate Negative Value See Above Settings</string>
+
+    <!-- Variable Creation Activity-->
+    <string name="NewMatrix">Create New Variable</string>
+    <string name="Nameit">Name of the Matrix Variable</string>
+    <string-array name="MatrixT">
+        <item>Normal</item>
+        <item>Identity</item>
+        <item>Null</item>
+        <item>Diagonal</item>
+    </string-array>
+    <string name="Row">Row</string>
+    <string name="Col">Column</string>
+    <string name="MatrixType">Type : </string>
+    <string name="Warning1">Name field cannot be left blank</string>
+    <string name="Filling">Fill the Matrix</string>
+    <string name="NotSquare">Provided Matrix must be a Square Matrix</string>
+
+
+    <!-- Title bar of Filler Matrix-->
+    <string name="RandomInput">Fill Random Integers</string>
+    <string name="RandomInputFloat">Fill Random Decimals</string>
+    <string name="FillallAs1">Fill Empty Cells with 1</string>
+    <string name="FillasZero">Fill Empty Cells with 0</string>
+    <string name="Confirm">Create</string>
+    <string name="Warning2">Some Matrix Element(s) are Empty</string>
+
+
+    <!--Custom Filler-->
+    <string name="CustomFill">Fill Custom Value</string>
+    <string name="ValueHint">Value to Filled in All Empty Cells</string>
+    <string name="ConfirmMake">Confirm</string>
+    <string name="CancelCustomFill">Cancel</string>
+    <string name="NoValue">No Value Provided</string>
+    <string name="Clear">Clear All</string>
+    <string name="Warning3">WARNING : Lower Limit Exceeds Upper Limit, Application may Crash</string>
+    <string name="Warning4">Are You Sure, You want to go back, Above Values will be Lost</string>
+    <string name="Yup">Yes</string>
+
+    <!--Feedback-->
+    <string name="FeedBack">Feedback</string>
+    <string name="Mazak">I am Pleased, You have something to Share With Me</string>
+    <string name="Send">Send</string>
+    <string name="MaybeNot">Not Now</string>
+    <string name="Warning5">You Should not use Abusive Language</string>
+    <string name="Warning6">Did You forgot to Enter Message</string>
+    <string name="Warning7">Text is Abusive</string>
+    <string name="ok">Okay</string>
+
+    <string name="clear">CLEAR</string>
+    <string name="Warning8">Nothing to Clear</string>
+    <string name="Warning9">Are You Sure to Clear All Matrix Variables</string>
+
+    <string name="edit">Edit Elements</string>
+    <string name="Delete">DELETE</string>
+    <string name="Delete2">Delete</string>
+    <string name="Rename">Rename Variable </string>
+    <string name="OrderChange">Change Order</string>
+    <string name="ConfirmTheValueChange">SAVE</string>
+    <string name="SetOriginalValue">Revert Changes</string>
+    <string name="RevertSuccess">Restored the Original Values</string>
+    <string name="Deleted">Deleted</string>
+    <string name="ConfirmSuccess">Values Updated</string>
+
+
+    <string name="SetNewOrder">Set New Order</string>
+    <string name="Warning10">Newly Created Elements will get Default Value of 0</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Normal App Color-->
+    <color name="colorPrimary">#26a3e1</color>
+    <color name="colorPrimaryDark">#189cde</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="cardColor">#8cbcd4</color>
+    <color name="grey">#d3d3d3</color>
+    <!--Dark App Color-->
+    <color name="DarkcolorPrimary">#404a50</color>
+    <color name="DarkcolorPrimaryDark">#455a64</color>
+    <color name="DarkcolorAccent">#60a0bc</color>
+    <color name="deepgrey">#546e7a</color>
+    <color name="white">#ffffff</color>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:id="@+id/EditEntered"
+    android:title="@string/edit"
+    app:showAsAction="never"
+    android:orderInCategory="1"
+    />
+    <item
+        android:title="@string/Rename"
+        android:id="@+id/Rename"
+        app:showAsAction="never"
+        android:orderInCategory="2"/>
+    <item
+        app:showAsAction="ifRoom"
+        android:id="@+id/DeleteCreated"
+        android:title="@string/Delete"
+        android:orderInCategory="3"/>
+    <item
+        android:orderInCategory="4"
+        android:id="@+id/OrderChange"
+        android:title="@string/OrderChange"
+        app:showAsAction="never"/>
+    <item
+        app:showAsAction="ifRoom"
+        android:id="@+id/ConfirmChanges"
+        android:orderInCategory="10"
+        android:title="@string/ConfirmTheValueChange"
+        android:visible="false"/>
+    <item
+        android:title="@string/SetOriginalValue"
+        android:visible="false"
+        android:id="@+id/RevertChanges"
+        app:showAsAction="never"
+        android:orderInCategory="11"/>
+
+</menu>
