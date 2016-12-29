@@ -1,9 +1,9 @@
-package com.softminds.matrixcalculator;
-
-
 /*
 
  */
+package com.softminds.matrixcalculator;
+
+
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
