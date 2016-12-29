@@ -23,9 +23,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 public class SplashScreen extends Activity {
-    private static int SPLASH_TIME_OUT=2000;
+   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+	private static int SPLASH_TIME_OUT=2000;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
         if(isDark)
