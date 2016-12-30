@@ -8,24 +8,19 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/package com.softminds.matrixcalculator;
+*/
+
+package com.softminds.matrixcalculator;
 
 
-import android.app.ListFragment;
+;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MainActivityFragmentList extends ListFragment {
 
     @Override
@@ -43,8 +38,6 @@ public class MainActivityFragmentList extends ListFragment {
     public void onListItemClick(ListView L,View V,int position,long id)
     { //Last Index from Global is 1 more that the position provided
 
-        Log.d("Index is ",String.valueOf(position));
-        Log.d("Last Index is ",String.valueOf(((GlobalValues)getActivity().getApplication()).GetLastIndex()));
         Intent intent =new Intent(getActivity().getApplication(),ViewCreatedMatrix.class);
         Bundle index = new Bundle();
         index.putInt("INDEX",position);

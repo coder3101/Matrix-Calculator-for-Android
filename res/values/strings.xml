@@ -49,7 +49,6 @@
     <string name="HintRater">Rate here in Decimals, Precisely</string>
     <string name="RateReq">You can Rate My Work Here by Pressing at Stars</string>
     <string name="RateButtonMsg">Submit</string>
-    <string name="More5">I am Thankful to You, Did you know You Just Rated me What Google Does not Accepts. </string>
     <string name="DismissSnackbar">Dismiss</string>
     <string name="ExitButton">Exit</string>
     <string name="AddMessage">Click to Add a Matrix Variable</string>
@@ -154,4 +153,12 @@
 
     <string name="SetNewOrder">Set New Order</string>
     <string name="Warning10">Newly Created Elements will get Default Value of 0</string>
+
+
+    <string name="ChangedOrder">Order Changed</string>
+    <string name="ShortAddSub">Add-Sub</string>
+    <string name="ShortCustom">Custom</string>
+    <string name="MainSubtitle">All Variables</string>
+    <string name="NothingCreated">Press the Button below to Create a Variable</string>
+    <string name="SelectToPerform">Select a Variable to Perform Operation</string>
 </resources>

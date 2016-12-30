@@ -11,7 +11,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/MainContent"
-            android:orientation="vertical"/>
+            android:orientation="horizontal"/>
+    <!--TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/HeaderMessage"
+        android:textStyle="bold"
+        android:textIsSelectable="false"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="casual"/-->
     <android.support.design.widget.FloatingActionButton
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"

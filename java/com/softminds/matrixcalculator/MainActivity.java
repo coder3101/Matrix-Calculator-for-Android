@@ -8,7 +8,9 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/package com.softminds.matrixcalculator;
+*/
+
+package com.softminds.matrixcalculator;
 
 
 import android.content.Intent;
@@ -20,9 +22,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -35,34 +41,29 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
         final int RESULT=1;
+    Menu ActionbarMenu;
+    ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
         if(isDark)
-            setTheme(R.style.AppThemeDark_NoActionBar);
+        {setTheme(R.style.AppThemeDark_NoActionBar);
+        }
         else
             setTheme(R.style.AppTheme_NoActionBar);
 
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
-        if(savedInstanceState==null)
-        {
-            MainActivityFragmentList mh=new MainActivityFragmentList();
-            getFragmentManager().beginTransaction().add(R.id.MainContent,mh).commit();
-        }
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -91,7 +92,6 @@ public class MainActivity extends AppCompatActivity
                 v.setBackground(ContextCompat.getDrawable(this,R.drawable.side_nav_bar));
         }
 
-
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.MainFAB);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,9 +99,14 @@ public class MainActivity extends AppCompatActivity
               Intent intent = new Intent(getApplicationContext(),MakeNewMatrix.class);
                 startActivityForResult(intent,RESULT);
 
-
             }
         });
+
+        if(savedInstanceState==null)
+        {
+            MainActivityFragmentList mh=new MainActivityFragmentList();
+            getSupportFragmentManager().beginTransaction().add(R.id.MainContent,mh,"MAIN_LIST").commit();
+        }
 
 
     }
@@ -122,6 +127,8 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        this.ActionbarMenu = menu;
+        this.actionBar = getSupportActionBar();
         return true;
     }
 
@@ -166,6 +173,7 @@ public class MainActivity extends AppCompatActivity
                         public void onClick(View view) {
                             snackbar.dismiss();
                             ((GlobalValues) getApplication()).ClearAllMatrix();
+                            actionBar.setSubtitle(null);
                         }
                     });
                     }
@@ -183,23 +191,76 @@ public class MainActivity extends AppCompatActivity
 
        switch (id)
        {
+           case R.id.Home:
+               MainActivityFragmentList mh=new MainActivityFragmentList();
+               getSupportFragmentManager().beginTransaction().replace(R.id.MainContent,mh,"MAIN_LIST").commit();
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(true);
+               actionBar.setTitle(R.string.app_name);
+               break;
            case R.id.add_sub :
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.ShortAddSub);
                break;
            case R.id.Swap :
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.swap);
                break;
            case R.id.multiply:
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                break;
            case R.id.exponent:
+               FragmentTransaction ExponentTransaction = getSupportFragmentManager().beginTransaction();
+               ExponentFragment ef = new ExponentFragment();
+               ExponentTransaction.replace(R.id.MainContent, ef,"EXPONENT_FRAGMENT");
+               ExponentTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               ExponentTransaction.commit();
+               //Modify the Actionbar
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.exponent);
                break;
            case R.id.determinant:
+               FragmentTransaction DeterminantTransaction= getSupportFragmentManager().beginTransaction();
+               DeterminantFragment df = new DeterminantFragment();
+               DeterminantTransaction.replace(R.id.MainContent, df,"DETERMINANT_FRAGMENT");
+               DeterminantTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               DeterminantTransaction.commit();
+               //Modify the Actionbar
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.determinant);
                break;
            case R.id.inverse:
+               FragmentTransaction InverseTransaction= getSupportFragmentManager().beginTransaction();
+               InverseFragment inv = new InverseFragment();
+               InverseTransaction.replace(R.id.MainContent, inv,"INVERSE_FRAGMENT");
+               InverseTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               InverseTransaction.commit();
+               //Modify the Actionbar
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.inverse);
                break;
            case R.id.adjoint:
+               FragmentTransaction AdjointTransaction= getSupportFragmentManager().beginTransaction();
+               AdjointFragment af = new AdjointFragment();
+               AdjointTransaction.replace(R.id.MainContent, af,"ADJOINT_FRAGMENT");
+               AdjointTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               AdjointTransaction.commit();
+               //Modify the Actionbar
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.adjoint);
                break;
            case R.id.functional:
+               FragmentTransaction FunctionalTransaction= getSupportFragmentManager().beginTransaction();
+               FunctionalFragment ff = new FunctionalFragment();
+               FunctionalTransaction.replace(R.id.MainContent, ff,"FUNCTIONAL_FRAGMENT");
+               FunctionalTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               FunctionalTransaction.commit();
+               //Modify the Actionbar
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.function);
                break;
            case R.id.custom:
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.ShortCustom);
                break;
            case R.id.nav_help:
                startActivity(new Intent(getApplicationContext(),faqs.class));
@@ -226,6 +287,8 @@ public class MainActivity extends AppCompatActivity
                 Matrix m=new Matrix();
                 m.SetFromBundle(AllData);
                 ((GlobalValues) getApplication()).AddToGlobal(m); //Sending the things to Global Reference
+                if(actionBar.getSubtitle()==null)
+                    actionBar.setSubtitle(R.string.MainSubtitle);
 
             }
         }

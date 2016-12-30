@@ -12,23 +12,34 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 package com.softminds.matrixcalculator;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
-public class faqs extends AppCompatActivity {
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+public class FunctionalFragment extends ListFragment {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
-        if(isDark)
-            setTheme(R.style.AppThemeDark);
-        else
-            setTheme(R.style.AppTheme);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.help_layout);
+    public void onActivityCreated(Bundle savedInstances) {
+        super.onActivityCreated(savedInstances);
+        ArrayList<Matrix> SquareList=new ArrayList<>();
+        for(int i=0;i<((GlobalValues)getActivity().getApplication()).GetCompleteList().size();i++)
+        {
+            if(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
+                //search only square matrix from list
+                SquareList.add(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i));
+        }
+        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(),R.id.MainContent,SquareList);
+        getListView().setDividerHeight(1);
+        setListAdapter(MatriXadapter);
+
     }
+
 }
-//Todo 1. Make the FAQ section Functioning
