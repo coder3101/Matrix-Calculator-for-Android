@@ -196,14 +196,20 @@ public class MainActivity extends AppCompatActivity
                getSupportFragmentManager().beginTransaction().replace(R.id.MainContent,mh,"MAIN_LIST").commit();
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(true);
                actionBar.setTitle(R.string.app_name);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   actionBar.setSubtitle(null);
+               else
+                   actionBar.setSubtitle(R.string.MainSubtitle);
                break;
            case R.id.add_sub :
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.ShortAddSub);
+               actionBar.setSubtitle(null);
                break;
            case R.id.Swap :
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.swap);
+               actionBar.setSubtitle(null);
                break;
            case R.id.multiply:
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
@@ -217,6 +223,7 @@ public class MainActivity extends AppCompatActivity
                //Modify the Actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.exponent);
+               actionBar.setSubtitle(null);
                break;
            case R.id.determinant:
                FragmentTransaction DeterminantTransaction= getSupportFragmentManager().beginTransaction();
@@ -227,6 +234,7 @@ public class MainActivity extends AppCompatActivity
                //Modify the Actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.determinant);
+               actionBar.setSubtitle(null);
                break;
            case R.id.inverse:
                FragmentTransaction InverseTransaction= getSupportFragmentManager().beginTransaction();
@@ -237,6 +245,7 @@ public class MainActivity extends AppCompatActivity
                //Modify the Actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.inverse);
+               actionBar.setSubtitle(null);
                break;
            case R.id.adjoint:
                FragmentTransaction AdjointTransaction= getSupportFragmentManager().beginTransaction();
@@ -247,6 +256,7 @@ public class MainActivity extends AppCompatActivity
                //Modify the Actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.adjoint);
+               actionBar.setSubtitle(null);
                break;
            case R.id.functional:
                FragmentTransaction FunctionalTransaction= getSupportFragmentManager().beginTransaction();
@@ -257,10 +267,12 @@ public class MainActivity extends AppCompatActivity
                //Modify the Actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.function);
+               actionBar.setSubtitle(null);
                break;
            case R.id.custom:
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.ShortCustom);
+               actionBar.setSubtitle(null);
                break;
            case R.id.nav_help:
                startActivity(new Intent(getApplicationContext(),faqs.class));

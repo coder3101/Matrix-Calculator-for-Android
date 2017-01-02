@@ -27,7 +27,6 @@ import android.widget.Toast;
 
 public class ViewCreatedMatrix extends AppCompatActivity {
 
-    ViewMatrixFragment viewMatrixFragment = new ViewMatrixFragment();
     Menu ActionMenu;
     final int ChangedOrder=12;
     @Override
@@ -42,15 +41,19 @@ public class ViewCreatedMatrix extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_created_matrix);
         Toolbar actionBar = (Toolbar) findViewById(R.id.viewAction);
-        int index =getIntent().getExtras().getInt("INDEX",-1);
+        int index =getIntent().getIntExtra("INDEX",-1);
         if(index!=(-1))
             actionBar.setTitle(((GlobalValues)getApplication()).GetCompleteList().get(index).GetName());
         else
             actionBar.setTitle("Error");
+
         actionBar.setNavigationIcon(R.drawable.ic_action_back);
         setSupportActionBar(actionBar);
 
-        viewMatrixFragment.setArguments(getIntent().getExtras());
+        ViewMatrixFragment viewMatrixFragment = new ViewMatrixFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("INDEX",getIntent().getIntExtra("INDEX",-1));
+        viewMatrixFragment.setArguments(bundle);
         if(savedInstanceState==null){
             FragmentTransaction  transaction= getSupportFragmentManager().beginTransaction();
                     transaction.add(R.id.FragmentContainer,viewMatrixFragment,"VIEW_TAG").commit();
@@ -65,19 +68,21 @@ public class ViewCreatedMatrix extends AppCompatActivity {
     }
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        EditFragment t=new EditFragment();
-        int index =getIntent().getExtras().getInt("INDEX",-1);
+        EditFragment editFragment=new EditFragment();
+        int index =getIntent().getIntExtra("INDEX",-1);
         switch (item.getItemId())
         {
             case R.id.EditEntered:
 
-                t.setArguments(getIntent().getExtras());
+                Bundle bundle = new Bundle();
+                bundle.putInt("INDEX",getIntent().getIntExtra("INDEX",-1));
+                editFragment.setArguments(bundle);
                 FragmentTransaction FragmentTR=getSupportFragmentManager().beginTransaction();
-                FragmentTR.replace(R.id.FragmentContainer,t,"FRAGMENTEDIT");
+                FragmentTR.replace(R.id.FragmentContainer,editFragment,"FRAGMENTEDIT");
                 FragmentTR.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 FragmentTR.commit();
                 ActionMenu.findItem(R.id.EditEntered).setVisible(false);
-                ActionMenu.findItem(R.id.OrderChange).setVisible(false); //Todo Changing is Causing Carsh
+                ActionMenu.findItem(R.id.OrderChange).setVisible(false);
                 ActionMenu.findItem(R.id.DeleteCreated).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
                 ActionMenu.findItem(R.id.DeleteCreated).setTitle(R.string.Delete2);
                 ActionMenu.findItem(R.id.ConfirmChanges).setVisible(true);
@@ -114,7 +119,7 @@ public class ViewCreatedMatrix extends AppCompatActivity {
                 return true;
             case R.id.ConfirmChanges:
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.detach(t);
+                transaction.detach(editFragment);
                 transaction.commit();
                 finish();
                 Toast.makeText(getApplicationContext(),R.string.ConfirmSuccess,Toast.LENGTH_SHORT).show();

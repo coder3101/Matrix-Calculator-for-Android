@@ -58,7 +58,6 @@ public class EditFragment extends Fragment {
         int index= getArguments().getInt("INDEX");
         Matrix m=((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index);
 
-
         GridLayout gridLayout = new GridLayout(getContext());
         gridLayout.setRowCount(m.GetRow());
         gridLayout.setColumnCount(m.GetCol());
@@ -92,23 +91,24 @@ public class EditFragment extends Fragment {
     @Override
     public void onDetach(){
         super.onDetach();
+        int number;
         int index= getArguments().getInt("INDEX");
-        for(int i=0;i<((GlobalValues)getActivity().getApplication()).
-                GetCompleteList().get(index).GetRow();i++)
-            for(int j=0;j<((GlobalValues)getActivity().getApplication()).
-                    GetCompleteList().get(index).GetCol();j++)
-            {
-                if(RootView.findViewById(i*10+j)!=null)
-                {
-                    ((GlobalValues)getActivity().getApplication()).
-                            GetCompleteList().get(index).
-                            SetElementof(((Float.parseFloat(((EditText)
-                            RootView.findViewById(i * 10 + j)).
-                                    getText().toString()))),i,j);
+        if(!((GlobalValues)getActivity().getApplication()).GetCompleteList().isEmpty()) {
+            number = ((GlobalValues) getActivity().getApplication()).
+                    GetCompleteList().get(index).GetRow();
+            for (int i = 0; i < number; i++)
+                for (int j = 0; j < ((GlobalValues) getActivity().getApplication()).
+                        GetCompleteList().get(index).GetCol(); j++) {
+                    if (RootView.findViewById(i * 10 + j) != null) {
+                        ((GlobalValues) getActivity().getApplication()).
+                                GetCompleteList().get(index).
+                                SetElementof(((Float.parseFloat(((EditText)
+                                        RootView.findViewById(i * 10 + j)).
+                                        getText().toString()))), i, j);
+                    } else
+                        Log.d("Null View ", "true");
                 }
-                else
-                    Log.d("Null View ", "true");
-            }
+        }
 
     }
     public int CalculatedHeight(int a)

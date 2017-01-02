@@ -29,7 +29,7 @@
     <string name="about_app">Design and Developed by Ashar</string>
     <string name="reserve">All Rights Reserved </string>
     <string name="certificate">The Following App is being Prepared and Contains No Copyright Codes or Copyright Contents
-        However comes with a MIT Copyright License, Which You Should Check by Visiting the following link : www.github.com/coder3101/Matrix_Calculator
+        However comes with a MIT Copyright License, Which You Should Check by Visiting the following link <b>https://wwww.github.com/coder3101/Matrix-Calculator-for-Android</b>
     The Desktop Version of the Same App is Almost 90% Completed, it is for Windows above Win 7, You can see the Complete Source Code of the Project by Clicking the Same link
     as i have kept it a Open Source Project.</string>
     <string name="Chooser">Select the Fastest Browser</string>
@@ -37,7 +37,7 @@
     <string name="ToastMessage">Thanks for Choosing to Visit My Profile</string>
     <string name="FacebookLogo">Facebook</string>
     <string name="FacebookLink">https://www.facebook.com/coder3101</string>
-    <string name="version">Developmental Version 0.40</string>
+    <string name="version">Developmental Version 0.44</string>
 
     <string name="NocreateWaring">Upgrade to Pro, to add and use more Matrix Variable.</string>
 
@@ -160,5 +160,4 @@
     <string name="ShortCustom">Custom</string>
     <string name="MainSubtitle">All Variables</string>
     <string name="NothingCreated">Press the Button below to Create a Variable</string>
-    <string name="SelectToPerform">Select a Variable to Perform Operation</string>
 </resources>

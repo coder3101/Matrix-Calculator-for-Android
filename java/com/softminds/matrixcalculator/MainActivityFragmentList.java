@@ -39,9 +39,10 @@ public class MainActivityFragmentList extends ListFragment {
     { //Last Index from Global is 1 more that the position provided
 
         Intent intent =new Intent(getActivity().getApplication(),ViewCreatedMatrix.class);
-        Bundle index = new Bundle();
-        index.putInt("INDEX",position);
-        intent.putExtras(index);
+        //Bundle index = new Bundle();
+        //index.putInt("INDEX",position); //Todo Remove Redundant Values
+        //intent.putExtras(index);
+        intent.putExtra("INDEX",position);
         startActivity(intent);
     }
 

@@ -24,7 +24,10 @@
         <item name="colorPrimaryDark">@color/DarkcolorPrimaryDark</item>
         <item name="colorAccent">@color/DarkcolorAccent</item>
         <item name="android:colorBackground">@color/deepgrey</item>
-        <item name="android:itemBackground">@color/DarkcolorAccent</item>
+        <item name="android:itemBackground">@color/deepgrey</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/white2</item>
 
     </style>
     <style name="AppThemeDark.NoActionBar">
