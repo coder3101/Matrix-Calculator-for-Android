@@ -17,6 +17,9 @@ package com.softminds.matrixcalculator;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -37,5 +40,22 @@ public class DeterminantFragment extends ListFragment {
         setListAdapter(MatriXadapter);
 
     }
+    @Override
+    public void onListItemClick(ListView L, View V, int position, long id)
+    {
+        final int pk = position;
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getContext(),"Determinant : "+String.valueOf(((GlobalValues)getActivity().
+                        getApplication()).GetCompleteList().
+                        get(pk).GetDeterminant()),Toast.
+                        LENGTH_LONG).show();
+            }
+        };
+        Thread n = new Thread(runnable);
+        n.start();
+    }
+    //Todo : Launch the Value to a Snackbar unlimited with 2 buttons , to cancel or to copy the result to clipboard
 
 }

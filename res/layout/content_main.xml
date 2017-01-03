@@ -12,6 +12,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/MainContent"
             android:orientation="horizontal"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/OpeningHint"
+        android:layout_centerInParent="true"
+        android:textStyle="bold"
+        android:text="@string/OpenHint" />
     <!--TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

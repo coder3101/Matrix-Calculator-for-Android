@@ -55,15 +55,22 @@ public class MainActivity extends AppCompatActivity
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
+
         if(isDark)
-        {setTheme(R.style.AppThemeDark_NoActionBar);
-        }
+            setTheme(R.style.AppThemeDark_NoActionBar);
         else
             setTheme(R.style.AppTheme_NoActionBar);
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView hint = (TextView) findViewById(R.id.OpeningHint);
+        if(isDark)
+            hint.setTextColor(ContextCompat.getColor(this,R.color.white));
+
+        else
+            hint.setTextColor(ContextCompat.getColor(this,R.color.colorPrimary));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -174,6 +181,8 @@ public class MainActivity extends AppCompatActivity
                             snackbar.dismiss();
                             ((GlobalValues) getApplication()).ClearAllMatrix();
                             actionBar.setSubtitle(null);
+                            TextView t = (TextView) findViewById(R.id.OpeningHint);
+                            t.setText(R.string.OpenHint);
                         }
                     });
                     }
@@ -188,6 +197,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.MainFAB);
 
        switch (id)
        {
@@ -200,19 +210,30 @@ public class MainActivity extends AppCompatActivity
                    actionBar.setSubtitle(null);
                else
                    actionBar.setSubtitle(R.string.MainSubtitle);
+               fab.show();
+              if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+              {
+                  TextView t = (TextView) findViewById(R.id.OpeningHint);
+                  t.setText(R.string.OpenHint);
+              }
                break;
            case R.id.add_sub :
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.ShortAddSub);
                actionBar.setSubtitle(null);
+               fab.hide();
                break;
            case R.id.Swap :
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.swap);
                actionBar.setSubtitle(null);
+               fab.hide();
                break;
            case R.id.multiply:
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setSubtitle(null);
+               actionBar.setTitle(R.string.multiply);
+               fab.hide();
                break;
            case R.id.exponent:
                FragmentTransaction ExponentTransaction = getSupportFragmentManager().beginTransaction();
@@ -224,6 +245,7 @@ public class MainActivity extends AppCompatActivity
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.exponent);
                actionBar.setSubtitle(null);
+               fab.hide();
                break;
            case R.id.determinant:
                FragmentTransaction DeterminantTransaction= getSupportFragmentManager().beginTransaction();
@@ -235,6 +257,7 @@ public class MainActivity extends AppCompatActivity
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.determinant);
                actionBar.setSubtitle(null);
+               fab.hide();
                break;
            case R.id.inverse:
                FragmentTransaction InverseTransaction= getSupportFragmentManager().beginTransaction();
@@ -246,6 +269,7 @@ public class MainActivity extends AppCompatActivity
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.inverse);
                actionBar.setSubtitle(null);
+               fab.hide();
                break;
            case R.id.adjoint:
                FragmentTransaction AdjointTransaction= getSupportFragmentManager().beginTransaction();
@@ -257,6 +281,7 @@ public class MainActivity extends AppCompatActivity
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.adjoint);
                actionBar.setSubtitle(null);
+               fab.hide();
                break;
            case R.id.functional:
                FragmentTransaction FunctionalTransaction= getSupportFragmentManager().beginTransaction();
@@ -268,11 +293,13 @@ public class MainActivity extends AppCompatActivity
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.function);
                actionBar.setSubtitle(null);
+               fab.hide();
                break;
            case R.id.custom:
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.ShortCustom);
                actionBar.setSubtitle(null);
+               fab.hide();
                break;
            case R.id.nav_help:
                startActivity(new Intent(getApplicationContext(),faqs.class));
@@ -301,6 +328,8 @@ public class MainActivity extends AppCompatActivity
                 ((GlobalValues) getApplication()).AddToGlobal(m); //Sending the things to Global Reference
                 if(actionBar.getSubtitle()==null)
                     actionBar.setSubtitle(R.string.MainSubtitle);
+                TextView hint = (TextView) findViewById(R.id.OpeningHint);
+                hint.setText(null);
 
             }
         }

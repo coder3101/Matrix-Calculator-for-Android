@@ -160,4 +160,6 @@
     <string name="ShortCustom">Custom</string>
     <string name="MainSubtitle">All Variables</string>
     <string name="NothingCreated">Press the Button below to Create a Variable</string>
+
+    <string name="OpenHint">Click the Button below to Add a Variable</string>
 </resources>
