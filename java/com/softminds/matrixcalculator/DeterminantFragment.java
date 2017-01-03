@@ -15,8 +15,11 @@ package com.softminds.matrixcalculator;
 
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -29,33 +32,26 @@ public class DeterminantFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstances) {
         super.onActivityCreated(savedInstances);
-        ArrayList<Matrix> SquareList=new ArrayList<>();
-        for(int i=0;i<((GlobalValues)getActivity().getApplication()).GetCompleteList().size();i++)
-        {
-            if(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
-                SquareList.add(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i));
+        ArrayList<Matrix> SquareList = new ArrayList<>();
+        for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
+            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
+                SquareList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
         }
-        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(),R.id.MainContent,SquareList);
+        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.id.MainContent, SquareList);
         getListView().setDividerHeight(1);
         setListAdapter(MatriXadapter);
 
     }
-    @Override
-    public void onListItemClick(ListView L, View V, int position, long id)
-    {
-        final int pk = position;
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getContext(),"Determinant : "+String.valueOf(((GlobalValues)getActivity().
-                        getApplication()).GetCompleteList().
-                        get(pk).GetDeterminant()),Toast.
-                        LENGTH_LONG).show();
-            }
-        };
-        Thread n = new Thread(runnable);
-        n.start();
-    }
-    //Todo : Launch the Value to a Snackbar unlimited with 2 buttons , to cancel or to copy the result to clipboard
 
+    @Override
+    public void onListItemClick(ListView L, View V, int position, long id) {
+        double result = RunToGetDeterminant(position);
+        Toast.makeText(getContext(), String.valueOf(result), Toast.LENGTH_LONG).show();
+    }
+    public double RunToGetDeterminant(final int pos)
+    {
+        //Todo Make a new thread to Calculate the Result and return it back to parent
+
+        return  pos;
+    }
 }
