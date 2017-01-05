@@ -16,21 +16,14 @@ package com.softminds.matrixcalculator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -40,7 +33,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +42,7 @@ public class MainActivity extends AppCompatActivity
         final int RESULT=1;
     Menu ActionbarMenu;
     ActionBar actionBar;
+    TextView t; //Center Text which describe the context of the Application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -65,15 +58,19 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView hint = (TextView) findViewById(R.id.OpeningHint);
+        t = (TextView)findViewById(R.id.OpeningHint);
+
         if(isDark)
-            hint.setTextColor(ContextCompat.getColor(this,R.color.white));
+            t.setTextColor(ContextCompat.getColor(this,R.color.white));
 
         else
-            hint.setTextColor(ContextCompat.getColor(this,R.color.colorPrimary));
+            t.setTextColor(ContextCompat.getColor(this,R.color.colorPrimary));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if(!((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+            t.setText(null);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_main);
@@ -212,27 +209,39 @@ public class MainActivity extends AppCompatActivity
                    actionBar.setSubtitle(R.string.MainSubtitle);
                fab.show();
               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-              {
-                  TextView t = (TextView) findViewById(R.id.OpeningHint);
                   t.setText(R.string.OpenHint);
-              }
+               else
+                    t.setText(null);
+
                break;
            case R.id.add_sub :
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.ShortAddSub);
                actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+                t.setText(null);
                fab.hide();
                break;
            case R.id.Swap :
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.swap);
                actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+                t.setText(null);
                fab.hide();
                break;
            case R.id.multiply:
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setSubtitle(null);
                actionBar.setTitle(R.string.multiply);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+                   t.setText(null);
                fab.hide();
                break;
            case R.id.exponent:
@@ -245,6 +254,16 @@ public class MainActivity extends AppCompatActivity
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.exponent);
                actionBar.setSubtitle(null);
+               //if else Ladder
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+               {
+                   if(isAnyVariableSquare())
+                       t.setText(null);
+                   else
+                       t.setText(R.string.NoSupport);
+               }
                fab.hide();
                break;
            case R.id.determinant:
@@ -257,6 +276,15 @@ public class MainActivity extends AppCompatActivity
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.determinant);
                actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+                {
+                    if(isAnyVariableSquare())
+                         t.setText(null);
+                    else
+                         t.setText(R.string.NoSupport);
+                    }
                fab.hide();
                break;
            case R.id.inverse:
@@ -269,6 +297,15 @@ public class MainActivity extends AppCompatActivity
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.inverse);
                actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+               {
+                   if(isAnyVariableSquare())
+                       t.setText(null);
+                   else
+                       t.setText(R.string.NoSupport);
+               }
                fab.hide();
                break;
            case R.id.adjoint:
@@ -281,6 +318,15 @@ public class MainActivity extends AppCompatActivity
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.adjoint);
                actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+               {
+                   if(isAnyVariableSquare())
+                       t.setText(null);
+                   else
+                       t.setText(R.string.NoSupport);
+               }
                fab.hide();
                break;
            case R.id.functional:
@@ -293,12 +339,30 @@ public class MainActivity extends AppCompatActivity
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.function);
                actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+               {
+                   if(isAnyVariableSquare())
+                       t.setText(null);
+                   else
+                       t.setText(R.string.NoSupport);
+               }
                fab.hide();
                break;
            case R.id.custom:
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.ShortCustom);
                actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+               {
+                   if(isAnyVariableSquare())
+                       t.setText(null);
+                   else
+                       t.setText(R.string.NoSupport);
+               }
                fab.hide();
                break;
            case R.id.nav_help:
@@ -320,7 +384,7 @@ public class MainActivity extends AppCompatActivity
         if(resultCode==RESULT)
         {
             if(data!=null) {
-                Toast.makeText(getApplicationContext(), "Variable Created", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.Created, Toast.LENGTH_SHORT).show();
                 Bundle AllData=new Bundle();
                 AllData.putAll(data.getExtras());
                 Matrix m=new Matrix();
@@ -328,13 +392,19 @@ public class MainActivity extends AppCompatActivity
                 ((GlobalValues) getApplication()).AddToGlobal(m); //Sending the things to Global Reference
                 if(actionBar.getSubtitle()==null)
                     actionBar.setSubtitle(R.string.MainSubtitle);
-                TextView hint = (TextView) findViewById(R.id.OpeningHint);
-                hint.setText(null);
+                t.setText(null);
 
             }
         }
         if(resultCode==100)
             this.recreate(); // Recreate this Activity if a Change in Theme has been marked
 
+    }
+    public boolean isAnyVariableSquare()
+    {
+        for(int i = 0; i <((GlobalValues)getApplication()).GetCompleteList().size(); i++)
+            if(((GlobalValues)getApplication()).GetCompleteList().get(i).is_squareMatrix())
+                return true;
+        return false;
     }
 }

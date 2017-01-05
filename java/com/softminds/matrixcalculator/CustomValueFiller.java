@@ -16,11 +16,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class CustomValueFiller extends AppCompatActivity {
@@ -37,6 +40,10 @@ public class CustomValueFiller extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_filler_value);
         final EditText editText= (EditText) findViewById(R.id.CustomValue);
+        if(isDark)
+        {
+            editText.setTextColor(ContextCompat.getColor(this,R.color.white));
+        }
         Button button = (Button) findViewById(R.id.ConfirmCustomFill);
         Button exit = (Button) findViewById(R.id.CancelCustomFill);
         button.setOnClickListener(new View.OnClickListener() {

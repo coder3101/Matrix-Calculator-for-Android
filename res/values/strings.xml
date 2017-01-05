@@ -37,7 +37,7 @@
     <string name="ToastMessage">Thanks for Choosing to Visit My Profile</string>
     <string name="FacebookLogo">Facebook</string>
     <string name="FacebookLink">https://www.facebook.com/coder3101</string>
-    <string name="version">Developmental Version 0.44</string>
+    <string name="version">Developmental Version 0.48</string>
 
     <string name="NocreateWaring">Upgrade to Pro, to add and use more Matrix Variable.</string>
 
@@ -116,7 +116,7 @@
 
     <!--Custom Filler-->
     <string name="CustomFill">Fill Custom Value</string>
-    <string name="ValueHint">Value to Filled in All Empty Cells</string>
+    <string name="ValueHint">Value to Filled in Empty Cells</string>
     <string name="ConfirmMake">Confirm</string>
     <string name="CancelCustomFill">Cancel</string>
     <string name="NoValue">No Value Provided</string>
@@ -162,4 +162,8 @@
     <string name="NothingCreated">Press the Button below to Create a Variable</string>
 
     <string name="OpenHint">Click the Button below to Add a Variable</string>
+    <string name="Created">Variable Created</string>
+    <string name="OpenHint2">Please add a Variable to Proceed</string>
+    <string name="NoSupport">None of the Variable Support this Operation</string>
+    <string name="Calculating">Calculating...</string>
 </resources>

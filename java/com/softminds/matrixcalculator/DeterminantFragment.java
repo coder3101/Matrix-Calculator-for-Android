@@ -14,15 +14,21 @@ package com.softminds.matrixcalculator;
 
 
 
+import android.app.ProgressDialog;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
+import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ListFragment;
-import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -44,14 +50,47 @@ public class DeterminantFragment extends ListFragment {
     }
 
     @Override
-    public void onListItemClick(ListView L, View V, int position, long id) {
-        double result = RunToGetDeterminant(position);
-        Toast.makeText(getContext(), String.valueOf(result), Toast.LENGTH_LONG).show();
+    public void onListItemClick(ListView L, View V, int position, long id) { //Todo Make it Comaptible for Dark theme Also
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage(getString(R.string.Calculating));
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
+        RunToGetDeterminant(position,progressDialog);
     }
-    public double RunToGetDeterminant(final int pos)
+    public void RunToGetDeterminant(final int pos, final ProgressDialog px)
     {
-        //Todo Make a new thread to Calculate the Result and return it back to parent
-
-        return  pos;
+        final  Handler handler = new Handler() //Todo Problem here
+        {
+            @Override
+            public  void handleMessage(Message msg)
+            {
+                Bundle val;
+                val = msg.getData();
+                final Snackbar snackbar;
+                snackbar = Snackbar.make(getListView(),"Determinant is : " + String.valueOf(val.getDouble("RESULTANT")),Snackbar.LENGTH_INDEFINITE);
+                px.dismiss();
+                snackbar.show();
+                snackbar.setAction("GOT IT", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snackbar.dismiss();
+                    }
+                });
+            }
+        };
+       Runnable runnable = new Runnable() {
+           @Override
+           public void run() {
+              double var = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos).GetDeterminant();
+               Message message = new Message();
+               Bundle bundle = new Bundle();
+               bundle.putDouble("RESULTANT",var);
+               message.setData(bundle);
+               handler.sendMessage(message);
+           }
+       };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 }
