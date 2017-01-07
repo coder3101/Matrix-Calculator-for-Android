@@ -26,6 +26,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
@@ -426,15 +427,3 @@ public class MainActivity extends AppCompatActivity
     }
 }
 
-/*
-Todo : Use Dialog to take Power to raise the matrix
-Todo : Use Result Dialog to Show the Result AfterWards
-Todo : Improve the Determinant portion
-Todo : Think of a Great UI in Calculations
-Todo : Plan FAQs
-Todo : Plan Feedback more better
-Todo : Problem of Decimal Numbers in Settings to solve
-Todo : Think of UI for Swapping
-Todo : UI for Addition
-Todo : UI for Multi
- */
