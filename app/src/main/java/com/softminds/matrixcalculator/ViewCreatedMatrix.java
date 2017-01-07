@@ -25,10 +25,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -43,21 +41,14 @@ public class ViewCreatedMatrix extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
         if(isDark)
-            setTheme(R.style.AppThemeDark_NoActionBar);
+            setTheme(R.style.AppThemeDark);
         else
-            setTheme(R.style.AppTheme_NoActionBar);
+            setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_created_matrix);
-        Toolbar actionBar = (Toolbar) findViewById(R.id.viewAction);
         int index =getIntent().getIntExtra("INDEX",-1);
-        if(index!=(-1))
-            actionBar.setTitle(((GlobalValues)getApplication()).GetCompleteList().get(index).GetName());
-        else
-            actionBar.setTitle("Error");
-
-        actionBar.setNavigationIcon(R.drawable.ic_action_back);
-        setSupportActionBar(actionBar);
-
+        if(getSupportActionBar()!=null && index != (-1))
+                getSupportActionBar().setTitle(((GlobalValues) getApplication()).GetCompleteList().get(index).GetName());
         ViewMatrixFragment viewMatrixFragment = new ViewMatrixFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("INDEX",getIntent().getIntExtra("INDEX",-1));
