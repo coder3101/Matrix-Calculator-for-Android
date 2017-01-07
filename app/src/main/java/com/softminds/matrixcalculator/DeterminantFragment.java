@@ -95,12 +95,12 @@ public class DeterminantFragment extends ListFragment {
         progressDialog.setIndeterminate(true);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-        //RunToGetDeterminant(position,progressDialog);
+        RunToGetDeterminant(position,progressDialog);
     }
 
 
 
-    /*public void RunToGetDeterminant(final int pos, final ProgressDialog px)
+    public void RunToGetDeterminant(final int pos, final ProgressDialog px)
     {
        Runnable runnable = new Runnable() {
            @Override
@@ -116,6 +116,6 @@ public class DeterminantFragment extends ListFragment {
        };
         Thread thread = new Thread(runnable);
         thread.start();
-    }*/
+    }
 
 }
