@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/internal_impl-25.0.0_f6c02e33e1d92a347349faf745b5f465aef02552.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-animated-vector-drawable-25.0.0_1d60f76fe3c3e0837ea7ba57a34d2c1853dd1513.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.0.0_1d60f76fe3c3e0837ea7ba57a34d2c1853dd1513/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.0.0_9de1ad20a41bd2f26b4902388c642769dc3a1924/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.0.0_92329386243d1b445af8f77e380f5eeb00786a66/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.0.0_84f026b9face5cfcebd3135e084b0651f5e1f291/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-support-core-ui-25.0.0_92329386243d1b445af8f77e380f5eeb00786a66.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-appcompat-v7-25.0.0_9de1ad20a41bd2f26b4902388c642769dc3a1924.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_f6c02e33e1d92a347349faf745b5f465aef02552/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-support-media-compat-25.0.0_8907538144ab8e6b3112d3a01fc3f2feb52c032d.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.0.0_8907538144ab8e6b3112d3a01fc3f2feb52c032d/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-support-core-utils-25.0.0_84f026b9face5cfcebd3135e084b0651f5e1f291.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_d820688279253996240cf4f2864c6ab18be274cd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.0.0_700b060db0a51f046a4077070862549fc207dda2/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-recyclerview-v7-25.0.0_cad1d6db1f07b09abf76f844f49ddc62bc699505.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="db33f0416befa2fd9435ca5cf56447afe9155d74">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_31a44e9aa1a99dfa6df9c2f1e7824f97249764ba/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/transition/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-transition-25.0.0_80b13ebae32f6559aedb23231cfd473e1c9df613.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-support-fragment-25.0.0_61d2e2c2ac5f5e72cef318a131d85654fe0f579d.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.0.0_cad1d6db1f07b09abf76f844f49ddc62bc699505/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-support-v4-25.0.0_f9defba4df0efb1a2bad95942b2dfde6f140776a.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.0.0_61d2e2c2ac5f5e72cef318a131d85654fe0f579d/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/internal_impl-25.0.0_bf5d7f1b257471ec7e9b3a203c6b03baaab59741.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.0.0_f9defba4df0efb1a2bad95942b2dfde6f140776a/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8a372c4191f80489770a231f7be4820b204b886a">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-cardview-v7-25.0.0_7e4bfbe3b9e9e6ebbdacfbd8f68b3b4ccf8dbe44.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.0/support-annotations-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/support-annotations-25.0.0_853886b5a8a66c4a1d0f65ccf91dcd0bd0b7a41c.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_bf5d7f1b257471ec7e9b3a203c6b03baaab59741/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-support-vector-drawable-25.0.0_700b060db0a51f046a4077070862549fc207dda2.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8a372c4191f80489770a231f7be4820b204b886a">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-25.0.0_7e4bfbe3b9e9e6ebbdacfbd8f68b3b4ccf8dbe44/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.0/support-annotations-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.0.0_853886b5a8a66c4a1d0f65ccf91dcd0bd0b7a41c/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/internal_impl-25.0.0_a1714a2c2fe29d664721a8d8f75640e774957125.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.0.0_f9945f72f4d0f20985dc05e6b1d1846cc038fe62/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_a1714a2c2fe29d664721a8d8f75640e774957125/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/design/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-design-25.0.0_b9ef45e082cc6f640a5bf6fd206068f3e20ff5ee.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-support-compat-25.0.0_f9945f72f4d0f20985dc05e6b1d1846cc038fe62.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/design/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.0.0_b9ef45e082cc6f640a5bf6fd206068f3e20ff5ee/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_83dfac2479c95eb8b1006e16aef013c77e3a7af5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c7003ce318fe2c6a0f4902f8386737b46263d23b">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_900222d6d48a69e141511f3da9520c88b28fdc1d/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/internal_impl-25.0.0_83dfac2479c95eb8b1006e16aef013c77e3a7af5.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/transition/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.0.0_80b13ebae32f6559aedb23231cfd473e1c9df613/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/internal_impl-25.0.0_d820688279253996240cf4f2864c6ab18be274cd.jar" />
+    </item>
+
+</items>
