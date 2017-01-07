@@ -20,7 +20,7 @@
             android:id="@+id/ExponentSetter"
             android:inputType="number"
             android:layout_centerHorizontal="true"
-            android:hint="@string/ValueHint"
+            android:hint="@string/Expohint"
             />
     </android.support.design.widget.TextInputLayout>
     <Button
