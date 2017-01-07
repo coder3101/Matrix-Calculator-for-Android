@@ -27,10 +27,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -39,9 +37,8 @@ public class ExponentFragment extends ListFragment {
 
     int Clicked_pos;
     ArrayList<Matrix> SquareList;
-    Bundle AllVars = new Bundle();
 
-    /*private static class MyHandler extends Handler{
+    private static class MyHandler extends Handler{
         private final WeakReference<ExponentFragment> exponentFragmentWeakReference;
         private MyHandler(ExponentFragment fragment){
             exponentFragmentWeakReference = new WeakReference<>(fragment);
@@ -53,12 +50,11 @@ public class ExponentFragment extends ListFragment {
             Intent intent = new Intent(exponentfrag.getActivity(),ShowResult.class);
             intent.putExtras(msg.getData());
             exponentfrag.startActivity(intent);
-            //will send a intent for a new activity to start passing a bundle as extra
         }
 
     }
 
-    MyHandler handler = new MyHandler(this);*/
+    MyHandler handler = new MyHandler(this);
 
         @Override
         public void onActivityCreated(Bundle savedInstances) {
@@ -97,10 +93,6 @@ public class ExponentFragment extends ListFragment {
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
             RunAndGetResult(Clicked_pos,data.getIntExtra("QWERTYUIOP",0),progressDialog);
-            Intent intent = new Intent(getActivity(),ShowResult.class);
-            intent.putExtras(AllVars); //All var remains Empty here..
-            Log.d("AllVar Row is : ",String.valueOf(AllVars.getInt("ROW",5)));
-            startActivity(intent);
         }
     }
     public void RunAndGetResult(final int pos, final int exponent, final ProgressDialog progressDialog)
@@ -108,15 +100,15 @@ public class ExponentFragment extends ListFragment {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                Matrix m = new Matrix(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos).GetRow()
+                Matrix res = new Matrix(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos).GetRow()
                         ,((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos).GetCol()
                         ,((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos).GetType());
-                m.CloneFrom(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos));
-                m.Raiseto(exponent);
-                AllVars.putAll(m.GetDataBundled());
-                Log.d("AllVar at this point :",String .valueOf(AllVars.getInt("ROW",0)));
+                res.CloneFrom(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos));
+                res.Raiseto(exponent);
                 progressDialog.dismiss();
-
+                Message message = new Message();
+                message.setData(res.GetDataBundled());
+                handler.sendMessage(message);
             }
         };
         Thread thread = new Thread(runnable);
@@ -124,4 +116,3 @@ public class ExponentFragment extends ListFragment {
     }
 
 }
-//Todo : Bundle and Sending problem should be Solved here
