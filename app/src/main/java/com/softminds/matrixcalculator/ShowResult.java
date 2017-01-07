@@ -26,7 +26,6 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -34,8 +33,6 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
-
-import java.util.zip.Inflater;
 
 public class ShowResult extends AppCompatActivity {
 
@@ -75,8 +72,7 @@ public class ShowResult extends AppCompatActivity {
             {
                 TextView textView = new TextView(getApplicationContext());
                 textView.setGravity(Gravity.CENTER);
-                textView.setText(SafeSubString(String.valueOf(var[i][j]),getLenght()));
-                textView.setWidth(CalculatedWidth(getIntent().getExtras().getInt("COL",0)));
+                textView.setText("   "+String.valueOf(var[i][j])+"   ");
                 textView.setTextSize(SizeReturner(getIntent().getExtras().getInt("ROW",0),getIntent().getExtras().getInt("COL",0),
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).
                                 getBoolean("EXTRA_SMALL_FONT",false)));
@@ -123,23 +119,6 @@ public class ShowResult extends AppCompatActivity {
             case 7 : return 85;
             case 8 : return 85;
             case 9 : return 80;
-
-        }
-        return 0;
-    }
-    public int CalculatedWidth(int a)
-    {
-        switch (a)
-        {
-            case 1 : return 150;
-            case 2 : return 130;
-            case 3 : return 120;
-            case 4 : return 110;
-            case 5 : return 100;
-            case 6 : return 90;
-            case 7 : return 80;
-            case 8 : return 80;
-            case 9 : return 74;
 
         }
         return 0;
@@ -239,24 +218,5 @@ public class ShowResult extends AppCompatActivity {
         }
 
         return 0;
-    }
-    public String SafeSubString(String s, int MaxLength)
-    {
-        if(!TextUtils.isEmpty(s))
-        {
-            if(s.length()>=MaxLength){
-                return s.substring(0,MaxLength);
-            }
-        }
-        return s;
-    }
-    public int getLenght()
-    {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        boolean v=preferences.getBoolean("EXTRA_SMALL_FONT",false);
-        if(v)
-            return 8;
-        else
-            return 6;
     }
 }
