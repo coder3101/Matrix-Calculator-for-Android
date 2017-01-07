@@ -38,7 +38,7 @@
     <string name="ToastMessage">Thanks for Choosing to Visit My Profile</string>
     <string name="FacebookLogo">Facebook</string>
     <string name="FacebookLink">https://www.facebook.com/coder3101</string>
-    <string name="version">Developmental Version 0.48</string>
+    <string name="version">Developmental Version 0.50</string>
 
     <string name="NocreateWaring">Upgrade to Pro, to add and use more Matrix Variable.</string>
 
@@ -63,10 +63,9 @@
     <string name="ExtraSmallFontT">Extra Small Fonts</string>
     <string name="ExtraSmallFontD">Reduces the Font of Elements While Filling Matrix to Acquire up to 8 digits</string>
     <string name="CardChange">Change Card Color</string>
-    <string name="CardSummary">Changing the Card color will change the Matrix Color</string>
+    <string name="CardSummary">Change the color of the card which holds the Matrix</string>
     <string name="CardElevate">Card Elevation</string>
-    <string name="CardElevateDesc">Set the Amount of Elevation of Card in dp.
-    Elevation Elevate Your Cards in z-axix More the Elevation Value More Elevated the Card will be. </string>
+    <string name="CardElevateDesc">Change the Elevation of Matrix Card, more the value more 3-D Matrix will look. </string>
     <string name="other">Extra Settings</string>
     <string name="AutoToast">Result Toast</string>
     <string name="AutoToastDesc">Display a Toast Message after a Result has been Calculated</string>
@@ -74,18 +73,17 @@
     <string name="RestoreInfo">Restore All Settings to Default</string>
     <string name="title2">Calculations</string>
     <string name="EnableRounding">Result Rounding</string>
-    <string name="EnableRoundingDesc">Set the Precision of Number of Digits after Decimal to be Desplayed. The More Decimal Precision
-    you will have lesser will be the Element Integral Value</string>
-    <string name="NoFraction">No Fractional Result</string>
-    <string name="NoFractionDesc">The Result of a Matrix, Involving Fraction will be automatically casted to Respective No of Decimals</string>
+    <string name="EnableRoundingDesc">The  Calculated Result will be Rounded off this much Decimals</string>
+    <string name="NoFraction">No Fractional Inverse</string>
+    <string name="NoFractionDesc">Set the type of Inverse to Show as Result, if enabled Result will be Absolute Matrix with No Fractional Coefficient</string>
     <string name="RandT">Random Number Settings</string>
     <string name="SignedTitle">Signed Values</string>
-    <string name="SignedTitleDesc">Fill the Matrix With Negative and Positive Random Values, Negative Values Generated follows the Same Limit.</string>
+    <string name="SignedTitleDesc">Generate Negative as well as Positive Random Numbers while filling Matrix within the Specified Range</string>
     <string name="MaximiumT">Upper Limit</string>
     <string name="MinimumT">Lower Limit</string>
     <string name="RestoreComplete">Settings Restored Successfully</string>
-    <string name="MaximumD">The Signed Upper Limit of Random Number to Generate, to generate Negative Value See Above Settings</string>
-    <string name="MinimumD">The Signed Lower Limit of Random Number to Generate, to generate Negative Value See Above Settings</string>
+    <string name="MaximumD">Largest Signed Random Number to be Generated while filling the Matrix</string>
+    <string name="MinimumD">Smallest Signed Random Number to be Generated while filling the Matrix</string>
 
     <!-- Variable Creation Activity-->
     <string name="NewMatrix">Create New Variable</string>
