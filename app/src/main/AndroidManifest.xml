@@ -3,7 +3,7 @@
     package="com.softminds.matrixcalculator">
 
     <application
-        android:name=".GlobalValues"
+        android:name=".BaseActivities.GlobalValues"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/mainlogo"
@@ -15,29 +15,29 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AboutMe"
+            android:name=".BaseActivities.AboutMe"
             android:label="@string/aboutme"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".RatingActivity"
+            android:name=".BaseActivities.RatingActivity"
             android:label="@string/rate"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".Settings" />
+        <activity android:name=".BaseFragments.Settings" />
         <activity
-            android:name=".SettingsTab"
+            android:name=".BaseActivities.SettingsTab"
             android:label="@string/action_settings"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".MakeNewMatrix"
+            android:name=".DialogActivity.MakeNewMatrix"
             android:label="@string/NewMatrix"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name=".FillingMatrix"
+            android:name=".BaseActivities.FillingMatrix"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".BaseActivities.SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,38 +46,38 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CustomValueFiller"
+            android:name=".DialogActivity.CustomValueFiller"
             android:label="@string/CustomFill"
-            android:parentActivityName=".FillingMatrix"
+            android:parentActivityName=".BaseActivities.FillingMatrix"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name=".faqs"
+            android:name=".BaseActivities.faqs"
             android:label="@string/LabelHelp"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".FeedBack"
+            android:name=".BaseActivities.FeedBack"
             android:label="@string/feedback"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".ViewCreatedMatrix"
+            android:name=".BaseActivities.ViewCreatedMatrix"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RenameCreated"
+            android:name=".DialogActivity.RenameCreated"
             android:label="@string/Rename"
-            android:parentActivityName=".ViewCreatedMatrix"
+            android:parentActivityName=".BaseActivities.ViewCreatedMatrix"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name=".OrderChanger"
+            android:name=".DialogActivity.OrderChanger"
             android:label="@string/SetNewOrder"
-            android:parentActivityName=".ViewCreatedMatrix"
+            android:parentActivityName=".BaseActivities.ViewCreatedMatrix"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name=".ShowResult"
+            android:name=".BaseActivities.ShowResult"
             android:label="@string/Result"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ExponentSetter"
+        <activity android:name=".DialogActivity.ExponentSetter"
             android:theme="@style/AppThemeDialog"
             android:label="@string/exponent"
             android:parentActivityName=".MainActivity"/>

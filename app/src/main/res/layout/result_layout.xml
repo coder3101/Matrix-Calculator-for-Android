@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.softminds.matrixcalculator.ShowResult">
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal">
+    android:fillViewport="true"
+    tools:context="com.softminds.matrixcalculator.BaseActivities.ShowResult">
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        >
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:layout_gravity="center_vertical">
+            android:paddingEnd="10dp">
             <android.support.v7.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:id="@+id/DynamicCard2"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal">
             </android.support.v7.widget.CardView>
         </RelativeLayout>
-    </ScrollView>
     </HorizontalScrollView>
-<!--Todo : Center Alighnment of the Result should be improved-->
+    </ScrollView>

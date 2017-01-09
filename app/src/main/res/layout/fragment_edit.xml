@@ -6,12 +6,12 @@
     android:fadeScrollbars="true"
     android:scrollbars="horizontal|vertical"
     android:layout_height="match_parent"
-    tools:context="com.softminds.matrixcalculator.ViewMatrixFragment">
+    tools:context="com.softminds.matrixcalculator.BaseFragments.ViewMatrixFragment">
     <android.support.design.widget.CoordinatorLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.softminds.matrixcalculator.ViewMatrixFragment">
+        tools:context="com.softminds.matrixcalculator.BaseFragments.ViewMatrixFragment">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"

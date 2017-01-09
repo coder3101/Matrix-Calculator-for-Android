@@ -22,12 +22,6 @@ package com.softminds.matrixcalculator;
 
 import android.os.Bundle;
 
-enum  Type {
-    Null,
-    Identity,
-    Diagonal,
-    Normal;
-}
 public class Matrix {
     private int NumberofRows, NumberofCols;
     private Type type;

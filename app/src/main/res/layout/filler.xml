@@ -7,13 +7,13 @@
     android:fadeScrollbars="true"
     android:scrollbars="horizontal|vertical"
     android:layout_height="match_parent"
-    tools:context="com.softminds.matrixcalculator.FillingMatrix">
+    tools:context="com.softminds.matrixcalculator.BaseActivities.FillingMatrix">
     <android.support.design.widget.CoordinatorLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="com.softminds.matrixcalculator.FillingMatrix">
+        tools:context="com.softminds.matrixcalculator.BaseActivities.FillingMatrix">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_marginTop="60dp"

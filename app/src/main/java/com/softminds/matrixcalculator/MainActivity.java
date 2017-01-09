@@ -26,7 +26,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
@@ -44,13 +44,36 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.softminds.matrixcalculator.BaseActivities.AboutMe;
+import com.softminds.matrixcalculator.BaseActivities.FeedBack;
+import com.softminds.matrixcalculator.BaseActivities.GlobalValues;
+import com.softminds.matrixcalculator.BaseActivities.RatingActivity;
+import com.softminds.matrixcalculator.BaseActivities.SettingsTab;
+import com.softminds.matrixcalculator.BaseActivities.faqs;
+import com.softminds.matrixcalculator.BaseFragments.MainActivityFragmentList;
+import com.softminds.matrixcalculator.DialogActivity.MakeNewMatrix;
+import com.softminds.matrixcalculator.OperationFragments.AdditionFragement;
+import com.softminds.matrixcalculator.OperationFragments.AdjointFragment;
+import com.softminds.matrixcalculator.OperationFragments.DeterminantFragment;
+import com.softminds.matrixcalculator.OperationFragments.ExponentFragment;
+import com.softminds.matrixcalculator.OperationFragments.ExtraCalculationFragment;
+import com.softminds.matrixcalculator.OperationFragments.FunctionalFragment;
+import com.softminds.matrixcalculator.OperationFragments.InverseFragment;
+import com.softminds.matrixcalculator.OperationFragments.MultiplyFragment;
+import com.softminds.matrixcalculator.OperationFragments.SubtractionFragment;
+import com.softminds.matrixcalculator.OperationFragments.SwapFragment;
+import com.softminds.matrixcalculator.OperationFragments.SymmetricFragment;
+import com.softminds.matrixcalculator.OperationFragments.TransposeFragment;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-        final int RESULT=1;
-    Menu ActionbarMenu;
-    ActionBar actionBar;
+
+    final int RESULT=1;
+    Menu ActionbarMenu; //the Menu items in the top 3 dots
+    ActionBar actionBar; //the Main Activity Actionbar
     TextView t; //Center Text which describe the context of the Application
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -199,16 +222,17 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+          int id = item.getItemId();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.MainFAB);
 
        switch (id)
        {
            case R.id.Home:
+               //setting the fragment
                MainActivityFragmentList mh=new MainActivityFragmentList();
                getSupportFragmentManager().beginTransaction().replace(R.id.MainContent,mh,"MAIN_LIST").commit();
+               //setting the actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(true);
                actionBar.setTitle(R.string.app_name);
                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
@@ -223,16 +247,45 @@ public class MainActivity extends AppCompatActivity
 
                break;
            case R.id.add_sub :
+               //setting fragment
+               FragmentTransaction AdditionTransaction = getSupportFragmentManager().beginTransaction();
+               AdditionFragement additionFragement = new AdditionFragement();
+               AdditionTransaction.replace(R.id.MainContent, additionFragement,"ADDITION_FRAGMENT");
+               AdditionTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               AdditionTransaction.commit();
+               //setting actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.ShortAddSub);
                actionBar.setSubtitle(null);
                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
                    t.setText(R.string.OpenHint2);
                else
-                t.setText(null);
+                    t.setText(null);
+               fab.hide();
+               break;
+           case R.id.only_sub:
+               //setting fragment
+               FragmentTransaction SubtractionTransaction = getSupportFragmentManager().beginTransaction();
+               SubtractionFragment subtractionFragment = new SubtractionFragment();
+               SubtractionTransaction.replace(R.id.MainContent, subtractionFragment,"SUBTRACTION_FRAGMENT");
+               SubtractionTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               SubtractionTransaction.commit();
+               //setting actionbar
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.ShortOnlySub);
+               actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+                   t.setText(null);
                fab.hide();
                break;
            case R.id.Transpose:
+               FragmentTransaction  transposeTransaction = getSupportFragmentManager().beginTransaction();
+               TransposeFragment transposeFragment = new TransposeFragment();
+               transposeTransaction.replace(R.id.MainContent, transposeFragment,"TRANSPOSE_FRAGMENT");
+               transposeTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               transposeTransaction.commit();
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.transpose);
                actionBar.setSubtitle(null);
@@ -243,6 +296,11 @@ public class MainActivity extends AppCompatActivity
                fab.hide();
                break;
            case R.id.Swap :
+               FragmentTransaction  swapTransaction = getSupportFragmentManager().beginTransaction();
+               SwapFragment swapFragment = new SwapFragment();
+               swapTransaction.replace(R.id.MainContent, swapFragment,"SWAP_FRAGMENT");
+               swapTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               swapTransaction.commit();
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.swap);
                actionBar.setSubtitle(null);
@@ -253,6 +311,11 @@ public class MainActivity extends AppCompatActivity
                fab.hide();
                break;
            case R.id.multiply:
+               FragmentTransaction  multiplyTransaction = getSupportFragmentManager().beginTransaction();
+               MultiplyFragment multiplyFragment = new MultiplyFragment();
+               multiplyTransaction.replace(R.id.MainContent, multiplyFragment,"TRANSPOSE_FRAGMENT");
+               multiplyTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               multiplyTransaction.commit();
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setSubtitle(null);
                actionBar.setTitle(R.string.multiply);
@@ -347,6 +410,27 @@ public class MainActivity extends AppCompatActivity
                }
                fab.hide();
                break;
+           case R.id.SumofSymmetric:
+               FragmentTransaction SymmetricTransaction= getSupportFragmentManager().beginTransaction();
+               SymmetricFragment sf = new SymmetricFragment();
+               SymmetricTransaction.replace(R.id.MainContent, sf,"SYMMETRIC_FRAGMENT");
+               SymmetricTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               SymmetricTransaction.commit();
+               //Modify the Actionbar
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.Misc);
+               actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+               {
+                   if(isAnyVariableSquare())
+                       t.setText(null);
+                   else
+                       t.setText(R.string.NoSupport);
+               }
+               fab.hide();
+               break;
            case R.id.functional:
                FragmentTransaction FunctionalTransaction= getSupportFragmentManager().beginTransaction();
                FunctionalFragment ff = new FunctionalFragment();
@@ -369,6 +453,11 @@ public class MainActivity extends AppCompatActivity
                fab.hide();
                break;
            case R.id.custom:
+               FragmentTransaction  extraTransaction = getSupportFragmentManager().beginTransaction();
+               ExtraCalculationFragment extraFragment = new ExtraCalculationFragment();
+               extraTransaction.replace(R.id.MainContent, extraFragment,"TRANSPOSE_FRAGMENT");
+               extraTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               extraTransaction.commit();
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.ShortCustom);
                actionBar.setSubtitle(null);
@@ -418,7 +507,7 @@ public class MainActivity extends AppCompatActivity
             this.recreate(); // Recreate this Activity if a Change in Theme has been marked
 
     }
-    public boolean isAnyVariableSquare()
+    protected boolean isAnyVariableSquare()
     {
         for(int i = 0; i <((GlobalValues)getApplication()).GetCompleteList().size(); i++)
             if(((GlobalValues)getApplication()).GetCompleteList().get(i).is_squareMatrix())

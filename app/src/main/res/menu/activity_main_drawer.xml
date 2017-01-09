@@ -12,6 +12,10 @@
             android:icon="@drawable/arrow_icon"
             android:title="@string/addsub" />
         <item
+            android:id="@+id/only_sub"
+            android:icon="@drawable/arrow_icon"
+            android:title="@string/onlysub" />
+        <item
             android:id="@+id/Swap"
             android:icon="@drawable/arrow_icon"
             android:title="@string/swap" />
@@ -39,6 +43,10 @@
             android:id="@+id/adjoint"
             android:icon="@drawable/arrow_icon"
             android:title="@string/adjoint" />
+        <item
+            android:id="@+id/SumofSymmetric"
+            android:icon="@drawable/arrow_icon"
+            android:title="@string/SumofSym" />
         <item
             android:id="@+id/functional"
             android:icon="@drawable/arrow_icon"

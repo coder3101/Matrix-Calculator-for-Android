@@ -13,7 +13,8 @@
     <string name="action_settings">Settings</string>
 
     <!--Operations-->
-    <string name="addsub">Addition and Subtraction</string>
+    <string name="addsub">Addition</string>
+    <string name="onlysub">Subtraction</string>
     <string name="Home">Home</string>
     <string name="swap">Swaping</string>
     <string name="transpose">Transpose</string>
@@ -22,6 +23,7 @@
     <string name="adjoint">Adjoint</string>
     <string name="custom">Custom Calculations</string>
     <string name="function">Functional</string>
+    <string name="SumofSym">Skew and Symmetric</string>
     <string name="determinant">Determinant</string>
     <string name="exponent">Exponential</string>
 
@@ -29,16 +31,13 @@
     <string name="app_dev">Md Ashar Khan </string>
     <string name="about_app">Design and Developed by Ashar</string>
     <string name="reserve">All Rights Reserved </string>
-    <string name="certificate">The Following App is being Prepared and Contains No Copyright Codes or Copyright Contents
-        However comes with a MIT Copyright License, Which You Should Check by Visiting the following link <b>https://wwww.github.com/coder3101/Matrix-Calculator-for-Android</b>
-    The Desktop Version of the Same App is Almost 90% Completed, it is for Windows above Win 7, You can see the Complete Source Code of the Project by Clicking the Same link
-    as i have kept it a Open Source Project.</string>
+    <string name="certificate">This is a OpenSource Project, Licensed under GPL 3.0</string>
     <string name="Chooser">Select the Fastest Browser</string>
     <string name="Logo">Logo of the App</string>
     <string name="ToastMessage">Thanks for Choosing to Visit My Profile</string>
     <string name="FacebookLogo">Facebook</string>
     <string name="FacebookLink">https://www.facebook.com/coder3101</string>
-    <string name="version">Developmental Version 0.50</string>
+    <string name="version">Developmental Version 0.58</string>
 
     <string name="NocreateWaring">Upgrade to Pro, to add and use more Matrix Variable.</string>
 
@@ -153,7 +152,9 @@
 
 
     <string name="ChangedOrder">Order Changed</string>
-    <string name="ShortAddSub">Add-Sub</string>
+    <string name="ShortAddSub">Addition</string>
+    <string name="ShortOnlySub">Subtraction</string>
+    <string name="Misc">Extra</string>
     <string name="ShortCustom">Custom</string>
     <string name="MainSubtitle">All Variables</string>
     <string name="NothingCreated">Press the Button below to Create a Variable</string>

@@ -4,7 +4,7 @@
     android:id="@+id/view_created_matrix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.softminds.matrixcalculator.ViewCreatedMatrix">
+    tools:context="com.softminds.matrixcalculator.BaseActivities.ViewCreatedMatrix">
 
     <LinearLayout
         android:layout_width="wrap_content"
