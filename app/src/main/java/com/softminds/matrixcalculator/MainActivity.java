@@ -20,6 +20,7 @@
 package com.softminds.matrixcalculator;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -44,14 +45,15 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.softminds.matrixcalculator.BaseActivities.AboutMe;
-import com.softminds.matrixcalculator.BaseActivities.FeedBack;
-import com.softminds.matrixcalculator.BaseActivities.GlobalValues;
-import com.softminds.matrixcalculator.BaseActivities.RatingActivity;
-import com.softminds.matrixcalculator.BaseActivities.SettingsTab;
-import com.softminds.matrixcalculator.BaseActivities.faqs;
-import com.softminds.matrixcalculator.BaseFragments.MainActivityFragmentList;
-import com.softminds.matrixcalculator.DialogActivity.MakeNewMatrix;
+import com.softminds.matrixcalculator.base_activities.AboutMe;
+import com.softminds.matrixcalculator.base_activities.FeedBack;
+import com.softminds.matrixcalculator.base_activities.GlobalValues;
+import com.softminds.matrixcalculator.base_activities.RatingActivity;
+import com.softminds.matrixcalculator.base_activities.SettingsTab;
+import com.softminds.matrixcalculator.base_activities.faqs;
+import com.softminds.matrixcalculator.base_fragments.MainActivityFragmentList;
+import com.softminds.matrixcalculator.dialog_activity.DialogConfirmation;
+import com.softminds.matrixcalculator.dialog_activity.MakeNewMatrix;
 import com.softminds.matrixcalculator.OperationFragments.AdditionFragement;
 import com.softminds.matrixcalculator.OperationFragments.AdjointFragment;
 import com.softminds.matrixcalculator.OperationFragments.DeterminantFragment;
@@ -196,24 +198,29 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent1);
                 break;
             case R.id.ExitButtonid:
-                finish();
+                Bundle Infor = new Bundle();
+                int ResultCode1=55;
+                Infor.putInt("MESSAGE",R.string.WarningExit);
+                Infor.putInt("CONFIRM_TEXT",R.string.Yup);
+                Infor.putInt("RESULT_CODE",ResultCode1);
+                Infor.putInt("CANCEL_TEXT",R.string.CancelCustomFill);
+                Intent intent31 = new Intent(getApplicationContext(), DialogConfirmation.class);
+                intent31.putExtras(Infor);
+                startActivityForResult(intent31,ResultCode1);
                 break;
             case R.id.ClearAllVar:
                 if(((GlobalValues)getApplication()).GetLastIndex()!=0){
-                    final Snackbar   snackbar;
-                    snackbar = Snackbar.make(findViewById(R.id.MainContent),R.string.Warning9,Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                    snackbar.setAction("Yes", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            snackbar.dismiss();
-                            ((GlobalValues) getApplication()).ClearAllMatrix();
-                            actionBar.setSubtitle(null);
-                            TextView t = (TextView) findViewById(R.id.OpeningHint);
-                            t.setText(R.string.OpenHint);
-                        }
-                    });
-                    }
+                    Bundle Info = new Bundle();
+                    int ResultCode=550;
+                    Info.putInt("MESSAGE",R.string.Warning9);
+                    Info.putInt("CONFIRM_TEXT",R.string.Yup);
+                    Info.putInt("RESULT_CODE",ResultCode);
+                    Info.putInt("CANCEL_TEXT",R.string.CancelCustomFill);
+                    Intent intent3 = new Intent(getApplicationContext(), DialogConfirmation.class);
+                    intent3.putExtras(Info);
+                    startActivityForResult(intent3,ResultCode);
+
+                }
                 else
                     Toast.makeText(getApplication(),R.string.Warning8,Toast.LENGTH_SHORT).show();
 
@@ -505,6 +512,17 @@ public class MainActivity extends AppCompatActivity
         }
         if(resultCode==100)
             this.recreate(); // Recreate this Activity if a Change in Theme has been marked
+        if(resultCode ==550) //Clear all Variable if this is Recieved
+        {
+            ((GlobalValues) getApplication()).ClearAllMatrix();
+            actionBar.setSubtitle(null);
+            TextView t = (TextView) findViewById(R.id.OpeningHint);
+            t.setText(R.string.OpenHint);
+        }
+        if(resultCode == 55) //User wants to exit the application
+        {
+            finish();
+        }
 
     }
     protected boolean isAnyVariableSquare()
