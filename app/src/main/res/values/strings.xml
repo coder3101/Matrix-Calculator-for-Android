@@ -118,7 +118,7 @@
     <string name="NoValue">No Value Provided</string>
     <string name="Clear">Clear All</string>
     <string name="Warning3">WARNING : Lower Limit Exceeds Upper Limit, Application may Crash</string>
-    <string name="Warning4">Are You Sure, You want to go back, Above Values will be Lost</string>
+    <string name="Warning4">Are You Sure, Above Values will be Lost ?</string>
     <string name="Yup">Yes</string>
 
     <!--Feedback-->
@@ -133,7 +133,8 @@
 
     <string name="clear">CLEAR</string>
     <string name="Warning8">Nothing to Clear</string>
-    <string name="Warning9">Are You Sure to Clear All Matrix Variables</string>
+    <string name="Warning9">Clear All Matrix Variables ?</string>
+    <string name="WarningExit">Quit the Application ?</string>
 
     <string name="edit">Edit Elements</string>
     <string name="Delete">DELETE</string>
