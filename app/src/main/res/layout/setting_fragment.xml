@@ -3,6 +3,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/SettingFragment"
-    android:name="com.softminds.matrixcalculator.BaseFragments.Settings$MyPreferenceFragment">
+    android:name="com.softminds.matrixcalculator.base_fragments.Settings$MyPreferenceFragment">
 
 </fragment>
