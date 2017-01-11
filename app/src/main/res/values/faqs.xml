@@ -3,31 +3,38 @@
     <string name="LabelHelp">FAQs</string>
 
     <!--Questions-->
-    <string name="Ques1"><b>What makes this application better from others in the Market?</b></string>
-    <string name="Ques2"><b>How can I Contribute to make this app better ?</b></string>
-    <string name="Ques3"><b>Why do i get weird numbers with \'E\' between them ?</b></string>
-    <string name="Ques4"><b>I don\'t like the Advertisement, and i don\'t have money also. Is there any Good News for me ?</b></string>
-    <string name="Ques5"><b>I think that "blah..blah" Opertion is missing ?</b></string>
-    <string name="Ques6"><b>How can i contact You apart from github and mails ?</b></string>
-    <string name="Ques7"><b>Why do you use ..3101 everywhere ?</b></string>
+    <string name="Ques1"><b>1. What makes this application better from others in the Market?</b></string>
+    <string name="Ques2"><b>2. How can I Contribute to make this app better ?</b></string>
+    <string name="Ques3"><b>3. Why do i get weird numbers with \'E\' between them ?</b></string>
+    <string name="Ques4"><b>4. I don\'t like the Advertisement, and i don\'t have money also. Is there any Good News for me ?</b></string>
+    <string name="Ques5"><b>5. I think that "blah..blah" Opertion is missing ?</b></string>
+    <string name="Ques6"><b>6. How can i contact You apart from github and mails ?</b></string>
+    <string name="Ques7"><b>7. Why do you use ..3101 everywhere ?</b></string>
+    <string name="Ques8"><b>8. Why Can\'t I save a Matrix Result involving Exponents ?</b></string>
+    <string name="Ques9"><b>9. Is there any Hope to get Support for Imaginary Numbers ?</b></string>
+    <string name="Ques10"><b>10. I just Loved your Work, How can i Support You ? </b></string>
 
     <!--Answers-->
-    <string name="Answer1">The Application in itself is Unique, it has many features such as Dark Theme, etc..
-        which makes it different from others in the market. Moreover
-        <b>This is a Open Source Project, Hence Unique in itself</b></string>
-    <string name="Answer2">The Application is Open Source and the best thing about a OpenSource Projects are that,
-        every individual who knows even a bit of Programming can contribute to make it better.
-        Here is my Repository <u>https://www.github.com/coder3101</u> I invite you to help me built it better for You.</string>
-    <string name="Answer3">The Number involving \'E\' is not Weird but is actually another way of representing
+    <string name="Answer1"><b>This is a Open Source Project</b>, Hence Unique in itself.</string>
+    <string name="Answer2">The Application is Open Source and the best thing about a OpenSource Projects is that,
+        Everyone can contribute to make it better.
+        Here is my Repository <u>https://www.github.com/coder3101</u> I invite you to help me making it better for You.</string>
+    <string name="Answer3">The Numbers involving \'E\' are not weird but its actually another way of representing
         bigger numbers in Scientific Notation. For Example if Your result is something like
         \"1.234568245E14\", it means 1.234568245 x 10^14.</string>
-    <string name="Answer4">Those Advertisements may annoy you, but they are a Source of Earning for me.. but fortuntely, i like talents
-    and i hate if money comes in between you and your goals, So Guess What, You can still have the Paid Version of the App for free, but
+    <string name="Answer4">Those Advertisements may annoy you, but they are a Source of Earning for me. Fortuntely, You can still have the Paid Version of the Application for free, but
     since nothing is actually free so you will have to do something, you will have to compile the complete application by your ownself, Clone the Project and cook it.
-    Please Do not share your cooked Applications with others, let them compile their own..</string>
-    <string name="Answer5">Well i Just Included all the Operations which i know (still in Class 12 didn\'t studied more than this).
-    If You think that Some Operations are Missing then Please Let me Know, I will try my best to
-        include that in next versions of the app. (Yeah I will also get opportunity to learn new Operations also)</string>
-    <string name="Answer6">I mean that there are many ways to contact me, like you can reach to me on facebook here <u>https://www.facebook.com/coder3101</u></string>
-    <string name="Answer7">Hey, its my birthday 31 January. Just a new way to let the World know, that i was born on this date.</string>
+    Please Do not share your cooked Applications with others, let them compile their own. Please Read the License before doing this.</string>
+    <string name="Answer5">I Included all the Operations which i know (still in Class 12 didn\'t studied more than this).
+    If You think that Some Operations are Missing, Please Let me Know. I will try my best to
+        include them in next versions of the app. (Yeah.. I will also get the opportunity to learn new Operations)</string>
+    <string name="Answer6">There are many ways to contact me, like you can reach to me on facebook here <u>https://www.facebook.com/coder3101</u></string>
+    <string name="Answer7">Hey, its my birthday 31 January. Just a new way to let the World know "I was born on this date".</string>
+    <string name="Answer8">The Matrix Result involving Exponents can\'t be saved as a new Variable because,
+        The Highest number of digit which a Cell in the Matrix can hold is <b>999999</b>.
+        It can hold upto <b>99999999</b>, if "Extra Small Font" is allowed in Settings.</string>
+    <string name="Answer9">I am currently working on to bring it. But for that it needs a different
+        keyboard etc, so it may take some time but sooner or later it will be added. Also i am Planning to
+        add Support Trigonometric Ratios.</string>
+    <string name="Answer10">I don\'t ask for Donations. I am Happy with my Work, if you really want to support me. <b>Share my work</b></string>
 </resources>
