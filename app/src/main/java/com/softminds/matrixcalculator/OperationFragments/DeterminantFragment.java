@@ -32,7 +32,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
-import com.softminds.matrixcalculator.BaseActivities.GlobalValues;
+import com.softminds.matrixcalculator.base_activities.GlobalValues;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
@@ -115,6 +115,7 @@ public class DeterminantFragment extends ListFragment {
                Bundle bundle = new Bundle();
                bundle.putDouble("RESULTANT",var);
                message.setData(bundle);
+               px.dismiss();
                myhandler.sendMessage(message);
 
            }
