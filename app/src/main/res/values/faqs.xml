@@ -31,10 +31,10 @@
     <string name="Answer6">There are many ways to contact me, like you can reach to me on facebook here <u>https://www.facebook.com/coder3101</u></string>
     <string name="Answer7">Hey, its my birthday 31 January. Just a new way to let the World know "I was born on this date".</string>
     <string name="Answer8">The Matrix Result involving Exponents can\'t be saved as a new Variable because,
-        The Highest number of digit which a Cell in the Matrix can hold is <b>999999</b>.
+        The Highest number of which a Cell in the Matrix can hold is <b>999999</b>.
         It can hold upto <b>99999999</b>, if "Extra Small Font" is allowed in Settings.</string>
     <string name="Answer9">I am currently working on to bring it. But for that it needs a different
         keyboard etc, so it may take some time but sooner or later it will be added. Also i am Planning to
-        add Support Trigonometric Ratios.</string>
+        add Support for Trigonometric Ratios.</string>
     <string name="Answer10">I don\'t ask for Donations. I am Happy with my Work, if you really want to support me. <b>Share my work</b></string>
 </resources>
