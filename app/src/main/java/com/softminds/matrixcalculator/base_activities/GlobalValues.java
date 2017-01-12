@@ -29,23 +29,25 @@ import com.softminds.matrixcalculator.R;
 import java.util.ArrayList;
 
 public class GlobalValues extends Application {
+
    private ArrayList<Matrix> createdValues=new ArrayList<>();
-    private int LAST_INDEX=0;
+
+    private int LAST_INDEX=0; //LastIndex of ArrayList
+
+    public int AutoSaved =1; //To automatically name the saved result
+
     public MatrixAdapter matrixAdapter;
-    /*public Matrix GetLastMatrix()
-    {
-        if(!createdValues.isEmpty())
-        {
-            return (createdValues.get(LAST_INDEX));
-        }
-        else
-            return null;
-    }*/
+
     public void AddToGlobal(Matrix mk)
     {
         createdValues.add(mk);
         matrixAdapter.notifyDataSetChanged();
         LAST_INDEX++;
+    }
+    public void AddResultToGlobal(Matrix mk)
+    {
+        AddToGlobal(mk);
+        AutoSaved++;
     }
     public ArrayList<Matrix> GetCompleteList()
     {
