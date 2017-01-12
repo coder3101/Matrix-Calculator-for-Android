@@ -516,6 +516,7 @@ public class MainActivity extends AppCompatActivity
         {
             ((GlobalValues) getApplication()).ClearAllMatrix();
             actionBar.setSubtitle(null);
+            ((GlobalValues)getApplication()).AutoSaved=1; //Reinitilize AutoSave to 1
             TextView t = (TextView) findViewById(R.id.OpeningHint);
             t.setText(R.string.OpenHint);
         }
