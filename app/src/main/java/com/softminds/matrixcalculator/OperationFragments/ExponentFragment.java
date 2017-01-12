@@ -62,7 +62,6 @@ public class ExponentFragment extends ListFragment {
     }
 
     MyHandler handler = new MyHandler(this);
-
         @Override
         public void onActivityCreated(Bundle savedInstances) {
             super.onActivityCreated(savedInstances);
