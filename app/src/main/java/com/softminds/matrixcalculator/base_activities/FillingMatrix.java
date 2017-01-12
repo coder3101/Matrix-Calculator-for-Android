@@ -31,6 +31,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,6 +40,7 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.Toast;
 
+import com.softminds.matrixcalculator.Type;
 import com.softminds.matrixcalculator.dialog_activity.CustomValueFiller;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.dialog_activity.DialogConfirmation;
@@ -112,7 +114,7 @@ public class FillingMatrix extends AppCompatActivity {
         }
         gridLayout.setLayoutParams(params1);
         cardView.addView(gridLayout);
-        MakeType(getIntent().getExtras().getString("TYPE"));
+        MakeType((Type)(getIntent().getExtras().getSerializable("TYPE")));
         if(GetMaximum()<GetMinimum()) {
             final Snackbar  snackbar;
             snackbar =Snackbar.make(findViewById(R.id.filling_matrix), R.string.Warning3, Snackbar.LENGTH_INDEFINITE);
@@ -271,18 +273,6 @@ public class FillingMatrix extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         if(!AllEmpty()){
-       /*final Snackbar sn;
-        sn=Snackbar.make(findViewById(R.id.filling_matrix),R.string.Warning4,Snackbar.LENGTH_LONG);
-        sn.show();
-        sn.setAction(R.string.Yup, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                sn.dismiss();
-            }
-        })*/
-
-
             Bundle Info = new Bundle();
             int ResultCode=70;
             Info.putInt("MESSAGE",R.string.Warning4);
@@ -390,11 +380,11 @@ public class FillingMatrix extends AppCompatActivity {
             finish();
         }
     }
-    public void MakeType(String t)
+    public void MakeType(Type type)
     {
-        switch (t)
+        switch (type)
         {
-            case "Null":
+            case Null:
                 for (int i = 0; i < row; i++)
                     for (int j = 0; j < col; j++) {
                         EditText editText = (EditText) findViewById(i * 10 + j);
@@ -410,7 +400,7 @@ public class FillingMatrix extends AppCompatActivity {
                 finish();
 
                 break;
-            case "Diagonal":
+            case Diagonal:
                 for (int i = 0; i < row; i++)
                     for (int j = 0; j < col; j++) {
                         EditText editText = (EditText) findViewById(i * 10 + j);
@@ -419,7 +409,7 @@ public class FillingMatrix extends AppCompatActivity {
                         }
                     }
                 break;
-            case "Identity":
+            case Identity:
                 for (int i = 0; i < row; i++)
                     for (int j = 0; j < col; j++) {
                         EditText editText = (EditText) findViewById(i * 10 + j);
