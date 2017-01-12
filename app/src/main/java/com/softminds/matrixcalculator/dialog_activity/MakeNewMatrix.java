@@ -31,6 +31,8 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.Type;
 import com.softminds.matrixcalculator.base_activities.FillingMatrix;
 import com.softminds.matrixcalculator.base_activities.GlobalValues;
 import com.softminds.matrixcalculator.R;
@@ -65,8 +67,9 @@ public class MakeNewMatrix extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (NoError()) {
+                    Type t = TypeFromString(Typespinner.getSelectedItem().toString());
                     Bundle bundle = new Bundle();
-                    bundle.putString("TYPE",Typespinner.getSelectedItem().toString());
+                    bundle.putSerializable("TYPE",t);
                     bundle.putString("NAME",editText.getText().toString());
                     bundle.putInt("ROW",RowSpinner.getValue());
                     bundle.putInt("COL",ColSpinner.getValue());
@@ -110,6 +113,17 @@ public class MakeNewMatrix extends AppCompatActivity {
             finish();
         }
 
+    }
+    public Type TypeFromString (String s)
+    {
+        switch (s)
+        {
+            case "Normal" :   return Type.Normal;
+            case "Null" :     return Type.Null;
+            case "Diagonal" : return Type.Diagonal;
+            case "Identity" : return Type.Identity;
+        }
+        return null;
     }
 }
 
