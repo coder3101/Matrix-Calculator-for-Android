@@ -75,7 +75,7 @@ public class Matrix {
     }
     public Type GetType()
     {
-        return type;
+        return this.type;
     }
     public boolean ApplyType() {
         if (Matrix.this.type == Type.Normal)
@@ -433,8 +433,7 @@ public class Matrix {
         this.name=bundle.getString("NAME");
         this.SetRow(bundle.getInt("ROW"));
         this.SetCol(bundle.getInt("COL"));
-        String type=bundle.getString("TYPE");
-        this.TypeFromString(type);
+        this.SetType((Type) bundle.getSerializable("TYPE"));
         this.Elements=(float[][]) bundle.getSerializable("VALUES");
     }
     public int GetDrawable(Type t)
@@ -453,36 +452,20 @@ public class Matrix {
         }
         return 0;
     }
-    public void TypeFromString(String s) {
-        switch (s) {
-            case "Normal":
-                this.SetType(Type.Normal);
-                break;
-            case "Null":
-                this.SetType(Type.Null);
-                break;
-            case "Diagonal":
-                this.SetType(Type.Diagonal);
-                break;
-            case "Identity":
-                this.SetType(Type.Identity);
-                break;
-        }
-    }
-    public void SetType(Matrix d)
+    public void SetType()
     {
-        if(!d.is_squareMatrix())
-            d.SetType(Type.Normal);
+        if(!this.is_squareMatrix())
+            this.SetType(Type.Normal);
         else
         {
-            if(d.isNull())
-                d.SetType(Type.Null);
-            if(d.isIdentity())
-                d.SetType(Type.Identity);
-            if(d.isDiagonal())
-                d.SetType(Type.Diagonal);
-            if(!d.isNull()&&!d.isIdentity()&&!d.isDiagonal())
-                d.SetType(Type.Normal);
+            if(this.isNull())
+                this.SetType(Type.Null);
+            if(this.isIdentity())
+                this.SetType(Type.Identity);
+            if(this.isDiagonal())
+                this.SetType(Type.Diagonal);
+            if(!this.isNull()&&!this.isIdentity()&&!this.isDiagonal())
+                this.SetType(Type.Normal);
         }
     }
     public boolean isNull()
