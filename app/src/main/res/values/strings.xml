@@ -174,5 +174,12 @@
     <string name="EnterExpo">Enter Exponent</string>
     <string name="Expohint">Enter the Exponent here</string>
 
+    <string name="CopyToClip">Copied to Clipboard</string>
+    <string name="copy">Copy</string>
+    <string name="Done">Done</string>
+
+    <string name="CannotSave">Cannot Save Result involving Exponents</string>
+    <string name="SavedAs">Saved as</string>
+
 
 </resources>
