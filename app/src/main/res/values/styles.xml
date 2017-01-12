@@ -20,7 +20,6 @@
         <item name="android:colorBackground">@color/grey</item>
     </style>
 
-
     <!--DarkTheme is here-->
     <style name="AppThemeDark" parent="Theme.AppCompat.Light.DarkActionBar">
 
