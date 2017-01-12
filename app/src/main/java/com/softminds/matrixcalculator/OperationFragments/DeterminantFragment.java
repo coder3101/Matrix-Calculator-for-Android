@@ -23,6 +23,7 @@ package com.softminds.matrixcalculator.OperationFragments;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -36,6 +37,7 @@ import com.softminds.matrixcalculator.base_activities.GlobalValues;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
+import com.softminds.matrixcalculator.dialog_activity.DeterminantResult;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -58,19 +60,15 @@ public class DeterminantFragment extends ListFragment {
 
                 Bundle val;
                 val = msg.getData();
-                final Snackbar snackbar;
                 if (determinantFragment.isVisible()) {
-                    snackbar = Snackbar.make(determinantFragment.getListView(), "Determinant is : " + String.valueOf(val.getDouble("RESULTANT")), Snackbar.LENGTH_INDEFINITE);
-                    snackbar.show();
-                    snackbar.setAction("GOT IT", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            snackbar.dismiss();
-                        }
-                    });
+
+                    Intent i = new Intent(determinantFragment.getActivity(), DeterminantResult.class);
+                    i.putExtras(val);
+                    determinantFragment.startActivity(i);
+
                 }
                 else
-                    Log.d("Determinant : ", "not shown, no context");
+                    Log.d("Determinant : ", "not shown");
             }
         }
     }
