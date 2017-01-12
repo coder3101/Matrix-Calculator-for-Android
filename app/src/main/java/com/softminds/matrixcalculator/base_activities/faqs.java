@@ -57,7 +57,7 @@ public class faqs extends AppCompatActivity {
     }
     private void SetThisColorToCard(int id)
     {
-        //grab all 7 cards
+        //grab all 10 cards
         CardView cardView1 = (CardView) findViewById(R.id.QA1);
         CardView cardView2 = (CardView) findViewById(R.id.QA2);
         CardView cardView3 = (CardView) findViewById(R.id.QA3);
@@ -82,7 +82,7 @@ public class faqs extends AppCompatActivity {
     }
     private void SetThisColorToAllQuestions(int id)
     {
-        //grab all 7 TextViews
+        //grab all 10 TextViews
         TextView textView1 = (TextView) findViewById(R.id.Q1);
         TextView textView2 = (TextView) findViewById(R.id.Q2);
         TextView textView3 = (TextView) findViewById(R.id.Q3);
