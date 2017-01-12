@@ -33,7 +33,9 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.R;
 
 public class ShowResult extends AppCompatActivity {
@@ -60,9 +62,6 @@ public class ShowResult extends AppCompatActivity {
 
         CardView.LayoutParams params1= new CardView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        Log.d("Row : ",String.valueOf(getIntent().getExtras().getInt("ROW",0)));
-        Log.d("Col : ",String.valueOf(getIntent().getExtras().getInt("COL",0)));
 
         GridLayout gridLayout = new GridLayout(getApplicationContext());
         gridLayout.setRowCount(getIntent().getExtras().getInt("ROW",0));
@@ -101,14 +100,28 @@ public class ShowResult extends AppCompatActivity {
         switch (item.getItemId())
         {
             case R.id.SaveResult :
+                if(AnyExponents(((float[][]) getIntent().getExtras().getSerializable("VALUES")),
+                    (getIntent().getExtras().getInt("ROW",0)),(getIntent().getExtras().getInt("COL",0)))) {
+                Toast.makeText(getApplicationContext(),R.string.CannotSave,Toast.LENGTH_SHORT).show();
                 finish();
+            }
+            else {
+                    Matrix matrix = new Matrix();
+                    matrix.SetFromBundle(getIntent().getExtras());
+                    String auto_name ="Result " + String.valueOf(((GlobalValues)getApplication()).AutoSaved);
+                    matrix.SetName(auto_name);
+                    ((GlobalValues)getApplication()).AddResultToGlobal(matrix);
+                    Toast.makeText(getApplicationContext(),(getString(R.string.SavedAs)+" "+auto_name),Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-    public int CalculatedHeight(int a)
+   private int CalculatedHeight(int a)
     {
         switch (a)
         {
@@ -125,7 +138,7 @@ public class ShowResult extends AppCompatActivity {
         }
         return 0;
     }
-    public int SizeReturner(int r, int c,boolean b)
+    private int SizeReturner(int r, int c,boolean b)
     {
         if(!b) {
             if (r > c) {
@@ -220,5 +233,16 @@ public class ShowResult extends AppCompatActivity {
         }
 
         return 0;
+    }
+
+    private boolean AnyExponents(float v[][],int r, int c)
+    {
+        for(int i=0;i<r;i++)
+            for(int j=0;j<c;j++)
+            {
+                if(Float.toString(v[i][j]).contains("E"))
+                    return true;
+            }
+        return  false;
     }
 }
