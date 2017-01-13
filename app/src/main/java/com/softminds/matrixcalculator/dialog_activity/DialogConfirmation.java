@@ -35,7 +35,13 @@ public class DialogConfirmation extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                if(getIntent().getIntExtra("NON_RESULT_CODE",0)==0)
+                    finish();
+                else
+                {
+                    setResult(getIntent().getIntExtra("NON_RESULT_CODE",0));
+                    finish();
+                }
             }
         });
         confirm.setOnClickListener(new View.OnClickListener() {
