@@ -8,6 +8,7 @@
     <string name="AutoToastKey">AUTO_TOAST_ENABLER</string>
     <string name="RestoreKey">RESTORE_ALL</string>
     <string name="RoundID">ROUNDIND_INFO</string>
+    <string name="Tanspose_id">TRANSPOSE_PROMPT</string>
     <string name="NoFractionID">NO_FRACTION_ENABLED</string>
     <string name="MaxIntRandomID">MAX_INT</string>
     <string name="MinIntRandomID">MIN_INT_KEY</string>
