@@ -44,6 +44,11 @@
             android:defaultValue="0"
             />
         <SwitchPreference
+            android:title="@string/TransposeHead"
+            android:key="@string/Tanspose_id"
+            android:defaultValue="true"
+            android:summary="@string/TransposeSummary"/>
+        <SwitchPreference
             android:title="@string/NoFraction"
             android:summary="@string/NoFractionDesc"
             android:key="@string/NoFractionID"
