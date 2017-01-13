@@ -50,7 +50,6 @@ public class ExponentFragment extends ListFragment {
         private MyHandler(ExponentFragment fragment){
             exponentFragmentWeakReference = new WeakReference<>(fragment);
         }
-
         @Override
         public void handleMessage(Message msg) {
           ExponentFragment exponentfrag = exponentFragmentWeakReference.get();
@@ -95,7 +94,7 @@ public class ExponentFragment extends ListFragment {
             ProgressDialog progressDialog = new ProgressDialog(getContext());
             progressDialog.setMessage(getString(R.string.Calculating));
             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progressDialog.setIndeterminate(true);
+            progressDialog.setIndeterminate(false);
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
             RunAndGetResult(Clicked_pos,data.getIntExtra("QWERTYUIOP",0),progressDialog);
