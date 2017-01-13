@@ -137,15 +137,6 @@
         <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-recyclerview-v7-25.0.0_cad1d6db1f07b09abf76f844f49ddc62bc699505.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="db33f0416befa2fd9435ca5cf56447afe9155d74">
-        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_31a44e9aa1a99dfa6df9c2f1e7824f97249764ba/classes.dex" />
-    </item>
-    <item
         is-multidex="false"
         jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/exploded-aar/com.android.support/transition/25.0.0/jars/classes.jar"
         jumboMode="false"
@@ -153,6 +144,15 @@
         revision="25.0.0"
         sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
         <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/pre-dexed/release/com.android.support-transition-25.0.0_80b13ebae32f6559aedb23231cfd473e1c9df613.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f25fff2a5113b78a5a573f954b15c68dbaee86e4">
+        <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_31a44e9aa1a99dfa6df9c2f1e7824f97249764ba/classes.dex" />
     </item>
     <item
         is-multidex="false"
@@ -331,7 +331,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="c7003ce318fe2c6a0f4902f8386737b46263d23b">
+        sha1="c2254f5fe74f46c47d4eb8f17e8db4f901a3f799">
         <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_900222d6d48a69e141511f3da9520c88b28fdc1d/classes.dex" />
     </item>
     <item
