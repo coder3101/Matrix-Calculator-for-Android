@@ -20,6 +20,7 @@
 package com.softminds.matrixcalculator;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 public class Matrix {
@@ -96,7 +97,7 @@ public class Matrix {
         }
         return true;
     }
-    public void  MakeNull()
+    private void  MakeNull()
     {
        for (int i=0;i<Matrix.this.GetRow();i++){
            for (int j=0;j<Matrix.this.GetCol();j++)
@@ -105,7 +106,7 @@ public class Matrix {
            }
        }
     }
-    public void MakeIdentity()
+    private void MakeIdentity()
     {
         for (int i=0;i<Matrix.this.GetRow();i++){
             for (int j=0;j<Matrix.this.GetCol();j++)
@@ -125,7 +126,7 @@ public class Matrix {
     {
         this.name=nam;
     }
-    public void MakeDiagonal()
+    private void MakeDiagonal()
     {
         for (int i=0;i<Matrix.this.GetRow();i++) {
             for (int j = 0; j < Matrix.this.GetCol(); j++) {
@@ -136,17 +137,14 @@ public class Matrix {
     }
     public boolean isequalto(Matrix matrix) {
         if (matrix.GetCol() == Matrix.this.GetCol() && (Matrix.this.GetRow() == matrix.GetRow())) {
-            int yes = 0, no = 0;
             for (int i = 0; i < Matrix.this.GetRow(); i++) {
                 for (int j = 0; j < matrix.GetCol(); j++) {
-                    if (matrix.Elements[i][j] == Matrix.this.Elements[i][j])
-                        yes++;
-                    else
-                        no++;
+                    if (matrix.Elements[i][j] != Matrix.this.Elements[i][j])
+                        return false;
                 }
             }
 
-            return (no!=0);
+            return true;
 
         }
         else
@@ -261,7 +259,7 @@ public class Matrix {
     {
         return (a.GetCol()==b.GetRow());
     }
-    public boolean AreMultipliabe(Matrix h)
+    private boolean AreMultipliabe(Matrix h)
     {
         return this.GetCol()==h.GetRow();
     }
@@ -285,13 +283,64 @@ public class Matrix {
             return null;
 
     }
-    public void PushAt(int R_index,int C_index,float Elt)
+    private void PushAt(int R_index,int C_index,float Elt)
     {
         this.Elements[R_index][C_index]=Elt;
     }
-    public double GetDeterminant() //Make sure a Square Matrix is only Calling this, Incases Matrix Result is always Zero
+    public double GetDeterminant(ProgressDialog px) //Make sure a Square Matrix is only Calling this, Incases Matrix Result is always Zero
     {
       double  Result=0;
+        int flag=0,a=0,b=0;
+        int Order =this.GetRow();
+        if(Order==1)
+        {
+            Result= this.Elements[0][0];
+            px.setProgress(100);
+            return Result;
+        }
+        if(Order==2)
+        {
+            float l=this.Elements[0][0]*this.Elements[1][1];
+            float m=this.Elements[1][0]*this.Elements[0][1];
+            Result=l-m;
+            px.setProgress(100);
+            return Result;
+
+        }
+        else
+        {
+            for(;flag<Order;flag++)
+            {
+                px.setProgress((flag*100)/Order);
+                Matrix pointer= new Matrix(Order-1);
+                for(int i=1;i<Order;i++)
+                {
+                    for(int j=0;j< Order;j++)
+                    {
+                        if(flag!=j)
+                        {
+                            float pg=this.Elements[i][j];
+                            pointer.PushAt(a,b,pg);
+                            b++;
+                        }
+                    }
+                    a++;
+                    b=0;
+
+                }
+                a=0;
+                b=0;
+                double z=pointer.GetDeterminant();
+                Result +=Math.pow(-1,flag)*(this.Elements[0][flag]*z);
+            }
+        }
+    px.setProgress(100);
+    return Result;
+    }
+
+    private double GetDeterminant() //Should never be called directly but only by other functions
+    {
+        double  Result=0;
         int flag=0,a=0,b=0;
         int Order =this.GetRow();
         if(Order==1)
@@ -334,13 +383,13 @@ public class Matrix {
             }
         }
 
-    return Result;
+        return Result;
     }
-    public void MakeAdjoint()
+    private void MakeAdjoint(ProgressDialog Progress)
     {
         int Order=this.GetCol();
         Matrix base= new Matrix(Order);
-        int flag=0,a=0,b=0;
+        int flag,a=0,b=0;
         if(Order==2)
         {
             float buffer= this.Elements[0][0];
@@ -352,28 +401,32 @@ public class Matrix {
             this.Elements[1][0]=this.Elements[0][1];
             this.Elements[0][1]=buffer;
             this.SquareTranspose();
+            Progress.setProgress(100);
         }
         else
         {
             for(int k=0;k<Order;k++)
             {
+                Progress.setProgress((k*100)/Order);
                 for(flag=0;flag<Order;flag++)
                 {
+                    Progress.setSecondaryProgress((flag*100)/Order);
                     Matrix pointer=new Matrix(Order-1);
                     for(int i=0;i<Order;i++)
                     {
-                        for(int j=0;j<Order;j++)
+                        for (int j = 0; j < Order; j++)
                         {
-                            if((flag!=j)&&(k!=i))
+                            if ((flag != j) && (k != i))
                             {
-                                float pg= this.Elements[i][j];
-                                pointer.PushAt(a,b,pg);
+                                float pg = this.Elements[i][j];
+                                pointer.PushAt(a, b, pg);
                                 b++;
                             }
-                            if(k!=i)
-                                a++;
-                            b=0;
                         }
+                            if (k != i)
+                                a++;
+                            b = 0;
+                    }
                         float z=(float) pointer.GetDeterminant();
                         int variable= k+flag;
                         base.Elements[k][flag]= (float) Math.pow((-1),variable)*z;
@@ -383,21 +436,21 @@ public class Matrix {
                 }
                 this.CopyFrom(base);
                 this.SquareTranspose();
+            Progress.setProgress(100);
             }
-        }
 
     }
-    public Matrix ReturnAdjoint()
+    public Matrix ReturnAdjoint(ProgressDialog updates)
     {
         Matrix Result= new Matrix(this.GetRow());
         this.CopyThisto(Result);
-        this.MakeAdjoint();
+        this.MakeAdjoint(updates);
         this.SwapWith(Result);
         return  Result;
     }
-    public Matrix Inverse() //Must be a Square Matrix
+    public Matrix Inverse(ProgressDialog progressDialog) //Must be a Square Matrix
     {
-        Matrix Result = this.ReturnAdjoint();
+        Matrix Result = this.ReturnAdjoint(progressDialog);
         float determinant= (float) this.GetDeterminant();
         for(int i=0;i<this.GetRow();i++)
             for(int j=0; j<this.GetCol();j++)
@@ -413,7 +466,10 @@ public class Matrix {
         else
         {
             for(int i=0;i<a;i++)
+            {
                 pi=pi.MultipyWith(this);
+
+            }
             this.CopyFrom(pi);
         }
 
@@ -478,7 +534,7 @@ public class Matrix {
         }
         return true;
     }
-    public boolean isIdentity()
+    private boolean isIdentity()
     {
         for(int i=0;i<this.GetRow();i++)
         {
@@ -488,7 +544,7 @@ public class Matrix {
         }
         return true;
     }
-    public boolean isDiagonal()
+    private boolean isDiagonal()
     {
         for(int i=0;i<this.GetRow();i++)
         {
