@@ -91,11 +91,11 @@ public class DeterminantFragment extends ListFragment {
     }
 
     @Override
-    public void onListItemClick(ListView L, View V, int position, long id) { //Todo Make it Comaptible for Dark theme Also
+    public void onListItemClick(ListView L, View V, int position, long id) {//Todo : Dark theme issue with progress box
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage(getString(R.string.Calculating));
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setIndeterminate(true);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setIndeterminate(false);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         RunToGetDeterminant(position,progressDialog);
@@ -108,7 +108,7 @@ public class DeterminantFragment extends ListFragment {
        Runnable runnable = new Runnable() {
            @Override
            public void run() {
-               double var = SquareList.get(pos).GetDeterminant();
+               double var = SquareList.get(pos).GetDeterminant(px);
                Message message = new Message();
                Bundle bundle = new Bundle();
                bundle.putDouble("RESULTANT",var);
