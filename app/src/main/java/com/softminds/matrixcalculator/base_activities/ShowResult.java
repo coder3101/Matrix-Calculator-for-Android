@@ -240,7 +240,7 @@ public class ShowResult extends AppCompatActivity {
         for(int i=0;i<r;i++)
             for(int j=0;j<c;j++)
             {
-                if(Float.toString(v[i][j]).contains("E"))
+                if(Float.toString(v[i][j]).contains("E")||Float.toString(v[i][j]).contains("N"))
                     return true;
             }
         return  false;
