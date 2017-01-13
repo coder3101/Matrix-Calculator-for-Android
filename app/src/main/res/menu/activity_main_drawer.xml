@@ -16,6 +16,10 @@
             android:icon="@drawable/arrow_icon"
             android:title="@string/onlysub" />
         <item
+            android:id="@+id/multiply"
+            android:icon="@drawable/arrow_icon"
+            android:title="@string/multiply" />
+        <item
             android:id="@+id/Swap"
             android:icon="@drawable/arrow_icon"
             android:title="@string/swap" />
@@ -23,10 +27,6 @@
             android:id="@+id/Transpose"
             android:icon="@drawable/arrow_icon"
             android:title="@string/transpose" />
-        <item
-            android:id="@+id/multiply"
-            android:icon="@drawable/arrow_icon"
-            android:title="@string/multiply" />
         <item
             android:id="@+id/exponent"
             android:icon="@drawable/arrow_icon"
