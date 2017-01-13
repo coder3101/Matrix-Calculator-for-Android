@@ -83,6 +83,8 @@
     <string name="RestoreComplete">Settings Restored Successfully</string>
     <string name="MaximumD">Largest Signed Random Number to be Generated while filling the Matrix</string>
     <string name="MinimumD">Smallest Signed Random Number to be Generated while filling the Matrix</string>
+    <string name="TransposeHead">Transpose Prompt</string>
+    <string name="TransposeSummary">A Prompt is Shown if Matrix to be transposed, can be stored back in the Same Matrix</string>
 
     <!-- Variable Creation Activity-->
     <string name="NewMatrix">Create New Variable</string>
@@ -181,5 +183,8 @@
     <string name="CannotSave">Cannot Save Result involving Exponents</string>
     <string name="SavedAs">Saved as</string>
 
+    <string name="SquareTransPrompt">Square Matrix detected. Do you want to Store the Transpose in this Variable, Current Value will be Lost.</string>
+    <string name="Nope">No</string>
+    <string name="SuccessTranspose">Transposed Result Stored back to the Matrix</string>
 
 </resources>
