@@ -20,7 +20,11 @@
 package com.softminds.matrixcalculator.OperationFragments;
 
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
@@ -29,16 +33,38 @@ import com.softminds.matrixcalculator.base_activities.GlobalValues;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
+import com.softminds.matrixcalculator.base_activities.ShowResult;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 public class InverseFragment extends ListFragment {
 
+    ArrayList<Matrix> SquareList;
+    ProgressDialog progress;
+
+    private static class MyHandler extends Handler{
+        private final WeakReference<InverseFragment> weakReference;
+        MyHandler(InverseFragment inverseFragment){
+            weakReference = new WeakReference<>(inverseFragment);
+        }
+        @Override
+        public  void handleMessage(Message message){
+            if(weakReference.get().progress.isShowing()){
+                Intent intent = new Intent(weakReference.get().getActivity(), ShowResult.class);
+                intent.putExtras(message.getData());
+                weakReference.get().progress.dismiss();
+                weakReference.get().startActivity(intent);
+            }
+        }
+    }
+
+    MyHandler myHandler = new MyHandler(this);
 
     @Override
     public void onActivityCreated(Bundle savedInstances) {
         super.onActivityCreated(savedInstances);
-        ArrayList<Matrix> SquareList=new ArrayList<>();
+        SquareList=new ArrayList<>();
         for(int i = 0; i<((GlobalValues)getActivity().getApplication()).GetCompleteList().size(); i++)
         {
             if(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
@@ -52,7 +78,30 @@ public class InverseFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView L, View V, int position, long id)
     {
+        ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage(getString(R.string.Calculating));
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setIndeterminate(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        progress = progressDialog;
+        RunNewGetInverse(position,progressDialog);
+    }
 
+    public void RunNewGetInverse(final int pos,final ProgressDialog pq)
+    {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+               Matrix res = SquareList.get(pos).Inverse(pq);
+                Message message = new Message();
+                message.setData(res.GetDataBundled());
+                myHandler.sendMessage(message);
+            }
+        };
+
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
 }
