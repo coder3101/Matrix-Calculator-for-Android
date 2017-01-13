@@ -76,6 +76,7 @@ public class Settings extends PreferenceActivity {
                         editor.putString("MIN_INT_KEY","0");
                         //extra Settings
                         editor.putBoolean("AUTO_TOAST_ENABLER",false);
+                        editor.putBoolean("TRANSPOSE_PROMPT",true);
                         //apply changes
                         editor.apply();
                         //close activity
