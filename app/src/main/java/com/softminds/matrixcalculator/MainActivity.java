@@ -42,6 +42,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.softminds.matrixcalculator.OperationFragments.CloneFragment;
 import com.softminds.matrixcalculator.base_activities.AboutMe;
 import com.softminds.matrixcalculator.base_activities.FeedBack;
 import com.softminds.matrixcalculator.base_activities.GlobalValues;
@@ -236,7 +238,6 @@ public class MainActivity extends AppCompatActivity
                //setting the fragment
                MainActivityFragmentList mh=new MainActivityFragmentList();
                getSupportFragmentManager().beginTransaction().replace(R.id.MainContent,mh,"MAIN_LIST").commit();
-               //setting the actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(true);
                actionBar.setTitle(R.string.app_name);
                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
@@ -244,11 +245,10 @@ public class MainActivity extends AppCompatActivity
                else
                    actionBar.setSubtitle(R.string.MainSubtitle);
                fab.show();
-              if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                  t.setText(R.string.OpenHint);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint);
                else
-                    t.setText(null);
-
+                   t.setText(null);
                break;
            case R.id.add_sub :
                //setting fragment
@@ -277,6 +277,23 @@ public class MainActivity extends AppCompatActivity
                //setting actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.ShortOnlySub);
+               actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+                   t.setText(null);
+               fab.hide();
+               break;
+           case R.id.Clone:
+               //setting fragment
+               FragmentTransaction clonetransaction = getSupportFragmentManager().beginTransaction();
+               CloneFragment cloneFragment = new CloneFragment();
+               clonetransaction.replace(R.id.MainContent,cloneFragment,"CLONE_FRAGMENT");
+               clonetransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               clonetransaction.commit();
+               //setting Actionar
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.clone);
                actionBar.setSubtitle(null);
                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
                    t.setText(R.string.OpenHint2);
@@ -529,6 +546,20 @@ public class MainActivity extends AppCompatActivity
             if(((GlobalValues)getApplication()).GetCompleteList().get(i).is_squareMatrix())
                 return true;
         return false;
+    }
+    public void SetMainActivity(boolean actionmenu,String MainTitle,String subtitle){
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.MainFAB);
+        ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(actionmenu);
+        actionBar.setTitle(MainTitle);
+        if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+            actionBar.setSubtitle(null);
+        else
+            actionBar.setSubtitle(subtitle);
+        fab.show();
+        if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+            t.setText(R.string.OpenHint);
+        else
+            t.setText(null);
     }
 }
 

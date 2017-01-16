@@ -20,13 +20,13 @@
 package com.softminds.matrixcalculator.base_fragments;
 
 
-;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
+import com.softminds.matrixcalculator.MainActivity;
 import com.softminds.matrixcalculator.base_activities.GlobalValues;
 import com.softminds.matrixcalculator.base_activities.ViewCreatedMatrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
@@ -38,6 +38,7 @@ public class MainActivityFragmentList extends ListFragment {
     public void onActivityCreated(Bundle savedInstances)
     {
         super.onActivityCreated(savedInstances);
+
         ((GlobalValues)getActivity().getApplication()).matrixAdapter= new MatrixAdapter(getActivity(), R.layout.list_layout_fragment,
                 ((GlobalValues) getActivity().getApplication()).GetCompleteList());
         getListView().setDividerHeight(1);

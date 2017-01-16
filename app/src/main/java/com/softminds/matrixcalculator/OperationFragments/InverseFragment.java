@@ -26,8 +26,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.softminds.matrixcalculator.base_activities.GlobalValues;
 import com.softminds.matrixcalculator.Matrix;
@@ -55,8 +57,9 @@ public class InverseFragment extends ListFragment {
                 intent.putExtras(message.getData());
                 weakReference.get().progress.dismiss();
                 weakReference.get().startActivity(intent);
+                }
+
             }
-        }
     }
 
     MyHandler myHandler = new MyHandler(this);
@@ -86,6 +89,7 @@ public class InverseFragment extends ListFragment {
         progressDialog.show();
         progress = progressDialog;
         RunNewGetInverse(position,progressDialog);
+
     }
 
     public void RunNewGetInverse(final int pos,final ProgressDialog pq)
@@ -95,11 +99,21 @@ public class InverseFragment extends ListFragment {
             public void run() {
                Matrix res = SquareList.get(pos).Inverse(pq);
                 Message message = new Message();
+                if(res!=null){
                 message.setData(res.GetDataBundled());
                 myHandler.sendMessage(message);
+                }
+                else{
+                    myHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getContext(),R.string.NoInverse,Toast.LENGTH_SHORT).show();
+                        }
+                    },0);
+                    pq.dismiss();
+                }
             }
         };
-
         Thread thread = new Thread(runnable);
         thread.start();
     }

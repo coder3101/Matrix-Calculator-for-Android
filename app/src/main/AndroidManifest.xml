@@ -91,6 +91,10 @@
             android:name=".dialog_activity.DeterminantResult"
             android:label="@string/determinant"
             android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeDialog" />
+        <activity android:name=".dialog_activity.SwappingDialog"
+            android:label="@string/swap"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeDialog"/>
     </application>
 

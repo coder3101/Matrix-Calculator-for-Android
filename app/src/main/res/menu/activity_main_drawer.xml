@@ -24,6 +24,10 @@
             android:icon="@drawable/arrow_icon"
             android:title="@string/swap" />
         <item
+            android:id="@+id/Clone"
+            android:icon="@drawable/arrow_icon"
+            android:title="@string/clone" />
+        <item
             android:id="@+id/Transpose"
             android:icon="@drawable/arrow_icon"
             android:title="@string/transpose" />

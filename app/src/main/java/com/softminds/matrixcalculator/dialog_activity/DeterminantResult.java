@@ -24,6 +24,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,13 +47,27 @@ public class DeterminantResult extends AppCompatActivity {
             setTheme(R.style.AppThemeDialog);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_confirmation);
-        Button CopyIt= (Button) findViewById(R.id.ActionOkay);
-        Button ignore = (Button) findViewById(R.id.ActionCancel);
+        TextView CopyIt= (TextView) findViewById(R.id.ActionOkay);
+        TextView ignore = (TextView) findViewById(R.id.ActionCancel);
         TextView result = (TextView) findViewById(R.id.MessageDisplay);
         result.setText(ConvertToNormal(getIntent().getExtras().getDouble("RESULTANT",0)));
         CopyIt.setText(R.string.copy);
         ignore.setText(R.string.Done);
+        CopyIt.setHeight(50);
+        ignore.setHeight(50);
+        ignore.setAllCaps(true);
+        CopyIt.setAllCaps(true);
 
+        if(isDark)
+        {
+            CopyIt.setTextColor(ContextCompat.getColor(this,R.color.DarkcolorAccent));
+            ignore.setTextColor(ContextCompat.getColor(this,R.color.DarkcolorAccent));
+        }
+        else
+        {
+            CopyIt.setTextColor(ContextCompat.getColor(this,R.color.colorAccent));
+            ignore.setTextColor(ContextCompat.getColor(this,R.color.colorAccent));
+        }
 
         ignore.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -151,7 +151,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="f25fff2a5113b78a5a573f954b15c68dbaee86e4">
+        sha1="7cd1f01715c11684edcd7388116b7e6b88c73e25">
         <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_31a44e9aa1a99dfa6df9c2f1e7824f97249764ba/classes.dex" />
     </item>
     <item
@@ -331,7 +331,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="c2254f5fe74f46c47d4eb8f17e8db4f901a3f799">
+        sha1="6b0a95900d534e9cfc4ac485fe9d710549ebaa31">
         <dex dex="/home/ashar/AndroidStudioProjects/MatrixCalculator/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_900222d6d48a69e141511f3da9520c88b28fdc1d/classes.dex" />
     </item>
     <item

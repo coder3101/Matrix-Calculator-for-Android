@@ -59,23 +59,28 @@ public class ExponentSetter extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),R.string.NoValue,Toast.LENGTH_SHORT).show();
                 else
                 {
-                    Intent intent = new Intent();
-                    intent.putExtra("QWERTYUIOP",Integer.parseInt(editText.getText().toString()));
-                    setResult(500,intent);
-                    finish();
+                    if(Integer.parseInt(editText.getText().toString())>20) //Use SmartFilter here
+                        Toast.makeText(getApplicationContext(),R.string.ExpoOverflow,Toast.LENGTH_LONG).show();
+                    else {
+                        Intent intent = new Intent();
+                        intent.putExtra("QWERTYUIOP", Integer.parseInt(editText.getText().toString()));
+                        setResult(500, intent);
+                        finish();
+                    }
                 }
 
             }
         });
-
         Cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
-
     }
+
+   private boolean SmartFilter(int Expo, int biggest_ele){
+       return  true; //Todo this function will return the maximum limit of exponent as per the elements in the matrix, if it exceed false else true.
+   }
 
 }

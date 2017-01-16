@@ -222,7 +222,7 @@ public class Matrix {
         {
             for(int i=0;i<p.GetRow();i++)
                 for (int j=0;j<p.GetCol();j++)
-                    Matrix.this.Elements[i][j]=p.Elements[i][j];
+                    this.Elements[i][j]=p.Elements[i][j];
         }
     }
     public Matrix Transpose()
@@ -290,6 +290,7 @@ public class Matrix {
     public double GetDeterminant(ProgressDialog px) //Make sure a Square Matrix is only Calling this, Incases Matrix Result is always Zero
     {
       double  Result=0;
+        int total = 0;
         int flag=0,a=0,b=0;
         int Order =this.GetRow();
         if(Order==1)
@@ -309,12 +310,13 @@ public class Matrix {
         }
         else
         {
-            for(;flag<Order;flag++)
+            for(;flag<Order;flag++) //3
             {
-                px.setProgress((flag*100)/Order);
                 Matrix pointer= new Matrix(Order-1);
-                for(int i=1;i<Order;i++)
+                for(int i=1;i<Order;i++) //4
                 {
+                    px.setProgress((total*100)/(Order*Order));
+                    total++;
                     for(int j=0;j< Order;j++)
                     {
                         if(flag!=j)
@@ -444,18 +446,21 @@ public class Matrix {
     {
         Matrix Result= new Matrix(this.GetRow());
         this.CopyThisto(Result);
-        this.MakeAdjoint(updates);
-        this.SwapWith(Result);
+        Result.MakeAdjoint(updates);
         return  Result;
     }
     public Matrix Inverse(ProgressDialog progressDialog) //Must be a Square Matrix
     {
-        Matrix Result = this.ReturnAdjoint(progressDialog);
         float determinant= (float) this.GetDeterminant();
-        for(int i=0;i<this.GetRow();i++)
-            for(int j=0; j<this.GetCol();j++)
-                Result.Elements[i][j]/=determinant;
-        return  Result;
+        if(determinant==0) //if determinant was to be zero
+            return null;
+        else {
+            Matrix Result = this.ReturnAdjoint(progressDialog);
+            for (int i = 0; i < this.GetRow(); i++)
+                for (int j = 0; j < this.GetCol(); j++)
+                    Result.Elements[i][j] /= determinant;
+            return Result;
+        }
     }
     public void Raiseto(int a) //Must be a Square Matrix check before Calling this Function.
     {
@@ -565,5 +570,12 @@ public class Matrix {
         this.CopyFrom(p);
         this.SetType(p.GetType());
         this.SetName(p.GetName());
+    }
+    public Matrix ExactClone(String newname)
+    {
+        Matrix matrix = new Matrix(this.GetRow(),this.GetCol(),this.GetType());
+        this.CopyThisto(matrix);
+        matrix.SetName(newname);
+        return matrix;
     }
  }

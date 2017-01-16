@@ -21,25 +21,27 @@
 package com.softminds.matrixcalculator.OperationFragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.softminds.matrixcalculator.MainActivity;
+import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.base_activities.GlobalValues;
-import com.softminds.matrixcalculator.dialog_activity.SwappingDialog;
+import com.softminds.matrixcalculator.base_fragments.MainActivityFragmentList;
 
 
-public class SwapFragment extends ListFragment{
+public class CloneFragment extends ListFragment {
+
     @Override
-    public void onActivityCreated(Bundle savedInstances){
-        super.onActivityCreated(savedInstances);
+    public void onActivityCreated( Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         MatrixAdapter adapter = new MatrixAdapter(getContext(),R.id.MainContent,((GlobalValues)getActivity().getApplication()).GetCompleteList());
         getListView().setDividerHeight(1);
         setListAdapter(adapter);
@@ -47,12 +49,19 @@ public class SwapFragment extends ListFragment{
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("ROW_INDEX",((GlobalValues)getActivity().getApplication()).GetCompleteList().get(position).GetRow());
-        bundle.putInt("COL_INDEX",((GlobalValues)getActivity().getApplication()).GetCompleteList().get(position).GetCol());
-        bundle.putInt("POSITION",position);
-        Intent intent = new Intent(getContext(), SwappingDialog.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        Matrix m = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(position);
+        Matrix clone;
+        clone = m.ExactClone("Copy_"+m.GetName());
+        ((GlobalValues)getActivity().getApplication()).GetCompleteList().add(clone);
+        ((GlobalValues)getActivity().getApplication()).matrixAdapter.notifyDataSetChanged();
+        Toast.makeText(getContext(),"Saved as Copy_"+ m.GetName(),Toast.LENGTH_SHORT).show();
+        NavigationView view = (NavigationView) getActivity().findViewById(R.id.nav_view);
+        view.setCheckedItem(R.id.Home);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.MainContent,new MainActivityFragmentList());
+        transaction.commit();
+        ((MainActivity)getActivity()).SetMainActivity(true,getString(R.string.app_name),getString(R.string.MainSubtitle));
+
+
     }
 }

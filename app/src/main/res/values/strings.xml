@@ -16,6 +16,7 @@
     <string name="addsub">Addition</string>
     <string name="onlysub">Subtraction</string>
     <string name="Home">Home</string>
+    <string name="clone">Clone</string>
     <string name="swap">Swaping</string>
     <string name="transpose">Transpose</string>
     <string name="multiply">Multiplication</string>
@@ -37,7 +38,7 @@
     <string name="ToastMessage">Thanks for Choosing to Visit My Profile</string>
     <string name="FacebookLogo">Facebook</string>
     <string name="FacebookLink">https://www.facebook.com/coder3101</string>
-    <string name="version">Developmental Version 0.58</string>
+    <string name="version">Developmental Version 0.68</string>
 
     <string name="NocreateWaring">Upgrade to Pro, to add and use more Matrix Variable.</string>
 
@@ -186,5 +187,9 @@
     <string name="SquareTransPrompt">Square Matrix detected. Do you want to Store the Transpose in this Variable, Current Value will be Lost.</string>
     <string name="Nope">No</string>
     <string name="SuccessTranspose">Transposed Result Stored back to the Matrix</string>
+    <string name="NoneSwap">No Compatible Matrix Variable Present</string>
+    <string name="SwapSucc">Swapped</string>
+    <string name="ExpoOverflow">Smaller Value Please</string>
+    <string name="NoInverse">No Inverse Exist</string>
 
 </resources>
