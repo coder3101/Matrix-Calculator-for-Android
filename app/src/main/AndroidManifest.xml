@@ -22,7 +22,8 @@
             android:name=".base_activities.RatingActivity"
             android:label="@string/rate"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".base_fragments.Settings" />
+        <activity
+            android:name=".base_fragments.Settings" />
         <activity
             android:name=".base_activities.SettingsTab"
             android:label="@string/action_settings"
@@ -92,9 +93,20 @@
             android:label="@string/determinant"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeDialog" />
-        <activity android:name=".dialog_activity.SwappingDialog"
+        <activity
+            android:name=".dialog_activity.SwappingDialog"
             android:label="@string/swap"
             android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeDialog" />
+        <activity
+            android:name=".dialog_activity.MultiplierSetter"
+            android:label="@string/ScalerMult"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeDialog" />
+        <activity
+            android:name=".dialog_activity.FunctionMaker"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/FunctionalTitle"
             android:theme="@style/AppThemeDialog"/>
     </application>
 

@@ -115,7 +115,6 @@
             android:layout_alignParentStart="true"
             android:id="@+id/textView6" />
     </RelativeLayout>
-
     <Button
         android:text="@string/NewMatrix"
         android:layout_width="match_parent"

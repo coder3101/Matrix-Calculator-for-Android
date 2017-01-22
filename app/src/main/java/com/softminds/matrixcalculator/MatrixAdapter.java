@@ -23,8 +23,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +30,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.softminds.matrixcalculator.Matrix;
-import com.softminds.matrixcalculator.R;
 
 import java.util.ArrayList;
 
@@ -59,6 +54,7 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
         TextView Naam= ((TextView) convertView.findViewById(R.id.MatrixTitle));
         ImageView icon = ((ImageView)convertView.findViewById(R.id.ImageForMatrix));
         //Set Values
+        @SuppressWarnings({"ConstantConditions"})
         String r="Row : "+String.valueOf(m.GetRow());
         String c="Column : "+String.valueOf(m.GetCol());
         if(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DARK_THEME_KEY",false))

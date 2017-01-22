@@ -21,25 +21,51 @@
 package com.softminds.matrixcalculator.OperationFragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
+import com.softminds.matrixcalculator.Function;
 import com.softminds.matrixcalculator.base_activities.GlobalValues;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
+import com.softminds.matrixcalculator.base_activities.ShowResult;
+import com.softminds.matrixcalculator.dialog_activity.FunctionMaker;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 public class FunctionalFragment extends ListFragment {
 
+    int ClickPos;
+    ArrayList<Matrix> SquareList;
+
+    private static class MyHandler extends Handler{
+        private WeakReference<FunctionalFragment> weakReference;
+        MyHandler(FunctionalFragment fragment){
+            weakReference = new WeakReference<>(fragment);
+        }
+        @Override
+        public void handleMessage(Message msg){
+            FunctionalFragment functionalFragment = weakReference.get();
+            Intent intent = new Intent(functionalFragment.getContext(),ShowResult.class);
+            intent.putExtras(msg.getData());
+            functionalFragment.startActivity(intent);
+        }
+    }
+
+    MyHandler myHandler = new MyHandler(this);
 
     @Override
     public void onActivityCreated(Bundle savedInstances) {
         super.onActivityCreated(savedInstances);
-        ArrayList<Matrix> SquareList=new ArrayList<>();
+        SquareList=new ArrayList<>();
         for(int i = 0; i<((GlobalValues)getActivity().getApplication()).GetCompleteList().size(); i++)
         {
             if(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
@@ -54,7 +80,35 @@ public class FunctionalFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView L, View V, int position, long id)
     {
-
+        ClickPos = position;
+        Intent intent = new Intent(getContext(), FunctionMaker.class);
+        int newpos = ((GlobalValues)getActivity().getApplication()).GetCompleteList().indexOf(SquareList.get(ClickPos));
+        intent.putExtra("MATRIX_GLOBAL_INDEX",newpos );
+        startActivityForResult(intent,1452);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode == 1452)
+        {
+            try {
+                final Function function = ((GlobalValues) getActivity().getApplication()).getFunction();
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        Matrix m = function.ComputeFunction(SquareList.get(ClickPos));
+                        Message message = new Message();
+                        message.setData(m.GetDataBundled());
+                        myHandler.sendMessage(message);
+                    }
+                };
+                Thread thread = new Thread(runnable);
+                thread.start();
+            }catch (NullPointerException e){
+                Log.d("Exception : ", "Function at Global Context is Null");
+                e.printStackTrace();
+            }
+        }
+    }
 }

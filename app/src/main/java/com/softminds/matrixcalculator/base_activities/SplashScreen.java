@@ -32,9 +32,9 @@ import com.softminds.matrixcalculator.MainActivity;
 import com.softminds.matrixcalculator.R;
 
 public class SplashScreen extends Activity {
-    private static int SPLASH_TIME_OUT=2000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        int SPLASH_TIME_OUT=2000;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
         if(isDark)

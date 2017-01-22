@@ -20,6 +20,10 @@
             android:icon="@drawable/arrow_icon"
             android:title="@string/multiply" />
         <item
+            android:id="@+id/ScalerMulti"
+            android:icon="@drawable/arrow_icon"
+            android:title="@string/ScalerMult" />
+        <item
             android:id="@+id/Swap"
             android:icon="@drawable/arrow_icon"
             android:title="@string/swap" />
@@ -48,17 +52,9 @@
             android:icon="@drawable/arrow_icon"
             android:title="@string/adjoint" />
         <item
-            android:id="@+id/SumofSymmetric"
-            android:icon="@drawable/arrow_icon"
-            android:title="@string/SumofSym" />
-        <item
             android:id="@+id/functional"
             android:icon="@drawable/arrow_icon"
             android:title="@string/function" />
-        <item
-            android:id="@+id/custom"
-            android:icon="@drawable/arrow_icon"
-            android:title="@string/custom" />
     </group>
     <group android:id="@+id/helpcat">
     <item

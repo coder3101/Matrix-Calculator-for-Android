@@ -57,13 +57,12 @@ import com.softminds.matrixcalculator.OperationFragments.AdditionFragement;
 import com.softminds.matrixcalculator.OperationFragments.AdjointFragment;
 import com.softminds.matrixcalculator.OperationFragments.DeterminantFragment;
 import com.softminds.matrixcalculator.OperationFragments.ExponentFragment;
-import com.softminds.matrixcalculator.OperationFragments.ExtraCalculationFragment;
 import com.softminds.matrixcalculator.OperationFragments.FunctionalFragment;
 import com.softminds.matrixcalculator.OperationFragments.InverseFragment;
 import com.softminds.matrixcalculator.OperationFragments.MultiplyFragment;
 import com.softminds.matrixcalculator.OperationFragments.SubtractionFragment;
 import com.softminds.matrixcalculator.OperationFragments.SwapFragment;
-import com.softminds.matrixcalculator.OperationFragments.SymmetricFragment;
+import com.softminds.matrixcalculator.OperationFragments.ScalerFragment;
 import com.softminds.matrixcalculator.OperationFragments.TransposeFragment;
 
 
@@ -334,7 +333,7 @@ public class MainActivity extends AppCompatActivity
            case R.id.multiply:
                FragmentTransaction  multiplyTransaction = getSupportFragmentManager().beginTransaction();
                MultiplyFragment multiplyFragment = new MultiplyFragment();
-               multiplyTransaction.replace(R.id.MainContent, multiplyFragment,"TRANSPOSE_FRAGMENT");
+               multiplyTransaction.replace(R.id.MainContent, multiplyFragment,"MULTIPLY_FRAGMENT");
                multiplyTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                multiplyTransaction.commit();
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
@@ -431,15 +430,15 @@ public class MainActivity extends AppCompatActivity
                }
                fab.hide();
                break;
-           case R.id.SumofSymmetric:
-               FragmentTransaction SymmetricTransaction= getSupportFragmentManager().beginTransaction();
-               SymmetricFragment sf = new SymmetricFragment();
-               SymmetricTransaction.replace(R.id.MainContent, sf,"SYMMETRIC_FRAGMENT");
-               SymmetricTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               SymmetricTransaction.commit();
+           case R.id.ScalerMulti:
+               FragmentTransaction ScalerTransaction= getSupportFragmentManager().beginTransaction();
+               ScalerFragment sf = new ScalerFragment();
+               ScalerTransaction.replace(R.id.MainContent, sf,"SCALAR_FRAGMENT");
+               ScalerTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               ScalerTransaction.commit();
                //Modify the Actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.Misc);
+               actionBar.setTitle(R.string.Scaler);
                actionBar.setSubtitle(null);
                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
                    t.setText(R.string.OpenHint2);
@@ -461,26 +460,6 @@ public class MainActivity extends AppCompatActivity
                //Modify the Actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.function);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-               {
-                   if(isAnyVariableSquare())
-                       t.setText(null);
-                   else
-                       t.setText(R.string.NoSupport);
-               }
-               fab.hide();
-               break;
-           case R.id.custom:
-               FragmentTransaction  extraTransaction = getSupportFragmentManager().beginTransaction();
-               ExtraCalculationFragment extraFragment = new ExtraCalculationFragment();
-               extraTransaction.replace(R.id.MainContent, extraFragment,"TRANSPOSE_FRAGMENT");
-               extraTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               extraTransaction.commit();
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.ShortCustom);
                actionBar.setSubtitle(null);
                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
                    t.setText(R.string.OpenHint2);

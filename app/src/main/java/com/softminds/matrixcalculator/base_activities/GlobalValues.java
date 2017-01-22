@@ -22,6 +22,7 @@ package com.softminds.matrixcalculator.base_activities;
 
 import android.app.Application;
 
+import com.softminds.matrixcalculator.Function;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
@@ -35,6 +36,8 @@ public class GlobalValues extends Application {
     private int LAST_INDEX=0; //LastIndex of ArrayList
 
     public int AutoSaved =1; //To automatically name the saved result
+
+    private Function EndUserFunction;
 
     public MatrixAdapter matrixAdapter;
 
@@ -74,4 +77,11 @@ public class GlobalValues extends Application {
 
         return false;
     }
+    public void SendToGlobal(Function function){
+        EndUserFunction = function;
+    }
+    public Function getFunction(){
+        return EndUserFunction;
+    }
+
 }

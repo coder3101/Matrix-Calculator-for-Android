@@ -31,7 +31,6 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.Type;
 import com.softminds.matrixcalculator.base_activities.FillingMatrix;
 import com.softminds.matrixcalculator.base_activities.GlobalValues;
@@ -62,7 +61,6 @@ public class MakeNewMatrix extends AppCompatActivity {
         ColSpinner.setMaxValue(9);
         ColSpinner.setValue(3);
         button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
 

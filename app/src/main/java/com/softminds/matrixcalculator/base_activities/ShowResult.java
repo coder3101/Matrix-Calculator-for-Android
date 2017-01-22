@@ -73,7 +73,12 @@ public class ShowResult extends AppCompatActivity {
             {
                 TextView textView = new TextView(getApplicationContext());
                 textView.setGravity(Gravity.CENTER);
-                textView.setText("   "+String.valueOf(var[i][j])+"   ");
+                try {
+                    textView.setText("   " + String.valueOf(var[i][j]) + "   ");
+                }catch (NullPointerException e){
+                    e.printStackTrace();
+                    Log.d("Element","Element in Matrix is Null");
+                }
                 textView.setTextSize(SizeReturner(getIntent().getExtras().getInt("ROW",0),getIntent().getExtras().getInt("COL",0),
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).
                                 getBoolean("EXTRA_SMALL_FONT",false)));

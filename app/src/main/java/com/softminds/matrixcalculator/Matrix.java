@@ -79,10 +79,10 @@ public class Matrix {
         return this.type;
     }
     public boolean ApplyType() {
-        if (Matrix.this.type == Type.Normal)
+        if (this.type == Type.Normal)
             return false;
         else {
-            switch (Matrix.this.type) {
+            switch (this.type) {
                 case Identity:
                     MakeIdentity();
                     break;
@@ -97,24 +97,24 @@ public class Matrix {
         }
         return true;
     }
-    private void  MakeNull()
+    public void  MakeNull()
     {
-       for (int i=0;i<Matrix.this.GetRow();i++){
-           for (int j=0;j<Matrix.this.GetCol();j++)
+       for (int i=0;i<this.GetRow();i++){
+           for (int j=0;j<this.GetCol();j++)
            {
-               Matrix.this.Elements[i][j]=0;
+               this.Elements[i][j]=0;
            }
        }
     }
-    private void MakeIdentity()
+    public void MakeIdentity()
     {
-        for (int i=0;i<Matrix.this.GetRow();i++){
-            for (int j=0;j<Matrix.this.GetCol();j++)
+        for (int i=0;i<this.GetRow();i++){
+            for (int j=0;j<this.GetCol();j++)
             {
                 if(i==j)
-                    Matrix.this.Elements[i][j]=1;
+                    this.Elements[i][j]=1;
                 else
-                    Matrix.this.Elements[i][j]=0;
+                    this.Elements[i][j]=0;
             }
         }
     }
@@ -128,18 +128,18 @@ public class Matrix {
     }
     private void MakeDiagonal()
     {
-        for (int i=0;i<Matrix.this.GetRow();i++) {
-            for (int j = 0; j < Matrix.this.GetCol(); j++) {
+        for (int i=0;i<this.GetRow();i++) {
+            for (int j = 0; j < this.GetCol(); j++) {
                 if (i == j)
-                    Matrix.this.Elements[i][j] = 0;
+                    this.Elements[i][j] = 0;
             }
         }
     }
     public boolean isequalto(Matrix matrix) {
-        if (matrix.GetCol() == Matrix.this.GetCol() && (Matrix.this.GetRow() == matrix.GetRow())) {
-            for (int i = 0; i < Matrix.this.GetRow(); i++) {
+        if (matrix.GetCol() == this.GetCol() && (this.GetRow() == matrix.GetRow())) {
+            for (int i = 0; i < this.GetRow(); i++) {
                 for (int j = 0; j < matrix.GetCol(); j++) {
-                    if (matrix.Elements[i][j] != Matrix.this.Elements[i][j])
+                    if (matrix.Elements[i][j] != this.Elements[i][j])
                         return false;
                 }
             }
@@ -157,12 +157,20 @@ public class Matrix {
             Matrix p= new Matrix(m.GetRow(),m.GetCol(),Type.Normal);
             for(int i=0;i<m.GetRow();i++)
                 for (int j=0;j<m.GetCol();j++)
-                    p.Elements[i][j]=Matrix.this.Elements[i][j]+m.Elements[i][j];
+                    p.Elements[i][j]=this.Elements[i][j]+m.Elements[i][j];
 
            return p;
         }
         else {
             return null ;
+        }
+    }
+    public void AddtoThis(Matrix m)
+    {
+        if(isSameOrder(m)) {
+            for (int i = 0; i < m.GetRow(); i++)
+                for (int j = 0; j < m.GetCol(); j++)
+                    this.Elements[i][j] = this.Elements[i][j] + m.Elements[i][j];
         }
     }
     public void Addthisto(Matrix p)
@@ -171,7 +179,7 @@ public class Matrix {
         {
             for(int i=0;i<p.GetRow();i++)
                 for (int j=0;j<p.GetCol();j++)
-                    p.Elements[i][j]=Matrix.this.Elements[i][j]+p.Elements[i][j];
+                    p.Elements[i][j]=this.Elements[i][j]+p.Elements[i][j];
         }
     }
     public Matrix SubtractWith(Matrix m)
@@ -181,7 +189,7 @@ public class Matrix {
             Matrix p= new Matrix(m.GetRow(),m.GetCol(),Type.Normal);
             for(int i=0;i<m.GetRow();i++)
                 for (int j=0;j<m.GetCol();j++)
-                    p.Elements[i][j]=Matrix.this.Elements[i][j]-m.Elements[i][j];
+                    p.Elements[i][j]=this.Elements[i][j]-m.Elements[i][j];
 
             return p;
         }
@@ -195,7 +203,7 @@ public class Matrix {
         {
             for(int i=0;i<p.GetRow();i++)
                 for (int j=0;j<p.GetCol();j++)
-                    p.Elements[i][j]=p.Elements[i][j]-Matrix.this.Elements[i][j];
+                    p.Elements[i][j]=p.Elements[i][j]-this.Elements[i][j];
         }
     }
     public boolean isSameOrder(Matrix a,Matrix b)
@@ -213,8 +221,9 @@ public class Matrix {
         {
             for(int i=0;i<p.GetRow();i++)
                 for (int j=0;j<p.GetCol();j++)
-                    p.Elements[i][j]=Matrix.this.Elements[i][j];
+                    p.Elements[i][j]=this.Elements[i][j];
         }
+
     }
     public void CopyFrom(Matrix p)
     {
@@ -577,5 +586,16 @@ public class Matrix {
         this.CopyThisto(matrix);
         matrix.SetName(newname);
         return matrix;
+    }
+    public void ScalarMultiply(float multiplier){
+        for(int i=0;i<this.GetRow();i++)
+            for(int j=0;j<this.GetCol();j++)
+                this.Elements[i][j]*=multiplier;
+    }
+    public Matrix ReturnScaler(float ig){
+        Matrix re  = new Matrix(this.GetRow(),this.GetCol(),this.GetType());
+        re.CopyFrom(this);
+        re.ScalarMultiply(ig);
+        return re;
     }
  }

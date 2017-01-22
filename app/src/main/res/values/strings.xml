@@ -22,9 +22,8 @@
     <string name="multiply">Multiplication</string>
     <string name="inverse">Inverse</string>
     <string name="adjoint">Adjoint</string>
-    <string name="custom">Custom Calculations</string>
     <string name="function">Functional</string>
-    <string name="SumofSym">Skew and Symmetric</string>
+    <string name="ScalerMult">Scalar Multiplication</string>
     <string name="determinant">Determinant</string>
     <string name="exponent">Exponential</string>
 
@@ -38,7 +37,7 @@
     <string name="ToastMessage">Thanks for Choosing to Visit My Profile</string>
     <string name="FacebookLogo">Facebook</string>
     <string name="FacebookLink">https://www.facebook.com/coder3101</string>
-    <string name="version">Developmental Version 0.68</string>
+    <string name="version">Developmental Version 0.82</string>
 
     <string name="NocreateWaring">Upgrade to Pro, to add and use more Matrix Variable.</string>
 
@@ -158,7 +157,7 @@
     <string name="ChangedOrder">Order Changed</string>
     <string name="ShortAddSub">Addition</string>
     <string name="ShortOnlySub">Subtraction</string>
-    <string name="Misc">Extra</string>
+    <string name="Scaler">Scalar Multiplication</string>
     <string name="ShortCustom">Custom</string>
     <string name="MainSubtitle">All Variables</string>
     <string name="NothingCreated">Press the Button below to Create a Variable</string>
@@ -191,5 +190,23 @@
     <string name="SwapSucc">Swapped</string>
     <string name="ExpoOverflow">Smaller Value Please</string>
     <string name="NoInverse">No Inverse Exist</string>
+
+    <string name="MultiplierPlease">Enter the Multiplier</string>
+
+    <!--Functional Activity-->
+    <string name="FunctionalTitle">Create the Function</string>
+    <string name="FunctionalExponent">Exponent</string>
+    <string name="FunctionalDegree">Terms</string>
+    <string name="ConfirmFunction">Proceed</string>
+    <string name="Coefficient">Enter Coefficient here</string>
+    <string name="PreView">Preview of the Function</string>
+    <string name="FunctionX">f(x) =  </string>
+    <string name="X">x1</string>
+    <string name="plus">+</string>
+    <string name="one">1</string>
+    <string name="Warning12">Click a Term to Proceed</string>
+    <string name="Selected">Selected</string>
+    <string name="NewX"><b>x</b></string>
+    <string name="FunctionMakerHint">Click on the Operator to Change its Sign</string>
 
 </resources>

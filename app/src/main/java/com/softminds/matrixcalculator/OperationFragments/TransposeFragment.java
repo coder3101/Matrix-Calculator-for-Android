@@ -22,16 +22,10 @@ package com.softminds.matrixcalculator.OperationFragments;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -46,11 +40,11 @@ public class TransposeFragment extends ListFragment {
     int ClickPos;
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated( Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         MatrixAdapter adapter = new MatrixAdapter(getContext(),
                 R.id.MainContent,((GlobalValues)getActivity().
-                getApplication()).GetCompleteList());;
+                getApplication()).GetCompleteList());
         getListView().setDividerHeight(1);
         setListAdapter(adapter);
     }
