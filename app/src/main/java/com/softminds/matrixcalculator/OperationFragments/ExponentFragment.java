@@ -70,7 +70,7 @@ public class ExponentFragment extends ListFragment {
                 if(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
                     SquareList.add(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i));
             }
-            MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.id.MainContent,SquareList);
+            MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment,SquareList);
             getListView().setDividerHeight(1);
             setListAdapter(MatriXadapter);
 

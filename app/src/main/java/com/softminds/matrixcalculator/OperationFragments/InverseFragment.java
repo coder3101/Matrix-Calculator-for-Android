@@ -22,11 +22,13 @@ package com.softminds.matrixcalculator.OperationFragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
+import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -42,6 +44,9 @@ import java.util.ArrayList;
 
 public class InverseFragment extends ListFragment {
 
+    final String KEY = "DETERMINANT_FOR_INVERSE";
+    boolean ENABLED_NO_DECIMAL;
+
     ArrayList<Matrix> SquareList;
     ProgressDialog progress;
 
@@ -51,15 +56,22 @@ public class InverseFragment extends ListFragment {
             weakReference = new WeakReference<>(inverseFragment);
         }
         @Override
-        public  void handleMessage(Message message){
-            if(weakReference.get().progress.isShowing()){
+        public  void handleMessage(Message message) {
+            if (weakReference.get().progress.isShowing()) {
                 Intent intent = new Intent(weakReference.get().getActivity(), ShowResult.class);
-                intent.putExtras(message.getData());
-                weakReference.get().progress.dismiss();
-                weakReference.get().startActivity(intent);
+                if (message.getData().getFloat("DETERMINANT", 0) == 0) {
+                    intent.putExtras(message.getData());
+                    weakReference.get().progress.dismiss();
+                    weakReference.get().startActivity(intent);
+                } else {
+                    intent.putExtras(message.getData());
+                    intent.putExtra(weakReference.get().KEY,message.getData().getFloat("DETERMINANT",0));
+                    weakReference.get().progress.dismiss();
+                    weakReference.get().startActivity(intent);
                 }
 
             }
+        }
     }
 
     MyHandler myHandler = new MyHandler(this);
@@ -73,9 +85,12 @@ public class InverseFragment extends ListFragment {
             if(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
                 SquareList.add(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i));
         }
-        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.id.MainContent,SquareList);
+        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment,SquareList);
         getListView().setDividerHeight(1);
         setListAdapter(MatriXadapter);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        ENABLED_NO_DECIMAL = preferences.getBoolean("NO_FRACTION_ENABLED",false);
 
     }
     @Override
@@ -88,8 +103,10 @@ public class InverseFragment extends ListFragment {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         progress = progressDialog;
-        RunNewGetInverse(position,progressDialog);
-
+        if(ENABLED_NO_DECIMAL)
+            RunAndGetDeterminantWithAdjoint(position,progressDialog);
+        else
+            RunNewGetInverse(position, progressDialog);
     }
 
     public void RunNewGetInverse(final int pos,final ProgressDialog pq)
@@ -112,6 +129,36 @@ public class InverseFragment extends ListFragment {
                     },0);
                     pq.dismiss();
                 }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
+    }
+    public void RunAndGetDeterminantWithAdjoint(final int i, final ProgressDialog progressDialog){
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Message message = new Message();
+                Bundle bundle = new Bundle();
+                float detr = (float) SquareList.get(i).GetDeterminant(progressDialog);
+                if(detr == 0.0f){
+                    myHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getContext(),R.string.NoInverse,Toast.LENGTH_SHORT).show();
+                        }
+                    },0);
+                    progressDialog.dismiss();
+                }
+                else {
+                    progressDialog.setProgress(0);
+                    bundle.putFloat("DETERMINANT",detr);
+                    Matrix res = SquareList.get(i).ReturnAdjoint(progressDialog);
+                    bundle.putAll(res.GetDataBundled());
+                    message.setData(bundle);
+                    myHandler.sendMessage(message);
+                }
+
             }
         };
         Thread thread = new Thread(runnable);

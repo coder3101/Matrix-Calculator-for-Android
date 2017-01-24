@@ -56,7 +56,7 @@ public class SwappingCompatList extends ListFragment {
             {
                 ((SwappingDialog)getActivity()).SetMidText(getString(R.string.NoneSwap));
             }
-            MatrixAdapter adapter = new MatrixAdapter(getContext(),R.id.SwappingMaincontent,CompatList);
+            MatrixAdapter adapter = new MatrixAdapter(getContext(),R.layout.list_layout_fragment,CompatList);
             getListView().setDividerHeight(1);
             setListAdapter(adapter);
         }

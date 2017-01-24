@@ -37,7 +37,7 @@
     <string name="ToastMessage">Thanks for Choosing to Visit My Profile</string>
     <string name="FacebookLogo">Facebook</string>
     <string name="FacebookLink">https://www.facebook.com/coder3101</string>
-    <string name="version">Developmental Version 0.82</string>
+    <string name="version">Beta Version 1.0</string>
 
     <string name="NocreateWaring">Upgrade to Pro, to add and use more Matrix Variable.</string>
 
@@ -73,7 +73,7 @@
     <string name="title2">Calculations</string>
     <string name="EnableRounding">Result Rounding</string>
     <string name="EnableRoundingDesc">The  Calculated Result will be Rounded off this much Decimals</string>
-    <string name="NoFraction">No Fractional Inverse</string>
+    <string name="NoFraction">Fractional Inverse</string>
     <string name="NoFractionDesc">Set the type of Inverse to Show as Result, if enabled Result will be Absolute Matrix with No Fractional Coefficient</string>
     <string name="RandT">Random Number Settings</string>
     <string name="SignedTitle">Signed Values</string>
@@ -208,5 +208,23 @@
     <string name="Selected">Selected</string>
     <string name="NewX"><b>x</b></string>
     <string name="FunctionMakerHint">Click on the Operator to Change its Sign</string>
+
+    <!--Addition Fragment-->
+    <string name="AddTip">Tap on a List Item to add it in the Addition Queue</string>
+    <string name="AddQueue">Addition Queue</string>
+    <string name="ProceedAdd">Proceed to Add</string>
+    <string name="Notdefined">Operation not defined</string>
+    <string name="RemoveLast">Remove From Queue</string>
+    <string name="NothingTORemove">Nothing to Remove</string>
+
+    <!--Sub Fragment-->
+    <string name="SubTip">Tap on a List Item to add it in the Subtraction Queue</string>
+    <string name="SubQueue">Subtraction Queue</string>
+    <string name="ProceedSub">Proceed to Subtraction</string>
+
+    <!--Multiply Fragment-->
+    <string name="MulTip">Tap on a List Item to add it in the Multiplication Queue</string>
+    <string name="MulQueue">Multiplication Queue</string>
+    <string name="ProceedMul">Proceed to Multiplication</string>
 
 </resources>

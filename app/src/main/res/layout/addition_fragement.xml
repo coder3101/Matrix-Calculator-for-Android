@@ -1,7 +1,71 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.softminds.matrixcalculator.OperationFragments.AdditionFragement">
-
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/QueueTopView"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/TitleOfAdd"
+        android:layout_marginBottom="10dp"
+        android:text="@string/AddQueue"
+        android:textAlignment="center"
+        />
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textStyle="bold"
+    android:layout_gravity="center"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:textSize="20sp"
+    android:id="@+id/AdditionStatus"
+    />
+    </HorizontalScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/SubtitleofADD"
+            android:text="@string/AddTip"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/QueueTopView"
+        android:layout_above="@+id/ConfirmAdd"
+        android:id="@+id/AdapterAddContainer"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/RemoveLast"
+        android:id="@+id/RemoveLast"
+        android:textAllCaps="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ProceedAdd"
+        android:id="@+id/ConfirmAdd"
+        android:textAllCaps="true"
+        android:layout_above="@id/RemoveLast"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="2dp"
+        />
+</RelativeLayout>

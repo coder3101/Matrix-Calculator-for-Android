@@ -135,36 +135,6 @@ public class Matrix {
             }
         }
     }
-    public boolean isequalto(Matrix matrix) {
-        if (matrix.GetCol() == this.GetCol() && (this.GetRow() == matrix.GetRow())) {
-            for (int i = 0; i < this.GetRow(); i++) {
-                for (int j = 0; j < matrix.GetCol(); j++) {
-                    if (matrix.Elements[i][j] != this.Elements[i][j])
-                        return false;
-                }
-            }
-
-            return true;
-
-        }
-        else
-            return false;
-    }
-    public Matrix AddWith(Matrix m)
-    {
-        if(isSameOrder(m))
-        {
-            Matrix p= new Matrix(m.GetRow(),m.GetCol(),Type.Normal);
-            for(int i=0;i<m.GetRow();i++)
-                for (int j=0;j<m.GetCol();j++)
-                    p.Elements[i][j]=this.Elements[i][j]+m.Elements[i][j];
-
-           return p;
-        }
-        else {
-            return null ;
-        }
-    }
     public void AddtoThis(Matrix m)
     {
         if(isSameOrder(m)) {
@@ -173,43 +143,13 @@ public class Matrix {
                     this.Elements[i][j] = this.Elements[i][j] + m.Elements[i][j];
         }
     }
-    public void Addthisto(Matrix p)
+    public void SubtoThis(Matrix m)
     {
-        if(isSameOrder(p))
-        {
-            for(int i=0;i<p.GetRow();i++)
-                for (int j=0;j<p.GetCol();j++)
-                    p.Elements[i][j]=this.Elements[i][j]+p.Elements[i][j];
+        if(isSameOrder(m)) {
+            for (int i = 0; i < m.GetRow(); i++)
+                for (int j = 0; j < m.GetCol(); j++)
+                    this.Elements[i][j] = this.Elements[i][j] - m.Elements[i][j];
         }
-    }
-    public Matrix SubtractWith(Matrix m)
-    {
-        if(isSameOrder(m))
-        {
-            Matrix p= new Matrix(m.GetRow(),m.GetCol(),Type.Normal);
-            for(int i=0;i<m.GetRow();i++)
-                for (int j=0;j<m.GetCol();j++)
-                    p.Elements[i][j]=this.Elements[i][j]-m.Elements[i][j];
-
-            return p;
-        }
-        else {
-            return null ;
-        }
-    }
-    public void SubtractThisIn(Matrix p)
-    {
-        if(isSameOrder(p))
-        {
-            for(int i=0;i<p.GetRow();i++)
-                for (int j=0;j<p.GetCol();j++)
-                    p.Elements[i][j]=p.Elements[i][j]-this.Elements[i][j];
-        }
-    }
-    public boolean isSameOrder(Matrix a,Matrix b)
-    {
-        return (a.GetRow()==b.GetRow()&&a.GetCol()==b.GetCol());
-
     }
     public boolean isSameOrder(Matrix a)
     {
@@ -264,10 +204,6 @@ public class Matrix {
         }
 
     }
-    public boolean AreMultipliable(Matrix a, Matrix b)
-    {
-        return (a.GetCol()==b.GetRow());
-    }
     private boolean AreMultipliabe(Matrix h)
     {
         return this.GetCol()==h.GetRow();
@@ -277,8 +213,8 @@ public class Matrix {
         if(AreMultipliabe(j))
         {
             Matrix m= new Matrix(this.GetRow(),j.GetCol(),this.GetType());
-            for(int i=0;i<GetRow();i++)
-                for(int js=0;js<GetCol();js++)
+            for(int i=0;i<this.GetRow();i++)
+                for(int js=0;js<m.GetCol();js++)
                 {
                     m.Elements[i][js]=0;
                     for(int k=0;k<this.GetCol();k++)
@@ -291,6 +227,19 @@ public class Matrix {
         else
             return null;
 
+    }
+    public void MultiplytoThis(Matrix m) {
+        if (AreMultipliabe(m)) {
+            Matrix mh = new Matrix(this.GetRow(), m.GetCol(), this.GetType());
+            for (int i = 0; i < this.GetRow(); i++)
+                for (int js = 0; js < m.GetCol(); js++) {
+                    mh.Elements[i][js] = 0;
+                    for (int k = 0; k < this.GetCol(); k++) {
+                        mh.Elements[i][js] += this.Elements[i][k] * m.Elements[k][js];
+                    }
+                }
+            this.CloneFrom(mh);
+        }
     }
     private void PushAt(int R_index,int C_index,float Elt)
     {

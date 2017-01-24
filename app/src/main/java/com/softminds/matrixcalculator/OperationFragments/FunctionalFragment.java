@@ -72,7 +72,7 @@ public class FunctionalFragment extends ListFragment {
                 //search only square matrix from list
                 SquareList.add(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i));
         }
-        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.id.MainContent,SquareList);
+        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment,SquareList);
         getListView().setDividerHeight(1);
         setListAdapter(MatriXadapter);
 

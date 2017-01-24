@@ -43,7 +43,7 @@ public class TransposeFragment extends ListFragment {
     public void onActivityCreated( Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         MatrixAdapter adapter = new MatrixAdapter(getContext(),
-                R.id.MainContent,((GlobalValues)getActivity().
+                R.layout.list_layout_fragment,((GlobalValues)getActivity().
                 getApplication()).GetCompleteList());
         getListView().setDividerHeight(1);
         setListAdapter(adapter);

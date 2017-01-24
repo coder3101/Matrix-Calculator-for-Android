@@ -20,6 +20,8 @@
 
 package com.softminds.matrixcalculator.base_activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
@@ -35,6 +37,7 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.softminds.matrixcalculator.MainActivity;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.R;
 
@@ -91,6 +94,11 @@ public class ShowResult extends AppCompatActivity {
         }
         gridLayout.setLayoutParams(params1);
         cardView.addView(gridLayout);
+        if(getIntent().getFloatExtra("DETERMINANT_FOR_INVERSE",0.0f) != 0.0f){
+            TextView textView = (TextView) findViewById(R.id.TextContainer);
+            String val = "1 / " + String.valueOf(getIntent().getFloatExtra("DETERMINANT_FOR_INVERSE",0.0f));
+            textView.setText(val);
+        }
 
     }
 
@@ -117,6 +125,9 @@ public class ShowResult extends AppCompatActivity {
                     matrix.SetName(auto_name);
                     ((GlobalValues)getApplication()).AddResultToGlobal(matrix);
                     Toast.makeText(getApplicationContext(),(getString(R.string.SavedAs)+" "+auto_name),Toast.LENGTH_SHORT).show();
+                    Intent home = new Intent(getApplication(),MainActivity.class);
+                    home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear all the activities on top of home.
+                    startActivity(home);
                     finish();
                 }
 

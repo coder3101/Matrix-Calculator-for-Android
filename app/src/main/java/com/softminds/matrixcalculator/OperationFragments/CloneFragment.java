@@ -42,7 +42,7 @@ public class CloneFragment extends ListFragment {
     @Override
     public void onActivityCreated( Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        MatrixAdapter adapter = new MatrixAdapter(getContext(),R.id.MainContent,((GlobalValues)getActivity().getApplication()).GetCompleteList());
+        MatrixAdapter adapter = new MatrixAdapter(getContext(),R.layout.list_layout_fragment,((GlobalValues)getActivity().getApplication()).GetCompleteList());
         getListView().setDividerHeight(1);
         setListAdapter(adapter);
     }

@@ -73,7 +73,7 @@ public class AdjointFragment extends ListFragment {
                 //if square matrix is present them only ajoint can be found hence only square matrix being selected
                 SquareList.add(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i));
         }
-        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.id.MainContent,SquareList);
+        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment,SquareList);
         getListView().setDividerHeight(1);
         setListAdapter(MatriXadapter);
 
