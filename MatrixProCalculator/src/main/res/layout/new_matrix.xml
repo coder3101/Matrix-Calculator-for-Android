@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_matrix"
+    android:layout_width="match_parent"
+    android:paddingTop="16dp"
+    android:padding="16dp"
+    android:layout_height="match_parent"
+    tools:context="com.softminds.matrixcalculatorpro.dialog_activity.MakeNewMatrix">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Mat">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/MatrixName"
+            android:hint="@string/Nameit"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <LinearLayout
+            android:layout_marginStart="24dp"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/Row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                />
+            </RelativeLayout>
+            <NumberPicker
+                android:layout_width="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="90dp"
+                android:id="@+id/RowOrder"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:layout_marginStart="27dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/linearLayout">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/Col"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/textView5" />
+            </RelativeLayout>
+
+            <NumberPicker
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:id="@+id/ColOrder"
+            android:layout_marginTop="10dp"
+            />
+
+</LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="5dp">
+
+       <Spinner
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/MatType"
+           android:entries="@array/MatrixT"
+           android:layout_alignParentEnd="true"
+           android:layout_marginEnd="26sp"
+           />
+
+        <TextView
+            android:text="@string/MatrixType"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toStartOf="@id/MatType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_alignBaseline="@+id/MatType"
+            android:layout_alignBottom="@+id/MatType"
+            android:layout_alignParentStart="true"
+            android:id="@+id/textView6" />
+    </RelativeLayout>
+    <Button
+        android:text="@string/NewMatrix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:id="@+id/buttonMake" />
+
+</LinearLayout>
+</ScrollView>
