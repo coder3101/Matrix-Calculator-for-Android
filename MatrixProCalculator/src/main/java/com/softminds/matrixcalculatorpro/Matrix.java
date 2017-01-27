@@ -27,7 +27,7 @@ public class Matrix {
     private int NumberofRows, NumberofCols;
     private Type type;
     private String name;
-    private float Elements[][]=new float[9][9]; //Todo Experimental this may Result in Memory Losses
+    private float Elements[][]=new float[9][9];
     public  Matrix(int r,int c,Type t)
     {
         this.NumberofRows=r;

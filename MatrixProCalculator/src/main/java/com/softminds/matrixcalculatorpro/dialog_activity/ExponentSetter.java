@@ -59,7 +59,7 @@ public class ExponentSetter extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),R.string.NoValue,Toast.LENGTH_SHORT).show();
                 else
                 {
-                    if(Integer.parseInt(editText.getText().toString())>20) //Use SmartFilter here
+                    if(Integer.parseInt(editText.getText().toString())>15)
                         Toast.makeText(getApplicationContext(),R.string.ExpoOverflow,Toast.LENGTH_LONG).show();
                     else {
                         Intent intent = new Intent();
@@ -78,9 +78,5 @@ public class ExponentSetter extends AppCompatActivity {
             }
         });
     }
-
-   private boolean SmartFilter(int Expo, int biggest_ele){
-       return  true; //Todo this function will return the maximum limit of exponent as per the elements in the matrix, if it exceed false else true.
-   }
 
 }

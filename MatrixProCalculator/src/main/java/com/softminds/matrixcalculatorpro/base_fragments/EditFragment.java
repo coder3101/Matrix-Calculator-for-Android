@@ -30,7 +30,6 @@ import android.support.v7.widget.CardView;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,10 +42,6 @@ import com.softminds.matrixcalculatorpro.R;
 
 
 public class EditFragment extends Fragment {
-
-
-    public EditFragment() {
-    }
 
     View RootView;
     @Override
@@ -110,14 +105,14 @@ public class EditFragment extends Fragment {
             for (int i = 0; i < number; i++)
                 for (int j = 0; j < ((GlobalValues) getActivity().getApplication()).
                         GetCompleteList().get(index).GetCol(); j++) {
-                    if (RootView.findViewById(i * 10 + j) != null) {
+                    if (!((EditText) RootView.findViewById(i * 10 + j)).getText().toString().isEmpty()) {
                         ((GlobalValues) getActivity().getApplication()).
                                 GetCompleteList().get(index).
                                 SetElementof(((Float.parseFloat(((EditText)
                                         RootView.findViewById(i * 10 + j)).
                                         getText().toString()))), i, j);
                     } else
-                        Log.d("Null View ", "true");
+                        ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).SetElementof(0f,i,j);
                 }
         }
 
@@ -139,7 +134,7 @@ public class EditFragment extends Fragment {
         }
         return 0;
     }
-    public int getLenght()
+    private int getLenght()
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         boolean v=preferences.getBoolean("EXTRA_SMALL_FONT",false);
@@ -148,7 +143,7 @@ public class EditFragment extends Fragment {
         else
             return 6;
     }
-    public int CalculatedWidth(int a)
+    private int CalculatedWidth(int a)
     {
         switch (a)
         {
@@ -165,7 +160,7 @@ public class EditFragment extends Fragment {
         }
         return 0;
     }
-    public int SizeReturner(int r, int c,boolean b)
+    private int SizeReturner(int r, int c,boolean b)
     {
         if(!b) {
             if (r > c) {
@@ -261,7 +256,7 @@ public class EditFragment extends Fragment {
 
         return 0;
     }
-    public String SafeSubString(String s, int MaxLength)
+    private String SafeSubString(String s, int MaxLength)
     {
         if(!TextUtils.isEmpty(s))
         {
