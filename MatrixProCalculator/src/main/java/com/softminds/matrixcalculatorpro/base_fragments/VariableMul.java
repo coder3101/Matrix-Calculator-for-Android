@@ -91,4 +91,8 @@ public class VariableMul extends ListFragment {
         Row = row;
         Col = col;
     }
+    public void Update(){
+        Row = 0;
+        Col = 0;
+    }
 }

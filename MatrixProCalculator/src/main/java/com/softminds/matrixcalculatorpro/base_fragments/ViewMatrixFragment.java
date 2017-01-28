@@ -40,11 +40,6 @@ import com.softminds.matrixcalculatorpro.R;
 
 public class ViewMatrixFragment extends Fragment {
 
-
-    public ViewMatrixFragment() {
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,8 +81,6 @@ public class ViewMatrixFragment extends Fragment {
         }
         gridLayout.setLayoutParams(params1);
         cardView.addView(gridLayout);
-
-
 
         // Inflate the layout for this fragment
         return v;
@@ -237,9 +230,10 @@ public class ViewMatrixFragment extends Fragment {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         boolean v=preferences.getBoolean("EXTRA_SMALL_FONT",false);
         if(v)
-            return 8;
+            return 9;
         else
             return 6;
     }
+
 
 }

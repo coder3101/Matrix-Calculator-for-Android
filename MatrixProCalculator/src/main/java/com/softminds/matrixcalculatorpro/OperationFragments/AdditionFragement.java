@@ -105,6 +105,8 @@ public class AdditionFragement extends Fragment {
                 {
                     textView.setText(null);
                     ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
+                    VariableListAdd variableListAdd = (VariableListAdd)getChildFragmentManager().findFragmentByTag("VARIABLE_ADDER");
+                    variableListAdd.Restore();
                 }
             }
         }

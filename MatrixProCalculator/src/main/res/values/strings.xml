@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Matrix Calculator Pro</string>
+    <string name="AppNameShort">Matrix Calculator</string>
 
     <!--Menu Options-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -60,7 +61,7 @@
     <string name="DarkTheme">Enable Dark Theme</string>
     <string name="DarkThemeDesc">Use Application in Dark theme</string>
     <string name="ExtraSmallFontT">Extra Small Fonts</string>
-    <string name="ExtraSmallFontD">Reduces the Font of Elements While Filling Matrix to Acquire up to 8 digits</string>
+    <string name="ExtraSmallFontD">Reduces the Font of Elements While Filling Matrix to Acquire up to 9 digits</string>
     <string name="CardChange">Change Card Color</string>
     <string name="CardSummary">Change the color of the card which holds the Matrix</string>
     <string name="CardElevate">Card Elevation</string>
@@ -227,5 +228,7 @@
     <string name="MulQueue">Multiplication Queue</string>
     <string name="ProceedMul">Proceed to Multiplication</string>
     <string name="ErrorGoBack">An Bug caused a Problem Restart this Process.</string>
+
+    <string name="CalculatedToast">Result Calculated</string>
 
 </resources>

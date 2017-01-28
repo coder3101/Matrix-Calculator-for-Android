@@ -111,6 +111,8 @@ public class SubtractionFragment extends Fragment {
             {
                 textView.setText(null);
                 ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
+                VariableListSub variableListSub = (VariableListSub)getChildFragmentManager().findFragmentByTag("VARIABLE_ADDER_SUB");
+                variableListSub.Restore();
             }
         }
     }

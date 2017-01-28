@@ -121,6 +121,8 @@ public class MultiplyFragment extends Fragment {
             {
                 textView.setText(null);
                 ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
+                VariableMul variableMul = (VariableMul)getChildFragmentManager().findFragmentByTag("VARIABLE_ADDER_MUL");
+                variableMul.Update();
             }
         }
     }

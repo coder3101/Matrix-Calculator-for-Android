@@ -53,6 +53,10 @@ public class ShowResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_layout);
 
+        if(preferences.getBoolean("AUTO_TOAST_ENABLER",false)){
+            Toast.makeText(getApplicationContext(),R.string.CalculatedToast,Toast.LENGTH_SHORT).show();
+        }
+
         CardView cardView = (CardView) findViewById(R.id.DynamicCard2);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -77,9 +81,9 @@ public class ShowResult extends AppCompatActivity {
                 textView.setGravity(Gravity.CENTER);
                 try {
                     textView.setText("   " + String.valueOf(var[i][j]) + "   ");
-                }catch (NullPointerException e){
+                }catch (Exception e){
                     e.printStackTrace();
-                    Log.d("Element","Element in Matrix is Null");
+                    Log.d("Error","Element in Matrix is Null");
                 }
                 textView.setTextSize(SizeReturner(getIntent().getExtras().getInt("ROW",0),getIntent().getExtras().getInt("COL",0),
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).
@@ -255,7 +259,7 @@ public class ShowResult extends AppCompatActivity {
         for(int i=0;i<r;i++)
             for(int j=0;j<c;j++)
             {
-                if(Float.toString(v[i][j]).contains("E")||Float.toString(v[i][j]).contains("N"))
+                if(Float.toString(v[i][j]).contains("E")||Float.toString(v[i][j]).contains("N") || Float.toString(v[i][j]).contains("Infinity"))
                     return true;
             }
         return  false;

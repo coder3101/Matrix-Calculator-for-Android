@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ListFragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -90,7 +91,7 @@ public class DeterminantFragment extends ListFragment {
     }
 
     @Override
-    public void onListItemClick(ListView L, View V, int position, long id) {//Todo : Dark theme issue with progress box
+    public void onListItemClick(ListView L, View V, int position, long id) {
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage(getString(R.string.Calculating));
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);

@@ -91,5 +91,8 @@ public class VariableListSub extends ListFragment {
         }
 
     }
+    public void Restore(){
+        ClickNo =0;
+    }
 
 }

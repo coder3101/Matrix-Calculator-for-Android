@@ -19,10 +19,6 @@
             android:label="@string/aboutme"
             android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.base_activities.RatingActivity"
-            android:label="@string/rate"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity" />
-        <activity
             android:name="com.softminds.matrixcalculatorpro.base_fragments.Settings" />
         <activity
             android:name="com.softminds.matrixcalculatorpro.base_activities.SettingsTab"

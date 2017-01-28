@@ -20,10 +20,12 @@
 package com.softminds.matrixcalculatorpro;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -31,6 +33,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -47,7 +50,6 @@ import com.softminds.matrixcalculatorpro.OperationFragments.CloneFragment;
 import com.softminds.matrixcalculatorpro.base_activities.AboutMe;
 import com.softminds.matrixcalculatorpro.base_activities.FeedBack;
 import com.softminds.matrixcalculatorpro.base_activities.GlobalValues;
-import com.softminds.matrixcalculatorpro.base_activities.RatingActivity;
 import com.softminds.matrixcalculatorpro.base_activities.SettingsTab;
 import com.softminds.matrixcalculatorpro.base_activities.faqs;
 import com.softminds.matrixcalculatorpro.base_fragments.MainActivityFragmentList;
@@ -192,8 +194,13 @@ public class MainActivity extends AppCompatActivity
                 startActivity(Intent.createChooser(sharingIntent,getResources().getString(R.string.ShareUsing)));
                 break;
             case R.id.rateButton:
-                Intent intent1 = new Intent(getApplicationContext(),RatingActivity.class);
-                startActivity(intent1);
+                try {
+                    Intent intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName()));
+                    startActivity(intent1);
+                }catch (ActivityNotFoundException e){
+                    Log.d("ActivityNotFound","PlayStore is not installed, opening browser");
+                    startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
+                }
                 break;
             case R.id.ExitButtonid:
                 Bundle Infor = new Bundle();

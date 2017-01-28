@@ -22,6 +22,7 @@ package com.softminds.matrixcalculatorpro.base_fragments;
 
 
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -30,6 +31,8 @@ import android.support.v7.widget.CardView;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,14 +76,14 @@ public class EditFragment extends Fragment {
             {
                 EditText editText = new EditText(getContext());
                 editText.setId(i*10+j);
+                editText.setGravity(Gravity.CENTER);
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL
                         |InputType.TYPE_NUMBER_FLAG_SIGNED);
                 editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(getLenght())});
-                editText.setWidth(CalculatedWidth(m.GetCol()));
+                editText.setWidth(ConvertTopx(CalculatedWidth(m.GetCol())));
                 editText.setTextSize(SizeReturner(m.GetRow(),m.GetCol(),
                         PreferenceManager.getDefaultSharedPreferences(getContext()).
                                 getBoolean("EXTRA_SMALL_FONT",false)));
-                editText.setHeight(CalculatedHeight(m.GetRow()));
                 editText.setText(SafeSubString( String.valueOf(m.GetElementof(i,j)),getLenght()));
                 editText.setSingleLine();
                 GridLayout.Spec Row = GridLayout.spec(i,1);
@@ -117,29 +120,12 @@ public class EditFragment extends Fragment {
         }
 
     }
-    public int CalculatedHeight(int a)
-    {
-        switch (a)
-        {
-            case 1 : return 165;
-            case 2 : return 145;
-            case 3 : return 135;
-            case 4 : return 125;
-            case 5 : return 115;
-            case 6 : return 105;
-            case 7 : return 95;
-            case 8 : return 95;
-            case 9 : return 90;
-
-        }
-        return 0;
-    }
     private int getLenght()
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         boolean v=preferences.getBoolean("EXTRA_SMALL_FONT",false);
         if(v)
-            return 8;
+            return 9;
         else
             return 6;
     }
@@ -147,112 +133,68 @@ public class EditFragment extends Fragment {
     {
         switch (a)
         {
-            case 1 : return 150;
-            case 2 : return 130;
-            case 3 : return 120;
-            case 4 : return 110;
-            case 5 : return 100;
-            case 6 : return 90;
-            case 7 : return 80;
-            case 8 : return 80;
-            case 9 : return 74;
+            case 1 : return 70;
+            case 2 : return 65;
+            case 3 : return 60;
+            case 4 : return 55;
+            case 5 : return 50;
+            case 6 : return 45;
+            case 7 : return 42;
+            case 8 : return 40;
+            case 9 : return 38;
 
         }
         return 0;
     }
     private int SizeReturner(int r, int c,boolean b)
     {
-        if(!b) {
-            if (r > c) {
-                switch (r) {
-                    case 1:
-                        return 18;
-                    case 2:
-                        return 17;
-                    case 3:
-                        return 15;
-                    case 4:
-                        return 13;
-                    case 5:
-                        return 12;
-                    case 6:
-                        return 11;
-                    case 7:
-                        return 10;
-                    case 8:
-                        return 10;
-                    case 9:
-                        return 9;
+            if (!b) {
+                if (r > c) {
+                    switch (r) {
+                        case 1:
+                            return 18;
+                        case 2:
+                            return 17;
+                        case 3:
+                            return 15;
+                        case 4:
+                            return 13;
+                        case 5:
+                            return 12;
+                        case 6:
+                            return 11;
+                        case 7:
+                            return 10;
+                        case 8:
+                            return 10;
+                        case 9:
+                            return 9;
+                    }
+                } else {
+                    switch (c) {
+                        case 1:
+                            return 18;
+                        case 2:
+                            return 17;
+                        case 3:
+                            return 15;
+                        case 4:
+                            return 13;
+                        case 5:
+                            return 12;
+                        case 6:
+                            return 11;
+                        case 7:
+                            return 10;
+                        case 8:
+                            return 10;
+                        case 9:
+                            return 9;
+                    }
                 }
             } else {
-                switch (c) {
-                    case 1:
-                        return 18;
-                    case 2:
-                        return 17;
-                    case 3:
-                        return 15;
-                    case 4:
-                        return 13;
-                    case 5:
-                        return 12;
-                    case 6:
-                        return 11;
-                    case 7:
-                        return 10;
-                    case 8:
-                        return 10;
-                    case 9:
-                        return 9;
-                }
+                return SizeReturner(r, c, !b) -2;
             }
-        }
-        else
-        {
-            if (r > c) {
-                switch (r) {
-                    case 1:
-                        return 15;
-                    case 2:
-                        return 14;
-                    case 3:
-                        return 12;
-                    case 4:
-                        return 10;
-                    case 5:
-                        return 9;
-                    case 6:
-                        return 8;
-                    case 7:
-                        return 7;
-                    case 8:
-                        return 7;
-                    case 9:
-                        return 6;
-                }
-            } else {
-                switch (c) {
-                    case 1:
-                        return 15;
-                    case 2:
-                        return 14;
-                    case 3:
-                        return 12;
-                    case 4:
-                        return 10;
-                    case 5:
-                        return 9;
-                    case 6:
-                        return 8;
-                    case 7:
-                        return 7;
-                    case 8:
-                        return 7;
-                    case 9:
-                        return 6;
-                }
-            }
-        }
 
         return 0;
     }
@@ -265,6 +207,11 @@ public class EditFragment extends Fragment {
             }
         }
         return s;
+    }
+    private int ConvertTopx(float dp){
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        return ((int)(dp * ((float)metrics.densityDpi) / DisplayMetrics.DENSITY_DEFAULT));
+
     }
 
 

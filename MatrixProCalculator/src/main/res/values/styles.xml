@@ -32,6 +32,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorSecondary">@color/white2</item>
         <item name="android:textColorHint">@color/white2</item>
+        <item name="android:alertDialogStyle">@style/AppThemeDarkDialog</item>
 
     </style>
 
@@ -52,5 +53,20 @@
         <item name="android:editTextColor">@color/white</item>
         <item name="android:textColor">@color/white</item>
     </style>
+<!--Experimental for AlertDialog of Progressbar
+    <style name="AlertBoxDialog">
+        <item name="android:bottomBright">@color/deepgrey</item>
+        <item name="android:bottomDark">@color/deepgrey</item>
+        <item name="android:bottomMedium">@color/deepgrey</item>
+        <item name="android:centerBright">@color/deepgrey</item>
+        <item name="android:centerDark">@color/deepgrey</item>
+        <item name="android:centerMedium">@color/deepgrey</item>
+        <item name="android:topBright">@color/deepgrey</item>
+        <item name="android:topDark">@color/deepgrey</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fullDark">@color/deepgrey</item>
+        <item name="android:fullBright">@color/grey</item>
+    </style>
+    -->
 
 </resources>
