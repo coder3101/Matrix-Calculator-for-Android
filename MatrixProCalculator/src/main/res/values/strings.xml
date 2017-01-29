@@ -31,12 +31,13 @@
     <!--About Me Section-->
     <string name="app_dev">Md Ashar Khan </string>
     <string name="about_app">Design and Developed by Ashar</string>
-    <string name="reserve">All Rights Reserved </string>
-    <string name="certificate">This is a OpenSource Project, Licensed under GPL 3.0</string>
+    <string name="reserve">Some Rights Reserved </string>
+    <string name="Logo">App Logo</string>
+    <string name="Sources"><u>View Source Code</u></string>
+    <string name="certificate">This is an OpenSource Project.</string>
     <string name="Chooser">Select the Fastest Browser</string>
-    <string name="Logo">Logo of the App</string>
-    <string name="ToastMessage">Thanks for Choosing to Visit My Profile</string>
-    <string name="FacebookLogo">Facebook</string>
+    <string name="Maintainer">Maintainer : Ashar (coder3101)</string>
+    <string name="License">Licensed Under GPL Version 3.0</string>
     <string name="FacebookLink">https://www.facebook.com/coder3101</string>
     <string name="version">Beta Version 1.0</string>
 
@@ -61,7 +62,7 @@
     <string name="DarkTheme">Enable Dark Theme</string>
     <string name="DarkThemeDesc">Use Application in Dark theme</string>
     <string name="ExtraSmallFontT">Extra Small Fonts</string>
-    <string name="ExtraSmallFontD">Reduces the Font of Elements While Filling Matrix to Acquire up to 9 digits</string>
+    <string name="ExtraSmallFontD">Reduces the Font of Elements While Filling Matrix to Acquire up to 8 digits</string>
     <string name="CardChange">Change Card Color</string>
     <string name="CardSummary">Change the color of the card which holds the Matrix</string>
     <string name="CardElevate">Card Elevation</string>

@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/TextViewCard1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:id="@+id/TextViewCard2"
@@ -88,7 +88,42 @@
             android:layout_centerHorizontal="true"
             android:text="@string/certificate"
             />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/License"
+                android:layout_below="@id/TextViewCard2"
+                android:id="@+id/TextViewCard3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/Maintainer"
+            android:layout_below="@id/TextViewCard3"
+            android:id="@+id/TextViewCard4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/version"
+            android:layout_below="@id/TextViewCard4"
+            android:id="@+id/TextViewCard6"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/Sources"
+            android:layout_below="@id/TextViewCard6"
+            android:id="@+id/TextViewCard5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"/>
     </RelativeLayout>
 </RelativeLayout>
 </ScrollView>

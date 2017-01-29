@@ -125,7 +125,7 @@ public class EditFragment extends Fragment {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         boolean v=preferences.getBoolean("EXTRA_SMALL_FONT",false);
         if(v)
-            return 9;
+            return 8;
         else
             return 6;
     }
@@ -133,15 +133,15 @@ public class EditFragment extends Fragment {
     {
         switch (a)
         {
-            case 1 : return 70;
-            case 2 : return 65;
-            case 3 : return 60;
-            case 4 : return 55;
-            case 5 : return 50;
-            case 6 : return 45;
-            case 7 : return 42;
-            case 8 : return 40;
-            case 9 : return 38;
+            case 1 : return 72;
+            case 2 : return 67;
+            case 3 : return 62;
+            case 4 : return 57;
+            case 5 : return 52;
+            case 6 : return 47;
+            case 7 : return 44;
+            case 8 : return 42;
+            case 9 : return 40;
 
         }
         return 0;

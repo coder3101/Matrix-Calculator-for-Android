@@ -228,7 +228,7 @@ public class Matrix {
             return null;
 
     }
-    public void MultiplytoThis(Matrix m) {
+    public void MultiplytoThis(Matrix m) throws ExceptionInInitializerError{
         if (AreMultipliabe(m)) {
             Matrix mh = new Matrix(this.GetRow(), m.GetCol(), this.GetType());
             for (int i = 0; i < this.GetRow(); i++)
@@ -239,6 +239,9 @@ public class Matrix {
                     }
                 }
             this.CloneFrom(mh);
+        }
+        else{
+            throw new ExceptionInInitializerError();
         }
     }
     private void PushAt(int R_index,int C_index,float Elt)
@@ -525,6 +528,8 @@ public class Matrix {
     }
     public void CloneFrom(Matrix p)
     {
+        this.SetCol(p.GetCol());
+        this.SetRow(p.GetRow());
         this.CopyFrom(p);
         this.SetType(p.GetType());
         this.SetName(p.GetName());

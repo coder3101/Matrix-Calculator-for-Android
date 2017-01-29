@@ -128,10 +128,15 @@ public class MultiplyFragment extends Fragment {
     }
     private Matrix MultiplyAll(){
         ArrayList<Matrix> buffer =((GlobalValues)getActivity().getApplication()).MatrixQueue;
-        Matrix res = new Matrix(buffer.get(1).GetRow(),buffer.get(1).GetCol(),buffer.get(1).GetType());
-        res.CloneFrom(buffer.get(1));
-        for(int i=1;i<buffer.size();i++){
-            res.MultiplytoThis(buffer.get(i));
+        Matrix res = new Matrix(buffer.get(0).GetRow(),buffer.get(0).GetCol(),buffer.get(1).GetType());
+        res.CloneFrom(buffer.get(0));
+        try {
+            for (int i = 1; i < buffer.size(); i++) {
+                res.MultiplytoThis(buffer.get(i));
+            }
+        }catch (ExceptionInInitializerError error){
+            error.printStackTrace();
+            Log.d("Multiplication","Invalid Order to Multiply",error.getCause());
         }
         return res;
     }
