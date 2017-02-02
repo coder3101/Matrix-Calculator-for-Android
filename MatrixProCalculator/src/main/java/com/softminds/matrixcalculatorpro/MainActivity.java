@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -66,6 +67,9 @@ import com.softminds.matrixcalculatorpro.OperationFragments.SubtractionFragment;
 import com.softminds.matrixcalculatorpro.OperationFragments.SwapFragment;
 import com.softminds.matrixcalculatorpro.OperationFragments.ScalerFragment;
 import com.softminds.matrixcalculatorpro.OperationFragments.TransposeFragment;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 
 public class MainActivity extends AppCompatActivity
@@ -498,15 +502,36 @@ public class MainActivity extends AppCompatActivity
         if(resultCode==RESULT)
         {
             if(data!=null) {
-                Toast.makeText(getApplicationContext(), R.string.Created, Toast.LENGTH_SHORT).show();
                 Bundle AllData=new Bundle();
                 AllData.putAll(data.getExtras());
                 Matrix m=new Matrix();
-                m.SetFromBundle(AllData);
-                ((GlobalValues) getApplication()).AddToGlobal(m); //Sending the things to Global Reference
-                if(actionBar.getSubtitle()==null)
-                    actionBar.setSubtitle(R.string.MainSubtitle);
-                t.setText(null);
+                try{
+                    m.SetFromBundle(AllData);
+                    ((GlobalValues) getApplication()).AddToGlobal(m); //Sending the things to Global Reference
+                    if(actionBar.getSubtitle()==null)
+                        actionBar.setSubtitle(R.string.MainSubtitle);
+                    t.setText(null);
+                    Toast.makeText(getApplicationContext(), R.string.Created, Toast.LENGTH_SHORT).show();
+                }catch (ClassCastException e){
+                    Log.d("ClassCastException","SetFromBundle returned exception");
+                    e.printStackTrace();
+                    final ClassCastException e1 = e;
+                    final Snackbar snack = Snackbar.make(findViewById(R.id.drawer_layout_main),R.string.ErrorOccurred,Snackbar.LENGTH_INDEFINITE);
+                    snack.show();
+                    snack.setAction("Report", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            snack.dismiss();
+                            StringWriter string = new StringWriter();
+                            PrintWriter printWriter = new PrintWriter(string);
+                            e1.printStackTrace(printWriter);
+                            Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto","ashar786khan@gmail.com",null));
+                            intent.putExtra(Intent.EXTRA_SUBJECT,"ClassCastException: Matrix Calulator Pro");
+                            intent.putExtra(Intent.EXTRA_TEXT,"Caused by : "+string.toString());
+                            startActivity(Intent.createChooser(intent,"Send Via"));
+                        }
+                    });
+                }
 
             }
         }
