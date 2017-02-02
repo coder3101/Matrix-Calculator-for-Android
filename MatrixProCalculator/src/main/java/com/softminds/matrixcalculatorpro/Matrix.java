@@ -450,7 +450,7 @@ public class Matrix {
         AllInfo.putSerializable("VALUES",this.Elements);
         return AllInfo;
     }
-    public void SetFromBundle(Bundle bundle)
+    public void SetFromBundle(Bundle bundle) throws ClassCastException
     {
         this.name=bundle.getString("NAME");
         this.SetRow(bundle.getInt("ROW"));
