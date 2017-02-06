@@ -375,8 +375,16 @@ public class FillingMatrix extends AppCompatActivity {
                 EditText editText = (EditText) findViewById(i * 10 + j);
                     if(!NegativeAllowed())
                         editText.setText(String.valueOf(new Random().nextInt(GetMaximum()+1-GetMinimum())+GetMinimum()));
-                    else
-                        editText.setText(String.valueOf(new Random().nextInt(GetMaximum()+1-((-1)*GetMaximum()))+(-1)*GetMaximum())); //Todo : Improve this Algorithm
+                    else {
+                        int sign;
+                        boolean rand = new Random().nextBoolean(); //Generates random boolean
+                        if(rand)
+                            sign = 1; //if true then set sign positive
+                        else
+                            sign = -1; //if flase set sign as negative
+                        int random = new Random().nextInt(GetMaximum()+1-GetMinimum())+GetMinimum();
+                        editText.setText(String.valueOf(random* sign));
+                    }
             }
     }
     public void InputRandomFloat()
@@ -386,8 +394,16 @@ public class FillingMatrix extends AppCompatActivity {
                 EditText editText = (EditText) findViewById(i * 10 + j);
                 if(!NegativeAllowed())
                 editText.setText(String.valueOf(new Random().nextFloat()+new Random().nextInt(GetMaximum()-GetMinimum())+GetMinimum()));
-                else
-                    editText.setText(String.valueOf(new Random().nextFloat()+new Random().nextInt(GetMaximum()+1-((-1)*GetMaximum()))+(-1)*GetMaximum())); //Todo : Improve this Algorithm
+                else {
+                    int sign;
+                    boolean rand = new Random().nextBoolean(); //Generates random boolean
+                    if(rand)
+                        sign = 1; //if true then set sign positive
+                    else
+                        sign = -1; //if flase set sign as negative
+                    int random = new Random().nextInt(GetMaximum()+1-GetMinimum())+GetMinimum();
+                    editText.setText(String.valueOf(random*sign));
+                }
             }
     }
     public boolean NegativeAllowed()
