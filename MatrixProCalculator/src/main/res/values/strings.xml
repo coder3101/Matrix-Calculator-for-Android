@@ -73,7 +73,7 @@
     <string name="RestoreDefault">Restore</string>
     <string name="RestoreInfo">Restore All Settings to Default</string>
     <string name="title2">Calculations</string>
-    <string name="EnableRounding">Result Rounding</string>
+    <string name="EnableRounding">Result Rounding (Development)</string>
     <string name="EnableRoundingDesc">The  Calculated Result will be Rounded off this much Decimals</string>
     <string name="NoFraction">Fractional Inverse</string>
     <string name="NoFractionDesc">Set the type of Inverse to Show as Result, if enabled Result will be Absolute Matrix with No Fractional Coefficient</string>
