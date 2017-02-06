@@ -165,7 +165,7 @@ public class Matrix {
         }
 
     }
-    public void CopyFrom(Matrix p)
+    private void CopyFrom(Matrix p)
     {
         if(isSameOrder(p))
         {
@@ -551,5 +551,10 @@ public class Matrix {
         re.CopyFrom(this);
         re.ScalarMultiply(ig);
         return re;
+    }
+    public int GetRank(){ //Todo:Add this feature
+        int res =0;
+
+        return res;
     }
  }
