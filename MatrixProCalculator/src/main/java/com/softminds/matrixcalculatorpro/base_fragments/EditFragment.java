@@ -57,6 +57,7 @@ public class EditFragment extends Fragment {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String string=sharedPreferences.getString("ELEVATE_AMOUNT","4");
         String string2=sharedPreferences.getString("CARD_CHANGE_KEY","#bdbdbd");
+        boolean SmartFit = sharedPreferences.getBoolean("SMART_FIT_KEY",false);
 
         cardView.setCardElevation(Integer.parseInt(string));
         cardView.setCardBackgroundColor(Color.parseColor(string2));
@@ -80,10 +81,15 @@ public class EditFragment extends Fragment {
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL
                         |InputType.TYPE_NUMBER_FLAG_SIGNED);
                 editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(getLenght())});
-                editText.setWidth(ConvertTopx(CalculatedWidth(m.GetCol())));
-                editText.setTextSize(SizeReturner(m.GetRow(),m.GetCol(),
-                        PreferenceManager.getDefaultSharedPreferences(getContext()).
-                                getBoolean("EXTRA_SMALL_FONT",false)));
+                if(SmartFit) {
+                    editText.setWidth(ConvertTopx(CalculatedWidth(m.GetCol())));
+                    editText.setTextSize(SizeReturner(m.GetRow(), m.GetCol(),
+                            PreferenceManager.getDefaultSharedPreferences(getContext()).
+                                    getBoolean("EXTRA_SMALL_FONT", false)));
+                }else{
+                    editText.setWidth(ConvertTopx(62));
+                    editText.setTextSize(SizeReturner(3,3,PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("EXTRA_SMALL_FONT", false)));
+                }
                 editText.setText(SafeSubString( String.valueOf(m.GetElementof(i,j)),getLenght()));
                 editText.setSingleLine();
                 GridLayout.Spec Row = GridLayout.spec(i,1);
@@ -125,7 +131,12 @@ public class EditFragment extends Fragment {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         boolean v=preferences.getBoolean("EXTRA_SMALL_FONT",false);
         if(v)
-            return 8;
+        {
+            if(!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("SMART_FIT_KEY",false))
+                return 7;
+            else
+                return 8;
+        }
         else
             return 6;
     }
