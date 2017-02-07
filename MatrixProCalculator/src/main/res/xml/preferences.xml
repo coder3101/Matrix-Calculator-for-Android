@@ -27,6 +27,12 @@
             android:entryValues="@array/ElevationIndex"
             android:defaultValue="4"/>
         <SwitchPreference
+            android:key="@string/SmartFitKey"
+            android:title="@string/SmartFit"
+            android:summary="@string/SmartFitDes"
+            android:defaultValue="false"
+            />
+        <SwitchPreference
             android:key="@string/ExtraSmallKey"
             android:title="@string/ExtraSmallFontT"
             android:summary="@string/ExtraSmallFontD"
