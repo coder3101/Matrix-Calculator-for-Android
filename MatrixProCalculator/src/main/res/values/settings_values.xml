@@ -3,6 +3,7 @@
     <!-- KEYS of Settings-->
     <string name="DarkThemeKey">DARK_THEME_KEY</string>
     <string name="CardKey">CARD_CHANGE_KEY</string>
+    <string name="SmartFitKey">SMART_FIT_KEY</string>
     <string name="ExtraSmallKey">EXTRA_SMALL_FONT</string>
     <string name="ElevateKey">ELEVATE_AMOUNT</string>
     <string name="AutoToastKey">AUTO_TOAST_ENABLER</string>
