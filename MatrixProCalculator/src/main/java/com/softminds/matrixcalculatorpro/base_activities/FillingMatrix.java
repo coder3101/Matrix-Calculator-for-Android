@@ -60,11 +60,13 @@ public class FillingMatrix extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
+        boolean SmartFit = preferences.getBoolean("SMART_FIT_KEY",false);
 
         if(isDark)
             setTheme(R.style.AppThemeDark_NoActionBar);
         else
             setTheme(R.style.AppTheme_NoActionBar);
+
         super.onCreate(savedInstanceState);
 
          Bundle bundle = getIntent().getExtras();
@@ -103,9 +105,17 @@ public class FillingMatrix extends AppCompatActivity {
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL
                         |InputType.TYPE_NUMBER_FLAG_SIGNED);
                 editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(getLenght())});
-                editText.setWidth(ConvertTopx(CalculatedWidth(col)));
-                editText.setTextSize(SizeReturner(row,col,
-                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("EXTRA_SMALL_FONT",false)));
+                if(SmartFit) {
+                    editText.setWidth(ConvertTopx(CalculatedWidth(col)));
+                    editText.setTextSize(SizeReturner(row, col,
+                            PreferenceManager.getDefaultSharedPreferences
+                                    (getApplicationContext()).
+                                    getBoolean("EXTRA_SMALL_FONT", false)));
+                }
+                else{
+                    editText.setWidth(ConvertTopx(62));
+                    editText.setTextSize(SizeReturner(3,3,PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("EXTRA_SMALL_FONT", false)));
+                }
                 editText.setSingleLine();
                 GridLayout.Spec Row = GridLayout.spec(i,1);
                 GridLayout.Spec Col = GridLayout.spec(j,1);
@@ -137,7 +147,12 @@ public class FillingMatrix extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean v=preferences.getBoolean("EXTRA_SMALL_FONT",false);
         if(v)
-            return 8;
+        {
+            if(!PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("SMART_FIT_KEY",false))
+                return 7;
+            else
+                return 8;
+        }
         else
             return 6;
     }
