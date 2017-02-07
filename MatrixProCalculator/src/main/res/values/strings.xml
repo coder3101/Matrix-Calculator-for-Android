@@ -45,7 +45,7 @@
 
     <string name="ShareUsing">Share this App Using</string>
     <string name="ShareMessage">Hey I Just Downloaded a  Matrix Calculator for Android, Check it out
-    its worth Downloading. https://play.google.com/store/app/details?id=com.softminds.matrixcalculatorpro</string>
+    its worth Downloading. https://play.google.com/store/app/details?id=</string>
 
     <!--Rate Screen-->
     <string name="HintRater">Rate here in Decimals, Precisely</string>
@@ -68,6 +68,8 @@
     <string name="CardElevate">Card Elevation</string>
     <string name="CardElevateDesc">Change the Elevation of Matrix Card, more the value more 3-D Matrix will look. </string>
     <string name="other">Extra Settings</string>
+    <string name="SmartFit">Smart Fit</string>
+    <string name="SmartFitDes">Fits the Higher Order Matrix Into Screen by Reducing Element\'s Font Size</string>
     <string name="AutoToast">Result Toast</string>
     <string name="AutoToastDesc">Display a Toast Message after a Result has been Calculated</string>
     <string name="RestoreDefault">Restore</string>
