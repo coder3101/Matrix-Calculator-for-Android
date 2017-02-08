@@ -23,6 +23,8 @@ package com.softminds.matrixcalculatorpro;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
 public class Matrix {
     private int NumberofRows, NumberofCols;
     private Type type;
@@ -552,9 +554,82 @@ public class Matrix {
         re.ScalarMultiply(ig);
         return re;
     }
-    public int GetRank(){ //Todo:Add this feature
-        int res =0;
+    public int GetRank(ProgressDialog progressDialog){ //Todo:Add this feature
+        int res=0,diff,max=0;
 
+        if(this.GetRow()==1 || this.GetCol() ==1){ // for a single ordered matrix rank is zero if all elements are zero, else 1
+            for(int i=0;i<this.GetRow();i++)
+                for(int j=0;j<this.GetCol();j++) {
+                    if (this.Elements[i][j] != 0)
+                        return 1;
+                }
+                        return 0;
+        }
+
+        if(this.is_squareMatrix()&&this.GetDeterminant(progressDialog) != 0)
+            return this.GetRow();
+
+        else{
+            if(!this.is_squareMatrix()) { //Matrix is non Sqaure
+                //Logic Make all Possible Maximum Ordered Square Matrix from this Non Square and call the original function
+                ArrayList<Matrix> sqaurelist = new ArrayList<>();
+                int small= this.GetCol()>this.GetRow()?this.GetRow():this.GetCol();
+                Matrix matrix = new Matrix(small);
+                //Array list to hold all New Square Matrices
+                /*diff = Math.abs(this.GetRow() - this.GetCol()); // get absolute difference of rows and column
+                int largest = small +diff;
+                for(int i=0;i<Combination(largest,small);i++) {
+                    if(this.GetRow()>this.GetCol())
+                    {
+
+                    }
+                }*/
+                return res;
+            }
+            else //the matrix is square but determinant is zero
+            {
+                ArrayList<Matrix> zerominors = new ArrayList<>();
+                Matrix matrix = new Matrix(this.GetRow() - 1);
+                int a = 0, b = 0; //index of insertion for buffer matrix
+                int p = 0, q = 0; // indexes to leave while finding the Minors
+                for (int m = 0; m < this.GetCol(); m++) {
+                    for (int n = 0; this.GetCol() > n; n++) {
+                        for (int s = 0; s < this.GetRow(); s++) {
+                            for (int i = 0; i < this.GetCol(); i++) {
+                                if (i != p && a != q) {
+                                    matrix.SetElementof(this.GetElementof(s, i), a, b);
+                                    b++;
+                                }
+                            }
+                            a++;
+                        }
+
+                        if(matrix.GetDeterminant(progressDialog)!=0)
+                            return matrix.GetCol();
+                        else
+                            zerominors.add(matrix);
+                    q++;}
+                p++;
+                }
+                for(int i=0;i<zerominors.size();i++)
+                {
+                    int rank = zerominors.get(i).GetRank(progressDialog);
+                    if(max<rank) //get maximum rank from all zero minors
+                        max = rank;
+                }
+            }
+            return max;
+        }
+    }
+    private int Combination(int l,int s){ //total number of possible combinations that can be formulated
+        return factorial(l)/factorial(s)*factorial(l-s);
+    }
+    private int factorial(int a){
+        int res=1;
+        while(a!=0) {
+            res*=a;
+            --a;
+        }
         return res;
     }
  }
