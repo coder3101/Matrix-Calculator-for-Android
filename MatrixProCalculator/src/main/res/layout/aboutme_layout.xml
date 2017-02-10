@@ -110,7 +110,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="@string/version"
             android:layout_below="@id/TextViewCard4"
             android:id="@+id/TextViewCard6"
             android:layout_centerHorizontal="true"

@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.softminds.matrixcalculatorpro.BuildConfig;
 import com.softminds.matrixcalculatorpro.R;
 
 public class AboutMe extends AppCompatActivity {
@@ -44,6 +45,9 @@ public class AboutMe extends AppCompatActivity {
             setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aboutme_layout);
+        TextView textView2 = (TextView) findViewById(R.id.TextViewCard6);
+        String s = "Version " + BuildConfig.VERSION_NAME;
+        textView2.setText(s);
         final TextView textView = (TextView) findViewById(R.id.TextViewCard5);
         textView.setClickable(true);
         textView.setTextColor(Color.BLUE);

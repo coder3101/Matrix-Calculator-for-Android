@@ -25,8 +25,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.BuildConfig;
 import android.support.v4.content.ContextCompat;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.softminds.matrixcalculatorpro.MainActivity;
 import com.softminds.matrixcalculatorpro.R;
@@ -43,6 +45,9 @@ public class SplashScreen extends Activity {
             setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+        TextView textView = (TextView) findViewById(R.id.textView9);
+        String s = "Version " + com.softminds.matrixcalculatorpro.BuildConfig.VERSION_NAME;
+        textView.setText(s);
         RelativeLayout Root = (RelativeLayout) findViewById(R.id.splash_screen);
         if(isDark)
         { Root.setBackgroundColor(ContextCompat.getColor(this,R.color.DarkcolorPrimaryDark));}

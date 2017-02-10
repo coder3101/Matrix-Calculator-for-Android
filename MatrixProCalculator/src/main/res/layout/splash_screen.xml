@@ -30,12 +30,10 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="@string/version"
         android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView8"
         android:layout_centerHorizontal="true"
-        android:fontFamily="casual"
         android:id="@+id/textView9" />
 </RelativeLayout>
