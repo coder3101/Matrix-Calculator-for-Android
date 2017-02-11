@@ -63,6 +63,7 @@
     <string name="NoSupport">None of the Variable Support this Operation</string>
     <string name="Calculating">Calculating..</string>
     <string name="Warning11">Determinant Calculated but not Shown</string>
+    <string name="ActivityNotFound">No Application to handle this Operation</string>
 
 
 

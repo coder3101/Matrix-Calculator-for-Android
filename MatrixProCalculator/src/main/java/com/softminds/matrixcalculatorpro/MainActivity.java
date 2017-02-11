@@ -545,7 +545,11 @@ public class MainActivity extends AppCompatActivity
                             Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto","ashar786khan@gmail.com",null));
                             intent.putExtra(Intent.EXTRA_SUBJECT,"ClassCastException: Matrix Calulator Pro");
                             intent.putExtra(Intent.EXTRA_TEXT,"Caused by : "+string.toString());
-                            startActivity(Intent.createChooser(intent,"Send Via"));
+                            try {
+                                startActivity(Intent.createChooser(intent, "Send Via"));
+                            }catch (ActivityNotFoundException e){
+                                Toast.makeText(getApplicationContext(),R.string.ActivityNotFound,Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
                 }
