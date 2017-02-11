@@ -28,6 +28,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.softminds.matrixcalculatorpro.Matrix;
 import com.softminds.matrixcalculatorpro.MatrixAdapter;
@@ -42,7 +43,7 @@ public class RankFragment extends ListFragment {
 
     private static class MyHandler extends Handler{
         private WeakReference<RankFragment> weakReference;
-        public MyHandler(RankFragment rankFragment){
+        private MyHandler(RankFragment rankFragment){
             weakReference = new WeakReference<>(rankFragment);
         }
 
@@ -50,7 +51,7 @@ public class RankFragment extends ListFragment {
         public void handleMessage(Message msg) {
             RankFragment  frag = weakReference.get();
             int rank = msg.getData().getInt("CALCULATED_RANK",-1);
-            Snackbar.make(frag.getView(),"Rank is : "+String.valueOf(rank),Snackbar.LENGTH_SHORT).show();
+            Toast.makeText(frag.getContext(),"Rank of Matrix is : "+String.valueOf(rank),Toast.LENGTH_SHORT).show();
         }
     }
 
