@@ -18,6 +18,7 @@
     <string name="onlysub">Subtraction</string>
     <string name="Home">Home</string>
     <string name="clone">Clone</string>
+    <string name="Rankof">Rank</string>
     <string name="swap">Swaping</string>
     <string name="transpose">Transpose</string>
     <string name="multiply">Multiplication</string>
@@ -40,20 +41,15 @@
     <string name="License">Licensed Under GPL Version 3.0</string>
     <string name="FacebookLink">https://www.facebook.com/coder3101</string>
 
-    <string name="NocreateWaring">Upgrade to Pro, to add and use more Matrix Variable.</string>
 
+    <!--Misc-->
     <string name="ShareUsing">Share this App Using</string>
     <string name="ShareMessage">Hey I Just Downloaded a  Matrix Calculator for Android, Check it out
     its worth Downloading. https://play.google.com/store/app/details?id=</string>
-
-    <!--Rate Screen-->
-    <string name="HintRater">Rate here in Decimals, Precisely</string>
-    <string name="RateReq">You can Rate My Work Here by Pressing at Stars</string>
     <string name="RateButtonMsg">Submit</string>
     <string name="DismissSnackbar">Dismiss</string>
     <string name="ExitButton">Exit</string>
     <string name="AddMessage">Click to Add a Matrix Variable</string>
-    <string name="SimpleInfo">After Development, This Front Page will be made more Dynamic</string>
 
 
     <!--Settings Preference-->
@@ -234,6 +230,4 @@
     <string name="CalculatedToast">Result Calculated</string>
     <string name="ErrorGoBack">An Error Occurred.</string>
 
-
-    <string name="Rankof">Rank</string>
 </resources>

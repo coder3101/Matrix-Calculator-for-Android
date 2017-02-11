@@ -77,8 +77,10 @@ public class MakeNewMatrix extends AppCompatActivity {
                     startActivityForResult(intent,RESCODE);
 
                 }
-                else
-                    Toast.makeText(getApplication(),R.string.Warning7,Toast.LENGTH_SHORT).show();
+                else {
+                    if(!editText.getText().toString().isEmpty())
+                      Toast.makeText(getApplication(), R.string.Warning7, Toast.LENGTH_SHORT).show();
+                }
 
 
             }

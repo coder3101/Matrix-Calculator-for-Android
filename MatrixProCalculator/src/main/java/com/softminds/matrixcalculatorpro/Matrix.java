@@ -572,10 +572,9 @@ public class Matrix {
         else{
             if(!this.is_squareMatrix()) { //Matrix is non Sqaure
                 //Logic Make all Possible Maximum Ordered Square Matrix from this Non Square and call the original function
-                //the rank by each will be placed and maximum rank should be returned
                int smaller_order = this.GetCol()>this.GetRow()?this.GetRow():this.GetCol();
                 boolean isColMore = this.GetCol()>this.GetRow();
-                if(isColMore){ //works only if difference is less than 1
+                if(isColMore){
                     int flag = smaller_order; int maxrank=0; int backflag=-1;
                     for(int a=0;a<Combination(this.GetCol(),smaller_order);a++) {
                         Matrix matrix = new Matrix(smaller_order);
