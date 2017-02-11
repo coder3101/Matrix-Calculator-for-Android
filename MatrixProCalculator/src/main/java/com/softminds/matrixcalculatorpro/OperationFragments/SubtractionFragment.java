@@ -87,8 +87,8 @@ public class SubtractionFragment extends Fragment {
     }
     private Matrix SubAll(){
         ArrayList<Matrix> buffer =((GlobalValues)getActivity().getApplication()).MatrixQueue;
-        Matrix res = new Matrix(buffer.get(1).GetRow(),buffer.get(1).GetCol(),buffer.get(1).GetType());
-        res.CloneFrom(buffer.get(1));
+        Matrix res = new Matrix(buffer.get(0).GetRow(),buffer.get(0).GetCol(),buffer.get(0).GetType());
+        res.CloneFrom(buffer.get(0));
         for(int i=1;i<buffer.size();i++){
             res.SubtoThis(buffer.get(i));
         }
