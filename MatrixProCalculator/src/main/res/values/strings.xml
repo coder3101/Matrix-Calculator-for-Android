@@ -234,4 +234,6 @@
     <string name="CalculatedToast">Result Calculated</string>
     <string name="ErrorGoBack">An Error Occurred.</string>
 
+
+    <string name="Rankof">Rank</string>
 </resources>

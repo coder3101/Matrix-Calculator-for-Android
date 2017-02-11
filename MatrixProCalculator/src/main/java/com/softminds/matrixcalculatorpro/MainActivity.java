@@ -48,6 +48,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.softminds.matrixcalculatorpro.OperationFragments.CloneFragment;
+import com.softminds.matrixcalculatorpro.OperationFragments.RankFragment;
 import com.softminds.matrixcalculatorpro.base_activities.AboutMe;
 import com.softminds.matrixcalculatorpro.base_activities.FeedBack;
 import com.softminds.matrixcalculatorpro.base_activities.GlobalValues;
@@ -397,6 +398,22 @@ public class MainActivity extends AppCompatActivity
                     else
                          t.setText(R.string.NoSupport);
                     }
+               fab.hide();
+               break;
+           case R.id.RankofMat:
+               FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+               RankFragment rankFragment = new RankFragment();
+               transaction.replace(R.id.MainContent,rankFragment,"RANK_FRAGMENT");
+               transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               transaction.commit();
+               //Actionbar
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setSubtitle(null);
+               actionBar.setTitle(R.string.Rankof);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
+                   t.setText(null);
                fab.hide();
                break;
            case R.id.inverse:
