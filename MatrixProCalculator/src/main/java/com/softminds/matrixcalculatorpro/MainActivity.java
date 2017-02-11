@@ -26,11 +26,11 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -47,6 +47,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.softminds.matrixcalculatorpro.OperationFragments.CloneFragment;
 import com.softminds.matrixcalculatorpro.OperationFragments.RankFragment;
 import com.softminds.matrixcalculatorpro.base_activities.AboutMe;
@@ -109,7 +110,6 @@ public class MainActivity extends AppCompatActivity
 
         if(!((GlobalValues)getApplication()).GetCompleteList().isEmpty())
             t.setText(null);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_main);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -530,28 +530,16 @@ public class MainActivity extends AppCompatActivity
                     t.setText(null);
                     Toast.makeText(getApplicationContext(), R.string.Created, Toast.LENGTH_SHORT).show();
                 }catch (ClassCastException e){
-                    Log.d("ClassCastException","SetFromBundle returned exception");
-                    e.printStackTrace();
-                    final ClassCastException e1 = e;
-                    final Snackbar snack = Snackbar.make(findViewById(R.id.drawer_layout_main),R.string.ErrorOccurred,Snackbar.LENGTH_INDEFINITE);
-                    snack.show();
-                    snack.setAction("Report", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            snack.dismiss();
-                            StringWriter string = new StringWriter();
-                            PrintWriter printWriter = new PrintWriter(string);
-                            e1.printStackTrace(printWriter);
-                            Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto","ashar786khan@gmail.com",null));
-                            intent.putExtra(Intent.EXTRA_SUBJECT,"ClassCastException: Matrix Calulator Pro");
-                            intent.putExtra(Intent.EXTRA_TEXT,"Caused by : "+string.toString());
-                            try {
-                                startActivity(Intent.createChooser(intent, "Send Via"));
-                            }catch (ActivityNotFoundException e){
-                                Toast.makeText(getApplicationContext(),R.string.ActivityNotFound,Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                    if(Build.VERSION.SDK_INT<19) {
+                        Toast.makeText(getApplication(),"This Application only Supports Android 4.4.4+ ",Toast.LENGTH_SHORT).show();
+                        FirebaseCrash.log("Unsupported Device reported ClassCastException ");
+                        FirebaseCrash.report(e);
+                    }
+                    else {
+                        FirebaseCrash.log("Critical Bug from a Supported API ");
+                        FirebaseCrash.report(e);
+                        Toast.makeText(getApplicationContext(),"The Bug has been Reported to the Developer",Toast.LENGTH_LONG).show();
+                    }
                 }
 
             }
