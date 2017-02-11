@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="LabelHelp">FAQs</string>
+
+    <!--Questions-->
+    <string name="Ques1"><b>1. What makes this application better from others in the Market?</b></string>
+    <string name="Ques2"><b>2. How can I Contribute to make this app better ?</b></string>
+    <string name="Ques3"><b>3. Why do i get weird numbers with \'E\' between them ?</b></string>
+    <string name="Ques4"><b>4. I Found a Bug, Where to Report?</b></string>
+    <string name="Ques5"><b>5. I think that "blah..blah" Operation is missing ?</b></string>
+    <string name="Ques6"><b>6. How can i contact You apart from github and mails ?</b></string>
+    <string name="Ques7"><b>7. Why do you use ..3101 everywhere ?</b></string>
+    <string name="Ques8"><b>8. Why Can\'t I save a Matrix Result involving Exponents ?</b></string>
+    <string name="Ques9"><b>9. Is there any Hope to get Support for Imaginary Numbers ?</b></string>
+    <string name="Ques10"><b>10. I just Loved your Work, How can i Support You ? </b></string>
+
+    <!--Answers-->
+    <string name="Answer1"><b>This is a Open Source Project</b>, Hence Unique in itself.</string>
+    <string name="Answer2">This is an Open Source Application and Everyone can contribute to make it better.
+        Here is my Repository <u>https://www.github.com/coder3101</u> .</string>
+    <string name="Answer3">The Numbers involving \'E\' are not weird but, another way of representing
+        bigger numbers in Scientific Notation. For Example if Your result is something like
+        \"1.234568245E14\", it means 1.234568245 x 10^14.</string>
+    <string name="Answer4">If You are an Open Source Project Contributor. You can report problems on github and we will sort it out.
+        Alternatively, You can write to me through Feedback Section of the Application. Or Last but not least you can write issues in Play store Review Page. </string>
+    <string name="Answer5">I Included most of the Operations (still in Standard 12 did n\'t studied more than this).
+    If You think Some Operations are Missing, Please Let me Know. I will try my best to
+        include them in next versions of the app. (Yeah.. I will also get the opportunity to learn new Operations)</string>
+    <string name="Answer6">There are many ways to contact me, like you can reach to me on facebook here <u>https://www.facebook.com/coder3101</u></string>
+    <string name="Answer7">Hey, its my birthday 31 January. Just a new way to let the World know \"I was born on this date\".</string>
+    <string name="Answer8">The Matrix Result involving Exponents can\'t be saved as a new Variable because,
+        The Highest number a Cell in the Matrix can hold is <b>999999</b>.
+        It can hold up to <b>99999999</b>, if \"Extra Small Font\" is allowed in Settings.</string>
+    <string name="Answer9">I am currently working on to bring it. But for that it needs a different
+        keyboard etc, so it may take some time but sooner or later it will be added. Also i am Planning to
+        add Support for Trigonometric Ratios.</string>
+    <string name="Answer10"><b>Share my work</b></string>
+</resources>
