@@ -28,9 +28,11 @@
     <string name="ScalerMult">Scalar Multiplication</string>
     <string name="determinant">Determinant</string>
     <string name="exponent">Exponential</string>
+    <string name="Scaler">Scalar Multiplication</string>
+    <string name="ShortCustom">Custom</string>
 
     <!--About Me Section-->
-    <string name="app_dev">Md Ashar Khan </string>
+    <string name="app_dev">Ashar Khan </string>
     <string name="about_app">Design and Developed by Ashar</string>
     <string name="reserve">Some Rights Reserved </string>
     <string name="Logo">App Logo</string>
@@ -42,7 +44,7 @@
     <string name="FacebookLink">https://www.facebook.com/coder3101</string>
 
 
-    <!--Misc-->
+    <!--MainActivity Strings-->
     <string name="ShareUsing">Share this App Using</string>
     <string name="ShareMessage">Hey I Just Downloaded a  Matrix Calculator for Android, Check it out
     its worth Downloading. https://play.google.com/store/app/details?id=</string>
@@ -50,6 +52,18 @@
     <string name="DismissSnackbar">Dismiss</string>
     <string name="ExitButton">Exit</string>
     <string name="AddMessage">Click to Add a Matrix Variable</string>
+    <string name="clear">CLEAR</string>
+    <string name="Warning8">Nothing to Clear</string>
+    <string name="Warning9">Clear All Matrix Variables ?</string>
+    <string name="WarningExit">Quit the Application ?</string>
+    <string name="MainSubtitle">All Variables</string>
+    <string name="OpenHint">Click the Button below to Add a Variable</string>
+    <string name="Created">Variable Created</string>
+    <string name="OpenHint2">Please add a Variable to Proceed</string>
+    <string name="NoSupport">None of the Variable Support this Operation</string>
+    <string name="Calculating">Calculating..</string>
+    <string name="Warning11">Determinant Calculated but not Shown</string>
+
 
 
     <!--Settings Preference-->
@@ -102,7 +116,7 @@
     <string name="NotSquare">Provided Matrix must be a Square Matrix</string>
 
 
-    <!-- Title bar of Filler Matrix-->
+    <!-- Filler Matrix-->
     <string name="RandomInput">Fill Random Integers</string>
     <string name="RandomInputFloat">Fill Random Decimals</string>
     <string name="FillallAs1">Fill Empty Cells with 1</string>
@@ -132,11 +146,7 @@
     <string name="Warning7">Text is Abusive</string>
     <string name="ok">Okay</string>
 
-    <string name="clear">CLEAR</string>
-    <string name="Warning8">Nothing to Clear</string>
-    <string name="Warning9">Clear All Matrix Variables ?</string>
-    <string name="WarningExit">Quit the Application ?</string>
-
+    <!--View Created Matrixs-->
     <string name="edit">Edit Elements</string>
     <string name="Delete">DELETE</string>
     <string name="Delete2">Delete</string>
@@ -147,50 +157,19 @@
     <string name="RevertSuccess">Restored the Original Values</string>
     <string name="Deleted">Deleted</string>
     <string name="ConfirmSuccess">Values Updated</string>
-
-
     <string name="SetNewOrder">Set New Order</string>
     <string name="Warning10">Newly Created Elements will get Default Value of 0</string>
-
-
     <string name="ChangedOrder">Order Changed</string>
-    <string name="ShortAddSub">Addition</string>
-    <string name="ShortOnlySub">Subtraction</string>
-    <string name="Scaler">Scalar Multiplication</string>
-    <string name="ShortCustom">Custom</string>
-    <string name="MainSubtitle">All Variables</string>
-    <string name="NothingCreated">Press the Button below to Create a Variable</string>
 
-    <string name="OpenHint">Click the Button below to Add a Variable</string>
-    <string name="Created">Variable Created</string>
-    <string name="OpenHint2">Please add a Variable to Proceed</string>
-    <string name="NoSupport">None of the Variable Support this Operation</string>
-    <string name="Calculating">Calculating..</string>
-    <string name="Warning11">Determinant Calculated but not Shown</string>
-
-
+    <!--Result-->
     <string name="Result">Result</string>
     <string name="save">SAVE</string>
-
-    <string name="EnterExpo">Enter Exponent</string>
-    <string name="Expohint">Enter the Exponent here</string>
-
     <string name="CopyToClip">Copied to Clipboard</string>
     <string name="copy">Copy</string>
     <string name="Done">Done</string>
-
     <string name="CannotSave">Cannot Save Result involving Exponents</string>
     <string name="SavedAs">Saved as</string>
 
-    <string name="SquareTransPrompt">Square Matrix detected. Do you want to Store the Transpose in this Variable, Current Value will be Lost.</string>
-    <string name="Nope">No</string>
-    <string name="SuccessTranspose">Transposed Result Stored back to the Matrix</string>
-    <string name="NoneSwap">No Compatible Matrix Variable Present</string>
-    <string name="SwapSucc">Swapped</string>
-    <string name="ExpoOverflow">Smaller Value Please</string>
-    <string name="NoInverse">No Inverse Exist</string>
-
-    <string name="MultiplierPlease">Enter the Multiplier</string>
 
     <!--Functional Activity-->
     <string name="FunctionalTitle">Create the Function</string>
@@ -226,8 +205,19 @@
     <string name="MulQueue">Multiplication Queue</string>
     <string name="ProceedMul">Proceed to Multiplication</string>
     <string name="ErrorOccurred">If You are on Android 4.4.4 or above, Please Report this.</string>
-
     <string name="CalculatedToast">Result Calculated</string>
     <string name="ErrorGoBack">An Error Occurred.</string>
+
+    <!--Misc-->
+    <string name="EnterExpo">Enter Exponent</string>
+    <string name="Expohint">Enter the Exponent here</string>
+    <string name="SquareTransPrompt">Square Matrix detected. Do you want to Store the Transpose in this Variable, Current Value will be Lost.</string>
+    <string name="Nope">No</string>
+    <string name="SuccessTranspose">Transposed Result Stored back to the Matrix</string>
+    <string name="NoneSwap">No Compatible Matrix Variable Present</string>
+    <string name="SwapSucc">Swapped</string>
+    <string name="ExpoOverflow">Smaller Value Please</string>
+    <string name="NoInverse">No Inverse Exist</string>
+    <string name="MultiplierPlease">Enter the Multiplier</string>
 
 </resources>

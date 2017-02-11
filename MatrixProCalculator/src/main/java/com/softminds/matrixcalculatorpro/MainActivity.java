@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity
                AdditionTransaction.commit();
                //setting actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.ShortAddSub);
+               actionBar.setTitle(R.string.addsub);
                actionBar.setSubtitle(null);
                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
                    t.setText(R.string.OpenHint2);
@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity
                SubtractionTransaction.commit();
                //setting actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.ShortOnlySub);
+               actionBar.setTitle(R.string.onlysub);
                actionBar.setSubtitle(null);
                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
                    t.setText(R.string.OpenHint2);
