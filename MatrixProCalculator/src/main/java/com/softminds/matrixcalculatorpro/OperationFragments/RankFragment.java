@@ -24,10 +24,10 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.softminds.matrixcalculatorpro.Matrix;
 import com.softminds.matrixcalculatorpro.MatrixAdapter;
@@ -50,7 +50,7 @@ public class RankFragment extends ListFragment {
         public void handleMessage(Message msg) {
             RankFragment  frag = weakReference.get();
             int rank = msg.getData().getInt("CALCULATED_RANK",-1);
-            Toast.makeText(frag.getContext(),"Rank is : "+String.valueOf(rank),Toast.LENGTH_LONG).show();
+            Snackbar.make(frag.getView(),"Rank is : "+String.valueOf(rank),Snackbar.LENGTH_SHORT).show();
         }
     }
 
