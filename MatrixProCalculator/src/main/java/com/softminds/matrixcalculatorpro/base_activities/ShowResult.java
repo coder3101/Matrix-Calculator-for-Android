@@ -272,7 +272,7 @@ public class ShowResult extends AppCompatActivity {
             {
                 if(Float.toString(v[i][j]).contains("E")||Float.toString(v[i][j]).contains("N") || Float.toString(v[i][j]).contains("Infinity"))
                     return true;
-                if(Float.toString(v[i][j]).length() > 6 && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE",true))
+                if( v[i][j] > 999999 && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE",true))
                     return true;
             }
         return  false;

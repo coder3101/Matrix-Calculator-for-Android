@@ -102,8 +102,14 @@ public class FillingMatrix extends AppCompatActivity {
                 editText.setId(i*10+j);
                 editText.setGravity(Gravity.CENTER);
                 editText.setHint("A"+String.valueOf(i+1)+String.valueOf(j+1));
-                editText.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL
-                        |InputType.TYPE_NUMBER_FLAG_SIGNED);
+                if(!PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("DECIMAL_USE",true)){
+                    editText.setInputType(InputType.TYPE_CLASS_NUMBER
+                            |InputType.TYPE_NUMBER_FLAG_SIGNED);
+                }
+                else {
+                    editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL
+                            | InputType.TYPE_NUMBER_FLAG_SIGNED);
+                }
                 editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(getLenght())});
                 if(SmartFit) {
                     editText.setWidth(ConvertTopx(CalculatedWidth(col)));

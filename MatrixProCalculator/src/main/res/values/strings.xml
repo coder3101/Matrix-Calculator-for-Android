@@ -127,7 +127,7 @@
     <string name="FillasZero">Fill Empty Cells with 0</string>
     <string name="Confirm">Create</string>
     <string name="Warning2">Some Matrix Element(s) are Empty</string>
-    <string name="AllowDecimals">Allow Decimals Numbers in Settings</string>
+    <string name="AllowDecimals">Allow Decimal Numbers in Settings</string>
 
 
     <!--Custom Filler-->

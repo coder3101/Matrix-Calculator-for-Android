@@ -43,6 +43,8 @@ import com.softminds.matrixcalculatorpro.base_activities.GlobalValues;
 import com.softminds.matrixcalculatorpro.Matrix;
 import com.softminds.matrixcalculatorpro.R;
 
+import java.text.DecimalFormat;
+
 
 public class EditFragment extends Fragment {
 
@@ -78,8 +80,14 @@ public class EditFragment extends Fragment {
                 EditText editText = new EditText(getContext());
                 editText.setId(i*10+j);
                 editText.setGravity(Gravity.CENTER);
-                editText.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL
-                        |InputType.TYPE_NUMBER_FLAG_SIGNED);
+                if(!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE",true)){
+                    editText.setInputType(InputType.TYPE_CLASS_NUMBER
+                            |InputType.TYPE_NUMBER_FLAG_SIGNED);
+                }
+                else {
+                    editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL
+                            | InputType.TYPE_NUMBER_FLAG_SIGNED);
+                }
                 editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(getLenght())});
                 if(SmartFit) {
                     editText.setWidth(ConvertTopx(CalculatedWidth(m.GetCol())));
@@ -90,7 +98,7 @@ public class EditFragment extends Fragment {
                     editText.setWidth(ConvertTopx(62));
                     editText.setTextSize(SizeReturner(3,3,PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("EXTRA_SMALL_FONT", false)));
                 }
-                editText.setText(SafeSubString( String.valueOf(m.GetElementof(i,j)),getLenght()));
+                editText.setText(SafeSubString( GetText(m.GetElementof(i,j)),getLenght()));
                 editText.setSingleLine();
                 GridLayout.Spec Row = GridLayout.spec(i,1);
                 GridLayout.Spec Col = GridLayout.spec(j,1);
@@ -223,6 +231,14 @@ public class EditFragment extends Fragment {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
         return ((int)(dp * ((float)metrics.densityDpi) / DisplayMetrics.DENSITY_DEFAULT));
 
+    }
+    private String GetText(float res) {
+        if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
+            DecimalFormat decimalFormat = new DecimalFormat("###############");
+            return decimalFormat.format(res);
+        } else {
+            return String.valueOf(res);
+        }
     }
 
 
