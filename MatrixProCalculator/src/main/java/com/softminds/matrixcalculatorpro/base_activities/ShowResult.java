@@ -40,6 +40,8 @@ import com.softminds.matrixcalculatorpro.MainActivity;
 import com.softminds.matrixcalculatorpro.Matrix;
 import com.softminds.matrixcalculatorpro.R;
 
+import java.text.DecimalFormat;
+
 public class ShowResult extends AppCompatActivity {
 
     @Override
@@ -80,7 +82,7 @@ public class ShowResult extends AppCompatActivity {
                 TextView textView = new TextView(getApplicationContext());
                 textView.setGravity(Gravity.CENTER);
                 try {
-                    textView.setText("   " + String.valueOf(var[i][j]) + "   ");
+                    textView.setText("   " + GetText(var[i][j]) + "   ");
                 }catch (Exception e){
                     e.printStackTrace();
                     Log.d("Error","Element in Matrix is Null");
@@ -99,7 +101,7 @@ public class ShowResult extends AppCompatActivity {
         cardView.addView(gridLayout);
         if(getIntent().getFloatExtra("DETERMINANT_FOR_INVERSE",0.0f) != 0.0f){
             TextView textView = (TextView) findViewById(R.id.TextContainer);
-            String val = "1 / " + String.valueOf(getIntent().getFloatExtra("DETERMINANT_FOR_INVERSE",0.0f));
+            String val = "1 / " + GetText(getIntent().getFloatExtra("DETERMINANT_FOR_INVERSE",0.0f));
             textView.setText(val);
         }
 
@@ -117,10 +119,19 @@ public class ShowResult extends AppCompatActivity {
         {
             case R.id.SaveResult :
                 if(AnyExponents(((float[][]) getIntent().getExtras().getSerializable("VALUES")),
-                    (getIntent().getExtras().getInt("ROW",0)),(getIntent().getExtras().getInt("COL",0)))) {
-                Toast.makeText(getApplicationContext(),R.string.CannotSave,Toast.LENGTH_SHORT).show();
-                finish();
-            }
+                    (getIntent().getExtras().getInt("ROW",0)),(getIntent().getExtras().getInt("COL",0))) ||
+                        !((TextView) findViewById(R.id.TextContainer)).getText().toString().isEmpty()) {
+
+                    if(AnyExponents(((float[][]) getIntent().getExtras().getSerializable("VALUES")),
+                            (getIntent().getExtras().getInt("ROW",0)),(getIntent().getExtras().getInt("COL",0))))
+                    {
+                        Toast.makeText(getApplicationContext(), R.string.CannotSave, Toast.LENGTH_SHORT).show();
+                    }
+                    if(!((TextView) findViewById(R.id.TextContainer)).getText().toString().isEmpty())
+                    { //if inverse is type 2, we cannot save
+                        Toast.makeText(getApplicationContext(),R.string.CannotSave2,Toast.LENGTH_SHORT).show();
+                    }
+                }
             else {
                     Matrix matrix = new Matrix();
                     matrix.SetFromBundle(getIntent().getExtras());
@@ -261,7 +272,18 @@ public class ShowResult extends AppCompatActivity {
             {
                 if(Float.toString(v[i][j]).contains("E")||Float.toString(v[i][j]).contains("N") || Float.toString(v[i][j]).contains("Infinity"))
                     return true;
+                if(Float.toString(v[i][j]).length() > 6 && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE",true))
+                    return true;
             }
         return  false;
+    }
+    private String GetText(float res){
+        if(!PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("DECIMAL_USE",true)) {
+            DecimalFormat decimalFormat = new DecimalFormat("###############");
+            return decimalFormat.format(res);
+        }
+        else {
+            return String.valueOf(res);
+        }
     }
 }

@@ -59,10 +59,16 @@ public class MultiplierSetter extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!editText.getText().toString().isEmpty()) {
-                    Intent intent = new Intent();
-                    intent.putExtra("MULTIPLIER_VAL", Float.parseFloat(editText.getText().toString()));
-                    setResult(1054, intent);
-                    finish();
+                    if((editText.getText().toString().contains(".") && //edittext contains dot means decimal
+                            !PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("DECIMAL_USE",true))) {
+                        Toast.makeText(getApplicationContext(),R.string.AllowDecimals,Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Intent intent = new Intent();
+                        intent.putExtra("MULTIPLIER_VAL", Float.parseFloat(editText.getText().toString()));
+                        setResult(1054, intent);
+                        finish();
+                    }
                 }
                 else
                     Toast.makeText(getApplicationContext(),R.string.NoValue,Toast.LENGTH_SHORT).show();

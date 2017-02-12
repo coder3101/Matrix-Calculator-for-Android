@@ -88,7 +88,9 @@
     <string name="EnableRounding">Result Rounding (Development)</string>
     <string name="EnableRoundingDesc">The  Calculated Result will be Rounded off this much Decimals</string>
     <string name="NoFraction">Fractional Inverse</string>
-    <string name="NoFractionDesc">Set the type of Inverse to Show as Result, if enabled Result will be Absolute Matrix with No Fractional Coefficient</string>
+    <string name="DecimalUse">Decimals and Exponents</string>
+    <string name="DecimalUseDesc">Show Decimal Numbers and Exponents in Results</string>
+    <string name="NoFractionDesc">Set the type of Inverse to Show as Result, if enabled Result will be Absolute Matrix with Fractional Coefficient</string>
     <string name="RandT">Random Number Settings</string>
     <string name="SignedTitle">Signed Values</string>
     <string name="SignedTitleDesc">Generate Negative as well as Positive Random Numbers while filling Matrix within the Specified Range</string>
@@ -99,6 +101,7 @@
     <string name="MinimumD">Smallest Signed Random Number to be Generated while filling the Matrix</string>
     <string name="TransposeHead">Transpose Prompt</string>
     <string name="TransposeSummary">A Prompt is Shown if Matrix to be transposed, can be stored back in the Same Matrix</string>
+    <string name="AutoEnabled">Changed \"Fractional Inverse\" to match changes</string>
 
     <!-- Variable Creation Activity-->
     <string name="NewMatrix">Create New Variable</string>
@@ -124,6 +127,7 @@
     <string name="FillasZero">Fill Empty Cells with 0</string>
     <string name="Confirm">Create</string>
     <string name="Warning2">Some Matrix Element(s) are Empty</string>
+    <string name="AllowDecimals">Allow Decimals Numbers in Settings</string>
 
 
     <!--Custom Filler-->
@@ -168,7 +172,8 @@
     <string name="CopyToClip">Copied to Clipboard</string>
     <string name="copy">Copy</string>
     <string name="Done">Done</string>
-    <string name="CannotSave">Cannot Save Result involving Exponents</string>
+    <string name="CannotSave">Cannot Save Result with value more than 999999 </string>
+    <string name="CannotSave2">Cannot save because Result is not a Matrix</string>
     <string name="SavedAs">Saved as</string>
 
 

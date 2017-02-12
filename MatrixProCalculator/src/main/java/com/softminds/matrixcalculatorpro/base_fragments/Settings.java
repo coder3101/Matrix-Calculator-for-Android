@@ -26,6 +26,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
 import android.widget.Toast;
 
 import com.softminds.matrixcalculatorpro.R;
@@ -54,6 +55,22 @@ public class Settings extends PreferenceActivity {
                     return true;
                 }
             });
+            Preference preference3 = findPreference("DECIMAL_USE");
+            preference3.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) { //When user chooses to use no decimal
+                    //make the no fraction enabled preference for inverse true
+                   SharedPreferences.Editor edit= PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
+                    if(!((SwitchPreference) findPreference("NO_FRACTION_ENABLED")).isChecked()) //if not enabled, we need to enable it
+                    {
+                        edit.putBoolean("NO_FRACTION_ENABLED",true);
+                        edit.apply();
+                        Toast.makeText(getActivity(),R.string.AutoEnabled,Toast.LENGTH_LONG).show();
+                        getActivity().recreate();
+                    }
+                    return true;
+                }
+            });
            Preference preference1 =findPreference("RESTORE_ALL");
             if(preference1!=null)
             {
@@ -66,10 +83,12 @@ public class Settings extends PreferenceActivity {
                         editor.putBoolean("DARK_THEME_KEY",false);
                         editor.putString("CARD_CHANGE_KEY","#bdbdbd");
                         editor.putString("ELEVATE_AMOUNT","4");
+                        editor.putBoolean("SMART_FIT_KEY",false);
                         editor.putBoolean("EXTRA_SMALL_FONT",false);
                         //Calculation
                         editor.putBoolean("NO_FRACTION_ENABLED",false);
                         editor.putString("ROUNDIND_INFO","0");
+                        editor.putBoolean("DECIMAL_USE",true);
                         //Random Numbers
                         editor.putBoolean("SIGNED_RANDOM",false);
                         editor.putString("MAX_INT","100");

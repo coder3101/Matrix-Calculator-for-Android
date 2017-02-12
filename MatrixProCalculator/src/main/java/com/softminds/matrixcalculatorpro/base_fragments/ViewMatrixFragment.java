@@ -37,6 +37,8 @@ import android.widget.TextView;
 import com.softminds.matrixcalculatorpro.base_activities.GlobalValues;
 import com.softminds.matrixcalculatorpro.R;
 
+import java.text.DecimalFormat;
+
 
 public class ViewMatrixFragment extends Fragment {
 
@@ -67,7 +69,7 @@ public class ViewMatrixFragment extends Fragment {
             {
                 TextView textView = new TextView(getContext());
                 textView.setGravity(Gravity.CENTER);
-                textView.setText(SafeSubString( String.valueOf(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetElementof(i,j)),getLenght()));
+                textView.setText(SafeSubString( GetText(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetElementof(i,j)),getLenght()));
                 textView.setWidth(CalculatedWidth(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetCol()));
                 textView.setTextSize(SizeReturner(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetRow(),((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetCol(),
                         PreferenceManager.getDefaultSharedPreferences(getContext()).
@@ -233,6 +235,14 @@ public class ViewMatrixFragment extends Fragment {
             return 9;
         else
             return 6;
+    }
+    private String GetText(float res) {
+        if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
+            DecimalFormat decimalFormat = new DecimalFormat("###############");
+            return decimalFormat.format(res);
+        } else {
+            return String.valueOf(res);
+        }
     }
 
 

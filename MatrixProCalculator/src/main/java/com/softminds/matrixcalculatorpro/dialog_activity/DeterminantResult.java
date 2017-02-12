@@ -34,6 +34,8 @@ import android.widget.Toast;
 
 import com.softminds.matrixcalculatorpro.R;
 
+import java.text.DecimalFormat;
+
 public class DeterminantResult extends AppCompatActivity {
 
     @Override
@@ -92,6 +94,12 @@ public class DeterminantResult extends AppCompatActivity {
     }
 
     private String ConvertToNormal (double res){
-       return String.valueOf(res);
+        if(!PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("DECIMAL_USE",true)) {
+            DecimalFormat decimalFormat = new DecimalFormat("###############");
+            return decimalFormat.format(res);
+        }
+        else {
+            return String.valueOf(res);
+        }
     }
 }

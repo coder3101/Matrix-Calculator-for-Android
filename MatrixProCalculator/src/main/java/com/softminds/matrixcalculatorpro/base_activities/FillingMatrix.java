@@ -278,7 +278,10 @@ public class FillingMatrix extends AppCompatActivity {
                         InputRandomInt();
                         return true;
             case R.id.InputRandomFloat :
-                        InputRandomFloat();
+                        if(!PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("DECIMAL_USE",true))
+                            Toast.makeText(getApplicationContext(),R.string.AllowDecimals,Toast.LENGTH_SHORT).show();
+                        else
+                            InputRandomFloat();
                         return true;
             case R.id.FillCustom :
                 startActivityForResult(new Intent(getApplicationContext(),CustomValueFiller.class),RESULT);
