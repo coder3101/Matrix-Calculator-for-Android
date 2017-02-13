@@ -47,7 +47,7 @@
             android:id="@+id/RankofMat"
             android:icon="@drawable/arrow_icon"
             android:title="@string/Rankof"
-            android:visible="false"/> <!--Todo : Make this Visible in next version-->
+            android:visible="true"/>
         <item
             android:id="@+id/inverse"
             android:icon="@drawable/arrow_icon"

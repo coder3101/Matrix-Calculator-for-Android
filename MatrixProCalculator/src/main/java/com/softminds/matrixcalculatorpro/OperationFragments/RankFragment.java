@@ -69,8 +69,8 @@ public class RankFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage(getString(R.string.Calculating));
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setIndeterminate(false);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setIndeterminate(true); //todo: set this to false when progress bug is fixed
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         FindRank(position,progressDialog);
@@ -81,7 +81,7 @@ public class RankFragment extends ListFragment {
             @Override
             public void run() {
                 Matrix mat = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos);
-                int rank = mat.GetRank(progressDialog);
+                int rank = mat.GetRank();
                 Message message = new Message();
                 Bundle bundle = new Bundle();
                 bundle.putInt("CALCULATED_RANK",rank);
