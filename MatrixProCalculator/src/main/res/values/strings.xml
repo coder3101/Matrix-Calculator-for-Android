@@ -19,6 +19,7 @@
     <string name="Home">Home</string>
     <string name="clone">Clone</string>
     <string name="Rankof">Rank</string>
+    <string name="Minor">Minors</string>
     <string name="swap">Swaping</string>
     <string name="transpose">Transpose</string>
     <string name="multiply">Multiplication</string>
@@ -64,7 +65,6 @@
     <string name="Calculating">Calculating..</string>
     <string name="Warning11">Determinant Calculated but not Shown</string>
     <string name="ActivityNotFound">No Application to handle this Operation</string>
-
 
 
     <!--Settings Preference-->
@@ -225,5 +225,7 @@
     <string name="ExpoOverflow">Smaller Value Please</string>
     <string name="NoInverse">No Inverse Exist</string>
     <string name="MultiplierPlease">Enter the Multiplier</string>
+    <string name="ViewHint">Click on the Element to get its Minor</string>
+
 
 </resources>

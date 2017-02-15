@@ -24,7 +24,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
@@ -70,7 +69,7 @@ public class RankFragment extends ListFragment {
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage(getString(R.string.Calculating));
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setIndeterminate(true); //todo: set this to false when progress bug is fixed
+        progressDialog.setIndeterminate(true);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         FindRank(position,progressDialog);
@@ -86,8 +85,10 @@ public class RankFragment extends ListFragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("CALCULATED_RANK",rank);
                 message.setData(bundle);
-                progressDialog.dismiss();
-                handler.sendMessage(message);
+                if(progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                    handler.sendMessage(message);
+                }
             }
         };
         Thread thread = new Thread(runnable);

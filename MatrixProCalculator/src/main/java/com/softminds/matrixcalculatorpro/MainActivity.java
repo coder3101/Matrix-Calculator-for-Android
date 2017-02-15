@@ -49,6 +49,7 @@ import android.widget.Toast;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.softminds.matrixcalculatorpro.OperationFragments.CloneFragment;
+import com.softminds.matrixcalculatorpro.OperationFragments.MinorFragment;
 import com.softminds.matrixcalculatorpro.OperationFragments.RankFragment;
 import com.softminds.matrixcalculatorpro.base_activities.AboutMe;
 import com.softminds.matrixcalculatorpro.base_activities.FeedBack;
@@ -471,6 +472,20 @@ public class MainActivity extends AppCompatActivity
                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
                    t.setText(R.string.OpenHint2);
                else
+                   t.setText(null);
+               break;
+           case R.id.MinorsofMat:
+               FragmentTransaction MinorTransaction = getSupportFragmentManager().beginTransaction();
+               MinorTransaction.replace(R.id.MainContent,new MinorFragment(),"MINOR_FRAGMENT");
+               MinorTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               MinorTransaction.commit();
+               //Actionbar
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.Minor);
+               actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else
                {
                    if(isAnyVariableSquare())
                        t.setText(null);
@@ -531,6 +546,7 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(getApplicationContext(), R.string.Created, Toast.LENGTH_SHORT).show();
                 }catch (ClassCastException e){
                     if(Build.VERSION.SDK_INT<19) {
+                        e.printStackTrace();
                         Toast.makeText(getApplication(),"This Application only Supports Android 4.4.4+ ",Toast.LENGTH_SHORT).show();
                         FirebaseCrash.log("Unsupported Device reported ClassCastException ");
                         FirebaseCrash.report(e);
@@ -538,8 +554,13 @@ public class MainActivity extends AppCompatActivity
                     else {
                         FirebaseCrash.log("Critical Bug from a Supported API ");
                         FirebaseCrash.report(e);
+                        e.printStackTrace();
                         Toast.makeText(getApplicationContext(),"The Bug has been Reported to the Developer",Toast.LENGTH_LONG).show();
                     }
+                }catch (NullPointerException e){
+                    ((GlobalValues)getApplication()).matrixAdapter.notifyDataSetChanged();
+                    e.printStackTrace();
+                    Log.d("Adapter","Adapter to store Matrix was Null");
                 }
 
             }

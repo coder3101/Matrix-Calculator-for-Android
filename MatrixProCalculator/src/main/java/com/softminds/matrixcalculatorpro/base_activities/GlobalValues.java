@@ -45,7 +45,8 @@ public class GlobalValues extends Application {
     public void AddToGlobal(Matrix mk)
     {
         createdValues.add(mk);
-        matrixAdapter.notifyDataSetChanged();
+        if(matrixAdapter!=null)
+            matrixAdapter.notifyDataSetChanged();
         LAST_INDEX++;
     }
     public void AddResultToGlobal(Matrix mk)

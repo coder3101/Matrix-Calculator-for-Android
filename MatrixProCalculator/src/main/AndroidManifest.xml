@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.softminds.matrixcalculatorpro">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name="com.softminds.matrixcalculatorpro.base_activities.GlobalValues"
+        android:name=".base_activities.GlobalValues"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/mainlogo"
@@ -14,30 +14,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.softminds.matrixcalculatorpro.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.base_activities.AboutMe"
+            android:name=".base_activities.AboutMe"
             android:label="@string/aboutme"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity" />
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".base_fragments.Settings" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.base_fragments.Settings" />
-        <activity
-            android:name="com.softminds.matrixcalculatorpro.base_activities.SettingsTab"
+            android:name=".base_activities.SettingsTab"
             android:label="@string/action_settings"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.dialog_activity.MakeNewMatrix"
+            android:name=".dialog_activity.MakeNewMatrix"
             android:label="@string/NewMatrix"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.base_activities.FillingMatrix"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity"
+            android:name=".base_activities.FillingMatrix"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.base_activities.SplashScreen"
+            android:name=".base_activities.SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,67 +45,72 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.softminds.matrixcalculatorpro.dialog_activity.CustomValueFiller"
+            android:name=".dialog_activity.CustomValueFiller"
             android:label="@string/CustomFill"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.base_activities.FillingMatrix"
+            android:parentActivityName=".base_activities.FillingMatrix"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.base_activities.faqs"
+            android:name=".base_activities.faqs"
             android:label="@string/LabelHelp"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.base_activities.FeedBack"
+            android:name=".base_activities.FeedBack"
             android:label="@string/feedback"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.base_activities.ViewCreatedMatrix"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity"
+            android:name=".base_activities.ViewCreatedMatrix"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.dialog_activity.RenameCreated"
+            android:name=".dialog_activity.RenameCreated"
             android:label="@string/Rename"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.base_activities.ViewCreatedMatrix"
+            android:parentActivityName=".base_activities.ViewCreatedMatrix"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.dialog_activity.OrderChanger"
+            android:name=".dialog_activity.OrderChanger"
             android:label="@string/SetNewOrder"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.base_activities.ViewCreatedMatrix"
+            android:parentActivityName=".base_activities.ViewCreatedMatrix"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.base_activities.ShowResult"
+            android:name=".base_activities.ShowResult"
             android:label="@string/Result"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.dialog_activity.ExponentSetter"
+            android:name=".dialog_activity.ExponentSetter"
             android:label="@string/exponent"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.dialog_activity.DialogConfirmation"
+            android:name=".dialog_activity.DialogConfirmation"
             android:label="@string/ConfirmMake"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.dialog_activity.DeterminantResult"
+            android:name=".dialog_activity.DeterminantResult"
             android:label="@string/determinant"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.dialog_activity.SwappingDialog"
+            android:name=".dialog_activity.SwappingDialog"
             android:label="@string/swap"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.dialog_activity.MultiplierSetter"
+            android:name=".dialog_activity.MultiplierSetter"
             android:label="@string/ScalerMult"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeDialog" />
         <activity
-            android:name="com.softminds.matrixcalculatorpro.dialog_activity.FunctionMaker"
-            android:parentActivityName="com.softminds.matrixcalculatorpro.MainActivity"
+            android:name=".dialog_activity.FunctionMaker"
             android:label="@string/FunctionalTitle"
-            android:theme="@style/AppThemeDialog"/>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeDialog" />
+        <activity
+            android:name=".base_activities.MinorChooser"
+            android:label="@string/Minor"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

@@ -46,8 +46,12 @@
         <item
             android:id="@+id/RankofMat"
             android:icon="@drawable/arrow_icon"
-            android:title="@string/Rankof"
-            android:visible="true"/>
+            android:title="@string/Rankof"/>
+        <item
+            android:id="@+id/MinorsofMat"
+            android:icon="@drawable/arrow_icon"
+            android:title="@string/Minor"/>
+
         <item
             android:id="@+id/inverse"
             android:icon="@drawable/arrow_icon"
