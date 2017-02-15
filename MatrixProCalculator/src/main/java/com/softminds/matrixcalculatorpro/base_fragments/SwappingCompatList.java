@@ -63,7 +63,9 @@ public class SwappingCompatList extends ListFragment {
     }
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Matrix clickedmatrix = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(position);
+        Matrix clickedmatrix = ((GlobalValues)getActivity().getApplication()).
+                GetCompleteList().get(((GlobalValues)getActivity().getApplication())
+                .GetCompleteList().indexOf(CompatList.get(position)));
         Matrix original = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(getArguments().getInt("POSITION"));
         original.SwapWith(clickedmatrix);
         Toast.makeText(getActivity(),R.string.SwapSucc,Toast.LENGTH_SHORT).show();
