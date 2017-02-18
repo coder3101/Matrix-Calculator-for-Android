@@ -1,3 +1,23 @@
+/*
+ * Copyright (C) 2017 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of Matrix Calculator.
+ *
+ * Matrix Calculator is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Matrix Calculator is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Matrix Calculator.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 package com.softminds.matrixcalculatorpro.base_fragments;
 
 
@@ -38,10 +58,6 @@ public class MinorChooserFragment extends Fragment {
         @Override
         public void handleMessage(Message message){
            final MinorChooserFragment minorChooserFragment = minorChooserFragmentWeakReference.get();
-            /*Toast.makeText(minorChooserFragment.getContext(),"Minor of "+
-                    String.valueOf(message.getData().getInt("REX")+1) + " , " +
-                    String.valueOf(message.getData().getInt("REY")+1)+ " is : "+
-                    String.valueOf(message.getData().getFloat("VALUE")),Toast.LENGTH_LONG).show();*/
             final Snackbar snackbar = Snackbar.make(minorChooserFragment. //sample : "Minor of (x,y) is : <minor>"
                     getActivity().findViewById(R.id.minor_chooser),"Minor of "+ "(" +
                     String.valueOf(message.getData().getInt("REX")+1) + " , " +
