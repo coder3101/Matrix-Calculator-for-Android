@@ -71,9 +71,6 @@ import com.softminds.matrixcalculatorpro.OperationFragments.SwapFragment;
 import com.softminds.matrixcalculatorpro.OperationFragments.ScalerFragment;
 import com.softminds.matrixcalculatorpro.OperationFragments.TransposeFragment;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -559,6 +556,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }catch (NullPointerException e){
                     ((GlobalValues)getApplication()).matrixAdapter.notifyDataSetChanged();
+                    //todo: Force User Refresh using a method called Refresh_force();
                     e.printStackTrace();
                     Log.d("Adapter","Adapter to store Matrix was Null");
                 }
