@@ -842,5 +842,18 @@ public class Matrix {
         return true;
     }
 
+    private boolean SmartProbabilityNull() {
+        //used to determine if following logical functions should be called :
+        //1.RowZero
+        //2.ColZero
+        int flag=0;
+        for(int i=0;i<this.GetRow();i++)
+            for(int j=0;j<this.GetCol();j++){
+                if(this.GetElementof(i,j)==0)
+                    flag++;
+            }
+        return flag > Math.min(this.GetCol(),this.GetCol());
+    }
+
 
  }
