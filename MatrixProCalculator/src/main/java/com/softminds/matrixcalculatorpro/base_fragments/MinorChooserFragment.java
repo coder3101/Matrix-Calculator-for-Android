@@ -1,12 +1,15 @@
 package com.softminds.matrixcalculatorpro.base_fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
@@ -16,7 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.softminds.matrixcalculatorpro.R;
 import com.softminds.matrixcalculatorpro.base_activities.GlobalValues;
@@ -26,6 +28,8 @@ import java.text.DecimalFormat;
 
 public class MinorChooserFragment extends Fragment {
 
+    TextView CURRENT_SELECTED_VIEW = null ; //Id of current selected Element
+
     private static class myhandler extends Handler{
         private WeakReference<MinorChooserFragment> minorChooserFragmentWeakReference;
         private myhandler(MinorChooserFragment minorChooserFragment){
@@ -33,11 +37,25 @@ public class MinorChooserFragment extends Fragment {
         }
         @Override
         public void handleMessage(Message message){
-           MinorChooserFragment minorChooserFragment = minorChooserFragmentWeakReference.get();
-            Toast.makeText(minorChooserFragment.getContext(),"Minor of "+
+           final MinorChooserFragment minorChooserFragment = minorChooserFragmentWeakReference.get();
+            /*Toast.makeText(minorChooserFragment.getContext(),"Minor of "+
                     String.valueOf(message.getData().getInt("REX")+1) + " , " +
                     String.valueOf(message.getData().getInt("REY")+1)+ " is : "+
-                    String.valueOf(message.getData().getFloat("VALUE")),Toast.LENGTH_LONG).show();
+                    String.valueOf(message.getData().getFloat("VALUE")),Toast.LENGTH_LONG).show();*/
+            final Snackbar snackbar = Snackbar.make(minorChooserFragment. //sample : "Minor of (x,y) is : <minor>"
+                    getActivity().findViewById(R.id.minor_chooser),"Minor of "+ "(" +
+                    String.valueOf(message.getData().getInt("REX")+1) + " , " +
+                    String.valueOf(message.getData().getInt("REY")+1)+ " )" + " is : " +
+                    minorChooserFragment.GetText(message.getData().getFloat("VALUE")),Snackbar.LENGTH_INDEFINITE);
+            snackbar.show();
+            snackbar.setAction("Close", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    snackbar.dismiss();
+                }
+            });
+
+
         }
     }
 
@@ -70,21 +88,31 @@ public class MinorChooserFragment extends Fragment {
             {
                 final TextView textView = new TextView(getContext());
                 textView.setGravity(Gravity.CENTER);
-                final int rex = i;
-                final int rey = j;
+                textView.setId(i*10+j);
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        CURRENT_SELECTED_VIEW = textView; //send a reference to top
+                        textView.setTypeface(textView.getTypeface(),Typeface.BOLD); //set it bold
+                        final ProgressDialog progressDialog =new ProgressDialog(getContext());
+                        progressDialog.setMessage(getString(R.string.Calculating));
+                        progressDialog.setIndeterminate(true);
+                        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        progressDialog.setTitle(getString(R.string.Calculating));
+                        progressDialog.setCanceledOnTouchOutside(false);
+                        progressDialog.show();
                         Runnable runnable = new Runnable() {
                             @Override
                             public void run() {
-                                float res= ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetMinor(rex,rey);
+                                float res= ((GlobalValues)getActivity().getApplication()).GetCompleteList().
+                                        get(index).GetMinor(textView.getId()/10,textView.getId()%10);
                                 Message message = new Message();
                                 Bundle bundle = new Bundle();
-                                bundle.putInt("REX",rex);
-                                bundle.putInt("REY",rey);
+                                bundle.putInt("REX",textView.getId()/10);
+                                bundle.putInt("REY",textView.getId()%10);
                                 bundle.putFloat("VALUE",res);
                                 message.setData(bundle);
+                                progressDialog.dismiss();
                                 handler.sendMessage(message);
                             }
                         };
@@ -111,8 +139,7 @@ public class MinorChooserFragment extends Fragment {
         return v;
 
     }
-    public int CalculatedHeight(int a)
-    {
+    public int CalculatedHeight(int a) {
         switch (a)
         {
             case 1 : return 155;
@@ -128,8 +155,8 @@ public class MinorChooserFragment extends Fragment {
         }
         return 0;
     }
-    public int CalculatedWidth(int a)
-    {
+
+    public int CalculatedWidth(int a) {
         switch (a)
         {
             case 1 : return 150;
@@ -145,8 +172,8 @@ public class MinorChooserFragment extends Fragment {
         }
         return 0;
     }
-    public int SizeReturner(int r, int c,boolean b)
-    {
+
+    public int SizeReturner(int r, int c,boolean b) {
         if(!b) {
             if (r > c) {
                 switch (r) {
@@ -241,8 +268,8 @@ public class MinorChooserFragment extends Fragment {
 
         return 0;
     }
-    public String SafeSubString(String s, int MaxLength)
-    {
+
+    public String SafeSubString(String s, int MaxLength) {
         if(!TextUtils.isEmpty(s))
         {
             if(s.length()>=MaxLength){
@@ -251,8 +278,8 @@ public class MinorChooserFragment extends Fragment {
         }
         return s;
     }
-    public int getLenght()
-    {
+
+    public int getLenght() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         boolean v=preferences.getBoolean("EXTRA_SMALL_FONT",false);
         if(v)
@@ -260,6 +287,7 @@ public class MinorChooserFragment extends Fragment {
         else
             return 6;
     }
+
     private String GetText(float res) {
         if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
             DecimalFormat decimalFormat = new DecimalFormat("###############");
@@ -268,6 +296,5 @@ public class MinorChooserFragment extends Fragment {
             return String.valueOf(res);
         }
     }
-
 
 }
