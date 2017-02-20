@@ -21,6 +21,7 @@ package com.softminds.matrixcalculatorpro;
 
 
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -34,6 +35,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -57,7 +59,6 @@ import com.softminds.matrixcalculatorpro.base_activities.GlobalValues;
 import com.softminds.matrixcalculatorpro.base_activities.SettingsTab;
 import com.softminds.matrixcalculatorpro.base_activities.faqs;
 import com.softminds.matrixcalculatorpro.base_fragments.MainActivityFragmentList;
-import com.softminds.matrixcalculatorpro.dialog_activity.DialogConfirmation;
 import com.softminds.matrixcalculatorpro.dialog_activity.MakeNewMatrix;
 import com.softminds.matrixcalculatorpro.OperationFragments.AdditionFragement;
 import com.softminds.matrixcalculatorpro.OperationFragments.AdjointFragment;
@@ -206,28 +207,48 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
             case R.id.ExitButtonid:
-                Bundle Infor = new Bundle();
-                int ResultCode1=55;
-                Infor.putInt("MESSAGE",R.string.WarningExit);
-                Infor.putInt("CONFIRM_TEXT",R.string.Yup);
-                Infor.putInt("RESULT_CODE",ResultCode1);
-                Infor.putInt("CANCEL_TEXT",R.string.CancelCustomFill);
-                Intent intent31 = new Intent(getApplicationContext(), DialogConfirmation.class);
-                intent31.putExtras(Infor);
-                startActivityForResult(intent31,ResultCode1);
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+                builder2.setMessage(R.string.WarningExit);
+                builder2.setTitle(R.string.ExitButton);
+                builder2.setPositiveButton(R.string.Yup, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getApplicationContext(),R.string.thanks_for_using,Toast.LENGTH_SHORT).show();
+                        dialogInterface.dismiss();
+                        finish();
+                    }
+                });
+                builder2.setNegativeButton(R.string.Nope, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder2.show();
                 break;
             case R.id.ClearAllVar:
                 if(((GlobalValues)getApplication()).GetLastIndex()!=0){
-                    Bundle Info = new Bundle();
-                    int ResultCode=550;
-                    Info.putInt("MESSAGE",R.string.Warning9);
-                    Info.putInt("CONFIRM_TEXT",R.string.Yup);
-                    Info.putInt("RESULT_CODE",ResultCode);
-                    Info.putInt("CANCEL_TEXT",R.string.CancelCustomFill);
-                    Intent intent3 = new Intent(getApplicationContext(), DialogConfirmation.class);
-                    intent3.putExtras(Info);
-                    startActivityForResult(intent3,ResultCode);
+                    AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage(R.string.Warning9);
+                    builder.setTitle(R.string.Clear);
+                    builder.setPositiveButton(R.string.Yup, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ((GlobalValues) getApplication()).ClearAllMatrix();
+                            actionBar.setSubtitle(null);
+                            ((GlobalValues)getApplication()).AutoSaved=1; //Re initialize AutoSave to 1
+                            TextView t = (TextView) findViewById(R.id.OpeningHint);
+                            t.setText(R.string.OpenHint);
+                        }
+                    });
+                    builder.setNegativeButton(R.string.Nope, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
 
+                    builder.show();
                 }
                 else
                     Toast.makeText(getApplication(),R.string.Warning8,Toast.LENGTH_SHORT).show();
@@ -565,18 +586,6 @@ public class MainActivity extends AppCompatActivity
         }
         if(resultCode==100)
             this.recreate(); // Recreate this Activity if a Change in Theme has been marked
-        if(resultCode ==550) //Clear all Variable if this is Recieved
-        {
-            ((GlobalValues) getApplication()).ClearAllMatrix();
-            actionBar.setSubtitle(null);
-            ((GlobalValues)getApplication()).AutoSaved=1; //Reinitilize AutoSave to 1
-            TextView t = (TextView) findViewById(R.id.OpeningHint);
-            t.setText(R.string.OpenHint);
-        }
-        if(resultCode == 55) //User wants to exit the application
-        {
-            finish();
-        }
 
     }
     protected boolean isAnyVariableSquare()

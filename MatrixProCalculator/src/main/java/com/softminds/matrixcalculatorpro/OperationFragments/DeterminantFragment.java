@@ -23,23 +23,28 @@ package com.softminds.matrixcalculatorpro.OperationFragments;
 
 
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
-import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.softminds.matrixcalculatorpro.base_activities.GlobalValues;
 import com.softminds.matrixcalculatorpro.Matrix;
 import com.softminds.matrixcalculatorpro.MatrixAdapter;
 import com.softminds.matrixcalculatorpro.R;
-import com.softminds.matrixcalculatorpro.dialog_activity.DeterminantResult;
 
 import java.lang.ref.WeakReference;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class DeterminantFragment extends ListFragment {
@@ -55,16 +60,42 @@ public class DeterminantFragment extends ListFragment {
         @Override
         public void handleMessage(Message msg) //override this method
         {
-            DeterminantFragment determinantFragment = determinantFragmentWeakReference.get();
+            final DeterminantFragment determinantFragment = determinantFragmentWeakReference.get();
             if(determinantFragment!=null) {
 
-                Bundle val;
+               final Bundle val;
                 val = msg.getData();
                 if (determinantFragment.isVisible()) {
 
-                    Intent i = new Intent(determinantFragment.getActivity(), DeterminantResult.class);
-                    i.putExtras(val);
-                    determinantFragment.startActivity(i);
+                    final String mes = "Determinant is : " + determinantFragment.ConvertToNormal(val.getDouble("RESULTANT"));
+
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(determinantFragment.getContext());
+                    builder.setPositiveButton(R.string.copy, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ClipboardManager clipboardManager = (ClipboardManager) determinantFragment.getActivity()
+                                    .getSystemService(Context.CLIPBOARD_SERVICE);
+                            ClipData clipData = ClipData.newPlainText("DETERMINANT_RES",determinantFragment.ConvertToNormal(val.getDouble("RESULTANT")));
+                            clipboardManager.setPrimaryClip(clipData);
+                            if(clipboardManager.hasPrimaryClip()){
+                                Toast.makeText(determinantFragment.getContext(),R.string.CopyToClip,Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                                Log.d("ClipData","Failed to set to Clip board");
+                            dialogInterface.dismiss();
+                        }
+                    });
+
+                    builder.setNeutralButton(R.string.Done, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    builder.setMessage(mes);
+                    builder.setTitle("Determinant");
+                    builder.setCancelable(false);
+                    builder.show();
 
                 }
                 else
@@ -120,6 +151,16 @@ public class DeterminantFragment extends ListFragment {
        };
         Thread thread = new Thread(runnable);
         thread.start();
+    }
+
+    private String ConvertToNormal (double res){
+        if(!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE",true)) {
+            DecimalFormat decimalFormat = new DecimalFormat("###############");
+            return decimalFormat.format(res);
+        }
+        else {
+            return String.valueOf(res);
+        }
     }
 
 }

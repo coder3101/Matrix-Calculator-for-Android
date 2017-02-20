@@ -48,7 +48,9 @@ import java.text.DecimalFormat;
 
 public class MinorChooserFragment extends Fragment {
 
+
     TextView CURRENT_SELECTED_VIEW = null ; //Id of current selected Element
+
 
     private static class myhandler extends Handler{
         private WeakReference<MinorChooserFragment> minorChooserFragmentWeakReference;

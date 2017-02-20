@@ -21,10 +21,12 @@
 package com.softminds.matrixcalculatorpro.OperationFragments;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -34,7 +36,6 @@ import com.softminds.matrixcalculatorpro.MatrixAdapter;
 import com.softminds.matrixcalculatorpro.R;
 import com.softminds.matrixcalculatorpro.base_activities.GlobalValues;
 import com.softminds.matrixcalculatorpro.base_activities.ShowResult;
-import com.softminds.matrixcalculatorpro.dialog_activity.DialogConfirmation;
 
 public class TransposeFragment extends ListFragment {
     int ClickPos;
@@ -56,41 +57,37 @@ public class TransposeFragment extends ListFragment {
                 getBoolean("TRANSPOSE_PROMPT",true)&&((GlobalValues)getActivity().
                 getApplication()).GetCompleteList().get(position).is_squareMatrix())
         {
-            Intent intent = new Intent(getContext(), DialogConfirmation.class);
-            Bundle b = new Bundle();
-            b.putInt("MESSAGE",R.string.SquareTransPrompt);
-            b.putInt("ACTION_OKAY",R.string.Yup);
-            b.putInt("CONFIRM_TEXT",R.string.Yup);
-            b.putInt("CANCEL_TEXT",R.string.Nope);
-            b.putInt("RESULT_CODE",120);
-            intent.putExtra("NON_RESULT_CODE",119);
-            intent.putExtras(b);
-            ClickPos = position;
-            startActivityForResult(intent,120);
-
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle(R.string.TransposePrompt);
+            builder.setPositiveButton(R.string.Yup, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(ClickPos).SquareTranspose();
+                    Toast.makeText(getActivity(),R.string.SuccessTranspose,Toast.LENGTH_SHORT).show();
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.setNegativeButton(R.string.Nope, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                    Intent i2 = new Intent(getContext(), ShowResult.class);
+                    Matrix original = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(ClickPos);
+                    i2.putExtras(original.Transpose().GetDataBundled());
+                    startActivity(i2);
+                }
+            });
+            builder.setMessage(R.string.SquareTransPrompt);
+            builder.show();
         }
-        else
-            Execute();
-
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == 120) //User Said Yes
+        else //Non Square Matrix to Transpose
         {
-           ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(ClickPos).SquareTranspose();
-            Toast.makeText(getActivity(),R.string.SuccessTranspose,Toast.LENGTH_SHORT).show();
+            Intent i2 = new Intent(getContext(), ShowResult.class);
+            Matrix original = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(ClickPos);
+            i2.putExtras(original.Transpose().GetDataBundled());
+            startActivity(i2);
         }
-        if(resultCode == 119)
-            Execute();
+
     }
 
-    private void Execute()
-    {
-        Intent i2 = new Intent(getContext(), ShowResult.class);
-        Matrix original = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(ClickPos);
-        i2.putExtras(original.Transpose().GetDataBundled());
-        startActivity(i2);
-    }
 }
