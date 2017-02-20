@@ -56,7 +56,7 @@
     <string name="clear">CLEAR</string>
     <string name="Warning8">Nothing to Clear</string>
     <string name="Warning9">Clear All Matrix Variables ?</string>
-    <string name="WarningExit">Quit the Application ?</string>
+    <string name="WarningExit">Sure to Exit the Application ?</string>
     <string name="MainSubtitle">All Variables</string>
     <string name="OpenHint">Click the Button below to Add a Variable</string>
     <string name="Created">Variable Created</string>
@@ -219,6 +219,7 @@
     <string name="Expohint">Enter the Exponent here</string>
     <string name="SquareTransPrompt">Square Matrix detected. Do you want to Store the Transpose in this Variable, Current Value will be Lost.</string>
     <string name="Nope">No</string>
+    <string name="thanks_for_using">Thanks for Using Me</string>
     <string name="SuccessTranspose">Transposed Result Stored back to the Matrix</string>
     <string name="NoneSwap">No Compatible Matrix Variable Present</string>
     <string name="SwapSucc">Swapped</string>
@@ -226,6 +227,7 @@
     <string name="NoInverse">No Inverse Exist</string>
     <string name="MultiplierPlease">Enter the Multiplier</string>
     <string name="ViewHint">Click on the Element to get its Minor</string>
+    <string name="TransposePrompt">Transpose Type</string>
 
 
 </resources>
