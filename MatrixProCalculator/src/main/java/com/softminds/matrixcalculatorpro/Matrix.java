@@ -270,6 +270,9 @@ public class Matrix {
         }
         else
         {
+
+            if(this.RowZero()||this.ColZero()) //if a complete row or column is zero, determinant is 0
+                return 0f;
             for(;flag<Order;flag++)
             {
                 Matrix pointer= new Matrix(Order-1);
@@ -319,6 +322,8 @@ public class Matrix {
         }
         else
         {
+            if(this.RowZero()||this.ColZero()) //if a complete row or column is zero, determinant is 0
+                    return 0f;
             for(;flag<Order;flag++)
             {
                 Matrix pointer= new Matrix(Order-1);
@@ -768,9 +773,11 @@ public class Matrix {
                 if(this.GetElementof(i,j) == 0)
                     flag1++;
             }
-            if (++flag1 == this.GetCol())
+            if (flag1 == this.GetCol())
                 return true;
-            flag1 = 0;
+            else {
+                flag1 = 0;
+            }
         }
         return false;
     }
@@ -782,39 +789,56 @@ public class Matrix {
                 if(this.GetElementof(i,j) == 0)
                     flag1++;
             }
-            if (++flag1 == this.GetRow())
+            if (flag1 == this.GetRow())
                 return true;
-            flag1 = 0;
+            else {
+                flag1 = 0;
+            }
         }
         return false;
     }
 
-    private boolean RowEqualModulo() { //checks if rows are multiple of one another
+
+    //todo:below two methods should be improved
+    /*public boolean RowEqualModulo() { //checks if rows are multiple of one another
         float array1[] = new float[this.GetRow()];
         float array2[] = new float[this.GetRow()];
-        for(int i=0;i<this.GetCol();i++){
-            for(int j=1;j<=this.GetRow();j++)
+        /*for(int i=0;i<this.GetCol()-1;i++){
+            for(int j=0;j<this.GetRow();j++)
             {
-                array1[j-1] = this.GetElementof(j-1,i);
-                array2[j] = this.GetElementof(j,i);
+                array1[j] = this.GetElementof(j,i);
+                for(int k=0;k<this.GetCol();k++)
+                {
+                    if(k!=i)
+                       {
+                        array2[j] = this.GetElementof(j, k);
+                        if (Multiples(array1,array2))
+                            return true;
+                    }
+                }
 
             }
-            if (Multiples(array1,array2)){
-                return true;
+        }/*
+        for(int i=0;i<this.GetRow();i++) {
+            for (int j = 0; j < this.GetCol(); j++)
+                array1[j] = this.GetElementof(i, j);
+            for(int k=0;k<this.GetCol();k++)
+            {
+
             }
         }
         return false;
 
-    }
+    }*/
 
-    private boolean ColEqualModulo() { //checks if rows are multiple of one another
+    /*private boolean ColEqualModulo() { //checks if rows are multiple of one another
         float array1[] = new float[this.GetCol()];
         float array2[] = new float[this.GetCol()];
-        for(int i=0;i<this.GetRow();i++){
-            for(int j=1;j<=this.GetCol();j++)
+        for(int i=0;i<this.GetRow()-1;i++){
+            for(int j=0;j<this.GetCol();j++)
             {
-                array1[j-1] = this.GetElementof(i,j-1);
-                array2[j] = this.GetElementof(i,j);
+                array1[j] = this.GetElementof(i,j);
+                array2[j] = this.GetElementof(i+1,j);
 
             }
             if (Multiples(array1,array2)){
@@ -824,6 +848,7 @@ public class Matrix {
         return false;
 
     }
+    */
 
     private boolean Multiples (float a[],float b[]) { //used by above function to check if the two arrays are multiple of each other
         //a if multiples constant value
@@ -831,10 +856,12 @@ public class Matrix {
        while(index  < b.length  ){ //finds until the value of b[i] is a non zero
            if(b[index]!= 0)
            {
-               Constant = a[0]/b[index];
-               for(int i=index;i<a.length;i++)
-                if(Constant != a[i]/b[i])
-                   return false;
+               Constant = a[index]/b[index];
+               for(int i=index;i<a.length;i++) {
+                   if (Constant != a[i] / b[i])
+                       return false;
+               }
+                    return true;
                }
            else
                index++;
