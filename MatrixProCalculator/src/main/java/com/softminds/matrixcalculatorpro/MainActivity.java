@@ -27,6 +27,7 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -535,6 +536,9 @@ public class MainActivity extends AppCompatActivity
                break;
            case R.id.nav_help:
                startActivity(new Intent(getApplicationContext(),faqs.class));
+               break;
+           case R.id.NewsAnnouncement:
+               startActivity(new Intent(getApplicationContext(),ChangeLogActivity.class));
                break;
            case R.id.nav_feedback:
                startActivity(new Intent(getApplicationContext(),FeedBack.class));

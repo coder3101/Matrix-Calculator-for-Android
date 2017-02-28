@@ -66,14 +66,18 @@
             android:title="@string/function" />
     </group>
     <group android:id="@+id/helpcat">
-    <item
-        android:title="@string/LabelHelp"
-        android:id="@+id/nav_help"
-        android:icon="@drawable/thumbsup"/>
-    <item
-        android:title="@string/feedback"
-        android:id="@+id/nav_feedback"
-        android:icon="@drawable/ratingheart"/>
+        <item
+            android:id="@+id/NewsAnnouncement"
+            android:title="@string/Newsother"
+            android:icon="@drawable/ic_action_event"/>
+        <item
+            android:title="@string/LabelHelp"
+            android:id="@+id/nav_help"
+            android:icon="@drawable/thumbsup"/>
+        <item
+            android:title="@string/feedback"
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ratingheart"/>
     </group>
 
 </menu>
