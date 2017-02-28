@@ -128,7 +128,7 @@ public class MultiplyFragment extends Fragment {
     }
     private Matrix MultiplyAll(){
         ArrayList<Matrix> buffer =((GlobalValues)getActivity().getApplication()).MatrixQueue;
-        Matrix res = new Matrix(buffer.get(0).GetRow(),buffer.get(0).GetCol(),buffer.get(1).GetType());
+        Matrix res = new Matrix(buffer.get(0).GetRow(),buffer.get(0).GetCol(),buffer.get(0).GetType());
         res.CloneFrom(buffer.get(0));
         try {
             for (int i = 1; i < buffer.size(); i++) {
