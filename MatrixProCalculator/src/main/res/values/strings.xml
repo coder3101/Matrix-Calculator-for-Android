@@ -31,6 +31,7 @@
     <string name="exponent">Exponential</string>
     <string name="Scaler">Scalar Multiplication</string>
     <string name="ShortCustom">Custom</string>
+    <string name="Newsother">Upcoming Changelogs</string>
 
     <!--About Me Section-->
     <string name="app_dev">Ashar Khan </string>
@@ -228,6 +229,10 @@
     <string name="MultiplierPlease">Enter the Multiplier</string>
     <string name="ViewHint">Click on the Element to get its Minor</string>
     <string name="TransposePrompt">Transpose Type</string>
+    <string name="RedInfo">The Change Marked Red is most likely to be brought soon</string>
+    <string name="Wait">Please Wait for changes to Load</string>
+    <string name="Loading">Loading Changes..</string>
+    <string name="InternetPlzz">Internet is required to update the Changelogs</string>
 
 
 </resources>

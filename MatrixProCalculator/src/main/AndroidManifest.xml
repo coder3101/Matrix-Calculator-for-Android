@@ -100,7 +100,11 @@
             android:name=".base_activities.MinorChooser"
             android:label="@string/Minor"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ChangeLogActivity"
+            android:label="@string/Newsother"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>
