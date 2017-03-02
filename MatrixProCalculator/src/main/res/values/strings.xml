@@ -57,6 +57,7 @@
     <string name="clear">CLEAR</string>
     <string name="Warning8">Nothing to Clear</string>
     <string name="Warning9">Clear All Matrix Variables ?</string>
+    <string name="Warning13">You should not use (+,-,x) as Variable name</string>
     <string name="WarningExit">Sure to Exit the Application ?</string>
     <string name="MainSubtitle">All Variables</string>
     <string name="OpenHint">Click the Button below to Add a Variable</string>
