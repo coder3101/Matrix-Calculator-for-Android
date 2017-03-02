@@ -27,7 +27,6 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -117,7 +116,7 @@ public class MainActivity extends AppCompatActivity
 
         remoteConfig.setDefaults(defaults);
 
-        final Task<Void> fetch = remoteConfig.fetch(0);
+        final Task<Void> fetch = remoteConfig.fetch(TimeUnit.HOURS.toSeconds(6));
         fetch.addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
