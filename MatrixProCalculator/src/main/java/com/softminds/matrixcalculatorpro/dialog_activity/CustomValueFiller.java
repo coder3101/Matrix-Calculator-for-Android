@@ -26,6 +26,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -47,10 +48,18 @@ public class CustomValueFiller extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_filler_value);
         final EditText editText= (EditText) findViewById(R.id.CustomValue);
-        if(isDark)
+
+        if(PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean("DECIMAL_USE",true))
         {
-            editText.setTextColor(ContextCompat.getColor(this,R.color.white));
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED|InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }else{
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED);
         }
+
+        if(isDark)
+            editText.setTextColor(ContextCompat.getColor(this,R.color.white));
+
         TextView button = (TextView) findViewById(R.id.ConfirmCustomFill);
         TextView exit = (TextView) findViewById(R.id.CancelCustomFill);
         button.setAllCaps(true);
