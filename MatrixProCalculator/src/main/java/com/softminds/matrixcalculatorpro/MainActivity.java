@@ -50,7 +50,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.crash.FirebaseCrash;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.softminds.matrixcalculatorpro.OperationFragments.CloneFragment;
 import com.softminds.matrixcalculatorpro.OperationFragments.MinorFragment;
 import com.softminds.matrixcalculatorpro.OperationFragments.RankFragment;
@@ -73,6 +77,9 @@ import com.softminds.matrixcalculatorpro.OperationFragments.SwapFragment;
 import com.softminds.matrixcalculatorpro.OperationFragments.ScalerFragment;
 import com.softminds.matrixcalculatorpro.OperationFragments.TransposeFragment;
 
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -81,6 +88,8 @@ public class MainActivity extends AppCompatActivity
     Menu ActionbarMenu; //the Menu items in the top 3 dots
     ActionBar actionBar; //the Main Activity Actionbar
     TextView t; //Center Text which describe the context of the Application
+    FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
+    Menu NavMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +105,27 @@ public class MainActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        remoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
+                .setDeveloperModeEnabled(BuildConfig.DEBUG).build());
+
+        //Here we are placing future config features
+        HashMap<String,Object> defaults = new HashMap<>();
+        //defaults.put("enable_all_in_one",false);
+        defaults.put("enable_rank",false);
+        //defaults.put("enable_equations",false);
+
+        remoteConfig.setDefaults(defaults);
+
+        final Task<Void> fetch = remoteConfig.fetch(0);
+        fetch.addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                remoteConfig.activateFetched();
+                UpdateNew();
+            }
+        });
+
 
         t = (TextView)findViewById(R.id.OpeningHint);
 
@@ -122,6 +152,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View v = navigationView.getHeaderView(0);
         navigationView.setCheckedItem(R.id.Home);
+        NavMenuItem = navigationView.getMenu();
 
 
         if(v!=null)
@@ -612,6 +643,10 @@ public class MainActivity extends AppCompatActivity
             t.setText(R.string.OpenHint);
         else
             t.setText(null);
+    }
+    private void UpdateNew(){
+        //Here we will update the fetched changes
+        NavMenuItem.findItem(R.id.RankofMat).setVisible(remoteConfig.getBoolean("enable_rank"));
     }
 }
 
