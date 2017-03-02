@@ -78,8 +78,8 @@ public class MakeNewMatrix extends AppCompatActivity {
 
                 }
                 else {
-                    if(!editText.getText().toString().isEmpty())
-                      Toast.makeText(getApplication(), R.string.Warning7, Toast.LENGTH_SHORT).show();
+                    if(((GlobalValues)getApplication()).hasProfainity(editText.getText().toString()))
+                        Toast.makeText(getApplication(), R.string.Warning7, Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -90,8 +90,15 @@ public class MakeNewMatrix extends AppCompatActivity {
                     Toast.makeText(getApplication(), R.string.Warning1, Toast.LENGTH_LONG).show();
                     return false;
                 }
-                if ((Typespinner.getSelectedItem().toString().equals("Identity") || Typespinner.getSelectedItem().toString().equals("Diagonal")) && (RowSpinner.getValue() != ColSpinner.getValue())) {
+                if ((Typespinner.getSelectedItem().toString().equals("Identity") ||
+                        Typespinner.getSelectedItem().toString().equals("Diagonal")) &&
+                        (RowSpinner.getValue() != ColSpinner.getValue())) {
                     Toast.makeText(getApplicationContext(), R.string.NotSquare, Toast.LENGTH_LONG).show();
+                    return false;
+                }
+                if(editText.getText().toString().contains("+")||
+                        editText.getText().toString().contains("x")||editText.getText().toString().contains("-")){
+                    Toast.makeText(getApplicationContext(),R.string.Warning13,Toast.LENGTH_SHORT).show();
                     return false;
                 }
                 return !((GlobalValues)getApplication()).hasProfainity(editText.getText().toString());
