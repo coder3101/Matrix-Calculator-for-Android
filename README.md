@@ -1,6 +1,7 @@
 # Matrix-Calculator-for-Android
-After a Successful Calculator on Console of Windows, finally here we are with a new Project "Matrix Calculator" for Android
-The Project is a Open Source feel Free to help me make this better.
+This is a Simple, yet Powerful and Customizable Android Application for Matrix Calculations. you can download the Application from Playstore for Free from this link 
+
+https://play.google.com/store/apps/details?id=com.softminds.matrixcalculator.pro
 
 This Source Code is for API 19 or above (i.e Android 4.4.4 or above) and it's in Development.
 
