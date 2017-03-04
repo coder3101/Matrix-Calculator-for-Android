@@ -28,7 +28,7 @@ public class Function {
     private ArrayList<Terms> terms;
     private static class Terms{
         private int Exponent;
-        private boolean Sign; //true  is Positive else False;
+        private boolean Sign; //true  is Positive else False is assigned;
         private float Coefficiet;
         private Terms (float coefficiet,int exponent,boolean sign) {
             Exponent = exponent;
