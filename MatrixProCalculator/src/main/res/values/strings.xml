@@ -234,6 +234,8 @@
     <string name="Wait">Please Wait for changes to Load</string>
     <string name="Loading">Loading Changes..</string>
     <string name="InternetPlzz">Internet is required to update the Changelogs</string>
+    <string name="Refresh">Refresh</string>
+    <string name="ForceRefresh">Please Refresh Manually</string>
 
 
 </resources>
