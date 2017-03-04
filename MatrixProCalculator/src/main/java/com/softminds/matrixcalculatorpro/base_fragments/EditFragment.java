@@ -134,6 +134,15 @@ public class EditFragment extends Fragment {
         }
 
     }
+
+    public void RevertChanges(){
+        for(int i=0;i<((GlobalValues)getActivity().getApplication()).current_editing.GetRow();i++)
+            for(int j=0;j<((GlobalValues)getActivity().getApplication()).current_editing.GetCol();j++)
+                ((EditText) RootView.findViewById(i * 10 + j)).
+                        setText(GetText(((GlobalValues)getActivity()
+                                .getApplication()).current_editing.GetElementof(i,j)));
+
+    }
     private int getLenght()
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
