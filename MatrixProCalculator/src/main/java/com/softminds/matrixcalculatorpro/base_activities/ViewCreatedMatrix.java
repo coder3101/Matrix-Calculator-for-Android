@@ -96,7 +96,7 @@ public class ViewCreatedMatrix extends AppCompatActivity {
                 ActionMenu.findItem(R.id.DeleteCreated).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
                 ActionMenu.findItem(R.id.DeleteCreated).setTitle(R.string.Delete2);
                 ActionMenu.findItem(R.id.ConfirmChanges).setVisible(true);
-                ActionMenu.findItem(R.id.RevertChanges).setVisible(true);
+                ActionMenu.findItem(R.id.RevertChanges).setVisible(false);
                 return  true;
             case R.id.DeleteCreated :
                 if(index!=(-1))
