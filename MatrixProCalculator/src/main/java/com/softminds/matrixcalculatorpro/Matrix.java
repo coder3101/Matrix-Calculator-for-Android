@@ -841,8 +841,8 @@ public class Matrix {
     */
 
     private boolean Multiples (float a[],float b[]) {
-        //used by above function to check if the two arrays are multiple of each other
-        //a if multiples constant value
+        /*used by above function to check if the two arrays are multiple of each other
+        //a if multiples constant value*/
         float Constant; int index=0;
        while(index  < b.length  ){ //finds until the value of b[i] is a non zero
            if(b[index]!= 0)
