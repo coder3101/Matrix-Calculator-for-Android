@@ -445,7 +445,7 @@ public class Matrix {
         {
             try {
                 for (int i = 0; i < a; i++) {
-                    pi = pi.MultipyWith(this);
+                    pi = pi != null ? pi.MultipyWith(this) : null;
                 }
 
             }catch (NullPointerException e){
@@ -507,6 +507,7 @@ public class Matrix {
                 this.SetType(Type.Normal);
         }
     }
+
 
     public boolean isNull() {
         for(int i=0;i<this.GetRow();i++)
