@@ -31,6 +31,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.softminds.matrixcalculatorpro.Matrix;
 import com.softminds.matrixcalculatorpro.dialog_activity.OrderChanger;
 import com.softminds.matrixcalculatorpro.dialog_activity.RenameCreated;
 import com.softminds.matrixcalculatorpro.base_fragments.EditFragment;
@@ -86,6 +87,10 @@ public class ViewCreatedMatrix extends AppCompatActivity {
                 FragmentTR.replace(R.id.FragmentContainer,editFragment,"FRAGMENTEDIT");
                 FragmentTR.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 FragmentTR.commit();
+                //set the editing matrix as current
+                int index2 = getIntent().getIntExtra("INDEX",-1);
+                if(index!= -1)
+                    ((GlobalValues)getApplication()).current_editing = ((GlobalValues)getApplication()).GetCompleteList().get(index2);
                 ActionMenu.findItem(R.id.EditEntered).setVisible(false);
                 ActionMenu.findItem(R.id.OrderChange).setVisible(false);
                 ActionMenu.findItem(R.id.DeleteCreated).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
@@ -113,13 +118,7 @@ public class ViewCreatedMatrix extends AppCompatActivity {
                 startActivityForResult(intent,100);
                 return  true;
             case R.id.RevertChanges:
-                FragmentTransaction transaction1= getSupportFragmentManager().beginTransaction();
-                Fragment fg;
-                fg=getSupportFragmentManager().findFragmentByTag("FRAGMENTEDIT");
-                transaction1.detach(fg);
-                transaction1.attach(fg);
-                transaction1.commit();
-
+                editFragment.RevertChanges();
                 Toast.makeText(getApplicationContext(),R.string.RevertSuccess,Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.ConfirmChanges:

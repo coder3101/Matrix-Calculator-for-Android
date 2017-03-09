@@ -32,6 +32,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -610,12 +611,18 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(),"The Bug has been Reported to the Developer",Toast.LENGTH_LONG).show();
                     }
                 }catch (NullPointerException e){
-                    ((GlobalValues)getApplication()).matrixAdapter.notifyDataSetChanged();
-                    //todo: Force User Refresh using a method called Refresh_force();
+                    Snackbar snackbar;
+                    snackbar = Snackbar.make(findViewById(R.id.drawer_layout_main),R.string.ForceRefresh,Snackbar.LENGTH_INDEFINITE);
+                    snackbar.show();
+                    snackbar.setAction(R.string.Refresh, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ((GlobalValues)getApplication()).matrixAdapter.notifyDataSetChanged();
+                        }
+                    });
                     e.printStackTrace();
                     Log.d("Adapter","Adapter to store Matrix was Null");
                 }
-
             }
         }
         if(resultCode==100)

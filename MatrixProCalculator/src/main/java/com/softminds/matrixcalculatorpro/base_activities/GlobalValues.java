@@ -32,6 +32,7 @@ import java.util.ArrayList;
 public class GlobalValues extends Application {
 
    private ArrayList<Matrix> createdValues=new ArrayList<>();
+    public Matrix current_editing = null;
     public ArrayList<Matrix> MatrixQueue = new ArrayList<>();
 
     private int LAST_INDEX=0; //LastIndex of ArrayList
