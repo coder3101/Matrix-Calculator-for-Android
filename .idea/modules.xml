@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MatrixCalculator.iml" filepath="$PROJECT_DIR$/MatrixCalculator.iml" />
       <module fileurl="file://$PROJECT_DIR$/MatrixProCalculator/MatrixProCalculator.iml" filepath="$PROJECT_DIR$/MatrixProCalculator/MatrixProCalculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Pro.iml" filepath="$PROJECT_DIR$/Pro.iml" />
     </modules>
   </component>
 </project>
