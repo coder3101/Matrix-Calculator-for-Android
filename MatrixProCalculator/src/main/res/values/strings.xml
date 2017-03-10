@@ -31,6 +31,7 @@
     <string name="exponent">Exponential</string>
     <string name="Scaler">Scalar Multiplication</string>
     <string name="ShortCustom">Custom</string>
+    <string name="LinearE">Linear Equation</string>
     <string name="Newsother">Upcoming Changelogs</string>
 
     <!--About Me Section-->

@@ -38,6 +38,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -47,6 +48,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -563,6 +568,40 @@ public class MainActivity extends AppCompatActivity
                    else
                        t.setText(R.string.NoSupport);
                }
+               fab.hide();
+               break;
+           case R.id.linearEquation:
+               final NumberPicker numberPicker = new NumberPicker(this);
+               numberPicker.setMaxValue(9);
+               numberPicker.setMinValue(2);
+               numberPicker.setValue(3);
+               numberPicker.setGravity(Gravity.CENTER_HORIZONTAL);
+               final EditText editText = new EditText(this);
+               editText.setGravity(Gravity.CENTER_HORIZONTAL);
+               editText.setHint("Enter Number of Variable in Equation");
+               AlertDialog.Builder builder = new AlertDialog.Builder(this);
+               builder.setTitle("Linear Equation");
+               builder.setCancelable(false);
+               builder.setMessage("Number of Variables in the Equation");
+               builder.setView(numberPicker);
+               builder.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // TODO: 10/3/17 Proceed with logic here
+                    }
+                });
+               builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialogInterface, int i) {
+                       SetMainActivity(true,getString(R.string.app_name),getString(R.string.MainSubtitle));
+                       NavigationView view = (NavigationView)findViewById(R.id.nav_view);
+                       view.setCheckedItem(R.id.Home);
+                   }
+               });
+               builder.show();
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+               actionBar.setTitle(R.string.LinearE);
+               actionBar.setSubtitle(null);
                fab.hide();
                break;
            case R.id.nav_help:
