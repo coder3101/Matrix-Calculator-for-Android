@@ -23,7 +23,6 @@ package com.softminds.matrixcalculatorpro.base_activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +30,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.softminds.matrixcalculatorpro.Matrix;
 import com.softminds.matrixcalculatorpro.dialog_activity.OrderChanger;
 import com.softminds.matrixcalculatorpro.dialog_activity.RenameCreated;
 import com.softminds.matrixcalculatorpro.base_fragments.EditFragment;
@@ -118,7 +116,8 @@ public class ViewCreatedMatrix extends AppCompatActivity {
                 startActivityForResult(intent,100);
                 return  true;
             case R.id.RevertChanges:
-                editFragment.RevertChanges();
+                EditFragment ed = (EditFragment) getSupportFragmentManager().findFragmentByTag("FRAGMENTEDIT");
+                ed.RevertChanges();
                 Toast.makeText(getApplicationContext(),R.string.RevertSuccess,Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.ConfirmChanges:
