@@ -136,11 +136,11 @@ public class EditFragment extends Fragment {
     }
 
     public void RevertChanges(){
-        for(int i=0;i<((GlobalValues)getActivity().getApplication()).current_editing.GetRow();i++)
-            for(int j=0;j<((GlobalValues)getActivity().getApplication()).current_editing.GetCol();j++)
+        Matrix matrix = ((GlobalValues)getActivity().getApplication()).current_editing;
+        for(int i=0;i<matrix.GetRow();i++)
+            for(int j=0;j<matrix.GetCol();j++)
                 ((EditText) RootView.findViewById(i * 10 + j)).
-                        setText(GetText(((GlobalValues)getActivity()
-                                .getApplication()).current_editing.GetElementof(i,j)));
+                        setText(GetText(matrix.GetElementof(i,j)));
 
     }
     private int getLenght()

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single"
-        >
+    <group android:checkableBehavior="single">
         <item
-            android:title="@string/Home"
             android:id="@+id/Home"
-            android:icon="@drawable/home"/>
+            android:icon="@drawable/home"
+            android:title="@string/Home" />
         <item
             android:id="@+id/add_sub"
             android:icon="@drawable/arrow_icon"
@@ -46,11 +46,11 @@
         <item
             android:id="@+id/RankofMat"
             android:icon="@drawable/arrow_icon"
-            android:title="@string/Rankof"/>
+            android:title="@string/Rankof" />
         <item
             android:id="@+id/MinorsofMat"
             android:icon="@drawable/arrow_icon"
-            android:title="@string/Minor"/>
+            android:title="@string/Minor" />
 
         <item
             android:id="@+id/inverse"
@@ -64,6 +64,10 @@
             android:id="@+id/functional"
             android:icon="@drawable/arrow_icon"
             android:title="@string/function" />
+        <item
+            android:id="@+id/linearEquation"
+            android:icon="@drawable/arrow_icon"
+            android:title="@string/LinearE" />
     </group>
     <group android:id="@+id/helpcat">
         <item
