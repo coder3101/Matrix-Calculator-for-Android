@@ -56,7 +56,6 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
         //Set Values
         @SuppressWarnings({"ConstantConditions"})
         String r="Row : "+String.valueOf(m.GetRow());
-        m.SetType();
         String c="Column : "+String.valueOf(m.GetCol());
         if(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DARK_THEME_KEY",false))
         {
