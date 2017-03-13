@@ -571,34 +571,7 @@ public class MainActivity extends AppCompatActivity
                fab.hide();
                break;
            case R.id.linearEquation:
-               final NumberPicker numberPicker = new NumberPicker(this);
-               numberPicker.setMaxValue(9);
-               numberPicker.setMinValue(2);
-               numberPicker.setValue(3);
-               numberPicker.setGravity(Gravity.CENTER_HORIZONTAL);
-               final EditText editText = new EditText(this);
-               editText.setGravity(Gravity.CENTER_HORIZONTAL);
-               editText.setHint("Enter Number of Variable in Equation");
-               AlertDialog.Builder builder = new AlertDialog.Builder(this);
-               builder.setTitle("Linear Equation");
-               builder.setCancelable(false);
-               builder.setMessage("Number of Variables in the Equation");
-               builder.setView(numberPicker);
-               builder.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        // TODO: 10/3/17 Proceed with logic here
-                    }
-                });
-               builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialogInterface, int i) {
-                       SetMainActivity(true,getString(R.string.app_name),getString(R.string.MainSubtitle));
-                       NavigationView view = (NavigationView)findViewById(R.id.nav_view);
-                       view.setCheckedItem(R.id.Home);
-                   }
-               });
-               builder.show();
+               // TODO: 13/3/17 Add the Dialog Screen here 
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.LinearE);
                actionBar.setSubtitle(null);
