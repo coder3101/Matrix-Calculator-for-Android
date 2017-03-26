@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity
                 builder2.show();
                 break;
             case R.id.ClearAllVar:
-                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty()){
+                if(!((GlobalValues)getApplication()).GetCompleteList().isEmpty()){
                     AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
                     builder.setMessage(R.string.Warning9);
                     builder.setTitle(R.string.Clear);
