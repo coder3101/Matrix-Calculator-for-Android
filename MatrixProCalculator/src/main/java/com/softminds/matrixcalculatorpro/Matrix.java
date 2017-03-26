@@ -497,13 +497,15 @@ public class Matrix {
             this.SetType(Type.Normal);
         else
         {
-            if(this.isNull())
-                this.SetType(Type.Null);
-            if(this.isIdentity())
-                this.SetType(Type.Identity);
-            if(this.isDiagonal())
-                this.SetType(Type.Diagonal);
-            if(!this.isNull()&&!this.isIdentity()&&!this.isDiagonal())
+                if(this.isNull())
+                    this.SetType(Type.Null);
+                else
+                if(this.isIdentity())
+                    this.SetType(Type.Identity);
+                else
+                if(this.isDiagonal())
+                    this.SetType(Type.Diagonal);
+                else
                 this.SetType(Type.Normal);
         }
     }
@@ -523,20 +525,23 @@ public class Matrix {
         for(int i=0;i<this.GetRow();i++)
         {
             for(int j=0;j<this.GetCol();j++)
-                if((this.Elements[i][j]!=1 && i==j)||(this.Elements[i][j]!=0))
+                if((this.Elements[i][j]!=1 && i==j)&&(this.Elements[i][j]!=0))
                     return false;
         }
         return true;
     }
 
     private boolean isDiagonal() {
+        int flag=0;
         for(int i=0;i<this.GetRow();i++)
         {
             for(int j=0;j<this.GetCol();j++)
-                if((this.Elements[i][j]!=0 && i==j)||(this.Elements[i][j]!=0))
+                if(i!=j && this.Elements[i][j]!=0)
                     return false;
+            else
+                flag++;
         }
-        return true;
+        return flag!=this.GetCol();
     }
 
     public float GetElementof(int r,int c) throws ExceptionInInitializerError{
@@ -575,10 +580,12 @@ public class Matrix {
     }
 
     public Matrix ReturnScaler(float ig){
-        Matrix re  = new Matrix(this.GetRow(),this.GetCol(),this.GetType());
-        re.CopyFrom(this);
-        re.ScalarMultiply(ig);
-        return re;
+        Matrix newMat = new Matrix(this.GetRow(),this.GetCol(),this.GetType());
+        for(int i=0;i<this.GetRow();i++)
+            for(int j=0;j<this.GetCol();j++)
+                newMat.Elements[i][j]=this.Elements[i][j];
+        newMat.ScalarMultiply(ig);
+        return newMat;
     }
 
     public int GetRank() {
