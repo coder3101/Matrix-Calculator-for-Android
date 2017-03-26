@@ -67,7 +67,8 @@
         <item
             android:id="@+id/linearEquation"
             android:icon="@drawable/arrow_icon"
-            android:title="@string/LinearE" />
+            android:title="@string/LinearE"
+            android:visible="false"/>
     </group>
     <group android:id="@+id/helpcat">
         <item

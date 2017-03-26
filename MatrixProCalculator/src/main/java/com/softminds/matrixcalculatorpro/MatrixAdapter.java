@@ -65,7 +65,6 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
         }
         Row.setText(r);
         Col.setText(c);
-        m.SetType();
         Naam.setText(m.GetName());
         icon.setImageResource(m.GetDrawable(m.GetType()));
         icon.setOnClickListener(new View.OnClickListener() {
