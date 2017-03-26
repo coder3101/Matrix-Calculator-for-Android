@@ -131,6 +131,8 @@ public class EditFragment extends Fragment {
                     } else
                         ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).SetElementof(0f,i,j);
                 }
+            ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).SetType();
+            ((GlobalValues)getActivity().getApplication()).matrixAdapter.notifyDataSetChanged();
         }
 
     }
