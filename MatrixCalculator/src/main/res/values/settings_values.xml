@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- KEYS of Settings-->
+    <string name="DarkThemeKey">DARK_THEME_KEY</string>
+    <string name="CardKey">CARD_CHANGE_KEY</string>
+    <string name="SmartFitKey">SMART_FIT_KEY</string>
+    <string name="DecimalUSeID">DECIMAL_USE</string>
+    <string name="ExtraSmallKey">EXTRA_SMALL_FONT</string>
+    <string name="ElevateKey">ELEVATE_AMOUNT</string>
+    <string name="AutoToastKey">AUTO_TOAST_ENABLER</string>
+    <string name="RestoreKey">RESTORE_ALL</string>
+    <string name="RoundID">ROUNDIND_INFO</string>
+    <string name="Tanspose_id">TRANSPOSE_PROMPT</string>
+    <string name="NoFractionID">NO_FRACTION_ENABLED</string>
+    <string name="MaxIntRandomID">MAX_INT</string>
+    <string name="MinIntRandomID">MIN_INT_KEY</string>
+    <string name="SignedRandom">SIGNED_RANDOM</string>
+
+    <!--ListViewPreference MenuItems-->
+    <array name="ElevationUI">
+        <item>0 dp</item>
+        <item>2 dp</item>
+        <item>4 dp</item>
+        <item>5 dp</item>
+        <item>8 dp</item>
+        <item>10 dp</item>
+        <item>12 dp</item>
+        <item>15 dp</item>
+    </array>
+    <string-array name="ElevationIndex">
+    <item>0</item>
+    <item>2</item>
+    <item>4</item>
+    <item>5</item>
+    <item>8</item>
+    <item>10</item>
+    <item>12</item>
+    <item>15</item>
+    </string-array>
+    <array name="Roundto">
+        <item>No Decimal</item>
+        <item>Single Decimal</item>
+        <item>Two Decimals</item>
+        <item>Three Decimmals</item>
+    </array>
+    <string-array name="RounderReturner">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    </string-array>
+    <array name="Colors">
+        <item>Light Grey</item>
+        <item>Light Blue</item>
+        <item>Light Lime </item>
+        <item>Light Amber</item>
+        <item>Light Teal</item>
+        <item>Light Pink</item>
+        <item>Dark Cyan</item>
+        </array>
+    <string-array name="ColorsIdentifier">
+        <item>#bdbdbd</item>
+        <item>#4fc3f7</item>
+        <item>#e6ee9c</item>
+        <item>#ffe082</item>
+        <item>#64ffda</item>
+        <item>#ff80ab</item>
+        <item>#006064</item>
+    </string-array>
+
+</resources>

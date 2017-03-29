@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/order_changer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.softminds.matrixcalculator.dialog_activity.OrderChanger">
+
+    <LinearLayout
+        android:layout_marginStart="24dp"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:id="@+id/RowChangerLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/Row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                />
+        </RelativeLayout>
+        <NumberPicker
+            android:layout_width="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="90dp"
+            android:id="@+id/RowChangedOrder"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:layout_marginStart="27dp"
+        android:id="@+id/ColChangerLayout"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@id/RowChangerLayout">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/Col"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/textView5" />
+        </RelativeLayout>
+
+        <NumberPicker
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:id="@+id/ColChangedOrder"
+            android:layout_marginTop="10dp"
+            />
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Warning10"
+        android:id="@+id/WarningText"
+        android:layout_below="@id/RowChangerLayout"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NoCommitChanges"
+        android:text="@string/CancelCustomFill"
+        android:layout_below="@id/WarningText"
+        android:layout_marginStart="20dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/CommitChanges"
+        android:text="@string/ConfirmMake"
+        android:layout_below="@id/WarningText"
+        android:layout_toEndOf="@id/NoCommitChanges"
+        android:layout_marginStart="40dp"
+        />
+</RelativeLayout>
+

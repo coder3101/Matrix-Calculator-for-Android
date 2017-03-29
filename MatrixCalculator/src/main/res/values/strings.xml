@@ -1,0 +1,265 @@
+<resources>
+    <string name="app_name">Matrix Calculator</string>
+
+    <!--Menu Options-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="slogan">Matrix Made Easy</string>
+    <string name="upgrade">Upgrade to Pro</string>
+    <string name="rate">Rate Me</string>
+    <string name="share">Share</string>
+    <string name="aboutme">About</string>
+    <string name="matrix_opr">Matrix Operations</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Operations-->
+    <string name="addsub">Addition</string>
+    <string name="onlysub">Subtraction</string>
+    <string name="Home">Home</string>
+    <string name="clone">Clone</string>
+    <string name="Minor">Minors</string>
+    <string name="RankofMat">Rank</string>
+    <string name="swap">Swaping</string>
+    <string name="transpose">Transpose</string>
+    <string name="multiply">Multiplication</string>
+    <string name="inverse">Inverse</string>
+    <string name="adjoint">Adjoint</string>
+    <string name="function">Functional</string>
+    <string name="ScalerMult">Scalar Multiplication</string>
+    <string name="determinant">Determinant</string>
+    <string name="exponent">Exponential</string>
+    <string name="NewsUp">Upcoming Changelogs</string>
+
+    <!--About Me Section-->
+    <string name="app_dev">Md Ashar Khan </string>
+    <string name="about_app">Design and Developed by Ashar</string>
+    <string name="reserve">Some Rights Reserved </string>
+    <string name="certificate">This is an OpenSource Project.</string>
+    <string name="Maintainer">Maintainer : Ashar (coder3101) </string>
+    <string name="Chooser">Select the Fastest Browser</string>
+    <string name="Logo">Logo of the App</string>
+
+    <string name="NocreateWaring">Upgrade to Pro, to add and use more Matrix Variable.</string>
+
+    <string name="ShareUsing">Share this App Using</string>
+    <string name="ShareMessage">Hey I Just Downloaded a Wonderful Matrix Calculator. Check it out here https://play.google.com/store/apps/details?id=com.softminds.matrixcalculator</string>
+
+    <string name="ExitButton">Exit</string>
+    <string name="AddMessage">Click to Add a Matrix Variable</string>
+
+
+    <!--Settings Preference-->
+    <string name="UI">User Interface</string>
+    <string name="DarkTheme">Enable Dark Theme (Pro Only)</string>
+    <string name="DarkThemePro">Enable Dark Theme</string>
+    <string name="DarkThemeDesc">Use Application in Dark theme</string>
+    <string name="ExtraSmallFontT">Extra Small Fonts (Pro Only)</string>
+    <string name="ExtraSmallFontTPro">Extra Small Fonts</string>
+    <string name="SmartFit">Smart Fit</string>
+    <string name="SmartFitDes">Fits the Higher Order Matrix Into Screen by Reducing Element\'s Font Size</string>
+    <string name="ExtraSmallFontD">Reduces the Font of Elements While Filling Matrix to Acquire up to 8 digits</string>
+    <string name="CardChange">Change Card Color</string>
+    <string name="CardSummary">Change the color of the card which holds the Matrix</string>
+    <string name="CardElevate">Card Elevation</string>
+    <string name="CardElevateDesc">Change the Elevation of Matrix Card, more the value more 3-D Matrix will look. </string>
+    <string name="other">Extra Settings</string>
+    <string name="AutoToast">Result Toast</string>
+    <string name="AutoToastDesc">Display a Toast Message after a Result has been Calculated</string>
+    <string name="RestoreDefault">Restore</string>
+    <string name="RestoreInfo">Restore All Settings to Default</string>
+    <string name="title2">Calculations</string>
+    <string name="EnableRounding">Result Rounding (Development)</string>
+    <string name="EnableRoundingPro">Result Rounding (Development)</string>
+    <string name="EnableRoundingDesc">The  Calculated Result will be Rounded off this much Decimals</string>
+    <string name="NoFraction">Fractional Inverse</string>
+    <string name="NoFractionDesc">Set the type of Inverse to Show as Result, if enabled Result will be Absolute Matrix with Fractional Coefficient</string>
+    <string name="DecimalUse">Decimals and Exponents</string>
+    <string name="DecimalUseDesc">Show Decimal Numbers and Exponents in Results</string>
+    <string name="RandT">Random Number Settings</string>
+    <string name="SignedTitle">Signed Values</string>
+    <string name="SignedTitleDesc">Generate Negative as well as Positive Random Numbers while filling Matrix within the Specified Range</string>
+    <string name="MaximiumT">Upper Limit (Pro Only)</string>
+    <string name="MaximumTPro">Upper Limit</string>
+    <string name="MinimumT">Lower Limit (Pro Only)</string>
+    <string name="MinimumTPro">Lower Limit</string>
+    <string name="RestoreComplete">Settings Restored Successfully</string>
+    <string name="MaximumD">Largest Signed Random Number to be Generated while filling the Matrix (Default 100)</string>
+    <string name="MinimumD">Smallest Signed Random Number to be Generated while filling the Matrix (Default 0)</string>
+    <string name="TransposeHead">Transpose Prompt</string>
+    <string name="TransposeSummary">A Prompt is Shown if Matrix to be transposed, can be stored back in the Same Matrix</string>
+    <string name="AutoEnabled">Changed \"Fractional Inverse\" to match changes</string>
+    <string name="AllowDecimals">Allow Decimal Numbers in Settings</string>
+    <string name="CannotSave2">Cannot Save because Result is not a Marix</string>
+
+    <!-- Variable Creation Activity-->
+    <string name="NewMatrix">Create New Variable</string>
+    <string name="Nameit">Name of the Matrix Variable</string>
+    <string-array name="MatrixT">
+        <item>Normal</item>
+        <item>Identity</item>
+        <item>Null</item>
+        <item>Diagonal</item>
+    </string-array>
+    <string name="Row">Row</string>
+    <string name="Col">Column</string>
+    <string name="MatrixType">Type : </string>
+    <string name="Warning1">Name field cannot be left blank</string>
+    <string name="Filling">Fill the Matrix</string>
+    <string name="NotSquare">Provided Matrix must be a Square Matrix</string>
+
+
+    <!-- Title bar of Filler Matrix-->
+    <string name="RandomInput">Fill Random Integers</string>
+    <string name="RandomInputFloat">Fill Random Decimals</string>
+    <string name="FillallAs1">Fill Empty Cells with 1</string>
+    <string name="FillasZero">Fill Empty Cells with 0</string>
+    <string name="Confirm">Create</string>
+    <string name="Warning2">Some Matrix Element(s) are Empty</string>
+
+
+    <!--Custom Filler-->
+    <string name="CustomFill">Fill Custom Value</string>
+    <string name="ValueHint">Value to Filled in Empty Cells</string>
+    <string name="ConfirmMake">Confirm</string>
+    <string name="CancelCustomFill">Cancel</string>
+    <string name="NoValue">No Value Provided</string>
+    <string name="Clear">Clear All</string>
+    <string name="Warning3">WARNING : Lower Limit Exceeds Upper Limit, Application may Crash</string>
+    <string name="Warning4">Are You Sure, Above Values will be Lost ?</string>
+    <string name="thanks_for_using">Thanks for Using Me</string>
+    <string name="TransposePrompt">Transpose Type</string>
+    <string name="Yup">Yes</string>
+
+    <!--Feedback-->
+    <string name="FeedBack">Feedback</string>
+    <string name="Mazak">I am Pleased, You have something to Share With Me</string>
+    <string name="Send">Send</string>
+    <string name="MaybeNot">Not Now</string>
+    <string name="Warning5">You Should not use Abusive Language</string>
+    <string name="Warning6">Did You forgot to Enter Message</string>
+    <string name="Warning7">Text is Abusive</string>
+    <string name="ok">Okay</string>
+
+    <string name="clear">CLEAR</string>
+    <string name="Warning8">Nothing to Clear</string>
+    <string name="Warning9">Clear All Matrix Variables ?</string>
+    <string name="WarningExit">Sure to Exit the Application ?</string>
+
+    <string name="edit">Edit Elements</string>
+    <string name="Delete">DELETE</string>
+    <string name="Delete2">Delete</string>
+    <string name="Rename">Rename Variable </string>
+    <string name="OrderChange">Change Order</string>
+    <string name="ConfirmTheValueChange">SAVE</string>
+    <string name="SetOriginalValue">Revert Changes</string>
+    <string name="RevertSuccess">Restored the Original Values</string>
+    <string name="Deleted">Deleted</string>
+    <string name="ConfirmSuccess">Values Updated</string>
+
+
+    <string name="SetNewOrder">Set New Order</string>
+    <string name="Warning10">Newly Created Elements will get Default Value of 0</string>
+
+
+    <string name="ChangedOrder">Order Changed</string>
+    <string name="ShortAddSub">Addition</string>
+    <string name="ShortOnlySub">Subtraction</string>
+    <string name="Scaler">Scalar Multiplication</string>
+    <string name="ShortCustom">Custom</string>
+    <string name="MainSubtitle">All Variables</string>
+    <string name="NothingCreated">Press the Button below to Create a Variable</string>
+
+    <string name="OpenHint">Click the Button below to Add a Variable</string>
+    <string name="Created">Variable Created</string>
+    <string name="OpenHint2">Please add a Variable to Proceed</string>
+    <string name="NoSupport">None of the Variable Support this Operation</string>
+    <string name="Calculating">Calculating..</string>
+    <string name="Warning11">Determinant Calculated but not Shown</string>
+
+
+    <string name="Result">Result</string>
+    <string name="save">SAVE</string>
+
+    <string name="EnterExpo">Enter Exponent</string>
+    <string name="Expohint">Enter the Exponent here</string>
+
+    <string name="CopyToClip">Copied to Clipboard</string>
+    <string name="copy">Copy</string>
+    <string name="Done">Done</string>
+
+    <string name="CannotSave">Cannot Save Results Elements higher than 999999 </string>
+    <string name="SavedAs">Saved as</string>
+
+    <string name="SquareTransPrompt">Square Matrix detected. Do you want to Store the Transpose in this Variable, Current Value will be Lost.</string>
+    <string name="Nope">No</string>
+    <string name="SuccessTranspose">Transposed Result Stored back to the Matrix</string>
+    <string name="NoneSwap">No Compatible Matrix Variable Present</string>
+    <string name="SwapSucc">Swapped</string>
+    <string name="ExpoOverflow">Smaller Value Please</string>
+    <string name="NoInverse">No Inverse Exist</string>
+
+    <string name="MultiplierPlease">Enter the Multiplier</string>
+
+    <!--Functional Activity-->
+    <string name="FunctionalTitle">Create the Function</string>
+    <string name="FunctionalExponent">Exponent</string>
+    <string name="FunctionalDegree">Terms</string>
+    <string name="ConfirmFunction">Proceed</string>
+    <string name="Coefficient">Enter Coefficient here</string>
+    <string name="PreView">Preview of the Function</string>
+    <string name="FunctionX">f(x) =  </string>
+    <string name="X">x1</string>
+    <string name="plus">+</string>
+    <string name="one">1</string>
+    <string name="Warning12">Click a Term to Proceed</string>
+    <string name="Selected">Selected</string>
+    <string name="NewX"><b>x</b></string>
+    <string name="FunctionMakerHint">Click on the Operator to Change its Sign</string>
+
+    <!--Addition Fragment-->
+    <string name="AddTip">Tap on a List Item to add it in the Addition Queue</string>
+    <string name="AddQueue">Addition Queue</string>
+    <string name="Proceed">Proceed</string>
+    <string name="Notdefined">Operation not defined</string>
+    <string name="RemoveLast">Remove From Queue</string>
+    <string name="NothingTORemove">Nothing to Remove</string>
+
+    <!--Sub Fragment-->
+    <string name="SubTip">Tap on a List Item to add it in the Subtraction Queue</string>
+    <string name="SubQueue">Subtraction Queue</string>
+
+    <!--Multiply Fragment-->
+    <string name="MulTip">Tap on a List Item to add it in the Multiplication Queue</string>
+    <string name="MulQueue">Multiplication Queue</string>
+
+    <string name="LimitExceeds">To Create more Upgrade to Pro</string>
+    <string name="LimitExceeds2">Cannot Add a New Variable</string>
+
+    <string name="OnlyPro">This is a Pro feature</string>
+    <string name="OpeningPlay">Opening Playstore</string>
+    <string name="FatalError">An Error Resulted force close of Splash Screen</string>
+    <string name="NoDataAvailable">Your Advertisement could be here</string>
+    <string name="ToAddMoreTurnData">Load Advertisement to create more</string>
+    <string name="ErrorOccured"><b>Error Occurred</b> If You are on Android 4.4.4 or above, Please Report</string>
+    <string name="ViewHints">Click on the Element to get its Minor</string>
+
+    <!--Misc-->
+    <string name="RedInfo">Changelogs marked Red will be brought to effect in next versions</string>
+    <string name="InternetPlzz">Internet is Required to fetch the Changelogs</string>
+    <string name="Loading">Loading Changelogs</string>
+    <string name="Wait">Please Wait for Changes to Load</string>
+    <string name="Warning13">You should not use (+,-,x) in Variable Names</string>
+
+
+    <!--Quick Actions-->
+    <string name="QuickDelete">Delete</string>
+    <string name="QuickRename">Rename</string>
+    <string name="QuickOrder">Change Order</string>
+    <string name="Refresh">Refresh</string>
+    <string name="EnforceRef">Please click this Refresh Button</string>
+    <string name="ClickToExit">Press Back Again to Exit</string>
+    <string name="ThanksForDonation">Thanks for Using Donation Version</string>
+    <string name="Upgrade">Upgrade</string>
+    <string name="UpgradeMess">Sorry to Inform. This feature is only available in Donated Version.</string>
+
+</resources>

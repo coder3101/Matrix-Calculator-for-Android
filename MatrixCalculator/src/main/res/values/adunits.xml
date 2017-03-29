@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sample_addunit">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="addunit_mainactivity">ca-app-pub-2985268992686393/9848513061</string>
+    <string name="addunit_faq">ca-app-pub-2985268992686393/6482917469</string>
+    <string name="addunit_viewCreated">ca-app-pub-2985268992686393/3389850266</string>
+    <string name="addunit_addition">ca-app-pub-2985268992686393/7820049869</string>
+    <string name="addunit_result">ca-app-pub-2985268992686393/6343316669</string>
+    <string name="addunit_filler">ca-app-pub-2985268992686393/3584666665</string>
+</resources>

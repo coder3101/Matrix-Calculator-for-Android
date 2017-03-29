@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.softminds.matrixcalculator">
+
+    <!--Permission-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+
+    <application
+        android:name=".base_activities.GlobalValues"
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/mainlogo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" >
+        <intent-filter> <!-- Intent Filler to Deep Link -->
+            <action android:name="android.intent.action.VIEW"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+            <category android:name="android.intent.category.BROWSABLE"/>
+            <data android:scheme="http"
+                android:host="www.softminds.com">
+            </data>
+        </intent-filter>
+        </activity>
+        <activity
+            android:name=".base_activities.AboutMe"
+            android:label="@string/aboutme"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".base_fragments.Settings" />
+        <activity
+            android:name=".base_activities.SettingsTab"
+            android:label="@string/action_settings"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".dialog_activity.MakeNewMatrix"
+            android:label="@string/NewMatrix"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeDialog" />
+        <activity
+            android:name=".base_activities.FillingMatrix"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".base_activities.SplashScreen"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".dialog_activity.CustomValueFiller"
+            android:label="@string/CustomFill"
+            android:parentActivityName=".base_activities.FillingMatrix"
+            android:theme="@style/AppThemeDialog" />
+        <activity
+            android:name=".base_activities.faqs"
+            android:label="@string/LabelHelp"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".base_activities.ViewCreatedMatrix"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".dialog_activity.RenameCreated"
+            android:label="@string/Rename"
+            android:parentActivityName=".base_activities.ViewCreatedMatrix"
+            android:theme="@style/AppThemeDialog" />
+        <activity
+            android:name=".dialog_activity.OrderChanger"
+            android:label="@string/SetNewOrder"
+            android:parentActivityName=".base_activities.ViewCreatedMatrix"
+            android:theme="@style/AppThemeDialog" />
+        <activity
+            android:name=".base_activities.ShowResult"
+            android:label="@string/Result"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".dialog_activity.ExponentSetter"
+            android:label="@string/exponent"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeDialog" />
+        <activity
+            android:name=".dialog_activity.SwappingDialog"
+            android:label="@string/swap"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeDialog" />
+        <activity
+            android:name=".dialog_activity.MultiplierSetter"
+            android:label="@string/ScalerMult"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeDialog" />
+        <activity
+            android:name=".dialog_activity.FunctionMaker"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/FunctionalTitle"
+            android:theme="@style/AppThemeDialog"/>
+        <activity
+            android:name=".base_activities.MinorChooser"
+            android:label="@string/Minor"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".ChangeLogActivity"
+            android:label="@string/NewsUp"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".MainActivity"/>
+    </application>
+
+</manifest>
