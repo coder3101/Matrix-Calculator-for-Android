@@ -24,6 +24,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.util.Log;
 
 import com.softminds.matrixcalculator.Function;
 import com.softminds.matrixcalculator.Matrix;
@@ -114,16 +115,24 @@ public class GlobalValues extends Application {
 
 
     public void SetDonationKeyStatus() {
-        try{
+        try {
             PackageManager packageManager = getPackageManager();
-            packageManager.getPackageInfo("com.softminds.matrixcalculator.pro.key",0);
+            packageManager.getPackageInfo("com.softminds.matrixcalculator.pro.key", 0);
             //Key is Installed
             //Checking the Authenticity of the Key
-            if(packageManager.checkSignatures(getPackageName(),
+            if (packageManager.checkSignatures(getPackageName(),
                     "com.softminds.matrixcalculator.pro.key")
-                    ==PackageManager.SIGNATURE_MATCH)
-                Status = true; //Both are Signed by me, Let User Use the Pro Features.
-        }catch (PackageManager.NameNotFoundException e)
+                    == PackageManager.SIGNATURE_MATCH) {
+                Log.d("Signature : ", "The Signature of Key Matched with Application");
+                //Both are Signed by me, Let User Use the Pro Features.
+                if (packageManager.getInstallerPackageName("com.softminds.matrixcalculator.pro.key") != null)
+                {
+                    Status = true;
+                    Log.d("Installer : ",packageManager.getInstallerPackageName("com.softminds.matrixcalculator.pro.key"));
+                }
+                //the Key is Genuine and was Installed from Play
+            }
+        } catch (Exception e)
         {
             Status = false;
         }
