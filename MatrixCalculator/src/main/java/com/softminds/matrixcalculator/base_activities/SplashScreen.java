@@ -25,21 +25,55 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.softminds.matrixcalculator.BuildConfig;
 import com.softminds.matrixcalculator.MainActivity;
 import com.softminds.matrixcalculator.R;
 
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+
 public class SplashScreen extends Activity {
+
+    final FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         int SPLASH_TIME_OUT=2000;
 
         ((GlobalValues)getApplication()).SetDonationKeyStatus();
+
+        if(!((GlobalValues)getApplication()).DonationKeyFound()) { //if user is non pro then only check for offer key
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("promotion_offer", false);
+
+            remoteConfig.setDefaults(hashMap);
+
+            remoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
+                    .setDeveloperModeEnabled(BuildConfig.DEBUG)
+                    .build());
+
+            final Task<Void> fetch = remoteConfig.fetch(TimeUnit.HOURS.toSeconds(6));
+            //if offer exist then activate pro features
+            fetch.addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    remoteConfig.activateFetched();
+                        UpdateKey();
+                }
+            });
+        }
+
         //init the key status here
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
@@ -73,5 +107,10 @@ public class SplashScreen extends Activity {
 
             }
         },SPLASH_TIME_OUT);
+    }
+
+    private void UpdateKey() {
+        ((GlobalValues)getApplication()).UpdateStatus(remoteConfig.getBoolean("promotion_offer"));
+
     }
 }

@@ -205,7 +205,63 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().add(R.id.MainContent,mh,"MAIN_LIST").commit();
         }
 
+        if(((GlobalValues)getApplication()).Promotion) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            String rated = sharedPreferences.getString("RATED", "no");
+            if ((rated.equals("no") || rated.equals("later")) && ((GlobalValues) getApplication()).ThisSession) {
+                ((GlobalValues) getApplication()).ThisSession = false;
+                PopRateDialog();
+            }
+        }
 
+    }
+
+    private void PopRateDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.WeLoveYou);
+        builder.setMessage(R.string.RateRequest);
+        builder.setCancelable(false);
+        builder.setNegativeButton(R.string.WontRate, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+               Toast.makeText(getApplicationContext(),R.string.SadRequ,Toast.LENGTH_SHORT).show();
+                SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+                edit.putString("RATED","ignored");
+                edit.apply();
+                dialogInterface.dismiss();
+                Log.d("Prefs Status : ", PreferenceManager.getDefaultSharedPreferences(getApplication()).getString("RATED","empty"));
+
+            }
+        });
+        builder.setPositiveButton(R.string.RateNow, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+              dialogInterface.dismiss();
+                try {
+                    Intent intent24 = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName()));
+                    SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+                    edit.putString("RATED","yes");
+                    edit.apply();
+                    startActivity(intent24);
+                    Toast.makeText(getApplicationContext(),R.string.OpeningPlay,Toast.LENGTH_SHORT).show();
+                }catch (ActivityNotFoundException e){ //if Play store is not installed
+                    startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName())));
+                }
+            }
+        });
+        builder.setNeutralButton(R.string.later, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+                edit.putString("RATED","later");
+                edit.apply();
+                Log.d("Prefs Status : ", PreferenceManager.getDefaultSharedPreferences(getApplication()).getString("RATED","empty"));
+
+            }
+        });
+
+        builder.show();
     }
 
     private void UpdateFetched() {

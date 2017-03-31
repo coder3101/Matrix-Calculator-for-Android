@@ -21,9 +21,9 @@
 package com.softminds.matrixcalculator.base_activities;
 
 import android.app.Application;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.softminds.matrixcalculator.Function;
@@ -51,6 +51,10 @@ public class GlobalValues extends Application {
 
     private boolean Status=false;
 
+    public boolean Promotion=false;
+
+    public boolean ThisSession = true;
+
     public void AddToGlobal(Matrix mk)
     {
         createdValues.add(mk);
@@ -73,10 +77,6 @@ public class GlobalValues extends Application {
         createdValues.clear();
         matrixAdapter.notifyDataSetChanged();
         LAST_INDEX = 0;
-    }
-
-    public int GetLastIndex() {
-        return LAST_INDEX;
     }
 
     public boolean hasProfainity(String s) {
@@ -109,8 +109,15 @@ public class GlobalValues extends Application {
     }
 
     public boolean DonationKeyFound(){
-
         return Status;
+    }
+
+    public void UpdateStatus(boolean status){
+       Status = status;
+        if(Status)
+            Promotion=true;
+
+        //user is using promotional offer
     }
 
 
@@ -137,4 +144,5 @@ public class GlobalValues extends Application {
             Status = false;
         }
     }
+
 }
