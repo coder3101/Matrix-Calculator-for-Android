@@ -262,4 +262,12 @@
     <string name="Upgrade">Upgrade</string>
     <string name="UpgradeMess">Sorry to Inform. This feature is only available in Donated Version.</string>
 
+    <!--Rate Dialog-->
+    <string name="SadRequ">Maybe Some Day You Change Your Mind</string>
+    <string name="WontRate">Never</string>
+    <string name="WeLoveYou">We Love You</string>
+    <string name="RateRequest">Hii, We have removed all the Advertisements and We have Enabled Pro features for Free. Does that not Worth a Five Star..??</string>
+    <string name="later">Later</string>
+    <string name="RateNow">Rate</string>
+
 </resources>
