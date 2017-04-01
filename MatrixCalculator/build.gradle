@@ -7,10 +7,9 @@ android {
         applicationId "com.softminds.matrixcalculator"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 18
-        versionName '1.8'
+        versionCode 20
+        versionName '2.0'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionNameSuffix 'beta'
     }
     buildTypes {
         release {
