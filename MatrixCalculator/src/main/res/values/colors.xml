@@ -8,9 +8,9 @@
     <color name="grey">#d3d3d3</color>
     <!--Dark App Color-->
     <color name="DarkcolorPrimary">#404a50</color>
-    <color name="DarkcolorPrimaryDark">#455a64</color>
+    <color name="DarkcolorPrimaryDark">#343d41</color>
     <color name="DarkcolorAccent">#3fe9c4</color>
-    <color name="deepgrey">#546e7a</color>
+    <color name="deepgrey">#3a3c3d</color>
     <color name="white">#ffffff</color>
     <color name="white2">#acacac</color>
 </resources>
