@@ -10,7 +10,6 @@ android {
         versionCode 17
         versionName '1.7'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionNameSuffix 'beta'
     }
     buildTypes {
         release {
