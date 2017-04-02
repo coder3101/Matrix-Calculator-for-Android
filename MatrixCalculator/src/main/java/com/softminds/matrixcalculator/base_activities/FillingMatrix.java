@@ -27,6 +27,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -114,6 +115,8 @@ public class FillingMatrix extends AppCompatActivity {
             {
                 EditText editText = new EditText(getApplication());
                 editText.setId(i*10+j);
+                if(isDark)
+                    editText.setTextColor(ContextCompat.getColor(this,R.color.white));
                 editText.setGravity(Gravity.CENTER);
                 editText.setHint("A"+String.valueOf(i+1)+String.valueOf(j+1));
                 if(!PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE",true)){

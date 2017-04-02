@@ -27,6 +27,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -127,6 +128,8 @@ public class ChangeLogActivity extends AppCompatActivity {
             CardView.LayoutParams param = new CardView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             CardView card = new CardView(this);
+            if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DARK_THEME_KEY",false))
+                card.setCardBackgroundColor(ContextCompat.getColor(this,R.color.DarkcolorPrimary));
             card.setCardElevation(5);
             card.setLayoutParams(param);
             card.setPadding(ConvertTopx(15), ConvertTopx(15), ConvertTopx(15), ConvertTopx(15));

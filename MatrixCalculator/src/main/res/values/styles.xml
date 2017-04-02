@@ -36,6 +36,7 @@
         <item name="android:textAppearanceSearchResultSubtitle">@android:style/TextAppearance.DeviceDefault.SearchResult.Subtitle</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white2</item>
+        <item name="android:textColorTertiary">@color/white</item>
         <item name="alertDialogTheme">@android:style/Theme.DeviceDefault.Dialog.NoActionBar.MinWidth</item>
         <item name="android:alertDialogTheme">@android:style/Theme.DeviceDefault.Dialog.NoActionBar.MinWidth</item>
 

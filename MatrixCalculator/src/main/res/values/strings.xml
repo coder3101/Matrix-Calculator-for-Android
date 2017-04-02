@@ -28,7 +28,7 @@
     <string name="ScalerMult">Scalar Multiplication</string>
     <string name="determinant">Determinant</string>
     <string name="exponent">Exponential</string>
-    <string name="NewsUp">Upcoming Changelogs</string>
+    <string name="NewsUp">Bulletin Board</string>
 
     <!--About Me Section-->
     <string name="app_dev">Md Ashar Khan </string>
@@ -244,10 +244,10 @@
     <string name="ViewHints">Click on the Element to get its Minor</string>
 
     <!--Misc-->
-    <string name="RedInfo">Changelogs marked Red will be brought to effect in next versions</string>
-    <string name="InternetPlzz">Internet is Required to fetch the Changelogs</string>
-    <string name="Loading">Loading Changelogs</string>
-    <string name="Wait">Please Wait for Changes to Load</string>
+    <string name="RedInfo">Important News are Marked with Red</string>
+    <string name="InternetPlzz">Something Went Wrong</string>
+    <string name="Loading">Loading Announcements</string>
+    <string name="Wait">Please Wait a moment..</string>
     <string name="Warning13">You should not use (+,-,x) in Variable Names</string>
 
 

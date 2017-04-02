@@ -54,6 +54,11 @@ public class Settings extends PreferenceActivity {
             preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
+                    if(PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("DARK_THEME_KEY",false))
+                            preference.getEditor().putString("CARD_CHANGE_KEY","#006064").apply();
+                    else
+                        preference.getEditor().putString("CARD_CHANGE_KEY","#bdbdbd").apply();
+
                    getActivity().recreate();
                     return true;
                 }
