@@ -27,6 +27,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -54,7 +57,8 @@ public class faqs extends AppCompatActivity {
         }
         else{
             CardView cardView = (CardView)findViewById(R.id.AddCardFAQ);
-            cardView.setVisibility(View.INVISIBLE);
+            ((ViewGroup)cardView.getParent()).removeView(cardView);
+            //remove cardView from main layout
         }
 
         if(isDark)

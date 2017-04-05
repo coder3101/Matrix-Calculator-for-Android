@@ -30,6 +30,7 @@ import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -62,7 +63,7 @@ public class ViewCreatedMatrix extends AppCompatActivity {
             mAdView.loadAd(adRequest);
         }else{
             CardView cd = (CardView) findViewById(R.id.AdCard);
-            cd.setVisibility(View.INVISIBLE);
+            ((ViewGroup)cd.getParent()).removeView(cd);
         }
 
 

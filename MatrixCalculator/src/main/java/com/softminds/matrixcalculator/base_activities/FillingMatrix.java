@@ -87,7 +87,7 @@ public class FillingMatrix extends AppCompatActivity {
                cardView2.setVisibility(View.VISIBLE);
        }
        else
-           cardView2.setVisibility(View.INVISIBLE);
+           ((ViewGroup)cardView2.getParent()).removeView(cardView2);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarFill);

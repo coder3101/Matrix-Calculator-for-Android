@@ -27,6 +27,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -56,7 +57,7 @@ public class MinorChooser extends AppCompatActivity {
             adView.loadAd(request);
         }else{
             CardView cardView = (CardView)findViewById(R.id.AddCardMinor);
-            cardView.setVisibility(View.INVISIBLE);
+            ((ViewGroup)cardView.getParent()).removeView(cardView);
         }
 
 

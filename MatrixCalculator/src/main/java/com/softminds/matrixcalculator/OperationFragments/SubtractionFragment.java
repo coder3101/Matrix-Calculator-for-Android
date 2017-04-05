@@ -68,7 +68,7 @@ public class SubtractionFragment extends Fragment {
         else
         {
             CardView advt = (CardView)view.findViewById(R.id.AdvertiseMentCardadd);
-            advt.setVisibility(View.INVISIBLE);
+            ((ViewGroup)advt.getParent()).removeView(advt);
         }
 
 

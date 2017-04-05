@@ -70,7 +70,7 @@ public class ShowResult extends AppCompatActivity {
        }
        else{
            CardView cd = (CardView) findViewById(R.id.AddCardResult);
-           cd.setVisibility(View.INVISIBLE);
+           ((ViewGroup)cd.getParent()).removeView(cd);
        }
 
         CardView cardView = (CardView) findViewById(R.id.DynamicCard2);
