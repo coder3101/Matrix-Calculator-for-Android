@@ -93,7 +93,7 @@ public class DeterminantFragment extends ListFragment {
                         }
                     });
                     builder.setMessage(mes);
-                    builder.setTitle("Determinant");
+                    builder.setTitle(R.string.determinant);
                     builder.setCancelable(false);
                     builder.show();
 
