@@ -29,6 +29,7 @@
     <string name="determinant">Determinant</string>
     <string name="exponent">Exponential</string>
     <string name="NewsUp">Bulletin Board</string>
+    <string name="LableReport">Report Bugs</string>
 
     <!--About Me Section-->
     <string name="app_dev">Md Ashar Khan </string>
@@ -269,5 +270,8 @@
     <string name="RateRequest">Hii, We have removed all the Advertisements and We have Enabled Pro features for Free. Does that not Worth a Five Star..??</string>
     <string name="later">Later</string>
     <string name="RateNow">Rate</string>
+    <string name="ReportMessage">If you are a github user, You can directly raise an Issue on github, or You can Personally mail the Developer about the bug you found.</string>
+    <string name="ProceedGithub">Github</string>
+    <string name="MailtoDev">E-Mail</string>
 
 </resources>

@@ -584,149 +584,51 @@ public class Matrix {
     }
 
     public int GetRank() {
-        int max = 0;
-        if (this.GetRow() == 1 || this.GetCol() == 1) { // for a single ordered matrix rank is zero if all elements are zero, else 1
-            for (int i = 0; i < this.GetRow(); i++)
-                for (int j = 0; j < this.GetCol(); j++) {
-                    if (this.Elements[i][j] != 0)
-                        return 1;
-                }
-            return 0;
-        }
 
-        if (this.is_squareMatrix()) { //if its a square matrix then two cases arises, either its determinant will be zero or not
-            if (this.GetDeterminant() != 0)
-                return this.GetCol();
-            else { //Matrix is Square but Determinant was Zero
-                int a = 0, b = 0; //index of insertion for buffer matrix
-                ArrayList<Matrix> zerominors = new ArrayList<>(); //to fill all minors of the matrix
-                Matrix matrix = new Matrix(this.GetRow() - 1);
-                int p = 0, q = 0; // indexes to leave while finding the Minors
-                for (int m = 0; m < this.GetCol(); m++) {
-                    for (int n = 0; this.GetCol() > n; n++) {
-                        for (int s = 0; s < this.GetRow(); s++) {
-                            for (int i = 0; i < this.GetCol(); i++) {
-                                if (s != p && i != q) {
-                                    matrix.SetElementof(this.GetElementof(s, i), a, b);
-                                    b++;
-                                }
-                            }
-                            a++;
-                            b=0;
+        int rank = this.GetCol();
+        for(int row=0;row<rank;row++){
+            if(this.GetElementof(row,row) != 0f){
+                for(int col=0;col<this.GetRow();col++){
+                    if(col!=row){
+                        double multiply = (double)this.GetElementof(col,row)/this.GetElementof(row,row);
+                        for(int i=0;i<rank;i++)
+                            this.Elements[col][i] -= multiply * this.GetElementof(row,i);
+                    }
+                }
+            }
+            else{
+                boolean reduce = true;
+                for(int i=row+1;i<this.GetRow();i++){
+                    {
+                        if(this.GetElementof(i,row)==0)
+                        {
+                            this.RowChanger(i,rank);
+                            reduce =false;
+                            break;
                         }
-                        a=0;
-                        b=0;
-                        if (matrix.GetDeterminant() != 0)
-                            return matrix.GetCol();
-                        else
-                            zerominors.add(matrix);
-                        q++;
                     }
-                    p++;
-                    q=0;
-                }
-                for (int i = 0; i < zerominors.size(); i++) {
-                    int rank = zerominors.get(i).GetRank();
-                    if (max < rank) //get maximum rank from all zero minors
-                        max = rank;
+                    if(reduce){
+                        rank--;
+                        for(int i2=0;i2<this.GetRow();i2++)
+                            this.SetElementof(this.GetElementof(i,rank),i,row);
+                        row--;
+                    }
+
                 }
             }
-            return max;
         }
-        else{ //Matrix is not a Square Matrix
-            ArrayList<Matrix> reduced = new ArrayList<>();
-            int min = Math.min(this.GetCol(),this.GetRow());
-            for(int i=0;i<Math.max(this.GetCol(),this.GetRow());i++) {
-                Matrix matrix=this.ReduceToSquare(i,i+min);
-                if(matrix.GetDeterminant()!=0)
-                    return matrix.GetCol();
-                else{
-                    reduced.add(matrix);
-                }
-            }
-            for(int i=0;i<reduced.size();i++)
-            {
-                int rank = reduced.get(i).GetRank();
-                if(max<rank)
-                    max = rank;
-            }
-            return max;
-        }
+        return rank;
     }
 
-    private Matrix ReduceToSquare(int from,int to) {
-        int a = 0, b = 0;
-        if(this.GetRow()>this.GetCol()) {
-            if (from < to && to<9) {
-                Matrix res = new Matrix(this.GetCol());
-                for (int i = from; i < to; i++) {
-                    for (int j = 0; j < this.GetCol(); j++) {
-                        res.SetElementof(this.GetElementof(i, j), a, b);
-                        b++;
-                    }
-                    a++;
-                    b=0;
-                }
-                return res;
-            } else {
-                Matrix res = new Matrix(this.GetCol());
-                for (int i = from; i < this.GetRow(); i++) {
-                    for (int j = 0; j < this.GetCol(); j++) {
-                        res.SetElementof(this.GetElementof(i, j), a, b);
-                        b++;
-                    }
-                    a++;
-                    b=0;
-                }
-                for (int i = 0; i < to-this.GetRow(); i++) {
-                    for (int j = 0; j < this.GetCol(); j++) {
-                        res.SetElementof(this.GetElementof(i, j), a, b);
-                        b++;
-                    }
-                    a++;
-                    b=0;
-                }
-                return res;
-            }
+    private void RowChanger(int r1,int r2){
+        for(int i=0;i<this.GetCol();i++){
+            float temp;
+            temp = this.GetElementof(r1,i);
+            this.SetElementof(this.GetElementof(r2,i),r1,i);
+            this.SetElementof(temp,r2,i);
+            //We Swapped the Two rows Row1 and row2
         }
-        else{ // if column is more
-
-            if (from < to && to<9) {
-                Matrix res = new Matrix(this.GetRow());
-                for (int i = from; i < to; i++) {
-                    for (int j = 0; j < this.GetRow(); j++) {
-                        res.SetElementof(this.GetElementof(j, i), b, a);
-                        a++;
-                    }
-                    b++;
-                    a=0;
-                }
-                return res;
-            } else {
-                Matrix res = new Matrix(this.GetRow());
-                for (int i = from; i < this.GetCol(); i++) {
-                    for (int j =0; j < this.GetRow(); j++) {
-                        res.SetElementof(this.GetElementof(j, i), b, a);
-                        a++;
-                    }
-                    b++;
-                    a=0;
-                }
-                for (int i = 0; i < to-this.GetCol(); i++) {
-                    for (int j = 0; j < this.GetRow(); j++) {
-                        res.SetElementof(this.GetElementof(j, i), b, a);
-                        a++;
-                    }
-                    b++;
-                    a=0;
-                }
-                return res;
-            }
-
-        }
-
     }
-
     @Override
     public String toString(){
         String s = "--->";
