@@ -20,11 +20,16 @@
 package com.softminds.matrixcalculator.OperationFragments;
 
 
-import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -48,9 +53,36 @@ public class RankFragment extends ListFragment {
 
         @Override
         public void handleMessage(Message msg) {
-            RankFragment  frag = weakReference.get();
-            int rank = msg.getData().getInt("CALCULATED_RANK",-1);
-            Toast.makeText(frag.getContext(),"Rank of Matrix is : "+String.valueOf(rank),Toast.LENGTH_SHORT).show();
+            final int rank = msg.getData().getInt("CALCULATED_RANK",-1);
+            final String mes = "Rank of Matrix is : "+String.valueOf(rank);
+
+            final AlertDialog.Builder builder = new AlertDialog.Builder(weakReference.get().getContext());
+            builder.setPositiveButton(R.string.copy, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    ClipboardManager clipboardManager = (ClipboardManager) weakReference.get().getActivity()
+                            .getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clipData = ClipData.newPlainText("RANK_RES",String.valueOf(rank));
+                    clipboardManager.setPrimaryClip(clipData);
+                    if(clipboardManager.hasPrimaryClip()){
+                        Toast.makeText(weakReference.get().getContext(),R.string.CopyToClip,Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Log.d("ClipData","Failed to set to Clip board");
+                    dialogInterface.dismiss();
+                }
+            });
+
+            builder.setNeutralButton(R.string.Done, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.setMessage(mes);
+            builder.setTitle(R.string.RankofMat);
+            builder.setCancelable(false);
+            builder.show();
         }
     }
 
@@ -66,16 +98,10 @@ public class RankFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage(getString(R.string.Calculating));
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
-        FindRank(position,progressDialog);
+        FindRank(position);
     }
 
-    private void FindRank(final int pos,final ProgressDialog progressDialog){
+    private void FindRank(final int pos){
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -85,10 +111,7 @@ public class RankFragment extends ListFragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("CALCULATED_RANK",rank);
                 message.setData(bundle);
-                if(progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                    handler.sendMessage(message);
-                }
+                handler.sendMessage(message);
             }
         };
         Thread thread = new Thread(runnable);
