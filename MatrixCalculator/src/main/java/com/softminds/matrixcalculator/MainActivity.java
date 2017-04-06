@@ -642,6 +642,31 @@ public class MainActivity extends AppCompatActivity
                }
                fab.hide();
                break;
+           case R.id.nav_report:
+               AlertDialog.Builder builder = new AlertDialog.Builder(this);
+               builder.setTitle(R.string.LableReport);
+               builder.setMessage(R.string.ReportMessage);
+               builder.setPositiveButton(R.string.ProceedGithub, new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialogInterface, int i) {
+                       dialogInterface.dismiss();
+                        final String url = "https://www.github.com/coder3101/matrix-calculator-for-android/issues";
+                       Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
+                       startActivity(Intent.createChooser(intent,getString(R.string.OpenUsing)));
+                   }
+               });
+               builder.setNeutralButton(R.string.MailtoDev, new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialogInterface, int i) {
+                       dialogInterface.dismiss();
+                       Intent intent = new Intent(Intent.ACTION_SENDTO ,Uri.fromParts("mailto","ashar786khan@gmail.com",null));
+                       intent.putExtra(Intent.EXTRA_SUBJECT,"Report for Matrix Calculator - Issues");
+                       startActivity(intent);
+                   }
+               });
+               builder.setCancelable(true);
+               builder.show();
+               break;
            case R.id.nav_help:
                startActivity(new Intent(getApplicationContext(),faqs.class));
                break;

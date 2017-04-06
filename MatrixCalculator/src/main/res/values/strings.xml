@@ -273,5 +273,6 @@
     <string name="ReportMessage">If you are a github user, You can directly raise an Issue on github, or You can Personally mail the Developer about the bug you found.</string>
     <string name="ProceedGithub">Github</string>
     <string name="MailtoDev">E-Mail</string>
+    <string name="OpenUsing">Open Using</string>
 
 </resources>
