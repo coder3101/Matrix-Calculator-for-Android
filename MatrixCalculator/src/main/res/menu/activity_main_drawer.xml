@@ -8,60 +8,60 @@
             android:icon="@drawable/home"/>
         <item
             android:id="@+id/add_sub"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/addsub" />
         <item
             android:id="@+id/only_sub"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/onlysub" />
         <item
             android:id="@+id/multiply"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/multiply" />
         <item
             android:id="@+id/ScalerMulti"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/ScalerMult" />
         <item
             android:id="@+id/Swap"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/swap" />
         <item
             android:id="@+id/Clone"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/clone" />
         <item
             android:id="@+id/Transpose"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/transpose" />
         <item
             android:id="@+id/exponent"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/exponent" />
         <item
             android:id="@+id/determinant"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/determinant" />
         <item
             android:id="@+id/MinorsofMat"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/Minor"/>
         <item
             android:id="@+id/inverse"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/inverse" />
         <item
             android:id="@+id/adjoint"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/adjoint" />
 
         <item
             android:id="@+id/RankofMat1"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/RankofMat"/>
         <item
             android:id="@+id/functional"
-            android:icon="@drawable/arrow_icon"
+            android:icon="@drawable/ic_action_send_now"
             android:title="@string/function" />
     </group>
     <group android:id="@+id/helpcat">
@@ -69,14 +69,18 @@
             android:id="@+id/NewsAnnon"
             android:icon="@drawable/ic_action_event"
             android:title="@string/NewsUp"/>
+        <item
+            android:title="@string/LableReport"
+            android:id="@+id/nav_report"
+            android:icon="@drawable/ic_action_warning"/>
     <item
         android:title="@string/LabelHelp"
         android:id="@+id/nav_help"
-        android:icon="@drawable/thumbsup"/>
+        android:icon="@drawable/ic_action_good"/>
     <item
         android:title="@string/upgrade"
         android:id="@+id/upgrade"
-        android:icon="@drawable/ratingheart"/>
+        android:icon="@drawable/ic_action_favorite"/>
     </group>
 
 </menu>
