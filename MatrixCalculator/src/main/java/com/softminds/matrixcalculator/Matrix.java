@@ -582,53 +582,137 @@ public class Matrix {
         re.ScalarMultiply(ig);
         return re;
     }
+    public int GetRank() throws IllegalStateException{
 
-    public int GetRank() {
+        /*
+        Know Issues :
+        1. Array Index Out of Bound Exceptions by ZeroCount
+        2. Crash on Higher Square Matrix AIOB Exception
+        3. Crash on Non Square Matrix Ranks
+         */
+        int rank,i,retest=1,grp,p,r,j;
+        int ZeroList[] = new int[9];
+        Matrix buffer = new Matrix(this.GetRow(),this.GetCol(),this.GetType());
+        buffer.Elements = this.Elements.clone();
+        buffer.Rank_UpdateInitZeros(ZeroList);
+        buffer.Rank_ArrangeMatrix(ZeroList);
+        if(buffer.Elements[0][0]==0)
+            throw new IllegalStateException("Rank Error");
+        buffer.Rank_UpdateInitZeros(ZeroList);
+        buffer.Rank_ScaleMatrix(ZeroList);
+        while (retest == 1){
+            grp=0;
+            for(i=0;i<buffer.GetRow();++i)
+            {
 
-        int rank = this.GetCol();
-        for(int row=0;row<rank;row++){
-            if(this.GetElementof(row,row) != 0f){
-                for(int col=0;col<this.GetRow();col++){
-                    if(col!=row){
-                        double multiply = (double)this.GetElementof(col,row)/this.GetElementof(row,row);
-                        for(int i=0;i<rank;i++)
-                            this.Elements[col][i] -= multiply * this.GetElementof(row,i);
-                    }
+                p=0;
+                while(ZeroList[i+p]==ZeroList[i+p+1]&&(i+p+1)<buffer.GetRow())
+                {
+
+                    grp=grp+1;
+                    p=p+1;
                 }
-            }
-            else{
-                boolean reduce = true;
-                for(int i=row+1;i<this.GetRow();i++){
+
+                if(grp!=0)
+                {
+                    while(grp!=0)
                     {
-                        if(this.GetElementof(i,row)==0)
+                        for(j=0;j<this.GetCol();++j)
                         {
-                            this.RowChanger(i,rank);
-                            reduce =false;
-                            break;
+                            buffer.Elements[i+grp][j]=buffer.Elements[i+grp][j]-buffer.Elements[i][j];
                         }
+                        grp=grp-1;
                     }
-                    if(reduce){
-                        rank--;
-                        for(int i2=0;i2<this.GetRow();i2++)
-                            this.SetElementof(this.GetElementof(i,rank),i,row);
-                        row--;
-                    }
-
+                    break;
                 }
             }
+            buffer.Rank_UpdateInitZeros(ZeroList);
+            buffer.Rank_ArrangeMatrix(ZeroList);
+            buffer.Rank_UpdateInitZeros(ZeroList);
+            buffer.Rank_ScaleMatrix(ZeroList);
+            retest=0;
+            for(r=0;r<this.GetRow();++r)
+            {
+                if(ZeroList[r]==ZeroList[r+1]&&r+1<this.GetRow())
+                {
+                    if(ZeroList[r]!=this.GetCol())
+                        retest=1;
+                }
+            }
+
         }
-        return rank;
+        //currently buffer is row-echolean form of this Matrix
+        Log.d("Echolean : ",buffer.toString());
+        rank =0;
+        for (i=0;i<this.GetRow();++i)
+        {
+            if (ZeroList[i]!=this.GetCol())
+            {
+                ++rank;
+            }
+        }
+
+    return rank;
     }
 
-    private void RowChanger(int r1,int r2){
-        for(int i=0;i<this.GetCol();i++){
-            float temp;
-            temp = this.GetElementof(r1,i);
-            this.SetElementof(this.GetElementof(r2,i),r1,i);
-            this.SetElementof(temp,r2,i);
-            //We Swapped the Two rows Row1 and row2
+    //Rank Specific methods
+
+    private void Rank_ArrangeMatrix(int initZeros[]){
+        int l,reqrow=0,i,k,lastrow,tempvar,large;
+        double rowtemp[] = new double[9];
+        lastrow = this.GetRow()-1;
+        for(l=0;l<this.GetRow();++l) {
+            large = initZeros[0];
+            for (i = 0; i < this.GetRow(); ++i) {
+                if (large <= initZeros[i]) {
+                    large = initZeros[i];
+                    reqrow = i;
+                }
+            }
+            initZeros[reqrow] = -1;
+            tempvar = initZeros[reqrow];
+            initZeros[reqrow] = initZeros[lastrow];
+            initZeros[lastrow] = tempvar;
+
+            for (k = 0; k < this.GetCol(); ++k) {
+                rowtemp[k] = this.Elements[lastrow][k];
+            }
+            for (k = 0; k < this.GetCol(); ++k) {
+                this.Elements[lastrow][k] = this.Elements[reqrow][k];
+            }
+            for (k = 0; k < this.GetCol(); ++k) {
+                this.Elements[reqrow][k] = ((float) rowtemp[k]);
+            }
+            lastrow--;
+        }
+
+    }
+
+    private void Rank_UpdateInitZeros(int initZeros[]){
+        int zerocount,i,j;
+        for(i=0;i<this.GetRow();i++){
+            zerocount=0;
+            for(j=0;(this.Elements[i][j]==0) && j<this.GetCol(); j++)
+                    zerocount++;
+            initZeros[i]=zerocount;
         }
     }
+
+    private void Rank_ScaleMatrix(int initZero[])
+    {
+        int i,j;
+        double divisor;
+        for(i=0;i<this.GetRow();i++){
+            divisor = this.Elements[i][initZero[i]];
+            for(j=initZero[i];j<this.GetCol();j++){
+                this.Elements[i][j] /= divisor;
+            }
+        }
+    }
+
+
+
+    //Overrided Methods
     @Override
     public String toString(){
         String s = "--->";
