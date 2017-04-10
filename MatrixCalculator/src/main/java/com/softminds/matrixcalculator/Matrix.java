@@ -460,8 +460,19 @@ public class Matrix {
         AllInfo.putInt("COL",this.GetCol());
         AllInfo.putString("NAME",name);
         AllInfo.putSerializable("TYPE",this.GetType());
-        AllInfo.putSerializable("VALUES",this.Elements);
+        //AllInfo.putSerializable("VALUES",this.Elements);
+        AllInfo.putFloatArray("VALUES",Compress(this.Elements,this.GetRow(),this.GetCol()));
         return AllInfo;
+    }
+
+    public float[] Compress(float[][] elements,int row, int col) {
+        float resultant[] = new float[row*col];
+        int a=0;
+        for(int i=0;i<row;i++) {
+            for (int j = 0; j < col; j++)
+                resultant[a++] = elements[i][j];
+        }
+        return resultant;
     }
 
     public void SetFromBundle(Bundle bundle) throws ClassCastException {
@@ -469,7 +480,18 @@ public class Matrix {
         this.SetRow(bundle.getInt("ROW"));
         this.SetCol(bundle.getInt("COL"));
         this.SetType((Type) bundle.getSerializable("TYPE"));
-        this.Elements=(float[][]) bundle.getSerializable("VALUES");
+        //this.Elements=(float[][]) bundle.getSerializable("VALUES");
+        this.Elements=Expand(bundle.getInt("ROW"),bundle.getInt("COL"),bundle.getFloatArray("VALUES"));
+    }
+
+    public float[][] Expand(int row, int col, float[] values) {
+        float Values[][] =  new float[9][9];
+        int a=0;
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++)
+                Values[i][j] = values[a++];
+        }
+        return Values;
     }
 
     public int GetDrawable(Type t) {
@@ -708,6 +730,19 @@ public class Matrix {
                 this.Elements[i][j] /= divisor;
             }
         }
+    }
+
+
+    public Matrix GetEcholean() throws IllegalStateException {
+        Matrix matrix = new Matrix(this.GetRow(),this.GetCol(),this.GetType());
+        if(this.Elements[0][0]==0)
+            throw new IllegalStateException("Element 1,1 is Zero");
+        else {
+            /*
+            Here will the the Algorithm to get Echolean of a Matrix
+             */
+        }
+        return matrix;
     }
 
 
