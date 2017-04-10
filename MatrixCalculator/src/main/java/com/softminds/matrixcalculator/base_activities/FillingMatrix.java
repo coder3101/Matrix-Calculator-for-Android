@@ -47,6 +47,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.Type;
 import com.softminds.matrixcalculator.dialog_activity.CustomValueFiller;
 import com.softminds.matrixcalculator.R;
@@ -287,7 +288,8 @@ public class FillingMatrix extends AppCompatActivity {
                     float variable[][]=GetIntoFloat();
                     Bundle bundle=new Bundle();
                     bundle.putAll(getIntent().getExtras());
-                    bundle.putSerializable("VALUES",variable);
+                    //bundle.putSerializable("VALUES",variable);
+                    bundle.putFloatArray("VALUES",new Matrix().Compress(variable,getIntent().getIntExtra("ROW",-1),getIntent().getIntExtra("COL",-1)));
                     Intent intnt=new Intent();
                     intnt.putExtras(bundle);
                     setResult(0,intnt);
@@ -377,7 +379,8 @@ public class FillingMatrix extends AppCompatActivity {
                 float variable[][]=GetIntoFloat();
                 Bundle bundle=new Bundle();
                 bundle.putAll(getIntent().getExtras());
-                bundle.putSerializable("VALUES",variable);
+                //bundle.putSerializable("VALUES",variable);
+                bundle.putFloatArray("VALUES",new Matrix().Compress(variable,getIntent().getIntExtra("ROW",-1),getIntent().getIntExtra("COL",-1)));
                 Intent intnt=new Intent();
                 intnt.putExtras(bundle);
                 setResult(0,intnt);
@@ -405,7 +408,8 @@ public class FillingMatrix extends AppCompatActivity {
                 float vari[][]=GetIntoFloat();
                 Bundle bundle2=new Bundle();
                 bundle2.putAll(getIntent().getExtras());
-                bundle2.putSerializable("VALUES",vari);
+                //bundle2.putSerializable("VALUES",vari);
+                bundle2.putFloatArray("VALUES",new Matrix().Compress(vari,getIntent().getIntExtra("ROW",-1),getIntent().getIntExtra("COL",-1)));
                 Intent intn=new Intent();
                 intn.putExtras(bundle2);
                 setResult(0,intn);
