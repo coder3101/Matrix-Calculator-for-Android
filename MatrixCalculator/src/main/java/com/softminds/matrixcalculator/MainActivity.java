@@ -705,16 +705,6 @@ public class MainActivity extends AppCompatActivity
                     actionBar.setSubtitle(R.string.MainSubtitle);
                 t.setText(null);
                     Toast.makeText(getApplicationContext(), R.string.Created, Toast.LENGTH_SHORT).show();
-                }catch (ClassCastException e){
-
-                    if(Build.VERSION.SDK_INT < 19){
-                        Toast.makeText(getApplicationContext(),"This Application only runs on Android 4.4.4 +",Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        FirebaseCrash.log("Crash on a Supported Device");
-                        FirebaseCrash.report(e);
-                        Toast.makeText(getApplication(),"Bug has been reported to Developer",Toast.LENGTH_SHORT).show();
-                    }
                 }  catch (NullPointerException e2){
                     e2.printStackTrace();
                     Log.d("NullException:","The Adapter was Null Forcing user to Refresh");

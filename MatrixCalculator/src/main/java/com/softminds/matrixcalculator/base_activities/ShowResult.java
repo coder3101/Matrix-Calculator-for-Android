@@ -88,7 +88,8 @@ public class ShowResult extends AppCompatActivity {
         GridLayout gridLayout = new GridLayout(getApplicationContext());
         gridLayout.setRowCount(getIntent().getExtras().getInt("ROW",0));
         gridLayout.setColumnCount(getIntent().getExtras().getInt("COL",0));
-        float var[][] = (float[][]) getIntent().getExtras().getSerializable("VALUES");
+        //float var[][] = (float[][]) getIntent().getExtras().getSerializable("VALUES");
+        float var [][] = new Matrix().Expand(getIntent().getExtras().getInt("ROW",0),getIntent().getIntExtra("COL",0),getIntent().getFloatArrayExtra("VALUES"));
         for(int i=0;i<getIntent().getExtras().getInt("ROW",0);i++)
         {
             for(int j=0;j<getIntent().getExtras().getInt("COL",0);j++)
@@ -134,11 +135,13 @@ public class ShowResult extends AppCompatActivity {
             case R.id.SaveResult :
 
                 if(((GlobalValues)getApplication()).CanCreateVariable()) {
-                    if (AnyExponents(((float[][]) getIntent().getExtras().getSerializable("VALUES")),
+                    if (AnyExponents(((/*float[][]) getIntent().getExtras().getSerializable("VALUES"))*/
+                            new Matrix().Expand(getIntent().getExtras().getInt("ROW",0),getIntent().getIntExtra("COL",0),getIntent().getFloatArrayExtra("VALUES")))),
                             (getIntent().getExtras().getInt("ROW", 0)), (getIntent().getExtras().getInt("COL", 0))) ||
                             !((TextView)findViewById(R.id.TextContainer)).getText().toString().isEmpty()){
 
-                        if (AnyExponents(((float[][]) getIntent().getExtras().getSerializable("VALUES")),
+                        if (AnyExponents(((/*float[][]) getIntent().getExtras().getSerializable("VALUES"))*/
+                        new Matrix().Expand(getIntent().getExtras().getInt("ROW",0),getIntent().getIntExtra("COL",0),getIntent().getFloatArrayExtra("VALUES")))),
                                 (getIntent().getExtras().getInt("ROW", 0)), (getIntent().getExtras().getInt("COL", 0))))
                             Toast.makeText(getApplicationContext(), R.string.CannotSave, Toast.LENGTH_SHORT).show();
 
