@@ -26,6 +26,7 @@ import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.softminds.matrixcalculator.BuildConfig;
 import com.softminds.matrixcalculator.Function;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
@@ -122,6 +123,11 @@ public class GlobalValues extends Application {
 
 
     public void SetDonationKeyStatus() {
+
+        if(BuildConfig.DEBUG){
+            Status = true;
+            //if debug mode, avoid the advertisements and use pro features
+        }
         try {
             PackageManager packageManager = getPackageManager();
             packageManager.getPackageInfo("com.softminds.matrixcalculator.pro.key", 0);
