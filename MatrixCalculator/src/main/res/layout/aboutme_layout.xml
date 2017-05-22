@@ -12,10 +12,10 @@
         android:layout_height="200dp"
         android:layout_width="265dp"
         android:layout_centerHorizontal="true"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="2dp"
         android:id="@+id/CardView1"
         android:layout_marginTop="60dp"
-        app:cardElevation="5dp"
+        app:cardElevation="2dp"
         android:animateLayoutChanges="true"
         app:cardBackgroundColor="@color/cardColor">
         <RelativeLayout
@@ -100,20 +100,20 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/TextViewCard3"
             android:layout_marginTop="10dp"
-            android:id="@+id/TextViewCard4"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:text="@string/Maintainer"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/TextViewCard4"
-            android:layout_marginTop="10dp"
             android:id="@+id/Mymessage"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
             />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/TextViewCard3"
+            android:layout_marginTop="50dp"
+            android:onClick="showSources"
+            android:text="@string/show_source"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"/>
 
     </RelativeLayout>
 </RelativeLayout>

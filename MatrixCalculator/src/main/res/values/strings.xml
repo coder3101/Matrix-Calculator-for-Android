@@ -35,8 +35,8 @@
     <string name="app_dev">Md Ashar Khan </string>
     <string name="about_app">Design and Developed by Ashar</string>
     <string name="reserve">Some Rights Reserved </string>
-    <string name="certificate">This is an OpenSource Project.</string>
-    <string name="Maintainer">Maintainer : Ashar (coder3101) </string>
+    <string name="certificate">This is an OpenSource Project, under GPL GNU v3.0</string>
+    <string name="show_source">Click here to View Sources</string>
     <string name="Chooser">Select the Fastest Browser</string>
     <string name="Logo">Logo of the App</string>
 

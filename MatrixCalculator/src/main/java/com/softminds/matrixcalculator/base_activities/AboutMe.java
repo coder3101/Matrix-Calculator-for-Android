@@ -20,10 +20,13 @@
 
 package com.softminds.matrixcalculator.base_activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.softminds.matrixcalculator.BuildConfig;
@@ -54,4 +57,11 @@ public class AboutMe extends AppCompatActivity {
         }
 
             }
+
+    public void showSources(View view) {
+
+        Intent sources = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/coder3101/Matrix-Calculator-for-Android"));
+        startActivity(Intent.createChooser(sources,"View Sources using"));
+
+    }
 }
