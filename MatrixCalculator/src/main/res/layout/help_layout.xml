@@ -66,6 +66,7 @@
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
             android:id="@+id/Q1"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="@string/Ques1"
             />
         <TextView
@@ -74,6 +75,7 @@
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
             android:layout_marginTop="5dp"
+            android:fontFamily="cursive"
             android:text="@string/Answer1"
             />
         </LinearLayout>
@@ -99,6 +101,7 @@
                 android:paddingStart="3dp"
                 android:paddingEnd="3dp"
                 android:id="@+id/Q2"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/Ques2"
                 />
             <TextView
@@ -107,6 +110,7 @@
                 android:paddingStart="3dp"
                 android:paddingEnd="3dp"
                 android:layout_marginTop="5dp"
+                android:fontFamily="cursive"
                 android:text="@string/Answer2"
                 />
         </LinearLayout>
@@ -131,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/Q3"
                 android:paddingStart="3dp"
+                android:fontFamily="sans-serif-smallcaps"
                 android:paddingEnd="3dp"
                 android:text="@string/Ques3"
                 />
@@ -139,6 +144,7 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="3dp"
                 android:paddingEnd="3dp"
+                android:fontFamily="cursive"
                 android:layout_marginTop="5dp"
                 android:text="@string/Answer3"
                 />
@@ -164,6 +170,7 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="3dp"
                 android:paddingEnd="3dp"
+                android:fontFamily="sans-serif-smallcaps"
                 android:id="@+id/Q5"
                 android:text="@string/Ques5"
                 />
@@ -173,6 +180,7 @@
                 android:layout_marginTop="5dp"
                 android:paddingStart="3dp"
                 android:paddingEnd="3dp"
+                android:fontFamily="cursive"
                 android:text="@string/Answer5"
                 />
         </LinearLayout>
@@ -198,6 +206,7 @@
                     android:paddingStart="3dp"
                     android:paddingEnd="3dp"
                     android:id="@+id/Q8"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/Ques8"
                     />
                 <TextView
@@ -206,6 +215,7 @@
                     android:paddingStart="3dp"
                     android:paddingEnd="3dp"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="cursive"
                     android:text="@string/Answer8"
                     />
             </LinearLayout>
@@ -231,6 +241,7 @@
                     android:paddingStart="3dp"
                     android:paddingEnd="3dp"
                     android:id="@+id/Q9"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/Ques9"
                     />
                 <TextView
@@ -239,6 +250,7 @@
                     android:paddingStart="3dp"
                     android:paddingEnd="3dp"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="cursive"
                     android:text="@string/Answer9"
                     />
             </LinearLayout>
@@ -264,6 +276,7 @@
                     android:paddingStart="3dp"
                     android:paddingEnd="3dp"
                     android:id="@+id/Q10"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/Ques10"
                     />
                 <TextView
@@ -271,6 +284,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="3dp"
                     android:paddingEnd="3dp"
+                    android:fontFamily="cursive"
                     android:layout_marginTop="5dp"
                     android:text="@string/Answer10"
                     />
