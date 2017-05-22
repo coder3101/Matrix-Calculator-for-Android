@@ -79,10 +79,7 @@ public class faqs extends AppCompatActivity {
         CardView cardView1 = (CardView) findViewById(R.id.QA1);
         CardView cardView2 = (CardView) findViewById(R.id.QA2);
         CardView cardView3 = (CardView) findViewById(R.id.QA3);
-        CardView cardView4 = (CardView) findViewById(R.id.QA4);
         CardView cardView5 = (CardView) findViewById(R.id.QA5);
-        CardView cardView6 = (CardView) findViewById(R.id.QA6);
-        CardView cardView7 = (CardView) findViewById(R.id.QA7);
         CardView cardView8 = (CardView) findViewById(R.id.QA8);
         CardView cardView9 = (CardView) findViewById(R.id.QA9);
         CardView cardView10 = (CardView) findViewById(R.id.QA10);
@@ -90,10 +87,7 @@ public class faqs extends AppCompatActivity {
         cardView1.setCardBackgroundColor(id);
         cardView2.setCardBackgroundColor(id);
         cardView3.setCardBackgroundColor(id);
-        cardView4.setCardBackgroundColor(id);
         cardView5.setCardBackgroundColor(id);
-        cardView6.setCardBackgroundColor(id);
-        cardView7.setCardBackgroundColor(id);
         cardView8.setCardBackgroundColor(id);
         cardView9.setCardBackgroundColor(id);
         cardView10.setCardBackgroundColor(id);
@@ -104,10 +98,7 @@ public class faqs extends AppCompatActivity {
         TextView textView1 = (TextView) findViewById(R.id.Q1);
         TextView textView2 = (TextView) findViewById(R.id.Q2);
         TextView textView3 = (TextView) findViewById(R.id.Q3);
-        TextView textView4 = (TextView) findViewById(R.id.Q4);
         TextView textView5 = (TextView) findViewById(R.id.Q5);
-        TextView textView6 = (TextView) findViewById(R.id.Q6);
-        TextView textView7 = (TextView) findViewById(R.id.Q7);
         TextView textView8 = (TextView) findViewById(R.id.Q8);
         TextView textView9 = (TextView) findViewById(R.id.Q9);
         TextView textView10 = (TextView) findViewById(R.id.Q10);
@@ -115,10 +106,7 @@ public class faqs extends AppCompatActivity {
         textView1.setTextColor(id);
         textView2.setTextColor(id);
         textView3.setTextColor(id);
-        textView4.setTextColor(id);
         textView5.setTextColor(id);
-        textView6.setTextColor(id);
-        textView7.setTextColor(id);
         textView8.setTextColor(id);
         textView9.setTextColor(id);
         textView10.setTextColor(id);
