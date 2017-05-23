@@ -139,6 +139,7 @@ public class ChangeLogActivity extends AppCompatActivity {
             changes.setGravity(Gravity.CENTER);
             changes.setPadding(ConvertTopx(5),ConvertTopx(5),ConvertTopx(5),ConvertTopx(5));
             changes.setText(Changes(key));
+            changes.setTypeface(Typeface.MONOSPACE);
             if(firebaseRemoteConfig.getBoolean("mark_red")&& key==0)
                 changes.setTextColor(Color.RED);
             card.addView(changes);

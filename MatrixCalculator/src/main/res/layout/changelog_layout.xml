@@ -12,15 +12,6 @@
         android:paddingBottom="5dp"
         android:paddingEnd="5dp"
         android:id="@+id/changelog_container">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:textStyle="bold"
-        android:textAllCaps="true"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:text="@string/RedInfo"/>
     </LinearLayout>
 
 </ScrollView>
