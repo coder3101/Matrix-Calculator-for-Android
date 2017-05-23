@@ -29,6 +29,7 @@
         android:id="@+id/ConfirmSetFillScalar"
         android:layout_below="@id/Mat5"
         android:layout_marginTop="8dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="35dp"
         android:text="@string/ConfirmMake"/>
@@ -38,6 +39,7 @@
         android:id="@+id/CancelSetFillScalar"
         android:layout_below="@id/Mat5"
         android:layout_marginTop="8dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
         android:layout_alignParentStart="true"
         android:layout_marginEnd="15dp"
         android:text="@string/CancelCustomFill"

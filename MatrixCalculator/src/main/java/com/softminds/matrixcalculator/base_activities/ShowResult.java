@@ -301,11 +301,28 @@ public class ShowResult extends AppCompatActivity {
             }
         return  false;
     }
-    private String GetText(float res){
-        if(!PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE",true)){
+    private String GetText(float res) {
+
+        if (!PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE", true)) {
             DecimalFormat decimalFormat = new DecimalFormat("###############");
             return decimalFormat.format(res);
+        } else
+        {
+            switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(this).getString("ROUNDIND_INFO","0"))) {
+                case 0:
+                    return String.valueOf(res);
+                case 1:
+                    DecimalFormat single = new DecimalFormat("########.#");
+                    return single.format(res);
+                case 2:
+                    DecimalFormat Double = new DecimalFormat("########.##");
+                    return Double.format(res);
+                case 3:
+                    DecimalFormat triple = new DecimalFormat("########.###");
+                    return triple.format(res);
+                default:
+                    return String.valueOf(res);
+            }
         }
-        else return String.valueOf(res);
     }
 }

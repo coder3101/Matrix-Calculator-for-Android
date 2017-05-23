@@ -82,6 +82,7 @@
         android:id="@+id/NoCommitChanges"
         android:text="@string/CancelCustomFill"
         android:layout_below="@id/WarningText"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
         android:layout_marginStart="20dp"
         />
     <Button
@@ -89,6 +90,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/CommitChanges"
         android:text="@string/ConfirmMake"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
         android:layout_below="@id/WarningText"
         android:layout_toEndOf="@id/NoCommitChanges"
         android:layout_marginStart="40dp"

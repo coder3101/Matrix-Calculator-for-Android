@@ -28,6 +28,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,22 +61,12 @@ public class CustomValueFiller extends AppCompatActivity {
         if(isDark)
             editText.setTextColor(ContextCompat.getColor(this,R.color.white));
 
-        TextView button = (TextView) findViewById(R.id.ConfirmCustomFill);
-        TextView exit = (TextView) findViewById(R.id.CancelCustomFill);
+        Button button = (Button) findViewById(R.id.ConfirmCustomFill);
+        Button exit = (Button) findViewById(R.id.CancelCustomFill);
         button.setAllCaps(true);
         exit.setAllCaps(true);
         button.setHeight(50);
         exit.setHeight(50);
-        if(isDark)
-        {
-            button.setTextColor(ContextCompat.getColor(this,R.color.DarkcolorAccent));
-            exit.setTextColor(ContextCompat.getColor(this,R.color.DarkcolorAccent));
-        }
-        else
-        {
-            button.setTextColor(ContextCompat.getColor(this,R.color.colorAccent));
-            exit.setTextColor(ContextCompat.getColor(this,R.color.colorAccent));
-        }
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

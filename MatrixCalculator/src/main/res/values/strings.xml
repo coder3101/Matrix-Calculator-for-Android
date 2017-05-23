@@ -69,8 +69,8 @@
     <string name="RestoreDefault">Restore</string>
     <string name="RestoreInfo">Restore All Settings to Default</string>
     <string name="title2">Calculations</string>
-    <string name="EnableRounding">Result Rounding (Development)</string>
-    <string name="EnableRoundingPro">Result Rounding (Development)</string>
+    <string name="EnableRounding">Result Rounding (Pro)</string>
+    <string name="EnableRoundingPro">Result Rounding</string>
     <string name="EnableRoundingDesc">The  Calculated Result will be Rounded off this much Decimals</string>
     <string name="NoFraction">Fractional Inverse</string>
     <string name="NoFractionDesc">Set the type of Inverse to Show as Result, if enabled Result will be Absolute Matrix with Fractional Coefficient</string>
@@ -274,5 +274,6 @@
     <string name="ProceedGithub">Github</string>
     <string name="MailtoDev">E-Mail</string>
     <string name="OpenUsing">Open Using</string>
+    <string name="EnableDecimals">Enable Decimals and Exponents</string>
 
 </resources>

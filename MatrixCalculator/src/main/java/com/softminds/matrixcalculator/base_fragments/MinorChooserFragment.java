@@ -297,13 +297,29 @@ public class MinorChooserFragment extends Fragment {
             return 6;
     }
     private String GetText(float res) {
-        if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
-            DecimalFormat decimalFormat = new DecimalFormat("###############");
-            return decimalFormat.format(res);
-        } else {
-            return String.valueOf(res);
-        }
-    }
 
+            if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
+                DecimalFormat decimalFormat = new DecimalFormat("###############");
+                return decimalFormat.format(res);
+            } else
+            {
+                switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ROUNDIND_INFO","0"))) {
+                    case 0:
+                        return String.valueOf(res);
+                    case 1:
+                        DecimalFormat single = new DecimalFormat("########.#");
+                        return single.format(res);
+                    case 2:
+                        DecimalFormat Double = new DecimalFormat("########.##");
+                        return Double.format(res);
+                    case 3:
+                        DecimalFormat triple = new DecimalFormat("########.###");
+                        return triple.format(res);
+                    default:
+                        return String.valueOf(res);
+                }
+            }
+        }
 
 }
+

@@ -47,6 +47,7 @@
             android:title="@string/EnableRounding"
             android:key="@string/RoundID"
             android:enabled="false"
+            android:dependency="@string/DecimalUSeID"
             android:summary="@string/EnableRoundingDesc"
             android:entries="@array/Roundto"
             android:entryValues="@array/RounderReturner"

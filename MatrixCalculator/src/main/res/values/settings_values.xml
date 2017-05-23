@@ -38,10 +38,10 @@
     <item>15</item>
     </string-array>
     <array name="Roundto">
-        <item>No Decimal</item>
+        <item>No Rounding</item>
         <item>Single Decimal</item>
         <item>Two Decimals</item>
-        <item>Three Decimmals</item>
+        <item>Three Decimals</item>
     </array>
     <string-array name="RounderReturner">
     <item>0</item>

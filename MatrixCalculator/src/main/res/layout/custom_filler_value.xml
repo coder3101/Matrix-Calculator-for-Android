@@ -22,22 +22,22 @@
     android:hint="@string/ValueHint"
     />
     </android.support.design.widget.TextInputLayout>
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ConfirmCustomFill"
-        android:textStyle="bold"
         android:layout_below="@id/Mat2"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
         android:layout_marginTop="8dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="35dp"
         android:text="@string/ConfirmMake"/>
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/CancelCustomFill"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
         android:layout_below="@id/Mat2"
-        android:textStyle="bold"
         android:layout_marginTop="8dp"
         android:layout_alignParentStart="true"
         android:layout_marginEnd="15dp"
