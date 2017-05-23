@@ -59,9 +59,9 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
         String c="Column : "+String.valueOf(m.GetCol());
         if(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DARK_THEME_KEY",false))
         {
-            Row.setTextColor(Color.parseColor("#ffffff"));
-            Col.setTextColor(Color.parseColor("#ffffff"));
-            Naam.setTextColor(Color.parseColor("#ffffff"));
+            Row.setTextColor(Color.WHITE);
+            Col.setTextColor(Color.WHITE);
+            Naam.setTextColor(Color.WHITE);
         }
         Row.setText(r);
         Col.setText(c);

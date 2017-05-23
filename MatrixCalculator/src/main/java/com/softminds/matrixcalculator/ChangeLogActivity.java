@@ -59,6 +59,7 @@ public class ChangeLogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         pr = new ProgressDialog(this);
+        pr.setCancelable(false);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
         if(isDark)
@@ -137,10 +138,9 @@ public class ChangeLogActivity extends AppCompatActivity {
             TextView changes = new TextView(this);
             changes.setGravity(Gravity.CENTER);
             changes.setPadding(ConvertTopx(5),ConvertTopx(5),ConvertTopx(5),ConvertTopx(5));
-            changes.setTypeface(Typeface.DEFAULT_BOLD);
             changes.setText(Changes(key));
             if(firebaseRemoteConfig.getBoolean("mark_red")&& key==0)
-                changes.setTextColor(Color.parseColor("#FF0000"));
+                changes.setTextColor(Color.RED);
             card.addView(changes);
             layout.addView(card);
         }
