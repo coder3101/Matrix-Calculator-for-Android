@@ -74,7 +74,7 @@ public class ViewMatrixFragment extends Fragment {
             {
                 TextView textView = new TextView(getContext());
                 textView.setGravity(Gravity.CENTER);
-                textView.setText(SafeSubString( GetText(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetElementof(i,j)),getLenght()));
+                textView.setText(SafeSubString( GetText(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetElementof(i,j)), getLength()));
                 textView.setWidth(CalculatedWidth(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetCol()));
                 textView.setTextSize(SizeReturner(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetRow(),((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetCol(),
                         PreferenceManager.getDefaultSharedPreferences(getContext()).
@@ -234,7 +234,7 @@ public class ViewMatrixFragment extends Fragment {
         }
         return s;
     }
-    public int getLenght()
+    public int getLength()
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         boolean v=preferences.getBoolean("EXTRA_SMALL_FONT",false);
