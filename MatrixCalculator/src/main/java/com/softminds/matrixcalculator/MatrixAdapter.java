@@ -23,6 +23,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +55,10 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
         TextView Col= ((TextView) convertView.findViewById(R.id.MatrixTitleCol));
         TextView Naam= ((TextView) convertView.findViewById(R.id.MatrixTitle));
         ImageView icon = ((ImageView)convertView.findViewById(R.id.ImageForMatrix));
+        CardView cardView = ((CardView)convertView.findViewById(R.id.Matrix_holder));
+        View sparator = convertView.findViewById(R.id.separator);
+        View sparator2 = convertView.findViewById(R.id.separator2);
+
         //Set Values
         @SuppressWarnings({"ConstantConditions"})
         String r="Row : "+String.valueOf(m.GetRow());
@@ -62,6 +68,10 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
             Row.setTextColor(Color.WHITE);
             Col.setTextColor(Color.WHITE);
             Naam.setTextColor(Color.WHITE);
+            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(),R.color.DarkcolorPrimary));
+            sparator.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.white));
+            sparator2.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.white));
+
         }
         Row.setText(r);
         Col.setText(c);

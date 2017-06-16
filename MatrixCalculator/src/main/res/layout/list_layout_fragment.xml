@@ -1,39 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingStart="20dp"
-    android:paddingEnd="20dp"
-    android:paddingTop="20dp">
+    android:layout_height="wrap_content"
+    android:paddingStart="3dp"
+    android:paddingEnd="3dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/Matrix_holder"
+        android:layout_marginTop="8dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="5dp"
+        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardElevation="@dimen/cardview_default_elevation"
+        android:layout_height="70dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentStart="true"
         android:id="@+id/ImageForMatrix"
+        android:layout_centerVertical="true"
         android:src="@drawable/normal"
         android:contentDescription="@string/about_app" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:id="@+id/separator"
+                android:layout_marginTop="2dp"
+                android:visibility="visible"
+                android:layout_marginBottom="2dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginStart="60dp"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/MatrixTitle"
         android:maxLines="1"
-        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:textAlignment="center"
+        android:layout_marginTop="8dp"
         android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"
+        android:textSize="19sp"
+        android:layout_marginStart="1dp"
         android:layout_toEndOf="@id/ImageForMatrix"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:id="@+id/separator2"
+                android:layout_marginEnd="2dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="2dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginStart="62dp"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/MatrixTitleRow"
         android:text="@string/Row"
         android:maxLines="1"
+        android:fontFamily="sans-serif-smallcaps"
         android:textSize="18sp"
         android:layout_below="@id/MatrixTitle"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="30dp"
         android:layout_toEndOf="@id/ImageForMatrix"/>
     <TextView
         android:layout_width="wrap_content"
@@ -41,11 +86,13 @@
         android:id="@+id/MatrixTitleCol"
         android:text="@string/Col"
         android:maxLines="1"
+        android:fontFamily="sans-serif-smallcaps"
         android:textSize="18sp"
         android:layout_below="@id/MatrixTitle"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="60dp"
         android:layout_toEndOf="@id/MatrixTitleRow"
         />
-
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 </RelativeLayout>

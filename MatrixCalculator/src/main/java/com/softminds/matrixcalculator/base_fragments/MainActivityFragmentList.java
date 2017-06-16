@@ -50,7 +50,7 @@ public class MainActivityFragmentList extends ListFragment {
 
         ((GlobalValues) getActivity().getApplication()).matrixAdapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment,
                 ((GlobalValues) getActivity().getApplication()).GetCompleteList());
-        getListView().setDividerHeight(1);
+        getListView().setDividerHeight(0);
         setListAdapter(((GlobalValues) getActivity().getApplication()).matrixAdapter);
 
         registerForContextMenu(getListView());
