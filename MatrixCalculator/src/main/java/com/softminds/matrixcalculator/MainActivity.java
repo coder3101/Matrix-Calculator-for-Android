@@ -27,7 +27,6 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -56,7 +55,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.softminds.matrixcalculator.OperationFragments.CloneFragment;
@@ -644,7 +642,7 @@ public class MainActivity extends AppCompatActivity
                break;
            case R.id.nav_report:
                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-               builder.setTitle(R.string.LableReport);
+               builder.setTitle(R.string.direct_feedback);
                builder.setMessage(R.string.ReportMessage);
                builder.setPositiveButton(R.string.ProceedGithub, new DialogInterface.OnClickListener() {
                    @Override
@@ -659,8 +657,8 @@ public class MainActivity extends AppCompatActivity
                    @Override
                    public void onClick(DialogInterface dialogInterface, int i) {
                        dialogInterface.dismiss();
-                       Intent intent = new Intent(Intent.ACTION_SENDTO ,Uri.fromParts("mailto","ashar786khan@gmail.com",null));
-                       intent.putExtra(Intent.EXTRA_SUBJECT,"Report for Matrix Calculator - Issues");
+                       Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSePpc3lzZUdaj8O1MWNH20kaAGiCrGF5gnuU9uzbkiUOQTa8w/viewform?usp=sf_link"));
+                       //Intent intent = new Intent(Intent.ACTION_SENDTO ,Uri.fromParts("mailto","ashar786khan@gmail.com",null));
                        startActivity(intent);
                    }
                });

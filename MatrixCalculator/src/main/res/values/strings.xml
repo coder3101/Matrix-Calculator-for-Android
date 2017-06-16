@@ -19,17 +19,17 @@
     <string name="clone">Clone</string>
     <string name="Minor">Minors</string>
     <string name="RankofMat">Rank</string>
-    <string name="swap">Swaping</string>
+    <string name="swap">Swapping</string>
     <string name="transpose">Transpose</string>
     <string name="multiply">Multiplication</string>
     <string name="inverse">Inverse</string>
-    <string name="adjoint">Adjoint</string>
+    <string name="adjoint">Ad-joint</string>
     <string name="function">Functional</string>
     <string name="ScalerMult">Scalar Multiplication</string>
     <string name="determinant">Determinant</string>
     <string name="exponent">Exponential</string>
     <string name="NewsUp">Bulletin Board</string>
-    <string name="LableReport">Report Bugs</string>
+    <string name="direct_feedback">Direct Feedback</string>
 
     <!--About Me Section-->
     <string name="app_dev">Md Ashar Khan </string>
@@ -90,7 +90,7 @@
     <string name="TransposeSummary">A Prompt is Shown if Matrix to be transposed, can be stored back in the Same Matrix</string>
     <string name="AutoEnabled">Changed \"Fractional Inverse\" to match changes</string>
     <string name="AllowDecimals">Allow Decimal Numbers in Settings</string>
-    <string name="CannotSave2">Cannot Save because Result is not a Marix</string>
+    <string name="CannotSave2">Cannot Save because Result is not a Matrix</string>
 
     <!-- Variable Creation Activity-->
     <string name="NewMatrix">Create New Variable</string>
@@ -237,7 +237,7 @@
     <string name="LimitExceeds2">Cannot Add a New Variable</string>
 
     <string name="OnlyPro">This is a Pro feature</string>
-    <string name="OpeningPlay">Opening Playstore</string>
+    <string name="OpeningPlay">Opening Play store</string>
     <string name="FatalError">An Error Resulted force close of Splash Screen</string>
     <string name="NoDataAvailable">Your Advertisement could be here</string>
     <string name="ToAddMoreTurnData">Load Advertisement to create more</string>
@@ -270,9 +270,9 @@
     <string name="RateRequest">Hii, We have removed all the Advertisements and We have Enabled Pro features for Free. Does that not Worth a Five Star..??</string>
     <string name="later">Later</string>
     <string name="RateNow">Rate</string>
-    <string name="ReportMessage">If you are a github user, You can directly raise an Issue on github, or You can Personally mail the Developer about the bug you found.</string>
+    <string name="ReportMessage">You can do a Direct Feedback or If you are a github user, You can directly raise an Issue on github</string>
     <string name="ProceedGithub">Github</string>
-    <string name="MailtoDev">E-Mail</string>
+    <string name="MailtoDev">Direct Feedback</string>
     <string name="OpenUsing">Open Using</string>
     <string name="EnableDecimals">Enable Decimals and Exponents</string>
 

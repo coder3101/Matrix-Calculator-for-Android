@@ -70,7 +70,7 @@
             android:icon="@drawable/ic_action_event"
             android:title="@string/NewsUp"/>
         <item
-            android:title="@string/LableReport"
+            android:title="@string/direct_feedback"
             android:id="@+id/nav_report"
             android:icon="@drawable/ic_action_warning"/>
     <item
