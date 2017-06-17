@@ -25,8 +25,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import java.util.ArrayList;
-
 public class Matrix {
 
     private int NumberofRows, NumberofCols;
@@ -440,9 +438,7 @@ public class Matrix {
         else
         {
             try {
-                for (int i = 0; i < a; i++) {
-                    pi = pi.MultipyWith(this);
-                }
+                for (int i = 0; i < a; i++) pi = pi.MultipyWith(this);
 
             }catch (NullPointerException e){
                 Log.d("RaiseToError :","Non Square Matrix called the function raiseto()");
@@ -498,13 +494,13 @@ public class Matrix {
         switch (t)
         {
             case Normal:
-                return R.drawable.normal;
+                return R.mipmap.normal;
             case Null:
-                return R.drawable.nullmatrix;
+                return R.mipmap.null2;
             case Identity:
-                return R.drawable.identity;
+                return R.mipmap.identity;
             case Diagonal:
-                return R.drawable.diagonal;
+                return R.mipmap.diagonal;
 
         }
         return 0;

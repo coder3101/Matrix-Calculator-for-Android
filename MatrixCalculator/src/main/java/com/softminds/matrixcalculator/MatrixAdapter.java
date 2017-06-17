@@ -56,8 +56,6 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
         TextView Naam= ((TextView) convertView.findViewById(R.id.MatrixTitle));
         ImageView icon = ((ImageView)convertView.findViewById(R.id.ImageForMatrix));
         CardView cardView = ((CardView)convertView.findViewById(R.id.Matrix_holder));
-        View sparator = convertView.findViewById(R.id.separator);
-        View sparator2 = convertView.findViewById(R.id.separator2);
 
         //Set Values
         @SuppressWarnings({"ConstantConditions"})
@@ -69,8 +67,6 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
             Col.setTextColor(Color.WHITE);
             Naam.setTextColor(Color.WHITE);
             cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(),R.color.DarkcolorPrimary));
-            sparator.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.white));
-            sparator2.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.white));
 
         }
         Row.setText(r);

@@ -29,11 +29,11 @@ public class Function {
     private static class Terms{
         private int Exponent;
         private boolean Sign; //true  is Positive else False;
-        private float Coefficiet;
-        private Terms (float coefficiet,int exponent,boolean sign) {
+        private float Coefficient;
+        private Terms (float coefficient,int exponent,boolean sign) {
             Exponent = exponent;
             Sign = sign;
-            Coefficiet = coefficiet;
+            Coefficient = coefficient;
         }
         private int getExponent(){
             return Exponent;
@@ -41,8 +41,8 @@ public class Function {
         private boolean getSign(){
             return Sign;
         }
-        private float getCoefficiet() {
-            return Coefficiet;
+        private float getCoefficient() {
+            return Coefficient;
         }
     }
     public Function(int R,int C,float Const){
@@ -67,9 +67,9 @@ public class Function {
             boolean s = terms.get(i).getSign();
             operand.Raiseto(expo);
             if(s)
-                  operand.ScalarMultiply(1*terms.get(i).getCoefficiet());
+                  operand.ScalarMultiply(1*terms.get(i).getCoefficient());
             else
-                  operand.ScalarMultiply(-1*terms.get(i).getCoefficiet());
+                  operand.ScalarMultiply(-1*terms.get(i).getCoefficient());
             Resultant.AddtoThis(operand);
         }
         Resultant.AddtoThis(ConstantMatrix);
@@ -80,7 +80,7 @@ public class Function {
         String s="";
         for(int i=0;i<terms.size();i++){
            s+= Sign(terms.get(i).getSign());
-            s+= String.valueOf(terms.get(i).getCoefficiet());
+            s+= String.valueOf(terms.get(i).getCoefficient());
             s+= String.valueOf(terms.get(i).getExponent());
             s+=" ";
         }

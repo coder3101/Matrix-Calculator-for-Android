@@ -258,7 +258,7 @@
     <string name="QuickOrder">Change Order</string>
     <string name="Refresh">Refresh</string>
     <string name="EnforceRef">Please click this Refresh Button</string>
-    <string name="ClickToExit">Press Back Again to Exit</string>
+    <string name="ClickToExit">Press again to exit</string>
     <string name="ThanksForDonation">Thanks for Using Donation Version</string>
     <string name="Upgrade">Upgrade</string>
     <string name="UpgradeMess">Sorry to Inform. This feature is only available in Donated Version.</string>

@@ -54,8 +54,6 @@ public class faqs extends AppCompatActivity implements View.OnTouchListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.help_layout);
 
-        SetOnMotionEventToAll();
-
         if(!((GlobalValues)getApplication()).DonationKeyFound()) {
             AdView faqAd = (AdView) findViewById(R.id.adViewFaq);
             AdRequest adRequest = new AdRequest.Builder().build();
@@ -116,7 +114,10 @@ public class faqs extends AppCompatActivity implements View.OnTouchListener {
         textView10.setTextColor(id);
     }
 
+    @Deprecated
     private void SetOnMotionEventToAll(){
+
+        //Do not use this animator but use default selectableItemBackground in foreground of cardview
         final CardView cardView1 = (CardView) findViewById(R.id.QA1);
         CardView cardView2 = (CardView) findViewById(R.id.QA2);
         CardView cardView3 = (CardView) findViewById(R.id.QA3);
@@ -132,6 +133,7 @@ public class faqs extends AppCompatActivity implements View.OnTouchListener {
         cardView8.setOnTouchListener(this);
         cardView9.setOnTouchListener(this);
         cardView10.setOnTouchListener(this);
+
     }
 
     @Override
