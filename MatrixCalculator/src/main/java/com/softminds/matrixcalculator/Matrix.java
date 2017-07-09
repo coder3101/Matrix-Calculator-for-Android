@@ -507,13 +507,14 @@ public class Matrix {
     }
 
     public void SetType() {
+        if(this.isNull()){
+            this.SetType(Type.Null);
+            return;
+        }
         if(!this.is_squareMatrix())
             this.SetType(Type.Normal);
         else
         {
-            if(this.isNull())
-                this.SetType(Type.Null);
-            else
             if(this.isIdentity())
                 this.SetType(Type.Identity);
             else
