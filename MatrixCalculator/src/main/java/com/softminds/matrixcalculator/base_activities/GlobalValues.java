@@ -25,6 +25,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.softminds.matrixcalculator.BuildConfig;
 import com.softminds.matrixcalculator.Function;
@@ -33,6 +34,7 @@ import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GlobalValues extends Application {
 
@@ -55,6 +57,8 @@ public class GlobalValues extends Application {
     public boolean Promotion=false;
 
     public boolean ThisSession = true;
+
+    private String TAG = this.getClass().getSimpleName();
 
     public void AddToGlobal(Matrix mk)
     {
@@ -126,6 +130,7 @@ public class GlobalValues extends Application {
 
         if(BuildConfig.DEBUG){
             Status = true;
+            return;
             //if debug mode, avoid the advertisements and use pro features
         }
         try {
@@ -136,12 +141,19 @@ public class GlobalValues extends Application {
             if (packageManager.checkSignatures(getPackageName(),
                     "com.softminds.matrixcalculator.pro.key")
                     == PackageManager.SIGNATURE_MATCH) {
-                Log.d("Signature : ", "The Signature of Key Matched with Application");
-                //Both are Signed by me, Let User Use the Pro Features.
-                if (packageManager.getInstallerPackageName("com.softminds.matrixcalculator.pro.key") != null)
+                Log.d(TAG, "The Signature of Key Matched with Application");
+                String manager = packageManager.getInstallerPackageName("com.softminds.matrixcalculator.pro.key");
+                if (manager != null)
                 {
-                    Status = true;
-                    Log.d("Installer : ",packageManager.getInstallerPackageName("com.softminds.matrixcalculator.pro.key"));
+                    //Status = true;
+                    Log.d(TAG,manager);
+                    if(Objects.equals(manager, "com.android.vending")){
+                        Status = true;
+                    }
+                    else {
+                        Status = false;
+                        Toast.makeText(getApplicationContext(),R.string.invalid_install,Toast.LENGTH_LONG).show();
+                    }
                 }
                 //the Key is Genuine and was Installed from Play
             }

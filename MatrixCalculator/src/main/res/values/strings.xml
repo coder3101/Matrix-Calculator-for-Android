@@ -275,5 +275,6 @@
     <string name="MailtoDev">Direct Feedback</string>
     <string name="OpenUsing">Open Using</string>
     <string name="EnableDecimals">Enable Decimals and Exponents</string>
+    <string name="invalid_install">The Key was not Installed from Play Store. If it was, file a request in Direct Feedback</string>
 
 </resources>
