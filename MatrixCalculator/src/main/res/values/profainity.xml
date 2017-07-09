@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--The Following Words were mentioned to avoid its uses in educating app of matrix calculator-->
     <string-array name="Words">
         <item>Fuck</item>
         <item>Fucking</item>
@@ -14,23 +15,7 @@
         <item>Shit</item>
         <item>Bitch</item>
         <item>Whore</item>
-        <item>Madharchod</item>
-        <item>Bhosdike</item>
-        <item>Bhosdi</item>
-        <item>Kamina</item>
-        <item>Kutta</item>
-        <item>Harami</item>
-        <item>Suwar</item>
-        <item>Pig</item>
-        <item>Maa</item>
-        <item>Chut</item>
-        <item>Chod</item>
         <item>Ass</item>
-        <item>Randi</item>
-        <item>Maa ki</item>
-        <item>Bencho</item>
-        <item>Benchod</item>
-        <item>Sister Fucker</item>
     </string-array>
 
 </resources>
