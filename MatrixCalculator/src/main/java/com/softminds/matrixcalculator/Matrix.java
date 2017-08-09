@@ -160,7 +160,7 @@ public class Matrix {
     }
 
     public double GetTrace() throws IllegalStateException{
-        int trace=0;
+        double trace=0;
         if(!this.is_squareMatrix())
             throw new IllegalStateException("Matrix must be Square");
         else {
