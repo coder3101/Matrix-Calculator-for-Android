@@ -43,6 +43,10 @@
             android:icon="@drawable/ic_action_send_now"
             android:title="@string/determinant" />
         <item
+            android:id="@+id/trace"
+            android:icon="@drawable/ic_action_send_now"
+            android:title="@string/trace_text" />
+        <item
             android:id="@+id/MinorsofMat"
             android:icon="@drawable/ic_action_send_now"
             android:title="@string/Minor"/>
