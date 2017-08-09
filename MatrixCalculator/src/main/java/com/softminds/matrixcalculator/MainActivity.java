@@ -533,7 +533,7 @@ public class MainActivity extends AppCompatActivity
                TraceTrasaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                TraceTrasaction.commit();
                //Modify Actionbar
-               ActionbarMenu.findItem(R.id.ClearAll).setVisible(false);
+               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
                actionBar.setTitle(R.string.trace_text);
                actionBar.setSubtitle(null);
                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
