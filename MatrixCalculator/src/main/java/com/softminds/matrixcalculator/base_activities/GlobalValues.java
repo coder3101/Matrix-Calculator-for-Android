@@ -21,9 +21,7 @@
 package com.softminds.matrixcalculator.base_activities;
 
 import android.app.Application;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -151,8 +149,10 @@ public class GlobalValues extends Application {
                         Status = true;
                     }
                     else {
-                        Status = false;
-                        Toast.makeText(getApplicationContext(),R.string.invalid_install,Toast.LENGTH_LONG).show();
+                        Status = true;
+                        // TODO: 9/8/17 Change this to False in Comming Updates of the App as We need to Shift User base to Installer Package dependency
+                        //Toast.makeText(getApplicationContext(),R.string.invalid_install,Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, R.string.clear_warn_invalid_install, Toast.LENGTH_LONG).show();
                     }
                 }
                 //the Key is Genuine and was Installed from Play
