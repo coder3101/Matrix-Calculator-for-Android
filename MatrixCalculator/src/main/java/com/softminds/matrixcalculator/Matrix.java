@@ -166,7 +166,8 @@ public class Matrix {
         else {
             for(int i=0;i<this.GetRow();i++)
                 for(int j=0;j<this.GetCol();j++)
-                    trace+=this.GetElementof(i,j);
+                    if(i==j)
+                        trace+=this.GetElementof(i,j);
             return trace;
         }
     }
