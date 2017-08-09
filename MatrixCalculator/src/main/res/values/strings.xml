@@ -24,6 +24,7 @@
     <string name="multiply">Multiplication</string>
     <string name="inverse">Inverse</string>
     <string name="adjoint">Ad-joint</string>
+    <string name="trace_text">Trace</string>
     <string name="function">Functional</string>
     <string name="ScalerMult">Scalar Multiplication</string>
     <string name="determinant">Determinant</string>
@@ -276,5 +277,8 @@
     <string name="OpenUsing">Open Using</string>
     <string name="EnableDecimals">Enable Decimals and Exponents</string>
     <string name="invalid_install">The Key was not Installed from Play Store. If it was, file a request in Direct Feedback</string>
+    <string name="trace_is">Trace is :</string>
+    <string name="determinant_is">Determinant is :</string>
+    <string name="clear_warn_invalid_install">Your Key was not Installed from PlayStore. It will be discarded in next Updates.</string>
 
 </resources>
