@@ -61,6 +61,7 @@ import com.softminds.matrixcalculator.OperationFragments.CloneFragment;
 import com.softminds.matrixcalculator.OperationFragments.FunctionalFragment;
 import com.softminds.matrixcalculator.OperationFragments.MinorFragment;
 import com.softminds.matrixcalculator.OperationFragments.RankFragment;
+import com.softminds.matrixcalculator.OperationFragments.TraceFragment;
 import com.softminds.matrixcalculator.base_activities.AboutMe;
 import com.softminds.matrixcalculator.base_activities.GlobalValues;
 import com.softminds.matrixcalculator.base_activities.SettingsTab;
@@ -523,6 +524,26 @@ public class MainActivity extends AppCompatActivity
                     else
                          t.setText(R.string.NoSupport);
                     }
+               fab.hide();
+               break;
+           case R.id.trace:
+               FragmentTransaction TraceTrasaction = getSupportFragmentManager().beginTransaction();
+               TraceFragment traceFragment = new TraceFragment();
+               TraceTrasaction.replace(R.id.MainContent,traceFragment,"TRACE_FRAGMENT");
+               TraceTrasaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+               TraceTrasaction.commit();
+               //Modify Actionbar
+               ActionbarMenu.findItem(R.id.ClearAll).setVisible(false);
+               actionBar.setTitle(R.string.trace_text);
+               actionBar.setSubtitle(null);
+               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+                   t.setText(R.string.OpenHint2);
+               else {
+                   if (isAnyVariableSquare())
+                       t.setText(null);
+                   else
+                       t.setText(R.string.NoSupport);
+               }
                fab.hide();
                break;
            case R.id.inverse:

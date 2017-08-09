@@ -159,6 +159,18 @@ public class Matrix {
         }
     }
 
+    public double GetTrace() throws IllegalStateException{
+        int trace=0;
+        if(!this.is_squareMatrix())
+            throw new IllegalStateException("Matrix must be Square");
+        else {
+            for(int i=0;i<this.GetRow();i++)
+                for(int j=0;j<this.GetCol();j++)
+                    trace+=this.GetElementof(i,j);
+            return trace;
+        }
+    }
+
     public Matrix Transpose() {
        Matrix p = new Matrix(this.GetCol(),this.GetRow(),this.GetType());
         for(int i=0;i<this.GetRow();i++)

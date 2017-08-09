@@ -67,7 +67,7 @@ public class DeterminantFragment extends ListFragment {
                 val = msg.getData();
                 if (determinantFragment.isVisible()) {
 
-                    final String mes = "Determinant is : " + determinantFragment.ConvertToNormal(val.getDouble("RESULTANT"));
+                    final String mes = determinantFragment.getString(R.string.determinant_is)+ " " + determinantFragment.ConvertToNormal(val.getDouble("RESULTANT"));
 
                     final AlertDialog.Builder builder = new AlertDialog.Builder(determinantFragment.getContext());
                     builder.setPositiveButton(R.string.copy, new DialogInterface.OnClickListener() {
