@@ -75,7 +75,7 @@ public class TraceFragment extends ListFragment {
 
     private void RunToGetTrace(int position, ProgressDialog progressDialog) {
         double result = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(position).GetTrace();
-        final String formatted = ConvertToNormal(result);
+        final String formatted = GetText(result);
         progressDialog.dismiss();
         String formatted2  = getString(R.string.trace_is) +" " +formatted;
         new AlertDialog.Builder(getContext())
@@ -104,13 +104,28 @@ public class TraceFragment extends ListFragment {
                 .show();
     }
 
-    private String ConvertToNormal (double res){
-        if(!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE",true)) {
+    private String GetText(double res) {
+
+        if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
             DecimalFormat decimalFormat = new DecimalFormat("###############");
             return decimalFormat.format(res);
-        }
-        else {
-            return String.valueOf(res);
+        } else
+        {
+            switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ROUNDIND_INFO","0"))) {
+                case 0:
+                    return String.valueOf(res);
+                case 1:
+                    DecimalFormat single = new DecimalFormat("########.#");
+                    return single.format(res);
+                case 2:
+                    DecimalFormat Double = new DecimalFormat("########.##");
+                    return Double.format(res);
+                case 3:
+                    DecimalFormat triple = new DecimalFormat("########.###");
+                    return triple.format(res);
+                default:
+                    return String.valueOf(res);
+            }
         }
     }
 }

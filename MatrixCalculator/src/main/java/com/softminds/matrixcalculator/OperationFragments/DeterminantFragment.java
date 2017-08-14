@@ -67,7 +67,7 @@ public class DeterminantFragment extends ListFragment {
                 val = msg.getData();
                 if (determinantFragment.isVisible()) {
 
-                    final String mes = determinantFragment.getString(R.string.determinant_is)+ " " + determinantFragment.ConvertToNormal(val.getDouble("RESULTANT"));
+                    final String mes = determinantFragment.getString(R.string.determinant_is)+ " " + determinantFragment.GetText(val.getDouble("RESULTANT"));
 
                     final AlertDialog.Builder builder = new AlertDialog.Builder(determinantFragment.getContext());
                     builder.setPositiveButton(R.string.copy, new DialogInterface.OnClickListener() {
@@ -75,7 +75,7 @@ public class DeterminantFragment extends ListFragment {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             ClipboardManager clipboardManager = (ClipboardManager) determinantFragment.getActivity()
                                     .getSystemService(Context.CLIPBOARD_SERVICE);
-                            ClipData clipData = ClipData.newPlainText("DETERMINANT_RES",determinantFragment.ConvertToNormal(val.getDouble("RESULTANT")));
+                            ClipData clipData = ClipData.newPlainText("DETERMINANT_RES",determinantFragment.GetText(val.getDouble("RESULTANT")));
                             clipboardManager.setPrimaryClip(clipData);
                             if(clipboardManager.hasPrimaryClip()){
                                 Toast.makeText(determinantFragment.getContext(),R.string.CopyToClip,Toast.LENGTH_SHORT).show();
@@ -153,13 +153,28 @@ public class DeterminantFragment extends ListFragment {
         thread.start();
     }
 
-    private String ConvertToNormal (double res){
-        if(!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE",true)) {
+    private String GetText(double res) {
+
+        if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
             DecimalFormat decimalFormat = new DecimalFormat("###############");
             return decimalFormat.format(res);
-        }
-        else {
-            return String.valueOf(res);
+        } else
+        {
+            switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ROUNDIND_INFO","0"))) {
+                case 0:
+                    return String.valueOf(res);
+                case 1:
+                    DecimalFormat single = new DecimalFormat("########.#");
+                    return single.format(res);
+                case 2:
+                    DecimalFormat Double = new DecimalFormat("########.##");
+                    return Double.format(res);
+                case 3:
+                    DecimalFormat triple = new DecimalFormat("########.###");
+                    return triple.format(res);
+                default:
+                    return String.valueOf(res);
+            }
         }
     }
 
