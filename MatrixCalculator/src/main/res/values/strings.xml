@@ -18,6 +18,7 @@
     <string name="Home">Home</string>
     <string name="clone">Clone</string>
     <string name="Minor">Minors</string>
+    <string name="Minor_detr">Minor\'s Determinant</string>
     <string name="RankofMat">Rank</string>
     <string name="swap">Swapping</string>
     <string name="transpose">Transpose</string>
@@ -243,7 +244,7 @@
     <string name="NoDataAvailable">Your Advertisement could be here</string>
     <string name="ToAddMoreTurnData">Load Advertisement to create more</string>
     <string name="ErrorOccured"><b>Error Occurred</b> If You are on Android 4.4.4 or above, Please Report</string>
-    <string name="ViewHints">Click on the Element to get its Minor</string>
+    <string name="ViewHints">Click on the Element to get its Minor\'s Determinant</string>
 
     <!--Misc-->
     <string name="RedInfo">Important News are Marked with Red</string>

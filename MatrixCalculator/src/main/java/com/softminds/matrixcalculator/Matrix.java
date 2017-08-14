@@ -349,7 +349,7 @@ public class Matrix {
         return Result;
     }
 
-    public float GetMinor(int indexX,int indexY) {
+    public float GetMinorDeterminant(int indexX, int indexY) {
         Matrix matrix = new Matrix(this.GetCol() - 1);
         int a = 0, b = 0;
         for (int i = 0; i < this.GetRow(); i++) {
@@ -363,9 +363,24 @@ public class Matrix {
             if(indexX !=i)
                 a++;
         }
-        Log.d("Value :",String.valueOf((float)matrix.GetDeterminant()));
-        Log.d("Marix : ",matrix.toString());
         return (float) matrix.GetDeterminant();
+    }
+
+    public Matrix GetMinor(int indexX, int indexY) {
+        Matrix matrix = new Matrix(this.GetCol() - 1);
+        int a = 0, b = 0;
+        for (int i = 0; i < this.GetRow(); i++) {
+            for (int j = 0; j < this.GetCol(); j++) {
+                if (indexY != j && indexX !=i) {
+                    matrix.SetElementof(this.GetElementof(i, j), a, b);
+                    b++;
+                }
+            }
+            b=0;
+            if(indexX !=i)
+                a++;
+        }
+        return matrix;
     }
 
     private void MakeAdjoint(ProgressDialog Progress) {

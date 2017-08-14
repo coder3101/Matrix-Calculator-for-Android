@@ -56,7 +56,7 @@ public class MinorChooserFragment extends Fragment {
         @Override
         public void handleMessage(Message message){
            MinorChooserFragment minorChooserFragment = minorChooserFragmentWeakReference.get();
-            final Snackbar snackbar = Snackbar.make(minorChooserFragment.getActivity().findViewById(R.id.minor_chooser), "Minor of "+
+            final Snackbar snackbar = Snackbar.make(minorChooserFragment.getActivity().findViewById(R.id.minor_chooser), "Determinant of Minor "+
                             String.valueOf(message.getData().getInt("REX")+1) + " , " +
                             String.valueOf(message.getData().getInt("REY")+1)+ " is : "+
                             minorChooserFragment.GetText(message.getData().getFloat("VALUE")),Snackbar.LENGTH_INDEFINITE);
@@ -67,6 +67,7 @@ public class MinorChooserFragment extends Fragment {
                     snackbar.dismiss();
                 }
             });
+            // TODO: 14/8/17 Remove Hardcoding
         }
     }
 
@@ -113,7 +114,7 @@ public class MinorChooserFragment extends Fragment {
                         Runnable runnable = new Runnable() {
                             @Override
                             public void run() {
-                                float res= ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetMinor(textView.getId()/10,textView.getId()%10);
+                                float res= ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetMinorDeterminant(textView.getId()/10,textView.getId()%10);
                                 Message message = new Message();
                                 Bundle bundle = new Bundle();
                                 bundle.putInt("REX",textView.getId()/10);

@@ -625,7 +625,7 @@ public class MainActivity extends AppCompatActivity
                MinorTransaction.commit();
                //Actionbar
                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.Minor);
+               actionBar.setTitle(R.string.Minor_detr);
                actionBar.setSubtitle(null);
                if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
                    t.setText(R.string.OpenHint2);

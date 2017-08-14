@@ -49,7 +49,7 @@
         <item
             android:id="@+id/MinorsofMat"
             android:icon="@drawable/ic_action_send_now"
-            android:title="@string/Minor"/>
+            android:title="@string/Minor_detr"/>
         <item
             android:id="@+id/inverse"
             android:icon="@drawable/ic_action_send_now"
