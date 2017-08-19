@@ -56,18 +56,17 @@ public class MinorChooserFragment extends Fragment {
         @Override
         public void handleMessage(Message message){
            MinorChooserFragment minorChooserFragment = minorChooserFragmentWeakReference.get();
-            final Snackbar snackbar = Snackbar.make(minorChooserFragment.getActivity().findViewById(R.id.minor_chooser), "Determinant of Minor "+
+            final Snackbar snackbar = Snackbar.make(minorChooserFragment.getActivity().findViewById(R.id.minor_chooser), minorChooserFragment.getString(R.string.first_minor_is)+" "+
                             String.valueOf(message.getData().getInt("REX")+1) + " , " +
                             String.valueOf(message.getData().getInt("REY")+1)+ " is : "+
                             minorChooserFragment.GetText(message.getData().getFloat("VALUE")),Snackbar.LENGTH_INDEFINITE);
             snackbar.show();
-            snackbar.setAction("Close", new View.OnClickListener() {
+            snackbar.setAction(minorChooserFragment.getString(R.string.cancel), new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     snackbar.dismiss();
                 }
             });
-            // TODO: 14/8/17 Remove Hardcoding
         }
     }
 
