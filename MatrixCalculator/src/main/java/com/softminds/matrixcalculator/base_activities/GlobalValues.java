@@ -149,9 +149,7 @@ public class GlobalValues extends Application {
                         Status = true;
                     }
                     else {
-                        Status = true;
-                        // TODO: 9/8/17 Change this to False in Comming Updates of the App as We need to Shift User base to Installer Package dependency
-                        //Toast.makeText(getApplicationContext(),R.string.invalid_install,Toast.LENGTH_LONG).show();
+                        Status = false;
                         Toast.makeText(this, R.string.clear_warn_invalid_install, Toast.LENGTH_LONG).show();
                     }
                 }

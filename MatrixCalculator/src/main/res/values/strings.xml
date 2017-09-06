@@ -280,7 +280,7 @@
     <string name="invalid_install">The Key was not Installed from Play Store. If it was, file a request in Direct Feedback</string>
     <string name="trace_is">Trace is :</string>
     <string name="determinant_is">Determinant is :</string>
-    <string name="clear_warn_invalid_install">Your Key was not Installed from PlayStore. It will be discarded in next Updates.</string>
+    <string name="clear_warn_invalid_install">Your Key was not Installed from PlayStore.</string>
     <string name="cancel">Cancel</string>
     <string name="first_minor_is">First Minor of :</string>
 
