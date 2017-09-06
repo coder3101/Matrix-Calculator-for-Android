@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity
     Menu ActionbarMenu; //the Menu items in the top 3 dots
     ActionBar actionBar; //the Main Activity Actionbar
     TextView t; //Center Text which describe the context of the Application
-    FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
     boolean OnceBackClicked=false;
     Menu NavMenuItem;
 
@@ -108,23 +107,6 @@ public class MainActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        remoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
-        .setDeveloperModeEnabled(BuildConfig.DEBUG).build());
-
-        HashMap<String,Object> defaults = new HashMap<>();
-        defaults.put("enable_rank",false);
-
-        remoteConfig.setDefaults(defaults);
-
-        final Task<Void> fetch = remoteConfig.fetch(TimeUnit.HOURS.toSeconds(6));
-        fetch.addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                remoteConfig.activateFetched();
-                UpdateFetched();
-            }
-        });
 
     if(!((GlobalValues)getApplication()).DonationKeyFound()) {
         AdView mAdView = (AdView) findViewById(R.id.adViewMainActivity);
@@ -261,10 +243,6 @@ public class MainActivity extends AppCompatActivity
         });
 
         builder.show();
-    }
-
-    private void UpdateFetched() {
-        NavMenuItem.findItem(R.id.RankofMat1).setVisible(remoteConfig.getBoolean("enable_rank"));
     }
 
 

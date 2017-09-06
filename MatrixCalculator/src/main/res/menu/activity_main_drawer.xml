@@ -62,7 +62,9 @@
         <item
             android:id="@+id/RankofMat1"
             android:icon="@drawable/ic_action_send_now"
+            android:visible="false"
             android:title="@string/RankofMat"/>
+        <!--Enable Rank after modifying the algorithm-->
         <item
             android:id="@+id/functional"
             android:icon="@drawable/ic_action_send_now"
