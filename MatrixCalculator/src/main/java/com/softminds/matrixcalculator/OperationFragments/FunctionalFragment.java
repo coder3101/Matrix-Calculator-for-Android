@@ -36,7 +36,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.softminds.matrixcalculator.Function;
-import com.softminds.matrixcalculator.base_activities.GlobalValues;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;

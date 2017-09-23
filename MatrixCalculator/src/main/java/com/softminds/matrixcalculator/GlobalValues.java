@@ -18,7 +18,7 @@
  *
  */
 
-package com.softminds.matrixcalculator.base_activities;
+package com.softminds.matrixcalculator;
 
 import android.app.Application;
 import android.content.pm.PackageManager;

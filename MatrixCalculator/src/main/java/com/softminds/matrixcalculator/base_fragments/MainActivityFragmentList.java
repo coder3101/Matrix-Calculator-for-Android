@@ -23,7 +23,6 @@ package com.softminds.matrixcalculator.base_fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,8 +31,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.softminds.matrixcalculator.MainActivity;
-import com.softminds.matrixcalculator.base_activities.GlobalValues;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.base_activities.ViewCreatedMatrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;

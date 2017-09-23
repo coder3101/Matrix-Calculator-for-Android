@@ -33,7 +33,7 @@ import android.widget.Toast;
 
 import com.softminds.matrixcalculator.Type;
 import com.softminds.matrixcalculator.base_activities.FillingMatrix;
-import com.softminds.matrixcalculator.base_activities.GlobalValues;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.R;
 
 public class MakeNewMatrix extends AppCompatActivity {

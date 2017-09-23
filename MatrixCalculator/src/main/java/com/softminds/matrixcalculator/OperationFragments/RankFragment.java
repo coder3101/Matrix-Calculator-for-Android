@@ -37,7 +37,7 @@ import android.widget.Toast;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
-import com.softminds.matrixcalculator.base_activities.GlobalValues;
+import com.softminds.matrixcalculator.GlobalValues;
 
 import java.lang.ref.WeakReference;
 

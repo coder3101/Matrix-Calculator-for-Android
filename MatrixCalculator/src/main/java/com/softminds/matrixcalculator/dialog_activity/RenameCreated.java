@@ -29,7 +29,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.softminds.matrixcalculator.base_activities.GlobalValues;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.R;
 
 public class RenameCreated extends AppCompatActivity {

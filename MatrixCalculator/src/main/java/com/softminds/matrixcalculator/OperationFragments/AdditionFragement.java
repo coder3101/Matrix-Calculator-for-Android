@@ -37,7 +37,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.R;
-import com.softminds.matrixcalculator.base_activities.GlobalValues;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.base_activities.ShowResult;
 import com.softminds.matrixcalculator.base_fragments.VariableListAdd;
 

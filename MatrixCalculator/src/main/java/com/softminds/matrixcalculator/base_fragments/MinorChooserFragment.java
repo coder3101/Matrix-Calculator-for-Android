@@ -41,7 +41,7 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.softminds.matrixcalculator.R;
-import com.softminds.matrixcalculator.base_activities.GlobalValues;
+import com.softminds.matrixcalculator.GlobalValues;
 
 import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;

@@ -28,7 +28,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.softminds.matrixcalculator.R;
-import com.softminds.matrixcalculator.base_activities.GlobalValues;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.base_fragments.SwappingCompatList;
 
 public class SwappingDialog extends AppCompatActivity {

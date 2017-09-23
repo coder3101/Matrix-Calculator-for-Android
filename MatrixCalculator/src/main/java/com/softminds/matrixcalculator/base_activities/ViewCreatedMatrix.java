@@ -29,12 +29,12 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.dialog_activity.OrderChanger;
 import com.softminds.matrixcalculator.dialog_activity.RenameCreated;
 import com.softminds.matrixcalculator.base_fragments.EditFragment;

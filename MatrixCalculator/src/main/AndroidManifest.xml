@@ -9,7 +9,7 @@
 
 
     <application
-        android:name=".base_activities.GlobalValues"
+        android:name=".GlobalValues"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/mainlogo"

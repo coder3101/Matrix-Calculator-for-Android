@@ -42,7 +42,7 @@ import android.widget.Toast;
 import com.softminds.matrixcalculator.Function;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.R;
-import com.softminds.matrixcalculator.base_activities.GlobalValues;
+import com.softminds.matrixcalculator.GlobalValues;
 
 
 public class FunctionMaker extends AppCompatActivity {

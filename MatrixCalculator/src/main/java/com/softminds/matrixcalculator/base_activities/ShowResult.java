@@ -31,7 +31,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
@@ -39,6 +38,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.MainActivity;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.R;

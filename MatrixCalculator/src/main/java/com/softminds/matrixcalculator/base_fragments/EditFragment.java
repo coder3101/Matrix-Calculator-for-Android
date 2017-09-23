@@ -40,7 +40,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
 
-import com.softminds.matrixcalculator.base_activities.GlobalValues;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.R;
 
@@ -217,7 +217,7 @@ public class EditFragment extends Fragment {
                 }
             }
         } else {
-            return SizeReturner(r,c,!b) -2;
+            return SizeReturner(r,c,false) -2;
         }
         return 0;
     }

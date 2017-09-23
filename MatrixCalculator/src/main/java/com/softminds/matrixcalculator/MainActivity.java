@@ -53,17 +53,12 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.softminds.matrixcalculator.OperationFragments.CloneFragment;
 import com.softminds.matrixcalculator.OperationFragments.FunctionalFragment;
 import com.softminds.matrixcalculator.OperationFragments.MinorFragment;
 import com.softminds.matrixcalculator.OperationFragments.RankFragment;
 import com.softminds.matrixcalculator.OperationFragments.TraceFragment;
 import com.softminds.matrixcalculator.base_activities.AboutMe;
-import com.softminds.matrixcalculator.base_activities.GlobalValues;
 import com.softminds.matrixcalculator.base_activities.SettingsTab;
 import com.softminds.matrixcalculator.base_activities.faqs;
 import com.softminds.matrixcalculator.base_fragments.MainActivityFragmentList;
@@ -78,9 +73,6 @@ import com.softminds.matrixcalculator.OperationFragments.SubtractionFragment;
 import com.softminds.matrixcalculator.OperationFragments.SwapFragment;
 import com.softminds.matrixcalculator.OperationFragments.ScalerFragment;
 import com.softminds.matrixcalculator.OperationFragments.TransposeFragment;
-
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 
 public class MainActivity extends AppCompatActivity

@@ -26,12 +26,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.base_fragments.MinorChooserFragment;
 

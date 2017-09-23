@@ -47,6 +47,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.Type;
 import com.softminds.matrixcalculator.dialog_activity.CustomValueFiller;
@@ -241,7 +242,7 @@ public class FillingMatrix extends AppCompatActivity {
         }
         else
         {
-            return SizeReturner(r, c, !b) -2;
+            return SizeReturner(r, c, false) -2;
         }
 
      return 0;

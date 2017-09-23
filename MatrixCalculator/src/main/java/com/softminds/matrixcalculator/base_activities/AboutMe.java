@@ -30,9 +30,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.softminds.matrixcalculator.BuildConfig;
+import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.R;
-
-import org.w3c.dom.Text;
 
 public class AboutMe extends AppCompatActivity {
 
