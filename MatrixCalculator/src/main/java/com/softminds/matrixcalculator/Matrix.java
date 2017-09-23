@@ -92,6 +92,7 @@ public class Matrix {
         return this.type;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void  MakeNull() {
        for (int i=0;i<this.GetRow();i++){
            for (int j=0;j<this.GetCol();j++)
@@ -101,6 +102,7 @@ public class Matrix {
        }
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void MakeIdentity() {
         for (int i=0;i<this.GetRow();i++){
             for (int j=0;j<this.GetCol();j++)
@@ -206,7 +208,7 @@ public class Matrix {
     }
 
     @Nullable
-    private Matrix MultipyWith(Matrix j) {
+    private Matrix MultipyWith(Matrix j) throws Exception{
         if(AreMultipliabe(j))
         {
             Matrix m= new Matrix(this.GetRow(),j.GetCol(),this.GetType());
@@ -223,7 +225,7 @@ public class Matrix {
         return m;
         }
         else {
-            return null;
+            throw new Exception("Matrix Could not be multiplied still called MultiplyMethod");
         }
 
     }
@@ -366,6 +368,7 @@ public class Matrix {
         return (float) matrix.GetDeterminant();
     }
 
+    @SuppressWarnings("unused")
     public Matrix GetMinor(int indexX, int indexY) {
         Matrix matrix = new Matrix(this.GetCol() - 1);
         int a = 0, b = 0;
@@ -466,9 +469,12 @@ public class Matrix {
         else
         {
             try {
-                for (int i = 0; i < a; i++) pi = pi.MultipyWith(this);
+                for (int i = 0; i < a; i++) {
+                    assert pi != null;
+                    pi = pi.MultipyWith(this);
+                }
 
-            }catch (NullPointerException e){
+            }catch (Exception e){
                 Log.d("RaiseToError :","Non Square Matrix called the function raiseto()");
                 e.printStackTrace();
                 return;
@@ -484,7 +490,6 @@ public class Matrix {
         AllInfo.putInt("COL",this.GetCol());
         AllInfo.putString("NAME",name);
         AllInfo.putSerializable("TYPE",this.GetType());
-        //AllInfo.putSerializable("VALUES",this.Elements);
         AllInfo.putFloatArray("VALUES",Compress(this.Elements,this.GetRow(),this.GetCol()));
         return AllInfo;
     }
@@ -504,7 +509,6 @@ public class Matrix {
         this.SetRow(bundle.getInt("ROW"));
         this.SetCol(bundle.getInt("COL"));
         this.SetType((Type) bundle.getSerializable("TYPE"));
-        //this.Elements=(float[][]) bundle.getSerializable("VALUES");
         this.Elements=Expand(bundle.getInt("ROW"),bundle.getInt("COL"),bundle.getFloatArray("VALUES"));
     }
 
@@ -518,6 +522,7 @@ public class Matrix {
         return Values;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public int GetDrawable(Type t) {
         switch (t)
         {
@@ -615,6 +620,7 @@ public class Matrix {
         return matrix;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void ScalarMultiply(float multiplier){
         for(int i=0;i<this.GetRow();i++)
             for(int j=0;j<this.GetCol();j++)
@@ -624,6 +630,7 @@ public class Matrix {
     public Matrix ReturnScaler(float ig){
         Matrix re  = new Matrix(this.GetRow(),this.GetCol(),this.GetType());
         for(int i=0;i<this.GetRow();i++)
+            //noinspection ManualArrayCopy
             for(int j=0;j<this.GetCol();j++)
                 re.Elements[i][j]=this.Elements[i][j];
         re.ScalarMultiply(ig);
@@ -758,11 +765,14 @@ public class Matrix {
     }
 
 
+    @SuppressWarnings("unused")
     public Matrix GetEcholean() throws IllegalStateException {
         Matrix matrix = new Matrix(this.GetRow(),this.GetCol(),this.GetType());
+        //noinspection StatementWithEmptyBody
         if(this.Elements[0][0]==0)
             throw new IllegalStateException("Element 1,1 is Zero");
         else {
+
             /*
             Here will the the Algorithm to get Echolean of a Matrix
              */
@@ -805,6 +815,7 @@ public class Matrix {
     5. Some Heavy Logical function can use a new thread for processing.
      */
 
+    @SuppressWarnings("unused")
     private boolean RowZero(){ //checks if a complete row is zero
         int flag1=0;
         for(int i=0;i<this.GetRow();i++) {
@@ -819,6 +830,7 @@ public class Matrix {
         return false;
     }
 
+    @SuppressWarnings("unused")
     private boolean ColZero(){ //checks if a complete column is zero
         int flag1=0;
         for(int i=0;i<this.GetCol();i++) {
@@ -833,6 +845,7 @@ public class Matrix {
         return false;
     }
 
+    @SuppressWarnings("unused")
     private boolean RowEqualModulo() { //checks if rows are multiple of one another
         float array1[] = new float[this.GetRow()];
         float array2[] = new float[this.GetRow()];
@@ -851,6 +864,7 @@ public class Matrix {
 
     }
 
+    @SuppressWarnings("unused")
     private boolean ColEqualModulo() { //checks if rows are multiple of one another
         float array1[] = new float[this.GetCol()];
         float array2[] = new float[this.GetCol()];
