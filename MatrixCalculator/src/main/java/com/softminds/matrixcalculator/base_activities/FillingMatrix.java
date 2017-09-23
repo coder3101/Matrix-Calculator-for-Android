@@ -334,6 +334,14 @@ public class FillingMatrix extends AppCompatActivity {
                     Toast.makeText(getApplication(),R.string.Warning2,Toast.LENGTH_SHORT).show();
                     return true;
                 }
+                try {
+                    //noinspection ResultOfMethodCallIgnored
+                    Float.parseFloat(editText.getText().toString());
+                }catch (Exception e){
+                    //ignore but just return true as value in the matrix is not float.
+                    Toast.makeText(getApplicationContext(),R.string.invalid_numbers,Toast.LENGTH_SHORT).show();
+                    return true;
+                }
             }
         return false;
     }

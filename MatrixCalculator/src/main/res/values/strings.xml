@@ -283,5 +283,6 @@
     <string name="clear_warn_invalid_install">Your Key was not Installed from PlayStore.</string>
     <string name="cancel">Cancel</string>
     <string name="first_minor_is">First Minor of :</string>
+    <string name="invalid_numbers">Matrix should only have Integers or Decimal Numbers</string>
 
 </resources>
