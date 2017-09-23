@@ -20,7 +20,6 @@
 
 package com.softminds.matrixcalculator;
 
-import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -35,8 +34,10 @@ import android.support.v7.widget.CardView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,15 +52,13 @@ import java.util.HashMap;
 public class ChangeLogActivity extends AppCompatActivity {
 
     FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-    ProgressDialog pr;
+    ProgressBar bar;
     LinearLayout layout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        pr = new ProgressDialog(this);
-        pr.setCancelable(false);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
         if(isDark)
@@ -71,12 +70,7 @@ public class ChangeLogActivity extends AppCompatActivity {
         setContentView(R.layout.changelog_layout);
 
         layout = (LinearLayout) findViewById(R.id.changelog_container);
-
-        pr.setMessage(getString(R.string.Wait));
-        pr.setIndeterminate(true);
-        pr.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        pr.setTitle(R.string.Loading);
-        pr.show();
+        bar = (ProgressBar) findViewById(R.id.news_loading_pr);
 
         firebaseRemoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
                 .setDeveloperModeEnabled(BuildConfig.DEBUG)
@@ -93,7 +87,7 @@ public class ChangeLogActivity extends AppCompatActivity {
         defaultNews.put("news8","null");
         defaultNews.put("news9","null");
         defaultNews.put("news10","null");
-        //to mark the top 3 as latest red for new changes
+        //to mark the top as latest red for new changes
         defaultNews.put("mark_red",false);
 
         firebaseRemoteConfig.setDefaults(defaultNews);
@@ -106,13 +100,13 @@ public class ChangeLogActivity extends AppCompatActivity {
                 Log.d("RemoteConfig","Change-logs Updated");
                 for(int i=0;i<10;i++)
                     SetNewContents(i);
+                layout.setVisibility(View.VISIBLE);
             }
         });
 
         fetch.addOnFailureListener(this, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                pr.dismiss();
                 Log.d("Failed", "Cannot Load the Changes");
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(),R.string.InternetPlzz,Toast.LENGTH_SHORT).show();
@@ -145,7 +139,7 @@ public class ChangeLogActivity extends AppCompatActivity {
             card.addView(changes);
             layout.addView(card);
         }
-        pr.dismiss();
+        bar.setVisibility(View.GONE);
     }
 
     private int ConvertTopx(float dp) {
