@@ -78,6 +78,7 @@
         <item
             android:title="@string/direct_feedback"
             android:id="@+id/nav_report"
+            android:visible="false"
             android:icon="@drawable/ic_action_warning"/>
     <item
         android:title="@string/LabelHelp"
