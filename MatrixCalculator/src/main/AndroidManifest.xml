@@ -25,7 +25,6 @@
         </activity>
         <activity
             android:name=".base_activities.AboutMe"
-            android:label="@string/aboutme"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".base_fragments.Settings" />

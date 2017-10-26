@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,20 +41,19 @@ public class AboutMe extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
         if(isDark)
-            setTheme(R.style.AppThemeDark);
+            setTheme(R.style.AppThemeDark_NoActionBar);
         else
-            setTheme(R.style.AppTheme);
+            setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aboutme_layout);
-
-        TextView textView = (TextView) findViewById(R.id.TextViewCard3);
+        if(isDark)
+            findViewById(R.id.relativeLayoutAbout).setBackgroundColor(ContextCompat.getColor(this,R.color.DarkcolorPrimaryDark));
+        else{
+            findViewById(R.id.relativeLayoutAbout).setBackgroundColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
+        }
+        TextView textView = (TextView) findViewById(R.id.textView3);
         String s = "Version " + BuildConfig.VERSION_NAME;
         textView.setText(s);
-
-        if(((GlobalValues)getApplication()).DonationKeyFound()) {
-            TextView textView1 = (TextView) findViewById(R.id.Mymessage);
-            textView1.setText(getString(R.string.ThanksForDonation));
-        }
 
             }
 
