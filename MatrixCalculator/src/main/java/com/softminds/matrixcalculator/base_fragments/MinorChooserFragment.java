@@ -99,7 +99,7 @@ public class MinorChooserFragment extends Fragment {
             {
                 final TextView textView = new TextView(getContext());
                 textView.setGravity(Gravity.CENTER);
-                textView.setId(i*10+j);
+                textView.setTag(i*10+j);
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -113,11 +113,11 @@ public class MinorChooserFragment extends Fragment {
                         Runnable runnable = new Runnable() {
                             @Override
                             public void run() {
-                                float res= ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetMinorDeterminant(textView.getId()/10,textView.getId()%10);
+                                float res= ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).GetMinorDeterminant(((int) textView.getTag())/10,((int) textView.getTag())%10);
                                 Message message = new Message();
                                 Bundle bundle = new Bundle();
-                                bundle.putInt("REX",textView.getId()/10);
-                                bundle.putInt("REY",textView.getId()%10);
+                                bundle.putInt("REX",((int)textView.getTag())/10);
+                                bundle.putInt("REY",((int)textView.getTag())%10);
                                 bundle.putFloat("VALUE",res);
                                 message.setData(bundle);
                                 progressDialog.dismiss();
