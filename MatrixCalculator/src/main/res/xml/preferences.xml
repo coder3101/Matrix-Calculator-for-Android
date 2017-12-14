@@ -96,7 +96,6 @@
         android:title="@string/other">
         <SwitchPreference
             android:key="@string/AutoToastKey"
-            android:visibility="gone"
             android:summary="@string/AutoToastDesc"
             android:title="@string/AutoToast"
             android:defaultValue="false"/>

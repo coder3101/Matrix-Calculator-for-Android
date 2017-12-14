@@ -49,9 +49,6 @@ public class Settings extends PreferenceActivity {
             super.onCreate(savedInstances);
             addPreferencesFromResource(R.xml.preferences);
 
-            //remove the Card-Elevation Preference from user.
-            getPreferenceScreen().removePreference(getPreferenceScreen().findPreference("ELEVATE_AMOUNT"));
-
             if(((GlobalValues)getActivity().getApplication()).DonationKeyFound())
                 UpgradePro();
             Preference preference = findPreference("DARK_THEME_KEY");
