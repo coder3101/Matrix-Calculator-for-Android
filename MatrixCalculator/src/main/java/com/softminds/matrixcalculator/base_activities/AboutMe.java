@@ -39,28 +39,28 @@ public class AboutMe extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
-        if(isDark)
+        boolean isDark = preferences.getBoolean("DARK_THEME_KEY", false);
+        if (isDark)
             setTheme(R.style.AppThemeDark_NoActionBar);
         else
             setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aboutme_layout);
-        if(isDark)
-            findViewById(R.id.relativeLayoutAbout).setBackgroundColor(ContextCompat.getColor(this,R.color.DarkcolorPrimaryDark));
-        else{
-            findViewById(R.id.relativeLayoutAbout).setBackgroundColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
+        if (isDark)
+            findViewById(R.id.relativeLayoutAbout).setBackgroundColor(ContextCompat.getColor(this, R.color.DarkcolorPrimaryDark));
+        else {
+            findViewById(R.id.relativeLayoutAbout).setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
         TextView textView = (TextView) findViewById(R.id.textView3);
         String s = "Version " + BuildConfig.VERSION_NAME;
         textView.setText(s);
 
-            }
+    }
 
     public void showSources(View view) {
 
         Intent sources = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/coder3101/Matrix-Calculator-for-Android"));
-        startActivity(Intent.createChooser(sources,"View Sources using"));
+        startActivity(Intent.createChooser(sources, "View Sources using"));
 
     }
 }
