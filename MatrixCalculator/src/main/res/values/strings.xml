@@ -241,6 +241,7 @@
     <string name="OnlyPro">This is a Pro feature</string>
     <string name="OpeningPlay">Opening Play store</string>
     <string name="FatalError">An Error Resulted force close of Splash Screen</string>
+    <string name="NoDataAvailable">Your Advertisement could be here</string>
     <string name="ToAddMoreTurnData">Load Advertisement to create more</string>
     <string name="ErrorOccured"><b>Error Occurred</b> If You are on Android 4.4.4 or above, Please Report</string>
     <string name="ViewHints">Click on the Element to get its First Minor </string>
@@ -284,6 +285,6 @@
     <string name="first_minor_is">First Minor of :</string>
     <string name="invalid_numbers">Matrix should only have Integers or Decimal Numbers</string>
 
-    <string name="upgrade_needed">To Create more Variable Upgrade is required</string>
+    <string name="upgrade_needed">To Create More Variable Please Upgrade</string>
 
 </resources>
