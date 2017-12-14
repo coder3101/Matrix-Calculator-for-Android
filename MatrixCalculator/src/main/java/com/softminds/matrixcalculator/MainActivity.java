@@ -167,6 +167,12 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(getApplicationContext(), MakeNewMatrix.class);
                     startActivityForResult(intent, RESULT);
                 }
+                else{
+                    if(((GlobalValues)getApplication()).GetCompleteList().size() == 3)
+                        Toast.makeText(getApplicationContext(),R.string.ToAddMoreTurnData,Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(getApplicationContext(),R.string.upgrade_needed,Toast.LENGTH_LONG).show();
+                }
 
             }
         });
