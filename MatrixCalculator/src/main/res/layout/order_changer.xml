@@ -11,89 +11,91 @@
     tools:context="com.softminds.matrixcalculator.dialog_activity.OrderChanger">
 
     <LinearLayout
-        android:layout_marginStart="24dp"
+        android:id="@+id/RowChangerLayout"
         android:layout_width="100dp"
         android:layout_height="150dp"
-        android:orientation="vertical"
-        android:id="@+id/RowChangerLayout"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_marginStart="24dp"
+        android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
-                android:text="@string/Row"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:layout_centerHorizontal="true"
-                android:textStyle="bold"
                 android:layout_marginStart="10dp"
-                />
+                android:text="@string/Row"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </RelativeLayout>
+
         <NumberPicker
-            android:layout_width="80dp"
-            android:layout_marginTop="10dp"
-            android:layout_height="90dp"
             android:id="@+id/RowChangedOrder"
-            />
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ColChangerLayout"
         android:layout_width="100dp"
         android:layout_height="150dp"
-        android:orientation="vertical"
-        android:layout_marginStart="27dp"
-        android:id="@+id/ColChangerLayout"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@id/RowChangerLayout">
+        android:layout_marginStart="27dp"
+        android:layout_toEndOf="@id/RowChangerLayout"
+        android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
-                android:text="@string/Col"
+                android:id="@+id/textView5"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/textView5" />
+                android:text="@string/Col"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <NumberPicker
+            android:id="@+id/ColChangedOrder"
             android:layout_width="80dp"
             android:layout_height="90dp"
-            android:id="@+id/ColChangedOrder"
-            android:layout_marginTop="10dp"
-            />
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
+
     <TextView
+        android:id="@+id/WarningText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Warning10"
-        android:id="@+id/WarningText"
-        android:layout_below="@id/RowChangerLayout"/>
+        android:layout_below="@id/RowChangerLayout"
+        android:text="@string/Warning10" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/NoCommitChanges"
-        android:text="@string/CancelCustomFill"
-        android:layout_below="@id/WarningText"
         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_marginStart="20dp"
-        />
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/CommitChanges"
-        android:text="@string/ConfirmMake"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
         android:layout_below="@id/WarningText"
-        android:layout_toEndOf="@id/NoCommitChanges"
+        android:layout_marginStart="20dp"
+        android:text="@string/CancelCustomFill" />
+
+    <Button
+        android:id="@+id/CommitChanges"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/WarningText"
         android:layout_marginStart="40dp"
-        />
+        android:layout_toEndOf="@id/NoCommitChanges"
+        android:text="@string/ConfirmMake" />
 </RelativeLayout>
 

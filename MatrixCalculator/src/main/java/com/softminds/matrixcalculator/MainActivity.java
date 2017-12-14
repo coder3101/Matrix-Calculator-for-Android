@@ -78,11 +78,11 @@ import com.softminds.matrixcalculator.OperationFragments.TransposeFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    final int RESULT=1;
+    final int RESULT = 1;
     Menu ActionbarMenu; //the Menu items in the top 3 dots
     ActionBar actionBar; //the Main Activity Actionbar
     TextView t; //Center Text which describe the context of the Application
-    boolean OnceBackClicked=false;
+    boolean OnceBackClicked = false;
     Menu NavMenuItem;
 
     CardView adCard;
@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
+        boolean isDark = preferences.getBoolean("DARK_THEME_KEY", false);
 
-        if(isDark)
+        if (isDark)
             setTheme(R.style.AppThemeDark_NoActionBar);
         else
             setTheme(R.style.AppTheme_NoActionBar);
@@ -102,38 +102,36 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        adCard = (CardView)findViewById(R.id.MainActivity_Advt_Card);
+        adCard = (CardView) findViewById(R.id.MainActivity_Advt_Card);
 
-    if(!((GlobalValues)getApplication()).DonationKeyFound()) {
-        AdView mAdView = (AdView) findViewById(R.id.adViewMainActivity);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                ((GlobalValues) getApplication()).AdLoaded = true;
-                adCard.setVisibility(View.VISIBLE);
-            }
-        });
-    }
-    else {
-        adCard.setVisibility(View.GONE);
-    }
-
+        if (!((GlobalValues) getApplication()).DonationKeyFound()) {
+            AdView mAdView = (AdView) findViewById(R.id.adViewMainActivity);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+            mAdView.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    ((GlobalValues) getApplication()).AdLoaded = true;
+                    adCard.setVisibility(View.VISIBLE);
+                }
+            });
+        } else {
+            adCard.setVisibility(View.GONE);
+        }
 
 
-        t = (TextView)findViewById(R.id.OpeningHint);
+        t = (TextView) findViewById(R.id.OpeningHint);
 
-        if(isDark)
-            t.setTextColor(ContextCompat.getColor(this,R.color.white));
+        if (isDark)
+            t.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         else
-            t.setTextColor(ContextCompat.getColor(this,R.color.colorPrimary));
+            t.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if(!((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+        if (!((GlobalValues) getApplication()).GetCompleteList().isEmpty())
             t.setText(null);
 
 
@@ -143,32 +141,29 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
 
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View v = navigationView.getHeaderView(0);
         navigationView.setCheckedItem(R.id.Home);
         NavMenuItem = navigationView.getMenu();
 
-        if(((GlobalValues)getApplication()).DonationKeyFound())
+        if (((GlobalValues) getApplication()).DonationKeyFound())
             NavMenuItem.findItem(R.id.upgrade).setVisible(false);
 
 
-        if(v!=null)
-        {
-            if(isDark) {
+        if (v != null) {
+            if (isDark) {
                 v.setBackground(ContextCompat.getDrawable(this, R.drawable.side_nav_bar_dark));
                 navigationView.setItemTextColor(ColorStateList.valueOf(Color.parseColor("#ffffff")));
-            }
-            else
-                v.setBackground(ContextCompat.getDrawable(this,R.drawable.side_nav_bar));
+            } else
+                v.setBackground(ContextCompat.getDrawable(this, R.drawable.side_nav_bar));
         }
 
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.MainFAB);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(((GlobalValues)getApplication()).CanCreateVariable()){
+                if (((GlobalValues) getApplication()).CanCreateVariable()) {
                     Intent intent = new Intent(getApplicationContext(), MakeNewMatrix.class);
                     startActivityForResult(intent, RESULT);
                 }
@@ -176,13 +171,12 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        if(savedInstanceState==null)
-        {
-            MainActivityFragmentList mh=new MainActivityFragmentList();
-            getSupportFragmentManager().beginTransaction().add(R.id.MainContent,mh,"MAIN_LIST").commit();
+        if (savedInstanceState == null) {
+            MainActivityFragmentList mh = new MainActivityFragmentList();
+            getSupportFragmentManager().beginTransaction().add(R.id.MainContent, mh, "MAIN_LIST").commit();
         }
 
-        if(((GlobalValues)getApplication()).Promotion) {
+        if (((GlobalValues) getApplication()).Promotion) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             String rated = sharedPreferences.getString("RATED", "no");
             if ((rated.equals("no") || rated.equals("later")) && ((GlobalValues) getApplication()).ThisSession) {
@@ -201,28 +195,28 @@ public class MainActivity extends AppCompatActivity
         builder.setNegativeButton(R.string.WontRate, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-               Toast.makeText(getApplicationContext(),R.string.SadRequ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.SadRequ, Toast.LENGTH_SHORT).show();
                 SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
-                edit.putString("RATED","ignored");
+                edit.putString("RATED", "ignored");
                 edit.apply();
                 dialogInterface.dismiss();
-                Log.d("Prefs Status : ", PreferenceManager.getDefaultSharedPreferences(getApplication()).getString("RATED","empty"));
+                Log.d("Prefs Status : ", PreferenceManager.getDefaultSharedPreferences(getApplication()).getString("RATED", "empty"));
 
             }
         });
         builder.setPositiveButton(R.string.RateNow, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-              dialogInterface.dismiss();
+                dialogInterface.dismiss();
                 try {
                     Intent intent24 = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName()));
                     SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
-                    edit.putString("RATED","yes");
+                    edit.putString("RATED", "yes");
                     edit.apply();
                     startActivity(intent24);
-                    Toast.makeText(getApplicationContext(),R.string.OpeningPlay,Toast.LENGTH_SHORT).show();
-                }catch (ActivityNotFoundException e){ //if Play store is not installed
-                    startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName())));
+                    Toast.makeText(getApplicationContext(), R.string.OpeningPlay, Toast.LENGTH_SHORT).show();
+                } catch (ActivityNotFoundException e) { //if Play store is not installed
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
                 }
             }
         });
@@ -231,9 +225,9 @@ public class MainActivity extends AppCompatActivity
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
                 SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
-                edit.putString("RATED","later");
+                edit.putString("RATED", "later");
                 edit.apply();
-                Log.d("Prefs Status : ", PreferenceManager.getDefaultSharedPreferences(getApplication()).getString("RATED","empty"));
+                Log.d("Prefs Status : ", PreferenceManager.getDefaultSharedPreferences(getApplication()).getString("RATED", "empty"));
 
             }
         });
@@ -248,18 +242,18 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if(OnceBackClicked)
+            if (OnceBackClicked)
                 super.onBackPressed();
-            else{
-                Toast.makeText(getApplicationContext(),R.string.ClickToExit,Toast.LENGTH_SHORT).show();
-                OnceBackClicked=true;
+            else {
+                Toast.makeText(getApplicationContext(), R.string.ClickToExit, Toast.LENGTH_SHORT).show();
+                OnceBackClicked = true;
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
                         OnceBackClicked = false; //reset back pressed event
                     }
                 };
-                new android.os.Handler().postDelayed(runnable,2000); //reset the click stat after 2 seconds
+                new android.os.Handler().postDelayed(runnable, 2000); //reset the click stat after 2 seconds
             }
         }
     }
@@ -283,33 +277,33 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_settings:
-                Intent intent = new Intent(this,SettingsTab.class);
-                startActivityForResult(intent,100);
+                Intent intent = new Intent(this, SettingsTab.class);
+                startActivityForResult(intent, 100);
                 break;
             case R.id.aboutmeButton:
-                Intent intent2 = new Intent(getApplication(),AboutMe.class);
+                Intent intent2 = new Intent(getApplication(), AboutMe.class);
                 startActivity(intent2);
                 break;
             case R.id.action_share:
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(Intent.EXTRA_SUBJECT,R.string.app_name);
-                sharingIntent.putExtra(Intent.EXTRA_TEXT,getString(R.string.ShareMessage));
-                startActivity(Intent.createChooser(sharingIntent,getResources().getString(R.string.ShareUsing)));
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.ShareMessage));
+                startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.ShareUsing)));
                 break;
             case R.id.rateButton:
                 final String Package = "com.softminds.matrixcalculator";
                 try {
                     Intent intent24 = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Package));
                     startActivity(intent24);
-                    Toast.makeText(getApplicationContext(),R.string.OpeningPlay,Toast.LENGTH_SHORT).show();
-                }catch (ActivityNotFoundException e){ //if Play store is not installed
-                    startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://play.google.com/store/apps/details?id="+Package)));
+                    Toast.makeText(getApplicationContext(), R.string.OpeningPlay, Toast.LENGTH_SHORT).show();
+                } catch (ActivityNotFoundException e) { //if Play store is not installed
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + Package)));
                 }
                 break;
             case R.id.ClearAllVar:
-                if(!((GlobalValues)getApplication()).GetCompleteList().isEmpty()){
-                    AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+                if (!((GlobalValues) getApplication()).GetCompleteList().isEmpty()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setMessage(R.string.Warning9);
                     builder.setTitle(R.string.Clear);
                     builder.setPositiveButton(R.string.Yup, new DialogInterface.OnClickListener() {
@@ -317,7 +311,7 @@ public class MainActivity extends AppCompatActivity
                         public void onClick(DialogInterface dialogInterface, int i) {
                             ((GlobalValues) getApplication()).ClearAllMatrix();
                             actionBar.setSubtitle(null);
-                            ((GlobalValues)getApplication()).AutoSaved=1; //Re initialize AutoSave to 1
+                            ((GlobalValues) getApplication()).AutoSaved = 1; //Re initialize AutoSave to 1
                             TextView t = (TextView) findViewById(R.id.OpeningHint);
                             t.setText(R.string.OpenHint);
                         }
@@ -330,416 +324,408 @@ public class MainActivity extends AppCompatActivity
                     });
 
                     builder.show();
-                }
-                else
-                    Toast.makeText(getApplication(),R.string.Warning8,Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getApplication(), R.string.Warning8, Toast.LENGTH_SHORT).show();
 
         }
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            int id = item.getItemId();
+        int id = item.getItemId();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.MainFAB);
 
-       switch (id)
-       {
-           case R.id.Home:
-               //setting the fragment
-               MainActivityFragmentList mh=new MainActivityFragmentList();
-               getSupportFragmentManager().beginTransaction().replace(R.id.MainContent,mh,"MAIN_LIST").commit();
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(true);
-               actionBar.setTitle(R.string.app_name);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   actionBar.setSubtitle(null);
-               else
-                   actionBar.setSubtitle(R.string.MainSubtitle);
-               fab.show();
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint);
-               else
-                   t.setText(null);
-               break;
-           case R.id.add_sub :
-               //setting fragment
-               FragmentTransaction AdditionTransaction = getSupportFragmentManager().beginTransaction();
-               AdditionFragement additionFragement = new AdditionFragement();
-               AdditionTransaction.replace(R.id.MainContent, additionFragement,"ADDITION_FRAGMENT");
-               AdditionTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               AdditionTransaction.commit();
-               //setting actionbar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.ShortAddSub);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
+        switch (id) {
+            case R.id.Home:
+                //setting the fragment
+                MainActivityFragmentList mh = new MainActivityFragmentList();
+                getSupportFragmentManager().beginTransaction().replace(R.id.MainContent, mh, "MAIN_LIST").commit();
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(true);
+                actionBar.setTitle(R.string.app_name);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    actionBar.setSubtitle(null);
+                else
+                    actionBar.setSubtitle(R.string.MainSubtitle);
+                fab.show();
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint);
+                else
                     t.setText(null);
-               fab.hide();
-               break;
-           case R.id.only_sub:
-               //setting fragment
-               FragmentTransaction SubtractionTransaction = getSupportFragmentManager().beginTransaction();
-               SubtractionFragment subtractionFragment = new SubtractionFragment();
-               SubtractionTransaction.replace(R.id.MainContent, subtractionFragment,"SUBTRACTION_FRAGMENT");
-               SubtractionTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               SubtractionTransaction.commit();
-               //setting actionbar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.ShortOnlySub);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-                   t.setText(null);
-               fab.hide();
-               break;
-           case R.id.Clone:
-               //setting fragment
-               FragmentTransaction clonetransaction = getSupportFragmentManager().beginTransaction();
-               CloneFragment cloneFragment = new CloneFragment();
-               clonetransaction.replace(R.id.MainContent,cloneFragment,"CLONE_FRAGMENT");
-               clonetransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               clonetransaction.commit();
-               //setting Actionar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.clone);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-                   t.setText(null);
-               fab.hide();
-               break;
-           case R.id.Transpose:
-               FragmentTransaction  transposeTransaction = getSupportFragmentManager().beginTransaction();
-               TransposeFragment transposeFragment = new TransposeFragment();
-               transposeTransaction.replace(R.id.MainContent, transposeFragment,"TRANSPOSE_FRAGMENT");
-               transposeTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               transposeTransaction.commit();
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.transpose);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-                   t.setText(null);
-               fab.hide();
-               break;
-           case R.id.Swap :
-               FragmentTransaction  swapTransaction = getSupportFragmentManager().beginTransaction();
-               SwapFragment swapFragment = new SwapFragment();
-               swapTransaction.replace(R.id.MainContent, swapFragment,"SWAP_FRAGMENT");
-               swapTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               swapTransaction.commit();
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.swap);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-                t.setText(null);
-               fab.hide();
-               break;
-           case R.id.multiply:
-               FragmentTransaction  multiplyTransaction = getSupportFragmentManager().beginTransaction();
-               MultiplyFragment multiplyFragment = new MultiplyFragment();
-               multiplyTransaction.replace(R.id.MainContent, multiplyFragment,"MULTIPLY_FRAGMENT");
-               multiplyTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               multiplyTransaction.commit();
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setSubtitle(null);
-               actionBar.setTitle(R.string.multiply);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-                   t.setText(null);
-               fab.hide();
-               break;
-           case R.id.exponent:
-               FragmentTransaction ExponentTransaction = getSupportFragmentManager().beginTransaction();
-               ExponentFragment ef = new ExponentFragment();
-               ExponentTransaction.replace(R.id.MainContent, ef,"EXPONENT_FRAGMENT");
-               ExponentTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               ExponentTransaction.commit();
-               //Modify the Actionbar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.exponent);
-               actionBar.setSubtitle(null);
-               //if else Ladder
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-               {
-                   if(isAnyVariableSquare())
-                       t.setText(null);
-                   else
-                       t.setText(R.string.NoSupport);
-               }
-               fab.hide();
-               break;
-           case R.id.determinant:
-               FragmentTransaction DeterminantTransaction= getSupportFragmentManager().beginTransaction();
-               DeterminantFragment df = new DeterminantFragment();
-               DeterminantTransaction.replace(R.id.MainContent, df,"DETERMINANT_FRAGMENT");
-               DeterminantTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               DeterminantTransaction.commit();
-               //Modify the Actionbar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.determinant);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-                {
-                    if(isAnyVariableSquare())
-                         t.setText(null);
+                break;
+            case R.id.add_sub:
+                //setting fragment
+                FragmentTransaction AdditionTransaction = getSupportFragmentManager().beginTransaction();
+                AdditionFragement additionFragement = new AdditionFragement();
+                AdditionTransaction.replace(R.id.MainContent, additionFragement, "ADDITION_FRAGMENT");
+                AdditionTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                AdditionTransaction.commit();
+                //setting actionbar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.ShortAddSub);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
+                fab.hide();
+                break;
+            case R.id.only_sub:
+                //setting fragment
+                FragmentTransaction SubtractionTransaction = getSupportFragmentManager().beginTransaction();
+                SubtractionFragment subtractionFragment = new SubtractionFragment();
+                SubtractionTransaction.replace(R.id.MainContent, subtractionFragment, "SUBTRACTION_FRAGMENT");
+                SubtractionTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                SubtractionTransaction.commit();
+                //setting actionbar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.ShortOnlySub);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
+                fab.hide();
+                break;
+            case R.id.Clone:
+                //setting fragment
+                FragmentTransaction clonetransaction = getSupportFragmentManager().beginTransaction();
+                CloneFragment cloneFragment = new CloneFragment();
+                clonetransaction.replace(R.id.MainContent, cloneFragment, "CLONE_FRAGMENT");
+                clonetransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                clonetransaction.commit();
+                //setting Actionar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.clone);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
+                fab.hide();
+                break;
+            case R.id.Transpose:
+                FragmentTransaction transposeTransaction = getSupportFragmentManager().beginTransaction();
+                TransposeFragment transposeFragment = new TransposeFragment();
+                transposeTransaction.replace(R.id.MainContent, transposeFragment, "TRANSPOSE_FRAGMENT");
+                transposeTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                transposeTransaction.commit();
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.transpose);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
+                fab.hide();
+                break;
+            case R.id.Swap:
+                FragmentTransaction swapTransaction = getSupportFragmentManager().beginTransaction();
+                SwapFragment swapFragment = new SwapFragment();
+                swapTransaction.replace(R.id.MainContent, swapFragment, "SWAP_FRAGMENT");
+                swapTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                swapTransaction.commit();
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.swap);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
+                fab.hide();
+                break;
+            case R.id.multiply:
+                FragmentTransaction multiplyTransaction = getSupportFragmentManager().beginTransaction();
+                MultiplyFragment multiplyFragment = new MultiplyFragment();
+                multiplyTransaction.replace(R.id.MainContent, multiplyFragment, "MULTIPLY_FRAGMENT");
+                multiplyTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                multiplyTransaction.commit();
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setSubtitle(null);
+                actionBar.setTitle(R.string.multiply);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
+                fab.hide();
+                break;
+            case R.id.exponent:
+                FragmentTransaction ExponentTransaction = getSupportFragmentManager().beginTransaction();
+                ExponentFragment ef = new ExponentFragment();
+                ExponentTransaction.replace(R.id.MainContent, ef, "EXPONENT_FRAGMENT");
+                ExponentTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ExponentTransaction.commit();
+                //Modify the Actionbar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.exponent);
+                actionBar.setSubtitle(null);
+                //if else Ladder
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else {
+                    if (isAnyVariableSquare())
+                        t.setText(null);
                     else
-                         t.setText(R.string.NoSupport);
-                    }
-               fab.hide();
-               break;
-           case R.id.trace:
-               FragmentTransaction TraceTrasaction = getSupportFragmentManager().beginTransaction();
-               TraceFragment traceFragment = new TraceFragment();
-               TraceTrasaction.replace(R.id.MainContent,traceFragment,"TRACE_FRAGMENT");
-               TraceTrasaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               TraceTrasaction.commit();
-               //Modify Actionbar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.trace_text);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else {
-                   if (isAnyVariableSquare())
-                       t.setText(null);
-                   else
-                       t.setText(R.string.NoSupport);
-               }
-               fab.hide();
-               break;
-           case R.id.inverse:
-               FragmentTransaction InverseTransaction= getSupportFragmentManager().beginTransaction();
-               InverseFragment inv = new InverseFragment();
-               InverseTransaction.replace(R.id.MainContent, inv,"INVERSE_FRAGMENT");
-               InverseTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               InverseTransaction.commit();
-               //Modify the Actionbar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.inverse);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-               {
-                   if(isAnyVariableSquare())
-                       t.setText(null);
-                   else
-                       t.setText(R.string.NoSupport);
-               }
-               fab.hide();
-               break;
-           case R.id.adjoint:
-               FragmentTransaction AdjointTransaction= getSupportFragmentManager().beginTransaction();
-               AdjointFragment af = new AdjointFragment();
-               AdjointTransaction.replace(R.id.MainContent, af,"ADJOINT_FRAGMENT");
-               AdjointTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               AdjointTransaction.commit();
-               //Modify the Actionbar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.adjoint);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-               {
-                   if(isAnyVariableSquare())
-                       t.setText(null);
-                   else
-                       t.setText(R.string.NoSupport);
-               }
-               fab.hide();
-               break;
-           case R.id.ScalerMulti:
-               FragmentTransaction ScalerTransaction= getSupportFragmentManager().beginTransaction();
-               ScalerFragment sf = new ScalerFragment();
-               ScalerTransaction.replace(R.id.MainContent, sf,"SCALAR_FRAGMENT");
-               ScalerTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               ScalerTransaction.commit();
-               //Modify the Actionbar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.Scaler);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-                   t.setText(null);
-               break;
-           case R.id.RankofMat1:
-               FragmentTransaction RankTransaction= getSupportFragmentManager().beginTransaction();
-               RankFragment rank = new RankFragment();
-               RankTransaction.replace(R.id.MainContent, rank,"RANK_FRAGMENT");
-               RankTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               RankTransaction.commit();
-               //Modify the Actionbar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.RankofMat);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-                   t.setText(null);
-               break;
-           case R.id.MinorsofMat:
-               FragmentTransaction MinorTransaction = getSupportFragmentManager().beginTransaction();
-               MinorTransaction.replace(R.id.MainContent,new MinorFragment(),"MINOR_FRAGMENT");
-               MinorTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               MinorTransaction.commit();
-               //Actionbar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.Minor_detr);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-               {
-                   if(isAnyVariableSquare())
-                       t.setText(null);
-                   else
-                       t.setText(R.string.NoSupport);
-               }
-               fab.hide();
-               break;
+                        t.setText(R.string.NoSupport);
+                }
+                fab.hide();
+                break;
+            case R.id.determinant:
+                FragmentTransaction DeterminantTransaction = getSupportFragmentManager().beginTransaction();
+                DeterminantFragment df = new DeterminantFragment();
+                DeterminantTransaction.replace(R.id.MainContent, df, "DETERMINANT_FRAGMENT");
+                DeterminantTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                DeterminantTransaction.commit();
+                //Modify the Actionbar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.determinant);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else {
+                    if (isAnyVariableSquare())
+                        t.setText(null);
+                    else
+                        t.setText(R.string.NoSupport);
+                }
+                fab.hide();
+                break;
+            case R.id.trace:
+                FragmentTransaction TraceTrasaction = getSupportFragmentManager().beginTransaction();
+                TraceFragment traceFragment = new TraceFragment();
+                TraceTrasaction.replace(R.id.MainContent, traceFragment, "TRACE_FRAGMENT");
+                TraceTrasaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                TraceTrasaction.commit();
+                //Modify Actionbar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.trace_text);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else {
+                    if (isAnyVariableSquare())
+                        t.setText(null);
+                    else
+                        t.setText(R.string.NoSupport);
+                }
+                fab.hide();
+                break;
+            case R.id.inverse:
+                FragmentTransaction InverseTransaction = getSupportFragmentManager().beginTransaction();
+                InverseFragment inv = new InverseFragment();
+                InverseTransaction.replace(R.id.MainContent, inv, "INVERSE_FRAGMENT");
+                InverseTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                InverseTransaction.commit();
+                //Modify the Actionbar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.inverse);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else {
+                    if (isAnyVariableSquare())
+                        t.setText(null);
+                    else
+                        t.setText(R.string.NoSupport);
+                }
+                fab.hide();
+                break;
+            case R.id.adjoint:
+                FragmentTransaction AdjointTransaction = getSupportFragmentManager().beginTransaction();
+                AdjointFragment af = new AdjointFragment();
+                AdjointTransaction.replace(R.id.MainContent, af, "ADJOINT_FRAGMENT");
+                AdjointTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                AdjointTransaction.commit();
+                //Modify the Actionbar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.adjoint);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else {
+                    if (isAnyVariableSquare())
+                        t.setText(null);
+                    else
+                        t.setText(R.string.NoSupport);
+                }
+                fab.hide();
+                break;
+            case R.id.ScalerMulti:
+                FragmentTransaction ScalerTransaction = getSupportFragmentManager().beginTransaction();
+                ScalerFragment sf = new ScalerFragment();
+                ScalerTransaction.replace(R.id.MainContent, sf, "SCALAR_FRAGMENT");
+                ScalerTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ScalerTransaction.commit();
+                //Modify the Actionbar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.Scaler);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
+                break;
+            case R.id.RankofMat1:
+                FragmentTransaction RankTransaction = getSupportFragmentManager().beginTransaction();
+                RankFragment rank = new RankFragment();
+                RankTransaction.replace(R.id.MainContent, rank, "RANK_FRAGMENT");
+                RankTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                RankTransaction.commit();
+                //Modify the Actionbar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.RankofMat);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
+                break;
+            case R.id.MinorsofMat:
+                FragmentTransaction MinorTransaction = getSupportFragmentManager().beginTransaction();
+                MinorTransaction.replace(R.id.MainContent, new MinorFragment(), "MINOR_FRAGMENT");
+                MinorTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                MinorTransaction.commit();
+                //Actionbar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.Minor_detr);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else {
+                    if (isAnyVariableSquare())
+                        t.setText(null);
+                    else
+                        t.setText(R.string.NoSupport);
+                }
+                fab.hide();
+                break;
 
 
-           case R.id.functional:
-               FragmentTransaction FunctionalTransaction= getSupportFragmentManager().beginTransaction();
-               FunctionalFragment ff = new FunctionalFragment();
-               FunctionalTransaction.replace(R.id.MainContent, ff,"FUNCTIONAL_FRAGMENT");
-               FunctionalTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-               FunctionalTransaction.commit();
-               //Modify the Actionbar
-               ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-               actionBar.setTitle(R.string.function);
-               actionBar.setSubtitle(null);
-               if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
-                   t.setText(R.string.OpenHint2);
-               else
-               {
-                   if(isAnyVariableSquare())
-                       t.setText(null);
-                   else
-                       t.setText(R.string.NoSupport);
-               }
-               fab.hide();
-               break;
-           case R.id.nav_report:
-               AlertDialog.Builder builder = new AlertDialog.Builder(this);
-               builder.setTitle(R.string.direct_feedback);
-               builder.setMessage(R.string.ReportMessage);
-               builder.setPositiveButton(R.string.ProceedGithub, new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialogInterface, int i) {
-                       dialogInterface.dismiss();
+            case R.id.functional:
+                FragmentTransaction FunctionalTransaction = getSupportFragmentManager().beginTransaction();
+                FunctionalFragment ff = new FunctionalFragment();
+                FunctionalTransaction.replace(R.id.MainContent, ff, "FUNCTIONAL_FRAGMENT");
+                FunctionalTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                FunctionalTransaction.commit();
+                //Modify the Actionbar
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.function);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else {
+                    if (isAnyVariableSquare())
+                        t.setText(null);
+                    else
+                        t.setText(R.string.NoSupport);
+                }
+                fab.hide();
+                break;
+            case R.id.nav_report:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.direct_feedback);
+                builder.setMessage(R.string.ReportMessage);
+                builder.setPositiveButton(R.string.ProceedGithub, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
                         final String url = "https://www.github.com/coder3101/matrix-calculator-for-android/issues";
-                       Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
-                       startActivity(Intent.createChooser(intent,getString(R.string.OpenUsing)));
-                   }
-               });
-               builder.setNeutralButton(R.string.MailtoDev, new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialogInterface, int i) {
-                       dialogInterface.dismiss();
-                       Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSePpc3lzZUdaj8O1MWNH20kaAGiCrGF5gnuU9uzbkiUOQTa8w/viewform?usp=sf_link"));
-                       //Intent intent = new Intent(Intent.ACTION_SENDTO ,Uri.fromParts("mailto","ashar786khan@gmail.com",null));
-                       startActivity(intent);
-                   }
-               });
-               builder.setCancelable(true);
-               builder.show();
-               break;
-           case R.id.nav_help:
-               startActivity(new Intent(getApplicationContext(),faqs.class));
-               break;
-           case R.id.NewsAnnon:
-               startActivity(new Intent(getApplicationContext(),ChangeLogActivity.class));
-               break;
-           case R.id.upgrade:
-               final String ProPackage = "com.softminds.matrixcalculator.pro.key";
-               try {
-                   Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + ProPackage));
-                   startActivity(intent);
-                   Toast.makeText(getApplicationContext(),R.string.OpeningPlay,Toast.LENGTH_SHORT).show();
-               }catch (ActivityNotFoundException e){ //if Play store is not installed
-                   startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://play.google.com/store/apps/details?id="+ProPackage)));
-               }
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        startActivity(Intent.createChooser(intent, getString(R.string.OpenUsing)));
+                    }
+                });
+                builder.setNeutralButton(R.string.MailtoDev, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSePpc3lzZUdaj8O1MWNH20kaAGiCrGF5gnuU9uzbkiUOQTa8w/viewform?usp=sf_link"));
+                        //Intent intent = new Intent(Intent.ACTION_SENDTO ,Uri.fromParts("mailto","ashar786khan@gmail.com",null));
+                        startActivity(intent);
+                    }
+                });
+                builder.setCancelable(true);
+                builder.show();
+                break;
+            case R.id.nav_help:
+                startActivity(new Intent(getApplicationContext(), faqs.class));
+                break;
+            case R.id.NewsAnnon:
+                startActivity(new Intent(getApplicationContext(), ChangeLogActivity.class));
+                break;
+            case R.id.upgrade:
+                final String ProPackage = "com.softminds.matrixcalculator.pro.key";
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + ProPackage));
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), R.string.OpeningPlay, Toast.LENGTH_SHORT).show();
+                } catch (ActivityNotFoundException e) { //if Play store is not installed
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + ProPackage)));
+                }
 
-       }
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_main);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
-    protected void onActivityResult(int requestcode,int resultCode,Intent data)
-    {
-        super.onActivityResult(requestcode,resultCode,data);
-        if(resultCode==RESULT)
-        {
-            if(data!=null) {
-                Bundle AllData=new Bundle();
+    protected void onActivityResult(int requestcode, int resultCode, Intent data) {
+        super.onActivityResult(requestcode, resultCode, data);
+        if (resultCode == RESULT) {
+            if (data != null) {
+                Bundle AllData = new Bundle();
                 AllData.putAll(data.getExtras());
-                Matrix m=new Matrix();
-                try{
-                m.SetFromBundle(AllData);
-                ((GlobalValues) getApplication()).AddToGlobal(m); //Sending the things to Global Reference
-                if(actionBar.getSubtitle()==null)
-                    actionBar.setSubtitle(R.string.MainSubtitle);
-                t.setText(null);
+                Matrix m = new Matrix();
+                try {
+                    m.SetFromBundle(AllData);
+                    ((GlobalValues) getApplication()).AddToGlobal(m); //Sending the things to Global Reference
+                    if (actionBar.getSubtitle() == null)
+                        actionBar.setSubtitle(R.string.MainSubtitle);
+                    t.setText(null);
                     Toast.makeText(getApplicationContext(), R.string.Created, Toast.LENGTH_SHORT).show();
-                }  catch (NullPointerException e2){
+                } catch (NullPointerException e2) {
                     e2.printStackTrace();
-                    Log.d("NullException:","The Adapter was Null Forcing user to Refresh");
+                    Log.d("NullException:", "The Adapter was Null Forcing user to Refresh");
                     EnforceRefresh();
-                } catch (Exception ignored){ //catch Exception apart fro above two and ignore it
+                } catch (Exception ignored) { //catch Exception apart fro above two and ignore it
                 }
 
             }
         }
-        if(resultCode==100)
+        if (resultCode == 100)
             this.recreate(); // Recreate this Activity if a Change in Theme has been marked
 
     }
 
     private void EnforceRefresh() {
-        Snackbar snackbar = Snackbar.make(findViewById(R.id.MainContent),R.string.EnforceRef,Snackbar.LENGTH_INDEFINITE);
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.MainContent), R.string.EnforceRef, Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction(R.string.Refresh, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((GlobalValues)getApplication()).matrixAdapter.notifyDataSetChanged();
+                ((GlobalValues) getApplication()).matrixAdapter.notifyDataSetChanged();
             }
         });
         snackbar.show();
     }
 
-    protected boolean isAnyVariableSquare()
-    {
-        for(int i = 0; i <((GlobalValues)getApplication()).GetCompleteList().size(); i++)
-            if(((GlobalValues)getApplication()).GetCompleteList().get(i).is_squareMatrix())
+    protected boolean isAnyVariableSquare() {
+        for (int i = 0; i < ((GlobalValues) getApplication()).GetCompleteList().size(); i++)
+            if (((GlobalValues) getApplication()).GetCompleteList().get(i).is_squareMatrix())
                 return true;
         return false;
     }
-    public void SetMainActivity(boolean actionmenu,String MainTitle,String subtitle){
+
+    public void SetMainActivity(boolean actionmenu, String MainTitle, String subtitle) {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.MainFAB);
         ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(actionmenu);
         actionBar.setTitle(MainTitle);
-        if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+        if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
             actionBar.setSubtitle(null);
         else
             actionBar.setSubtitle(subtitle);
         fab.show();
-        if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+        if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
             t.setText(R.string.OpenHint);
         else
             t.setText(null);

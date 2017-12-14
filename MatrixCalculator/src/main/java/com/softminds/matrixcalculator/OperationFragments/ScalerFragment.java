@@ -37,9 +37,9 @@ public class ScalerFragment extends ListFragment {
     private int ClickPos;
 
     @Override
-    public void onActivityCreated( Bundle savedInstances){
+    public void onActivityCreated(Bundle savedInstances) {
         super.onActivityCreated(savedInstances);
-        MatrixAdapter adapter = new MatrixAdapter(getContext(),R.layout.list_layout_fragment,((GlobalValues)getActivity().getApplication()).GetCompleteList());
+        MatrixAdapter adapter = new MatrixAdapter(getContext(), R.layout.list_layout_fragment, ((GlobalValues) getActivity().getApplication()).GetCompleteList());
         getListView().setDividerHeight(1);
         setListAdapter(adapter);
     }
@@ -48,17 +48,17 @@ public class ScalerFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         ClickPos = position;
         Intent getMultiplier = new Intent(getContext(), MultiplierSetter.class);
-        startActivityForResult(getMultiplier,1054);
+        startActivityForResult(getMultiplier, 1054);
     }
 
     @Override
-    public void onActivityResult(int req,int res,Intent data) {
-        super.onActivityResult(req,res,data);
+    public void onActivityResult(int req, int res, Intent data) {
+        super.onActivityResult(req, res, data);
         if (res == 1054) {
             Intent intent = new Intent(getContext(), ShowResult.class);
-            intent.putExtras(((GlobalValues)getActivity().getApplication()).
+            intent.putExtras(((GlobalValues) getActivity().getApplication()).
                     GetCompleteList().get(ClickPos).ReturnScaler
-                    (data.getFloatExtra("MULTIPLIER_VAL",0)).GetDataBundled());
+                    (data.getFloatExtra("MULTIPLIER_VAL", 0)).GetDataBundled());
             startActivity(intent);
         }
     }

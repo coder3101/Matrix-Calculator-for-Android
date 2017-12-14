@@ -87,8 +87,8 @@ public class MainActivityFragmentList extends ListFragment {
                 break;
             case R.id.QuickChange:
                 Intent order = new Intent(getContext(), OrderChanger.class);
-                order.putExtra("INDEX_OF_SELECTED_MATRIX",info.position);
-                startActivityForResult(order,12);
+                order.putExtra("INDEX_OF_SELECTED_MATRIX", info.position);
+                startActivityForResult(order, 12);
 
         }
         return super.onContextItemSelected(item);
@@ -103,7 +103,7 @@ public class MainActivityFragmentList extends ListFragment {
             ((GlobalValues) getActivity().getApplication()).matrixAdapter.notifyDataSetChanged();
 
         }
-        if(resultCode==12)
-            Toast.makeText(getContext(),R.string.ChangedOrder,Toast.LENGTH_SHORT).show();
+        if (resultCode == 12)
+            Toast.makeText(getContext(), R.string.ChangedOrder, Toast.LENGTH_SHORT).show();
     }
 }

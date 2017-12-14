@@ -1,95 +1,98 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.softminds.matrixcalculator.OperationFragments.AdditionFragement">
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/QueueTopView"
-        android:orientation="vertical">
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:id="@+id/TitleOfAdd"
-        android:layout_marginBottom="10dp"
-        android:text="@string/AddQueue"
-        android:textAlignment="center"
-        />
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textStyle="bold"
-    android:layout_gravity="center"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:textSize="20sp"
-    android:id="@+id/AdditionStatus"
-    />
-    </HorizontalScrollView>
+        android:orientation="vertical">
+
         <TextView
+            android:id="@+id/TitleOfAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/AddQueue"
+            android:textAlignment="center" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/AdditionStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </HorizontalScrollView>
+
+        <TextView
             android:id="@+id/SubtitleofADD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:text="@string/AddTip"
-            android:textAlignment="center"
-            />
+            android:textAlignment="center" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/QueueTopView"
-        android:layout_above="@+id/AdvertiseMentCardadd"
         android:id="@+id/AdapterAddContainer"
-        />
-    <Button
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="@string/RemoveLast"
-        android:id="@+id/RemoveLast"
-        android:textAllCaps="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        />
-    <Button
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="@string/Proceed"
-        android:id="@+id/ConfirmAdd"
-        android:textAllCaps="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_above="@id/RemoveLast"
-        android:layout_marginBottom="2dp"
-        />
-    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        app:cardElevation="3dp"
-        android:visibility="gone"
-        android:id="@+id/AdvertiseMentCardadd"
-        android:layout_above="@id/ConfirmAdd"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/grey">
+        android:layout_above="@+id/AdvertiseMentCardadd"
+        android:layout_below="@id/QueueTopView"
+        android:orientation="vertical" />
+
+    <Button
+        android:id="@+id/RemoveLast"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/RemoveLast"
+        android:textAllCaps="true" />
+
+    <Button
+        android:id="@+id/ConfirmAdd"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/RemoveLast"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="2dp"
+        android:text="@string/Proceed"
+        android:textAllCaps="true" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/AdvertiseMentCardadd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ConfirmAdd"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/grey"
+        app:cardElevation="3dp">
+
         <com.google.android.gms.ads.AdView
             android:id="@+id/adViewAddActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             app:adSize="BANNER"
-            app:adUnitId="@string/addunit_addition">
-        </com.google.android.gms.ads.AdView>
+            app:adUnitId="@string/addunit_addition"/>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

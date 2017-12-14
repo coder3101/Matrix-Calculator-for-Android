@@ -37,29 +37,29 @@ import com.softminds.matrixcalculator.R;
 
 public class CustomValueFiller extends AppCompatActivity {
 
-    final String Key="com.softminds.matrixCalculator.CUSTOM_VALUE";
+    final String Key = "com.softminds.matrixCalculator.CUSTOM_VALUE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
-        if(isDark)
+        boolean isDark = preferences.getBoolean("DARK_THEME_KEY", false);
+        if (isDark)
             setTheme(R.style.AppThemeDarkDialog);
         else
             setTheme(R.style.AppThemeDialog);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_filler_value);
-        final EditText editText= (EditText) findViewById(R.id.CustomValue);
+        final EditText editText = (EditText) findViewById(R.id.CustomValue);
 
-        if(PreferenceManager.getDefaultSharedPreferences(this)
-                .getBoolean("DECIMAL_USE",true))
-        {
-            editText.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED|InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        }else{
-            editText.setInputType(InputType.TYPE_CLASS_NUMBER| InputType.TYPE_NUMBER_FLAG_SIGNED);
+        if (PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean("DECIMAL_USE", true)) {
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        } else {
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
         }
 
-        if(isDark)
-            editText.setTextColor(ContextCompat.getColor(this,R.color.white));
+        if (isDark)
+            editText.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         Button button = (Button) findViewById(R.id.ConfirmCustomFill);
         Button exit = (Button) findViewById(R.id.CancelCustomFill);
@@ -70,13 +70,12 @@ public class CustomValueFiller extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(editText.getText().toString().isEmpty())
-                    Toast.makeText(getApplication(),R.string.NoValue,Toast.LENGTH_SHORT).show();
-                else
-                {
-                    Intent intent =  new Intent();
-                    intent.putExtra(Key,Float.parseFloat(editText.getText().toString()));
-                    setResult(2,intent);
+                if (editText.getText().toString().isEmpty())
+                    Toast.makeText(getApplication(), R.string.NoValue, Toast.LENGTH_SHORT).show();
+                else {
+                    Intent intent = new Intent();
+                    intent.putExtra(Key, Float.parseFloat(editText.getText().toString()));
+                    setResult(2, intent);
                     finish();
                 }
 

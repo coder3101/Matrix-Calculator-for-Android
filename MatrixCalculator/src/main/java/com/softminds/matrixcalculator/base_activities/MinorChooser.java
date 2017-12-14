@@ -40,8 +40,8 @@ public class MinorChooser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
-        if(isDark)
+        boolean isDark = preferences.getBoolean("DARK_THEME_KEY", false);
+        if (isDark)
             setTheme(R.style.AppThemeDark);
         else
             setTheme(R.style.AppTheme);
@@ -51,28 +51,28 @@ public class MinorChooser extends AppCompatActivity {
         setContentView(R.layout.minor_chooser);
 
 
-        if(!((GlobalValues)getApplication()).DonationKeyFound()) {
+        if (!((GlobalValues) getApplication()).DonationKeyFound()) {
             AdView adView = (AdView) findViewById(R.id.adViewMinor);
             AdRequest request = new AdRequest.Builder().build();
             adView.loadAd(request);
-        }else{
-            CardView cardView = (CardView)findViewById(R.id.AddCardMinor);
-            ((ViewGroup)cardView.getParent()).removeView(cardView);
+        } else {
+            CardView cardView = (CardView) findViewById(R.id.AddCardMinor);
+            ((ViewGroup) cardView.getParent()).removeView(cardView);
         }
 
 
-        TextView textView = (TextView)findViewById(R.id.ViewHints);
+        TextView textView = (TextView) findViewById(R.id.ViewHints);
         textView.setText(R.string.ViewHints);
-        int index =getIntent().getIntExtra("INDEX",-1);
-        if(getSupportActionBar()!=null && index != (-1))
+        int index = getIntent().getIntExtra("INDEX", -1);
+        if (getSupportActionBar() != null && index != (-1))
             getSupportActionBar().setTitle(((GlobalValues) getApplication()).GetCompleteList().get(index).GetName());
         MinorChooserFragment minorChooserFragment = new MinorChooserFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("INDEX",getIntent().getIntExtra("INDEX",-1));
+        bundle.putInt("INDEX", getIntent().getIntExtra("INDEX", -1));
         minorChooserFragment.setArguments(bundle);
-        if(savedInstanceState==null){
-            FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.FragmentContainer2,minorChooserFragment,"MINOR_TAG").commit();
+        if (savedInstanceState == null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.FragmentContainer2, minorChooserFragment, "MINOR_TAG").commit();
         }
 
     }

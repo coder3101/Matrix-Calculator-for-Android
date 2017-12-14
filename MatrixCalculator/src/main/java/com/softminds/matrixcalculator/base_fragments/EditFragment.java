@@ -79,21 +79,19 @@ public class EditFragment extends Fragment {
                 EditText editText = new EditText(getContext());
                 editText.setId(i * 10 + j);
                 editText.setGravity(Gravity.CENTER);
-                if(!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE",true)){
+                if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
                     editText.setInputType(InputType.TYPE_CLASS_NUMBER
-                            |InputType.TYPE_NUMBER_FLAG_SIGNED);
-                }
-                else {
+                            | InputType.TYPE_NUMBER_FLAG_SIGNED);
+                } else {
                     editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL
                             | InputType.TYPE_NUMBER_FLAG_SIGNED);
                 }
                 editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(getLength())});
-                if(!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("SMART_FIT_KEY",false)){
+                if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("SMART_FIT_KEY", false)) {
                     editText.setWidth(ConvertTopx(62));
-                    editText.setTextSize(SizeReturner(3,3,PreferenceManager.getDefaultSharedPreferences(getContext()).
+                    editText.setTextSize(SizeReturner(3, 3, PreferenceManager.getDefaultSharedPreferences(getContext()).
                             getBoolean("EXTRA_SMALL_FONT", false)));
-                }
-                else {
+                } else {
                     editText.setWidth(ConvertTopx(CalculatedWidth(m.GetCol())));
                     editText.setTextSize(SizeReturner(m.GetRow(), m.GetCol(),
                             PreferenceManager.getDefaultSharedPreferences(getContext()).
@@ -137,8 +135,8 @@ public class EditFragment extends Fragment {
                     }
 
             }
-            ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(index).SetType();
-            ((GlobalValues)getActivity().getApplication()).matrixAdapter.notifyDataSetChanged();
+            ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).SetType();
+            ((GlobalValues) getActivity().getApplication()).matrixAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("ExceptionRaised", "RootView to Edit Text is Null");
@@ -157,15 +155,24 @@ public class EditFragment extends Fragment {
 
     public int CalculatedWidth(int a) {
         switch (a) {
-            case 1 : return 70;
-            case 2 : return 65;
-            case 3 : return 60;
-            case 4 : return 55;
-            case 5 : return 50;
-            case 6 : return 45;
-            case 7 : return 42;
-            case 8 : return 40;
-            case 9 : return 38;
+            case 1:
+                return 70;
+            case 2:
+                return 65;
+            case 3:
+                return 60;
+            case 4:
+                return 55;
+            case 5:
+                return 50;
+            case 6:
+                return 45;
+            case 7:
+                return 42;
+            case 8:
+                return 40;
+            case 9:
+                return 38;
 
         }
         return 0;
@@ -217,7 +224,7 @@ public class EditFragment extends Fragment {
                 }
             }
         } else {
-            return SizeReturner(r,c,false) -2;
+            return SizeReturner(r, c, false) - 2;
         }
         return 0;
     }
@@ -230,19 +237,20 @@ public class EditFragment extends Fragment {
         }
         return s;
     }
-    private int ConvertTopx(float dp){
+
+    private int ConvertTopx(float dp) {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-        return ((int)(dp * ((float)metrics.densityDpi) / DisplayMetrics.DENSITY_DEFAULT));
+        return ((int) (dp * ((float) metrics.densityDpi) / DisplayMetrics.DENSITY_DEFAULT));
 
     }
+
     private String GetText(float res) {
 
         if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
             DecimalFormat decimalFormat = new DecimalFormat("###############");
             return decimalFormat.format(res);
-        } else
-        {
-            switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ROUNDIND_INFO","0"))) {
+        } else {
+            switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ROUNDIND_INFO", "0"))) {
                 case 0:
                     return String.valueOf(res);
                 case 1:

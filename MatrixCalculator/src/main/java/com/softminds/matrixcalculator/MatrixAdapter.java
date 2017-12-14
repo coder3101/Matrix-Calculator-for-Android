@@ -38,8 +38,8 @@ import java.util.ArrayList;
 
 public class MatrixAdapter extends ArrayAdapter<Matrix> {
 
-    public MatrixAdapter(Context context, int t,ArrayList<Matrix> matrices){
-        super(context,t,matrices);
+    public MatrixAdapter(Context context, int t, ArrayList<Matrix> matrices) {
+        super(context, t, matrices);
     }
 
     @Override
@@ -47,26 +47,25 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         final Matrix m = getItem(position);
 
-        if(convertView==null)
-            convertView= LayoutInflater.from(getContext()).inflate(R.layout.list_layout_fragment,parent,false);
+        if (convertView == null)
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_layout_fragment, parent, false);
 
         //Grab References
-        TextView Row= ((TextView) convertView.findViewById(R.id.MatrixTitleRow));
-        TextView Col= ((TextView) convertView.findViewById(R.id.MatrixTitleCol));
-        TextView Naam= ((TextView) convertView.findViewById(R.id.MatrixTitle));
-        ImageView icon = ((ImageView)convertView.findViewById(R.id.ImageForMatrix));
-        CardView cardView = ((CardView)convertView.findViewById(R.id.Matrix_holder));
+        TextView Row = ((TextView) convertView.findViewById(R.id.MatrixTitleRow));
+        TextView Col = ((TextView) convertView.findViewById(R.id.MatrixTitleCol));
+        TextView Naam = ((TextView) convertView.findViewById(R.id.MatrixTitle));
+        ImageView icon = ((ImageView) convertView.findViewById(R.id.ImageForMatrix));
+        CardView cardView = ((CardView) convertView.findViewById(R.id.Matrix_holder));
 
         //Set Values
         @SuppressWarnings({"ConstantConditions"})
-        String r="Row : "+String.valueOf(m.GetRow());
-        String c="Column : "+String.valueOf(m.GetCol());
-        if(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DARK_THEME_KEY",false))
-        {
+        String r = "Row : " + String.valueOf(m.GetRow());
+        String c = "Column : " + String.valueOf(m.GetCol());
+        if (PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DARK_THEME_KEY", false)) {
             Row.setTextColor(Color.WHITE);
             Col.setTextColor(Color.WHITE);
             Naam.setTextColor(Color.WHITE);
-            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(),R.color.DarkcolorPrimary));
+            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.DarkcolorPrimary));
 
         }
         Row.setText(r);
@@ -77,7 +76,7 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),m.GetType().toString()+ " Matrix",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), m.GetType().toString() + " Matrix", Toast.LENGTH_SHORT).show();
             }
         });
 

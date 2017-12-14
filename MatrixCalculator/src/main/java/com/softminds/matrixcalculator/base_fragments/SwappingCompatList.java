@@ -37,45 +37,45 @@ import java.util.ArrayList;
 
 public class SwappingCompatList extends ListFragment {
 
-   ArrayList<Matrix> CompatList= new ArrayList<>();
+    ArrayList<Matrix> CompatList = new ArrayList<>();
+
     @Override
-    public void onActivityCreated(Bundle savedInstances){
+    public void onActivityCreated(Bundle savedInstances) {
         super.onActivityCreated(savedInstances);
-        for(int i=0;i<((GlobalValues)getActivity().getApplication()).GetCompleteList().size();i++)
-        {
-            if(getArguments().getInt("ROW_INDEX")==((GlobalValues)getActivity().
-                    getApplication()).GetCompleteList().get(i).GetRow()&&
-                    getArguments().getInt("COL_INDEX")==((GlobalValues)getActivity()
-                            .getApplication()).GetCompleteList().get(i).GetCol()&&getArguments()
-                    .getInt("POSITION")!=(((GlobalValues) getActivity().getApplication())
-                    .GetCompleteList().indexOf(((GlobalValues)getActivity().getApplication())
+        for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
+            if (getArguments().getInt("ROW_INDEX") == ((GlobalValues) getActivity().
+                    getApplication()).GetCompleteList().get(i).GetRow() &&
+                    getArguments().getInt("COL_INDEX") == ((GlobalValues) getActivity()
+                            .getApplication()).GetCompleteList().get(i).GetCol() && getArguments()
+                    .getInt("POSITION") != (((GlobalValues) getActivity().getApplication())
+                    .GetCompleteList().indexOf(((GlobalValues) getActivity().getApplication())
                             .GetCompleteList().get(i)))) {
                 CompatList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
             }
-            if(CompatList.isEmpty())
-            {
-                ((SwappingDialog)getActivity()).SetMidText(getString(R.string.NoneSwap));
+            if (CompatList.isEmpty()) {
+                ((SwappingDialog) getActivity()).SetMidText(getString(R.string.NoneSwap));
             }
-            MatrixAdapter adapter = new MatrixAdapter(getContext(),R.layout.list_layout_fragment,CompatList);
+            MatrixAdapter adapter = new MatrixAdapter(getContext(), R.layout.list_layout_fragment, CompatList);
             getListView().setDividerHeight(1);
             setListAdapter(adapter);
         }
     }
+
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Matrix clickedmatrix = ((GlobalValues)getActivity().getApplication()).
-                GetCompleteList().get(((GlobalValues)getActivity().getApplication())
+        Matrix clickedmatrix = ((GlobalValues) getActivity().getApplication()).
+                GetCompleteList().get(((GlobalValues) getActivity().getApplication())
                 .GetCompleteList().indexOf(CompatList.get(position)));
-        Matrix original = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(getArguments().getInt("POSITION"));
+        Matrix original = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(getArguments().getInt("POSITION"));
         original.SwapWith(clickedmatrix);
-        Toast.makeText(getActivity(),R.string.SwapSucc,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.SwapSucc, Toast.LENGTH_SHORT).show();
         onDetach();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        ((GlobalValues)getActivity().getApplication()).matrixAdapter.notifyDataSetChanged();
+        ((GlobalValues) getActivity().getApplication()).matrixAdapter.notifyDataSetChanged();
         getActivity().finish();
     }
 }

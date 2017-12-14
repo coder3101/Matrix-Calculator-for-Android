@@ -54,8 +54,8 @@ public class ShowResult extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
-        if(isDark)
+        boolean isDark = preferences.getBoolean("DARK_THEME_KEY", false);
+        if (isDark)
             setTheme(R.style.AppThemeDark);
         else
             setTheme(R.style.AppTheme);
@@ -64,64 +64,61 @@ public class ShowResult extends AppCompatActivity {
 
         adCard = (CardView) findViewById(R.id.AddCardResult);
 
-        if(preferences.getBoolean("AUTO_TOAST_ENABLER",false)){
-            Toast.makeText(getApplicationContext(),"Result Calculated",Toast.LENGTH_SHORT).show();
+        if (preferences.getBoolean("AUTO_TOAST_ENABLER", false)) {
+            Toast.makeText(getApplicationContext(), "Result Calculated", Toast.LENGTH_SHORT).show();
         }
 
-       if(!((GlobalValues)getApplication()).DonationKeyFound()) {
-           AdView mAdView = (AdView) findViewById(R.id.adViewResult);
-           AdRequest adRequest = new AdRequest.Builder().build();
-           mAdView.setAdListener(new AdLoadListener(adCard));
-           mAdView.loadAd(adRequest);
-       }
-       else{
-           ((ViewGroup)adCard.getParent()).removeView(adCard);
-       }
+        if (!((GlobalValues) getApplication()).DonationKeyFound()) {
+            AdView mAdView = (AdView) findViewById(R.id.adViewResult);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.setAdListener(new AdLoadListener(adCard));
+            mAdView.loadAd(adRequest);
+        } else {
+            ((ViewGroup) adCard.getParent()).removeView(adCard);
+        }
 
         CardView cardView = (CardView) findViewById(R.id.DynamicCard2);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String string=sharedPreferences.getString("ELEVATE_AMOUNT","4");
-        String string2=sharedPreferences.getString("CARD_CHANGE_KEY","#bdbdbd");
+        String string = sharedPreferences.getString("ELEVATE_AMOUNT", "4");
+        String string2 = sharedPreferences.getString("CARD_CHANGE_KEY", "#bdbdbd");
 
         cardView.setCardElevation(Integer.parseInt(string));
         cardView.setCardBackgroundColor(Color.parseColor(string2));
 
-        CardView.LayoutParams params1= new CardView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+        CardView.LayoutParams params1 = new CardView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
         GridLayout gridLayout = new GridLayout(getApplicationContext());
-        gridLayout.setRowCount(getIntent().getExtras().getInt("ROW",0));
-        gridLayout.setColumnCount(getIntent().getExtras().getInt("COL",0));
+        gridLayout.setRowCount(getIntent().getExtras().getInt("ROW", 0));
+        gridLayout.setColumnCount(getIntent().getExtras().getInt("COL", 0));
         //float var[][] = (float[][]) getIntent().getExtras().getSerializable("VALUES");
-        float var [][] = new Matrix().Expand(getIntent().getExtras().getInt("ROW",0),getIntent().getIntExtra("COL",0),getIntent().getFloatArrayExtra("VALUES"));
-        for(int i=0;i<getIntent().getExtras().getInt("ROW",0);i++)
-        {
-            for(int j=0;j<getIntent().getExtras().getInt("COL",0);j++)
-            {
+        float var[][] = new Matrix().Expand(getIntent().getExtras().getInt("ROW", 0), getIntent().getIntExtra("COL", 0), getIntent().getFloatArrayExtra("VALUES"));
+        for (int i = 0; i < getIntent().getExtras().getInt("ROW", 0); i++) {
+            for (int j = 0; j < getIntent().getExtras().getInt("COL", 0); j++) {
                 TextView textView = new TextView(getApplicationContext());
                 textView.setGravity(Gravity.CENTER);
                 try {
                     textView.setText("   " + GetText(var[i][j]) + "   ");
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
-                    Log.d("Element","Element in Matrix is Null");
+                    Log.d("Element", "Element in Matrix is Null");
                 }
-                textView.setTextSize(SizeReturner(getIntent().getExtras().getInt("ROW",0),getIntent().getExtras().getInt("COL",0),
+                textView.setTextSize(SizeReturner(getIntent().getExtras().getInt("ROW", 0), getIntent().getExtras().getInt("COL", 0),
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).
-                                getBoolean("EXTRA_SMALL_FONT",false)));
-                textView.setHeight(CalculatedHeight(getIntent().getExtras().getInt("ROW",0)));
-                GridLayout.Spec Row = GridLayout.spec(i,1);
-                GridLayout.Spec Col = GridLayout.spec(j,1);
-                GridLayout.LayoutParams params = new GridLayout.LayoutParams(Row,Col);
-                gridLayout.addView(textView,params);
+                                getBoolean("EXTRA_SMALL_FONT", false)));
+                textView.setHeight(CalculatedHeight(getIntent().getExtras().getInt("ROW", 0)));
+                GridLayout.Spec Row = GridLayout.spec(i, 1);
+                GridLayout.Spec Col = GridLayout.spec(j, 1);
+                GridLayout.LayoutParams params = new GridLayout.LayoutParams(Row, Col);
+                gridLayout.addView(textView, params);
             }
         }
         gridLayout.setLayoutParams(params1);
         cardView.addView(gridLayout);
-        if(getIntent().getFloatExtra("DETERMINANT_FOR_INVERSE",0.0f) != 0.0f){
+        if (getIntent().getFloatExtra("DETERMINANT_FOR_INVERSE", 0.0f) != 0.0f) {
             TextView textView = (TextView) findViewById(R.id.TextContainer);
-            String val = "1 / " + GetText(getIntent().getFloatExtra("DETERMINANT_FOR_INVERSE",0.0f));
+            String val = "1 / " + GetText(getIntent().getFloatExtra("DETERMINANT_FOR_INVERSE", 0.0f));
             textView.setText(val);
         }
 
@@ -129,28 +126,27 @@ public class ShowResult extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.result_actionbar,menu);
+        getMenuInflater().inflate(R.menu.result_actionbar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
-            case R.id.SaveResult :
+        switch (item.getItemId()) {
+            case R.id.SaveResult:
 
-                if(((GlobalValues)getApplication()).CanCreateVariable()) {
+                if (((GlobalValues) getApplication()).CanCreateVariable()) {
                     if (AnyExponents(((/*float[][]) getIntent().getExtras().getSerializable("VALUES"))*/
-                            new Matrix().Expand(getIntent().getExtras().getInt("ROW",0),getIntent().getIntExtra("COL",0),getIntent().getFloatArrayExtra("VALUES")))),
+                                    new Matrix().Expand(getIntent().getExtras().getInt("ROW", 0), getIntent().getIntExtra("COL", 0), getIntent().getFloatArrayExtra("VALUES")))),
                             (getIntent().getExtras().getInt("ROW", 0)), (getIntent().getExtras().getInt("COL", 0))) ||
-                            !((TextView)findViewById(R.id.TextContainer)).getText().toString().isEmpty()){
+                            !((TextView) findViewById(R.id.TextContainer)).getText().toString().isEmpty()) {
 
                         if (AnyExponents(((/*float[][]) getIntent().getExtras().getSerializable("VALUES"))*/
-                        new Matrix().Expand(getIntent().getExtras().getInt("ROW",0),getIntent().getIntExtra("COL",0),getIntent().getFloatArrayExtra("VALUES")))),
+                                        new Matrix().Expand(getIntent().getExtras().getInt("ROW", 0), getIntent().getIntExtra("COL", 0), getIntent().getFloatArrayExtra("VALUES")))),
                                 (getIntent().getExtras().getInt("ROW", 0)), (getIntent().getExtras().getInt("COL", 0))))
                             Toast.makeText(getApplicationContext(), R.string.CannotSave, Toast.LENGTH_SHORT).show();
 
-                        if(!((TextView)findViewById(R.id.TextContainer)).getText().toString().isEmpty())
+                        if (!((TextView) findViewById(R.id.TextContainer)).getText().toString().isEmpty())
                             Toast.makeText(getApplicationContext(), R.string.CannotSave2, Toast.LENGTH_SHORT).show();
 
                     } else {
@@ -168,8 +164,7 @@ public class ShowResult extends AppCompatActivity {
                     }
 
                     return true;
-                }
-                else {
+                } else {
                     if (!((GlobalValues) getApplication()).AdLoaded)
                         Toast.makeText(getApplication(), R.string.ToAddMoreTurnData, Toast.LENGTH_SHORT).show();
                     else
@@ -180,26 +175,33 @@ public class ShowResult extends AppCompatActivity {
     }
 
 
-   private int CalculatedHeight(int a)
-    {
-        switch (a)
-        {
-            case 1 : return 155;
-            case 2 : return 135;
-            case 3 : return 125;
-            case 4 : return 115;
-            case 5 : return 105;
-            case 6 : return 95;
-            case 7 : return 85;
-            case 8 : return 85;
-            case 9 : return 80;
+    private int CalculatedHeight(int a) {
+        switch (a) {
+            case 1:
+                return 155;
+            case 2:
+                return 135;
+            case 3:
+                return 125;
+            case 4:
+                return 115;
+            case 5:
+                return 105;
+            case 6:
+                return 95;
+            case 7:
+                return 85;
+            case 8:
+                return 85;
+            case 9:
+                return 80;
 
         }
         return 0;
     }
-    private int SizeReturner(int r, int c,boolean b)
-    {
-        if(!b) {
+
+    private int SizeReturner(int r, int c, boolean b) {
+        if (!b) {
             if (r > c) {
                 switch (r) {
                     case 1:
@@ -243,9 +245,7 @@ public class ShowResult extends AppCompatActivity {
                         return 9;
                 }
             }
-        }
-        else
-        {
+        } else {
             if (r > c) {
                 switch (r) {
                     case 1:
@@ -294,26 +294,24 @@ public class ShowResult extends AppCompatActivity {
         return 0;
     }
 
-    private boolean AnyExponents(float v[][],int r, int c)
-    {
-        for(int i=0;i<r;i++)
-            for(int j=0;j<c;j++)
-            {
-                if(Float.toString(v[i][j]).contains("E")||Float.toString(v[i][j]).contains("N") || Float.toString(v[i][j]).contains("Infinity"))
+    private boolean AnyExponents(float v[][], int r, int c) {
+        for (int i = 0; i < r; i++)
+            for (int j = 0; j < c; j++) {
+                if (Float.toString(v[i][j]).contains("E") || Float.toString(v[i][j]).contains("N") || Float.toString(v[i][j]).contains("Infinity"))
                     return true;
-                if(v[i][j]>999999 && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE",true))
+                if (v[i][j] > 999999 && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE", true))
                     return true;
             }
-        return  false;
+        return false;
     }
+
     private String GetText(float res) {
 
         if (!PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE", true)) {
             DecimalFormat decimalFormat = new DecimalFormat("###############");
             return decimalFormat.format(res);
-        } else
-        {
-            switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(this).getString("ROUNDIND_INFO","0"))) {
+        } else {
+            switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(this).getString("ROUNDIND_INFO", "0"))) {
                 case 0:
                     return String.valueOf(res);
                 case 1:

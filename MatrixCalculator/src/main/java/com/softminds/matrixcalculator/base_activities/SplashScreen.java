@@ -48,11 +48,11 @@ public class SplashScreen extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int SPLASH_TIME_OUT=2000;
+        int SPLASH_TIME_OUT = 2000;
 
-        ((GlobalValues)getApplication()).SetDonationKeyStatus();
+        ((GlobalValues) getApplication()).SetDonationKeyStatus();
 
-        if(!((GlobalValues)getApplication()).DonationKeyFound()) { //if user is non pro then only check for offer key
+        if (!((GlobalValues) getApplication()).DonationKeyFound()) { //if user is non pro then only check for offer key
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("promotion_offer", false);
 
@@ -68,15 +68,15 @@ public class SplashScreen extends Activity {
                 @Override
                 public void onSuccess(Void aVoid) {
                     remoteConfig.activateFetched();
-                        UpdateKey();
+                    UpdateKey();
                 }
             });
         }
 
         //init the key status here
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
-        if(isDark)
+        boolean isDark = preferences.getBoolean("DARK_THEME_KEY", false);
+        if (isDark)
             setTheme(R.style.AppThemeDark);
         else
             setTheme(R.style.AppTheme);
@@ -91,25 +91,24 @@ public class SplashScreen extends Activity {
                 Root.setBackgroundColor(ContextCompat.getColor(this, R.color.DarkcolorPrimaryDark));
             } else
                 Root.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
-        }catch (NullPointerException e)
-        {
-            Toast.makeText(getApplicationContext(),R.string.FatalError,Toast.LENGTH_SHORT).show();
+        } catch (NullPointerException e) {
+            Toast.makeText(getApplicationContext(), R.string.FatalError, Toast.LENGTH_SHORT).show();
             e.printStackTrace();
             finish();
         }
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent= new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
 
             }
-        },SPLASH_TIME_OUT);
+        }, SPLASH_TIME_OUT);
     }
 
     private void UpdateKey() {
-        ((GlobalValues)getApplication()).UpdateStatus(remoteConfig.getBoolean("promotion_offer"));
+        ((GlobalValues) getApplication()).UpdateStatus(remoteConfig.getBoolean("promotion_offer"));
 
     }
 }

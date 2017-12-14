@@ -11,37 +11,39 @@
     tools:context="com.softminds.matrixcalculator.dialog_activity.ExponentSetter">
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/Mat4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Mat4">
+        android:layout_height="wrap_content">
+
         <EditText
+            android:id="@+id/ExponentSetter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ExponentSetter"
-            android:inputType="number"
             android:layout_centerHorizontal="true"
             android:hint="@string/Expohint"
-            />
+            android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
+
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/ConfirmSetFill"
-        android:layout_below="@id/Mat4"
         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_marginTop="8dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="35dp"
-        android:text="@string/ConfirmMake"/>
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/CancelSetFill"
+        android:layout_alignParentEnd="true"
         android:layout_below="@id/Mat4"
+        android:layout_marginEnd="35dp"
         android:layout_marginTop="8dp"
+        android:text="@string/ConfirmMake" />
+
+    <Button
+        android:id="@+id/CancelSetFill"
         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_below="@id/Mat4"
         android:layout_marginEnd="15dp"
-        android:text="@string/CancelCustomFill"
-        android:layout_marginStart="35dp"/>
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/CancelCustomFill" />
 </RelativeLayout>

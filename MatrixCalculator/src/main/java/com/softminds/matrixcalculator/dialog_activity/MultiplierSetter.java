@@ -48,7 +48,7 @@ public class MultiplierSetter extends AppCompatActivity {
 
         final EditText editText = (EditText) findViewById(R.id.MultiplierSetterInput);
         Button button1 = (Button) findViewById(R.id.ConfirmSetFillScalar);
-        Button button2 =  (Button) findViewById(R.id.CancelSetFillScalar);
+        Button button2 = (Button) findViewById(R.id.CancelSetFillScalar);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,21 +58,19 @@ public class MultiplierSetter extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!editText.getText().toString().isEmpty()) {
-                    if(editText.getText().toString().contains(".") &&
-                            !PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("DECIMAL_USE",true)) {
+                if (!editText.getText().toString().isEmpty()) {
+                    if (editText.getText().toString().contains(".") &&
+                            !PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("DECIMAL_USE", true)) {
                         Toast.makeText(getApplicationContext(), R.string.AllowDecimals, Toast.LENGTH_SHORT).show();
-                    }
-                        else{
+                    } else {
 
-                            Intent intent = new Intent();
-                            intent.putExtra("MULTIPLIER_VAL", Float.parseFloat(editText.getText().toString()));
-                            setResult(1054, intent);
-                            finish();
-                        }
-                }
-                else
-                    Toast.makeText(getApplicationContext(),R.string.NoValue,Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.putExtra("MULTIPLIER_VAL", Float.parseFloat(editText.getText().toString()));
+                        setResult(1054, intent);
+                        finish();
+                    }
+                } else
+                    Toast.makeText(getApplicationContext(), R.string.NoValue, Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -45,15 +45,17 @@ public class ExponentFragment extends ListFragment {
     int Clicked_pos;
     ArrayList<Matrix> SquareList;
 
-    private static class MyHandler extends Handler{
+    private static class MyHandler extends Handler {
         private final WeakReference<ExponentFragment> exponentFragmentWeakReference;
-        private MyHandler(ExponentFragment fragment){
+
+        private MyHandler(ExponentFragment fragment) {
             exponentFragmentWeakReference = new WeakReference<>(fragment);
         }
+
         @Override
         public void handleMessage(Message msg) {
-          ExponentFragment exponentfrag = exponentFragmentWeakReference.get();
-            Intent intent = new Intent(exponentfrag.getActivity(),ShowResult.class);
+            ExponentFragment exponentfrag = exponentFragmentWeakReference.get();
+            Intent intent = new Intent(exponentfrag.getActivity(), ShowResult.class);
             intent.putExtras(msg.getData());
             exponentfrag.startActivity(intent);
         }
@@ -61,51 +63,50 @@ public class ExponentFragment extends ListFragment {
     }
 
     MyHandler handler = new MyHandler(this);
-        @Override
-        public void onActivityCreated(Bundle savedInstances) {
-            super.onActivityCreated(savedInstances);
-            SquareList=new ArrayList<>();
-            for(int i = 0; i<((GlobalValues)getActivity().getApplication()).GetCompleteList().size(); i++)
-            {
-                if(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
-                    SquareList.add(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i));
-            }
-            MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment,SquareList);
-            getListView().setDividerHeight(1);
-            setListAdapter(MatriXadapter);
 
-        }
     @Override
-    public void onListItemClick(ListView L, View V, int position, long id)
-    {
+    public void onActivityCreated(Bundle savedInstances) {
+        super.onActivityCreated(savedInstances);
+        SquareList = new ArrayList<>();
+        for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
+            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
+                SquareList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
+        }
+        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment, SquareList);
+        getListView().setDividerHeight(1);
+        setListAdapter(MatriXadapter);
+
+    }
+
+    @Override
+    public void onListItemClick(ListView L, View V, int position, long id) {
         Clicked_pos = position;
-        Intent intent = new Intent(getActivity(),ExponentSetter.class);
-        startActivityForResult(intent,500);
+        Intent intent = new Intent(getActivity(), ExponentSetter.class);
+        startActivityForResult(intent, 500);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode ==500)
-        {
+        if (resultCode == 500) {
             ProgressDialog progressDialog = new ProgressDialog(getContext());
             progressDialog.setMessage(getString(R.string.Calculating));
             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.setIndeterminate(false);
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
-            RunAndGetResult(Clicked_pos,data.getIntExtra("QWERTYUIOP",0),progressDialog);
+            RunAndGetResult(Clicked_pos, data.getIntExtra("QWERTYUIOP", 0), progressDialog);
         }
     }
-    public void RunAndGetResult(final int pos, final int exponent, final ProgressDialog progressDialog)
-    {
+
+    public void RunAndGetResult(final int pos, final int exponent, final ProgressDialog progressDialog) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                Matrix res = new Matrix(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos).GetRow()
-                        ,((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos).GetCol()
-                        ,((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos).GetType());
-                res.CloneFrom(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos));
+                Matrix res = new Matrix(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos).GetRow()
+                        , ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos).GetCol()
+                        , ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos).GetType());
+                res.CloneFrom(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos));
                 res.Raiseto(exponent);
                 progressDialog.dismiss();
                 Message message = new Message();

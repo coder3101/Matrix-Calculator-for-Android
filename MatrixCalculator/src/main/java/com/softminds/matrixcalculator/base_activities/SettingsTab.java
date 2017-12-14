@@ -31,8 +31,8 @@ public class SettingsTab extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
-        if(isDark)
+        boolean isDark = preferences.getBoolean("DARK_THEME_KEY", false);
+        if (isDark)
             setTheme(R.style.AppThemeDark);
         else
             setTheme(R.style.AppTheme);
@@ -40,9 +40,9 @@ public class SettingsTab extends AppCompatActivity {
         setContentView(R.layout.setting_fragment);
 
     }
+
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         setResult(100);
         finish();
     }

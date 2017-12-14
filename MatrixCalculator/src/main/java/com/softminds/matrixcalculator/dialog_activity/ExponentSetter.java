@@ -58,7 +58,7 @@ public class ExponentSetter extends AppCompatActivity {
                 if (editText.getText().toString().isEmpty())
                     Toast.makeText(getApplicationContext(), R.string.NoValue, Toast.LENGTH_SHORT).show();
                 else {
-                    if (Integer.parseInt(editText.getText().toString())>15)
+                    if (Integer.parseInt(editText.getText().toString()) > 15)
                         Toast.makeText(getApplicationContext(), R.string.ExpoOverflow, Toast.LENGTH_LONG).show();
                     else {
                         Intent intent = new Intent();

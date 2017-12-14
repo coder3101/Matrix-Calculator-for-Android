@@ -33,11 +33,11 @@ import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.dialog_activity.SwappingDialog;
 
 
-public class SwapFragment extends ListFragment{
+public class SwapFragment extends ListFragment {
     @Override
-    public void onActivityCreated(Bundle savedInstances){
+    public void onActivityCreated(Bundle savedInstances) {
         super.onActivityCreated(savedInstances);
-        MatrixAdapter adapter = new MatrixAdapter(getContext(),R.layout.list_layout_fragment,((GlobalValues)getActivity().getApplication()).GetCompleteList());
+        MatrixAdapter adapter = new MatrixAdapter(getContext(), R.layout.list_layout_fragment, ((GlobalValues) getActivity().getApplication()).GetCompleteList());
         getListView().setDividerHeight(1);
         setListAdapter(adapter);
     }
@@ -45,9 +45,9 @@ public class SwapFragment extends ListFragment{
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Bundle bundle = new Bundle();
-        bundle.putInt("ROW_INDEX",((GlobalValues)getActivity().getApplication()).GetCompleteList().get(position).GetRow());
-        bundle.putInt("COL_INDEX",((GlobalValues)getActivity().getApplication()).GetCompleteList().get(position).GetCol());
-        bundle.putInt("POSITION",position);
+        bundle.putInt("ROW_INDEX", ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position).GetRow());
+        bundle.putInt("COL_INDEX", ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position).GetCol());
+        bundle.putInt("POSITION", position);
         Intent intent = new Intent(getContext(), SwappingDialog.class);
         intent.putExtras(bundle);
         startActivity(intent);

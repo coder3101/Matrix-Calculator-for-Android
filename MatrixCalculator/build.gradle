@@ -5,11 +5,11 @@ android {
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.softminds.matrixcalculator"
-        minSdkVersion 19
+        minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 25
-        versionCode 29
-        versionName '3.2.2'
+        versionCode 35
+        versionName '3.3.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

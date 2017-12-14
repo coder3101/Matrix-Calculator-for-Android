@@ -36,26 +36,27 @@ public class SwappingDialog extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
-        if(isDark)
+        boolean isDark = preferences.getBoolean("DARK_THEME_KEY", false);
+        if (isDark)
             setTheme(R.style.AppThemeDarkDialog);
         else
             setTheme(R.style.AppThemeDialog);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.swaping_dialog);
         TextView textView = (TextView) findViewById(R.id.SwapngMainContentComment);
-        if(((GlobalValues)getApplication()).GetCompleteList().isEmpty())
+        if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
             textView.setText(R.string.OpenHint2);
         else
             textView.setText(null);
-        SwappingCompatList compatlist  = new SwappingCompatList();
+        SwappingCompatList compatlist = new SwappingCompatList();
         compatlist.setArguments(getIntent().getExtras());
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        transaction.add(R.id.SwappingMaincontent,compatlist,"SWAPPING_COMPAT_FRAGMENT");
+        transaction.add(R.id.SwappingMaincontent, compatlist, "SWAPPING_COMPAT_FRAGMENT");
         transaction.commit();
 
     }
+
     public void SetMidText(String g) {
         TextView textView = (TextView) findViewById(R.id.SwapngMainContentComment);
         textView.setText(g);

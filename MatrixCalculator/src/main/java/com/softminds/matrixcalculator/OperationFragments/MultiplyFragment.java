@@ -46,28 +46,27 @@ import java.util.ArrayList;
 public class MultiplyFragment extends Fragment {
 
     View root;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
+        ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();
         //Empty the Queue
         VariableMul variableList = new VariableMul();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.add(R.id.AdapterAddContainer,variableList,"VARIABLE_ADDER_MUL");
+        transaction.add(R.id.AdapterAddContainer, variableList, "VARIABLE_ADDER_MUL");
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.commit();
-        View view =inflater.inflate(R.layout.addition_fragement, container, false);
+        View view = inflater.inflate(R.layout.addition_fragement, container, false);
         root = view;
 
-        if(!((GlobalValues)getActivity().getApplication()).DonationKeyFound()) {
+        if (!((GlobalValues) getActivity().getApplication()).DonationKeyFound()) {
             AdView adView = (AdView) view.findViewById(R.id.adViewAddActivity);
             AdRequest adRequest = new AdRequest.Builder().build();
             adView.loadAd(adRequest);
-        }
-        else
-        {
-            CardView advt = (CardView)view.findViewById(R.id.AdvertiseMentCardadd);
-            ((ViewGroup)advt.getParent()).removeView(advt);
+        } else {
+            CardView advt = (CardView) view.findViewById(R.id.AdvertiseMentCardadd);
+            ((ViewGroup) advt.getParent()).removeView(advt);
         }
 
 
@@ -80,13 +79,12 @@ public class MultiplyFragment extends Fragment {
         proceedAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(((GlobalValues)getActivity().getApplication()).MatrixQueue.size()>=2){
+                if (((GlobalValues) getActivity().getApplication()).MatrixQueue.size() >= 2) {
                     Intent intent = new Intent(getContext(), ShowResult.class);
                     intent.putExtras(MultiplyAll().GetDataBundled());
                     startActivity(intent);
-                }
-                else{
-                    Toast.makeText(getContext(),R.string.Notdefined,Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), R.string.Notdefined, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -100,40 +98,39 @@ public class MultiplyFragment extends Fragment {
         });
         return view;
     }
-    private void RemoveFromQueue(){
+
+    private void RemoveFromQueue() {
         TextView textView = (TextView) root.findViewById(R.id.AdditionStatus);
         String Initial = textView.getText().toString();
-        if(Initial.isEmpty()){
-            ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
-            Toast.makeText(getContext(),R.string.NothingTORemove,Toast.LENGTH_SHORT).show();
-        }
-        else {
-            if(Initial.contains("x")) {
+        if (Initial.isEmpty()) {
+            ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();
+            Toast.makeText(getContext(), R.string.NothingTORemove, Toast.LENGTH_SHORT).show();
+        } else {
+            if (Initial.contains("x")) {
                 String NewName = Initial.substring(0, Initial.lastIndexOf("x"));
                 textView.setText(NewName);
-                ((GlobalValues)getActivity().getApplication()).MatrixQueue.remove(((GlobalValues)getActivity().getApplication()).MatrixQueue.size()-1);
-                int pos = ((GlobalValues)getActivity().getApplication()).MatrixQueue.size();
-                int r =  ((GlobalValues)getActivity().getApplication()).MatrixQueue.get(pos-1).GetRow();
-                int c =  ((GlobalValues)getActivity().getApplication()).MatrixQueue.get(pos-1).GetCol();
+                ((GlobalValues) getActivity().getApplication()).MatrixQueue.remove(((GlobalValues) getActivity().getApplication()).MatrixQueue.size() - 1);
+                int pos = ((GlobalValues) getActivity().getApplication()).MatrixQueue.size();
+                int r = ((GlobalValues) getActivity().getApplication()).MatrixQueue.get(pos - 1).GetRow();
+                int c = ((GlobalValues) getActivity().getApplication()).MatrixQueue.get(pos - 1).GetCol();
                 VariableMul child = ((VariableMul) getChildFragmentManager().findFragmentByTag("VARIABLE_ADDER_MUL"));
-                if(child != null){
-                    child.UpdateRowCol(r,c);
+                if (child != null) {
+                    child.UpdateRowCol(r, c);
                 }
-            }
-            else
-            {
+            } else {
                 textView.setText(null);
                 VariableMul child = ((VariableMul) getChildFragmentManager().findFragmentByTag("VARIABLE_ADDER_MUL"));
                 child.Restore();
-                ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
+                ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();
             }
         }
     }
-    private Matrix MultiplyAll(){
-        ArrayList<Matrix> buffer =((GlobalValues)getActivity().getApplication()).MatrixQueue;
-        Matrix res = new Matrix(buffer.get(0).GetRow(),buffer.get(0).GetCol(),buffer.get(0).GetType());
+
+    private Matrix MultiplyAll() {
+        ArrayList<Matrix> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
+        Matrix res = new Matrix(buffer.get(0).GetRow(), buffer.get(0).GetCol(), buffer.get(0).GetType());
         res.CloneFrom(buffer.get(0));
-        for(int i=1;i<buffer.size();i++){
+        for (int i = 1; i < buffer.size(); i++) {
             res.MultiplytoThis(buffer.get(i));
         }
         return res;

@@ -37,12 +37,13 @@ import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.R;
 
 public class MakeNewMatrix extends AppCompatActivity {
-    final int RESCODE=0;
+    final int RESCODE = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isDark=preferences.getBoolean("DARK_THEME_KEY",false);
-        if(isDark)
+        boolean isDark = preferences.getBoolean("DARK_THEME_KEY", false);
+        if (isDark)
             setTheme(R.style.AppThemeDarkDialog);
         else
             setTheme(R.style.AppThemeDialog);
@@ -67,18 +68,17 @@ public class MakeNewMatrix extends AppCompatActivity {
                 if (NoError()) {
                     Type t = TypeFromString(Typespinner.getSelectedItem().toString());
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("TYPE",t);
-                    bundle.putString("NAME",editText.getText().toString());
-                    bundle.putInt("ROW",RowSpinner.getValue());
-                    bundle.putInt("COL",ColSpinner.getValue());
+                    bundle.putSerializable("TYPE", t);
+                    bundle.putString("NAME", editText.getText().toString());
+                    bundle.putInt("ROW", RowSpinner.getValue());
+                    bundle.putInt("COL", ColSpinner.getValue());
                     Intent intent;
                     intent = new Intent(getApplication(), FillingMatrix.class);
                     intent.putExtras(bundle);
-                    startActivityForResult(intent,RESCODE);
+                    startActivityForResult(intent, RESCODE);
 
-                }
-                else {
-                    if(((GlobalValues)getApplication()).hasProfainity(editText.getText().toString()))
+                } else {
+                    if (((GlobalValues) getApplication()).hasProfainity(editText.getText().toString()))
                         Toast.makeText(getApplication(), R.string.Warning7, Toast.LENGTH_SHORT).show();
                 }
 
@@ -96,12 +96,12 @@ public class MakeNewMatrix extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), R.string.NotSquare, Toast.LENGTH_LONG).show();
                     return false;
                 }
-                if(editText.getText().toString().contains("+")||
-                        editText.getText().toString().contains("x")||editText.getText().toString().contains("-")){
-                    Toast.makeText(getApplicationContext(),R.string.Warning13,Toast.LENGTH_SHORT).show();
+                if (editText.getText().toString().contains("+") ||
+                        editText.getText().toString().contains("x") || editText.getText().toString().contains("-")) {
+                    Toast.makeText(getApplicationContext(), R.string.Warning13, Toast.LENGTH_SHORT).show();
                     return false;
                 }
-                return !((GlobalValues)getApplication()).hasProfainity(editText.getText().toString());
+                return !((GlobalValues) getApplication()).hasProfainity(editText.getText().toString());
 
             }
 
@@ -109,26 +109,27 @@ public class MakeNewMatrix extends AppCompatActivity {
         });
 
 
-
     }
-    protected void onActivityResult(int requestcode,int resultCode,Intent data)
-    {
-        super.onActivityResult(resultCode,resultCode,data);
-        if(resultCode==RESCODE)
-        {
-            setResult(1,data);
+
+    protected void onActivityResult(int requestcode, int resultCode, Intent data) {
+        super.onActivityResult(resultCode, resultCode, data);
+        if (resultCode == RESCODE) {
+            setResult(1, data);
             finish();
         }
 
     }
-    public Type TypeFromString (String s)
-    {
-        switch (s)
-        {
-            case "Normal" :   return Type.Normal;
-            case "Null" :     return Type.Null;
-            case "Diagonal" : return Type.Diagonal;
-            case "Identity" : return Type.Identity;
+
+    public Type TypeFromString(String s) {
+        switch (s) {
+            case "Normal":
+                return Type.Normal;
+            case "Null":
+                return Type.Null;
+            case "Diagonal":
+                return Type.Diagonal;
+            case "Identity":
+                return Type.Identity;
         }
         return null;
     }

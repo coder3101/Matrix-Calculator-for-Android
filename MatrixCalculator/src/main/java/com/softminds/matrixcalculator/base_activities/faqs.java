@@ -45,42 +45,40 @@ public class faqs extends AppCompatActivity implements View.OnTouchListener {
 
     boolean isDark;
     CardView adCard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        isDark=preferences.getBoolean("DARK_THEME_KEY",false);
-        if(isDark)
+        isDark = preferences.getBoolean("DARK_THEME_KEY", false);
+        if (isDark)
             setTheme(R.style.AppThemeDark);
         else
             setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.help_layout);
 
-        adCard = (CardView)findViewById(R.id.AddCardFAQ);
-        if(!((GlobalValues)getApplication()).DonationKeyFound()) {
+        adCard = (CardView) findViewById(R.id.AddCardFAQ);
+        if (!((GlobalValues) getApplication()).DonationKeyFound()) {
             AdView faqAd = (AdView) findViewById(R.id.adViewFaq);
             AdRequest adRequest = new AdRequest.Builder().build();
             faqAd.setAdListener(new AdLoadListener(adCard));
             faqAd.loadAd(adRequest);
 
-        }
-        else{
-            ((ViewGroup)adCard.getParent()).removeView(adCard);
+        } else {
+            ((ViewGroup) adCard.getParent()).removeView(adCard);
             //remove cardView from main layout
         }
 
-        if(isDark)
-        {
-            SetThisColorToCard(ContextCompat.getColor(this,R.color.DarkcolorPrimary));
-            SetThisColorToAllQuestions(ContextCompat.getColor(this,R.color.DarkcolorAccent));
-        }
-        else {
-            SetThisColorToAllQuestions(ContextCompat.getColor(this,R.color.colorAccent));
+        if (isDark) {
+            SetThisColorToCard(ContextCompat.getColor(this, R.color.DarkcolorPrimary));
+            SetThisColorToAllQuestions(ContextCompat.getColor(this, R.color.DarkcolorAccent));
+        } else {
+            SetThisColorToAllQuestions(ContextCompat.getColor(this, R.color.colorAccent));
         }
 
     }
-    private void SetThisColorToCard(int id)
-    {
+
+    private void SetThisColorToCard(int id) {
         //grab all 7 cards
         CardView cardView1 = (CardView) findViewById(R.id.QA1);
         CardView cardView2 = (CardView) findViewById(R.id.QA2);
@@ -98,8 +96,8 @@ public class faqs extends AppCompatActivity implements View.OnTouchListener {
         cardView9.setCardBackgroundColor(id);
         cardView10.setCardBackgroundColor(id);
     }
-    private void SetThisColorToAllQuestions(int id)
-    {
+
+    private void SetThisColorToAllQuestions(int id) {
         //grab all 10 TextViews
         TextView textView1 = (TextView) findViewById(R.id.Q1);
         TextView textView2 = (TextView) findViewById(R.id.Q2);
@@ -120,9 +118,9 @@ public class faqs extends AppCompatActivity implements View.OnTouchListener {
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (motionEvent.getAction()){
+        switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                ObjectAnimator animator = ObjectAnimator.ofFloat(view,"translationZ",20);
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationZ", 20);
                 animator.setDuration(200);
                 animator.setInterpolator(new DecelerateInterpolator());
                 animator.start();
@@ -130,7 +128,7 @@ public class faqs extends AppCompatActivity implements View.OnTouchListener {
                 return true;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-                ObjectAnimator animator2 = ObjectAnimator.ofFloat(view,"translationZ",0);
+                ObjectAnimator animator2 = ObjectAnimator.ofFloat(view, "translationZ", 0);
                 animator2.setDuration(200);
                 animator2.setInterpolator(new AccelerateInterpolator());
                 animator2.start();

@@ -44,17 +44,17 @@ import java.lang.ref.WeakReference;
 public class RankFragment extends ListFragment {
 
 
-
-    private static class MyHandler extends Handler{
+    private static class MyHandler extends Handler {
         private WeakReference<RankFragment> weakReference;
-        private MyHandler(RankFragment rankFragment){
+
+        private MyHandler(RankFragment rankFragment) {
             weakReference = new WeakReference<>(rankFragment);
         }
 
         @Override
         public void handleMessage(Message msg) {
-            final int rank = msg.getData().getInt("CALCULATED_RANK",-1);
-            final String mes = "Rank of Matrix is : "+String.valueOf(rank);
+            final int rank = msg.getData().getInt("CALCULATED_RANK", -1);
+            final String mes = "Rank of Matrix is : " + String.valueOf(rank);
 
             final AlertDialog.Builder builder = new AlertDialog.Builder(weakReference.get().getContext());
             builder.setPositiveButton(R.string.copy, new DialogInterface.OnClickListener() {
@@ -62,13 +62,12 @@ public class RankFragment extends ListFragment {
                 public void onClick(DialogInterface dialogInterface, int i) {
                     ClipboardManager clipboardManager = (ClipboardManager) weakReference.get().getActivity()
                             .getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clipData = ClipData.newPlainText("RANK_RES",String.valueOf(rank));
+                    ClipData clipData = ClipData.newPlainText("RANK_RES", String.valueOf(rank));
                     clipboardManager.setPrimaryClip(clipData);
-                    if(clipboardManager.hasPrimaryClip()){
-                        Toast.makeText(weakReference.get().getContext(),R.string.CopyToClip,Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                        Log.d("ClipData","Failed to set to Clip board");
+                    if (clipboardManager.hasPrimaryClip()) {
+                        Toast.makeText(weakReference.get().getContext(), R.string.CopyToClip, Toast.LENGTH_SHORT).show();
+                    } else
+                        Log.d("ClipData", "Failed to set to Clip board");
                     dialogInterface.dismiss();
                 }
             });
@@ -89,9 +88,9 @@ public class RankFragment extends ListFragment {
     MyHandler handler = new MyHandler(this);
 
     @Override
-    public void onActivityCreated(Bundle saved){
+    public void onActivityCreated(Bundle saved) {
         super.onActivityCreated(saved);
-        MatrixAdapter adapter = new MatrixAdapter(getContext(),R.layout.list_layout_fragment,((GlobalValues)getActivity().getApplication()).GetCompleteList());
+        MatrixAdapter adapter = new MatrixAdapter(getContext(), R.layout.list_layout_fragment, ((GlobalValues) getActivity().getApplication()).GetCompleteList());
         getListView().setDividerHeight(1);
         setListAdapter(adapter);
     }
@@ -101,15 +100,15 @@ public class RankFragment extends ListFragment {
         FindRank(position);
     }
 
-    private void FindRank(final int pos){
+    private void FindRank(final int pos) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                Matrix mat = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(pos);
+                Matrix mat = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos);
                 int rank = mat.GetRank();
                 Message message = new Message();
                 Bundle bundle = new Bundle();
-                bundle.putInt("CALCULATED_RANK",rank);
+                bundle.putInt("CALCULATED_RANK", rank);
                 message.setData(bundle);
                 handler.sendMessage(message);
             }

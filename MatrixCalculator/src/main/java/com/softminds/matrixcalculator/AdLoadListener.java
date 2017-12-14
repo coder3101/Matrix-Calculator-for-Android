@@ -9,7 +9,7 @@ public class AdLoadListener extends AdListener {
 
     private CardView adHolder = null;
 
-    public AdLoadListener(CardView cardView){
+    public AdLoadListener(CardView cardView) {
         adHolder = cardView;
     }
 

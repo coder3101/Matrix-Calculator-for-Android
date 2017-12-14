@@ -39,7 +39,7 @@ public class GlobalValues extends Application {
     private ArrayList<Matrix> createdValues = new ArrayList<>();
     public ArrayList<Matrix> MatrixQueue = new ArrayList<>();
 
-    public  Matrix current_editing = null;
+    public Matrix current_editing = null;
     public boolean AdLoaded = false;
 
     private int LAST_INDEX = 0; //LastIndex of ArrayList
@@ -50,18 +50,17 @@ public class GlobalValues extends Application {
 
     public MatrixAdapter matrixAdapter;
 
-    private boolean Status=false;
+    private boolean Status = false;
 
-    public boolean Promotion=false;
+    public boolean Promotion = false;
 
     public boolean ThisSession = true;
 
     private String TAG = this.getClass().getSimpleName();
 
-    public void AddToGlobal(Matrix mk)
-    {
+    public void AddToGlobal(Matrix mk) {
         createdValues.add(mk);
-        if(matrixAdapter!=null)
+        if (matrixAdapter != null)
             matrixAdapter.notifyDataSetChanged();
         LAST_INDEX++;
     }
@@ -100,25 +99,24 @@ public class GlobalValues extends Application {
         return EndUserFunction;
     }
 
-    public boolean CanCreateVariable(){
-        if(DonationKeyFound())
+    public boolean CanCreateVariable() {
+        if (DonationKeyFound())
             return true;
-        if(AdLoaded){
-            return  (GetCompleteList().size()<4);
-        }
-        else{
-             return (GetCompleteList().size()<3);
+        if (AdLoaded) {
+            return (GetCompleteList().size() < 4);
+        } else {
+            return (GetCompleteList().size() < 3);
         }
     }
 
-    public boolean DonationKeyFound(){
+    public boolean DonationKeyFound() {
         return Status;
     }
 
-    public void UpdateStatus(boolean status){
-       Status = status;
-        if(Status)
-            Promotion=true;
+    public void UpdateStatus(boolean status) {
+        Status = status;
+        if (Status)
+            Promotion = true;
 
         //user is using promotional offer
     }
@@ -126,7 +124,7 @@ public class GlobalValues extends Application {
 
     public void SetDonationKeyStatus() {
 
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             Status = true;
             return;
             //if debug mode, avoid the advertisements and use pro features
@@ -141,22 +139,19 @@ public class GlobalValues extends Application {
                     == PackageManager.SIGNATURE_MATCH) {
                 Log.d(TAG, "The Signature of Key Matched with Application");
                 String manager = packageManager.getInstallerPackageName("com.softminds.matrixcalculator.pro.key");
-                if (manager != null)
-                {
+                if (manager != null) {
                     //Status = true;
-                    Log.d(TAG,manager);
-                    if(Objects.equals(manager, "com.android.vending")){
+                    Log.d(TAG, manager);
+                    if (Objects.equals(manager, "com.android.vending")) {
                         Status = true;
-                    }
-                    else {
+                    } else {
                         Status = false;
                         Toast.makeText(this, R.string.clear_warn_invalid_install, Toast.LENGTH_LONG).show();
                     }
                 }
                 //the Key is Genuine and was Installed from Play
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             Status = false;
         }
     }

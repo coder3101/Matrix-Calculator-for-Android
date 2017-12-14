@@ -57,7 +57,7 @@ public class TraceFragment extends ListFragment {
                 SquareList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
         }
 
-        MatrixAdapter adapter = new MatrixAdapter(getContext(), R.layout.list_layout_fragment,SquareList);
+        MatrixAdapter adapter = new MatrixAdapter(getContext(), R.layout.list_layout_fragment, SquareList);
         getListView().setDividerHeight(1);
         setListAdapter(adapter);
     }
@@ -70,14 +70,14 @@ public class TraceFragment extends ListFragment {
         progressDialog.setIndeterminate(true);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-        RunToGetTrace(position,progressDialog);
+        RunToGetTrace(position, progressDialog);
     }
 
     private void RunToGetTrace(int position, ProgressDialog progressDialog) {
-        double result = ((GlobalValues)getActivity().getApplication()).GetCompleteList().get(position).GetTrace();
+        double result = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position).GetTrace();
         final String formatted = GetText(result);
         progressDialog.dismiss();
-        String formatted2  = getString(R.string.trace_is) +" " +formatted;
+        String formatted2 = getString(R.string.trace_is) + " " + formatted;
         new AlertDialog.Builder(getContext())
                 .setCancelable(true)
                 .setMessage(formatted2)
@@ -86,12 +86,12 @@ public class TraceFragment extends ListFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ClipboardManager manager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                        ClipData data = ClipData.newPlainText("TRACE_RES",formatted);
+                        ClipData data = ClipData.newPlainText("TRACE_RES", formatted);
                         manager.setPrimaryClip(data);
-                        if(manager.hasPrimaryClip())
+                        if (manager.hasPrimaryClip())
                             Toast.makeText(getContext(), R.string.CopyToClip, Toast.LENGTH_SHORT).show();
                         else
-                            Log.e(TAG,"Cannot Put Data to Clip");
+                            Log.e(TAG, "Cannot Put Data to Clip");
                         dialog.dismiss();
                     }
                 })
@@ -109,9 +109,8 @@ public class TraceFragment extends ListFragment {
         if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
             DecimalFormat decimalFormat = new DecimalFormat("###############");
             return decimalFormat.format(res);
-        } else
-        {
-            switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ROUNDIND_INFO","0"))) {
+        } else {
+            switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ROUNDIND_INFO", "0"))) {
                 case 0:
                     return String.valueOf(res);
                 case 1:

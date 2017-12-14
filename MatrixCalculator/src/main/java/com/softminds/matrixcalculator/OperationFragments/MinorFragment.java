@@ -40,23 +40,23 @@ import java.util.ArrayList;
 public class MinorFragment extends ListFragment {
 
     @Override
-    public void onActivityCreated( Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         ArrayList<Matrix> SquareList = new ArrayList<>();
-        for(int i=0;i<((GlobalValues)getActivity().getApplication()).GetCompleteList().size();i++){
-            if(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
-                SquareList.add(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i));
+        for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
+            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
+                SquareList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
         }
-        MatrixAdapter squareadapter = new MatrixAdapter(getContext(),R.layout.list_layout_fragment,SquareList);
+        MatrixAdapter squareadapter = new MatrixAdapter(getContext(), R.layout.list_layout_fragment, SquareList);
         getListView().setDividerHeight(1);
         setListAdapter(squareadapter);
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Intent intent =new Intent(getActivity().getApplication(),MinorChooser.class);
-        intent.putExtra("INDEX",position);
+        Intent intent = new Intent(getActivity().getApplication(), MinorChooser.class);
+        intent.putExtra("INDEX", position);
         startActivity(intent);
     }
 }

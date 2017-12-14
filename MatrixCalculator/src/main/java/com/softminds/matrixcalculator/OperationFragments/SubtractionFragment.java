@@ -50,25 +50,23 @@ public class SubtractionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
+        ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();
         //Empty the Queue
         VariableListSub variableList = new VariableListSub();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.add(R.id.AdapterAddContainer,variableList,"VARIABLE_ADDER_SUB");
+        transaction.add(R.id.AdapterAddContainer, variableList, "VARIABLE_ADDER_SUB");
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.commit();
-        View view =inflater.inflate(R.layout.addition_fragement, container, false);
+        View view = inflater.inflate(R.layout.addition_fragement, container, false);
         root = view;
 
-        if(!((GlobalValues)getActivity().getApplication()).DonationKeyFound()) {
+        if (!((GlobalValues) getActivity().getApplication()).DonationKeyFound()) {
             AdView adView = (AdView) view.findViewById(R.id.adViewAddActivity);
             AdRequest adRequest = new AdRequest.Builder().build();
             adView.loadAd(adRequest);
-        }
-        else
-        {
-            CardView advt = (CardView)view.findViewById(R.id.AdvertiseMentCardadd);
-            ((ViewGroup)advt.getParent()).removeView(advt);
+        } else {
+            CardView advt = (CardView) view.findViewById(R.id.AdvertiseMentCardadd);
+            ((ViewGroup) advt.getParent()).removeView(advt);
         }
 
 
@@ -81,13 +79,12 @@ public class SubtractionFragment extends Fragment {
         proceedAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(((GlobalValues)getActivity().getApplication()).MatrixQueue.size()>=2){
+                if (((GlobalValues) getActivity().getApplication()).MatrixQueue.size() >= 2) {
                     Intent intent = new Intent(getContext(), ShowResult.class);
                     intent.putExtras(SubAll().GetDataBundled());
                     startActivity(intent);
-                }
-                else{
-                    Toast.makeText(getContext(),R.string.Notdefined,Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), R.string.Notdefined, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -101,34 +98,33 @@ public class SubtractionFragment extends Fragment {
         });
         return view;
     }
-    private Matrix SubAll(){
-        ArrayList<Matrix> buffer =((GlobalValues)getActivity().getApplication()).MatrixQueue;
-        Matrix res = new Matrix(buffer.get(0).GetRow(),buffer.get(0).GetCol(),buffer.get(0).GetType());
+
+    private Matrix SubAll() {
+        ArrayList<Matrix> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
+        Matrix res = new Matrix(buffer.get(0).GetRow(), buffer.get(0).GetCol(), buffer.get(0).GetType());
         res.CloneFrom(buffer.get(0));
-        for(int i=1;i<buffer.size();i++){
+        for (int i = 1; i < buffer.size(); i++) {
             res.SubtoThis(buffer.get(i));
         }
         return res;
     }
-    private void RemoveFromQueue(){
+
+    private void RemoveFromQueue() {
         TextView textView = (TextView) root.findViewById(R.id.AdditionStatus);
         String Initial = textView.getText().toString();
-        if(Initial.isEmpty()){
-            ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
-            Toast.makeText(getContext(),R.string.NothingTORemove,Toast.LENGTH_SHORT).show();
-        }
-        else {
-            if(Initial.contains("-")) {
+        if (Initial.isEmpty()) {
+            ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();
+            Toast.makeText(getContext(), R.string.NothingTORemove, Toast.LENGTH_SHORT).show();
+        } else {
+            if (Initial.contains("-")) {
                 String NewName = Initial.substring(0, Initial.lastIndexOf("-"));
                 textView.setText(NewName);
-                ((GlobalValues)getActivity().getApplication()).MatrixQueue.remove(((GlobalValues)getActivity().getApplication()).MatrixQueue.size()-1);
-            }
-            else
-            {
+                ((GlobalValues) getActivity().getApplication()).MatrixQueue.remove(((GlobalValues) getActivity().getApplication()).MatrixQueue.size() - 1);
+            } else {
                 textView.setText(null);
-                VariableListSub variableListSub = (VariableListSub)getChildFragmentManager().findFragmentByTag("VARIABLE_ADDER_SUB");
+                VariableListSub variableListSub = (VariableListSub) getChildFragmentManager().findFragmentByTag("VARIABLE_ADDER_SUB");
                 variableListSub.UpdateInfo();
-                ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
+                ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();
             }
         }
     }

@@ -40,16 +40,16 @@ import com.softminds.matrixcalculator.base_fragments.MainActivityFragmentList;
 public class CloneFragment extends ListFragment {
 
     @Override
-    public void onActivityCreated( Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        MatrixAdapter adapter = new MatrixAdapter(getContext(),R.layout.list_layout_fragment,((GlobalValues)getActivity().getApplication()).GetCompleteList());
+        MatrixAdapter adapter = new MatrixAdapter(getContext(), R.layout.list_layout_fragment, ((GlobalValues) getActivity().getApplication()).GetCompleteList());
         getListView().setDividerHeight(1);
         setListAdapter(adapter);
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        if(((GlobalValues)getActivity().getApplication()).CanCreateVariable()) {
+        if (((GlobalValues) getActivity().getApplication()).CanCreateVariable()) {
             Matrix m = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position);
             Matrix clone;
             clone = m.ExactClone("Copy_" + m.GetName());
@@ -62,9 +62,8 @@ public class CloneFragment extends ListFragment {
             transaction.replace(R.id.MainContent, new MainActivityFragmentList());
             transaction.commit();
             ((MainActivity) getActivity()).SetMainActivity(true, getString(R.string.app_name), getString(R.string.MainSubtitle));
-        }
-        else{
-            if(!((GlobalValues)getActivity().getApplication()).AdLoaded)
+        } else {
+            if (!((GlobalValues) getActivity().getApplication()).AdLoaded)
                 Toast.makeText(getContext(), R.string.ToAddMoreTurnData, Toast.LENGTH_SHORT).show();
             else
                 Toast.makeText(getContext(), R.string.LimitExceeds, Toast.LENGTH_SHORT).show();

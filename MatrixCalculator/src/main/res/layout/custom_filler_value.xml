@@ -9,38 +9,41 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.softminds.matrixcalculator.dialog_activity.CustomValueFiller">
+
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/Mat2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Mat2">
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/CustomValue"
-    android:inputType="numberDecimal|numberSigned"
-    android:layout_centerHorizontal="true"
-    android:hint="@string/ValueHint"
-    />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/CustomValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/ValueHint"
+            android:inputType="numberDecimal|numberSigned" />
     </android.support.design.widget.TextInputLayout>
+
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/ConfirmCustomFill"
-        android:layout_below="@id/Mat2"
         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_marginTop="8dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="35dp"
-        android:text="@string/ConfirmMake"/>
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/Mat2"
+        android:layout_marginEnd="35dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/ConfirmMake" />
+
+    <Button
         android:id="@+id/CancelCustomFill"
         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_below="@id/Mat2"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_below="@id/Mat2"
         android:layout_marginEnd="15dp"
-        android:text="@string/CancelCustomFill"
-        android:layout_marginStart="35dp"/>
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/CancelCustomFill" />
 </RelativeLayout>

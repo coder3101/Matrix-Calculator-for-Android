@@ -1,69 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayoutAbout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/relativeLayoutAbout">
+    android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:text="@string/app_name"
         android:layout_centerInParent="true"
-        android:id="@+id/heading"
-        android:textSize="30sp" />
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <ImageView
-        android:layout_height="100dp"
+        android:id="@+id/imageView2"
         android:layout_width="100dp"
-        android:layout_marginBottom="10dp"
-        android:clickable="false"
+        android:layout_height="100dp"
         android:layout_above="@id/heading"
         android:layout_centerHorizontal="true"
-        android:src="@mipmap/mainlogo"
+        android:layout_marginBottom="10dp"
+        android:clickable="false"
 
         android:contentDescription="@string/Logo"
-        android:id="@+id/imageView2" />
+        android:src="@mipmap/mainlogo" />
 
 
     <TextView
+        android:id="@+id/slogan_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/slogan_text"
-        android:text="@string/slogan"
-        android:textColor="@android:color/white"
         android:layout_below="@id/heading"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="@string/slogan"
+        android:textColor="@android:color/white" />
 
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/slogan_text"
-        android:layout_marginTop="5dp"
-        android:textColor="@android:color/white"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textView4"
-        android:text="@string/about_app" />
+        android:layout_marginTop="5dp"
+        android:text="@string/about_app"
+        android:textColor="@android:color/white" />
+
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView4"
-        android:layout_marginTop="5dp"
-        android:textColor="@android:color/white"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textView3"
-        />
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/white" />
 
     <Button
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/textView3"
+        android:layout_centerHorizontal="true"
         android:onClick="showSources"
-        android:textColor="@android:color/holo_red_light"
         android:text="@string/show_source"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"/>
+        android:textColor="@android:color/holo_red_light" />
 
 </RelativeLayout>

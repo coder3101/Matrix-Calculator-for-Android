@@ -9,236 +9,247 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.softminds.matrixcalculator.dialog_activity.FunctionMaker">
+
     <TextView
+        android:id="@+id/MainHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/MainHint"
-        android:text="@string/FunctionMakerHint"
         android:layout_centerHorizontal="true"
-        android:textSize="12sp"/>
+        android:text="@string/FunctionMakerHint"
+        android:textSize="12sp" />
+
     <TextView
+        android:id="@+id/PreViewLetters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/MainHint"
-        android:id="@+id/PreViewLetters"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
-        android:text="@string/PreView"/>
+        android:text="@string/PreView" />
+
     <HorizontalScrollView
+        android:id="@+id/FunctionMakerHorizontalScroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/PreViewLetters"
-        android:id="@+id/FunctionMakerHorizontalScroll"
         android:layout_centerHorizontal="true">
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/NewTermAdder"
-            android:orientation="horizontal">
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="@string/FunctionX"
-            />
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:text="@string/FunctionX"
                 android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/CreatedXAuto6"
-                android:textStyle="bold"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/AutoSign6"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/CreatedXAuto5"
-                android:textStyle="bold"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/AutoSign5"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/CreatedXAuto4"
-                android:textStyle="bold"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/AutoSign4"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/CreatedXAuto3"
-                android:textStyle="bold"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/AutoSign3"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/CreatedXAuto2"
-                android:textStyle="bold"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/AutoSign2"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/CreatedXAuto1"
-                android:textStyle="bold"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/AutoSign1"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/FirstXAuto"
-                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="3dp"
                 android:text="@string/X"
-                />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
+                android:id="@+id/ConstantSign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:id="@+id/ConstantSign"
                 android:layout_marginStart="3dp"
                 android:text="@string/plus"
-                />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
+                android:id="@+id/ConstantValueFunction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:id="@+id/ConstantValueFunction"
                 android:layout_marginStart="3dp"
                 android:text="@string/one"
-                />
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </HorizontalScrollView>
+
     <LinearLayout
+        android:id="@+id/ControlContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_below="@id/FunctionMakerHorizontalScroll"
-        android:id="@+id/ControlContainer">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:id="@+id/InternalControlContainer">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:text="@string/FunctionalExponent"/>
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:id="@+id/FunctionMakerExponent"
-            />
-    </LinearLayout>
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <LinearLayout
+            android:id="@+id/InternalControlContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="30dp"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:text="@string/FunctionalDegree"/>
+                android:text="@string/FunctionalExponent" />
+
             <NumberPicker
+                android:id="@+id/FunctionMakerExponent"
                 android:layout_width="wrap_content"
-                android:id="@+id/FunctionMakerDegree"
+                android:layout_height="100dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_height="100dp">
-            </NumberPicker>
+                android:layout_marginBottom="10dp"
+                android:text="@string/FunctionalDegree" />
+
+            <NumberPicker
+                android:id="@+id/FunctionMakerDegree"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"></NumberPicker>
         </LinearLayout>
     </LinearLayout>
+
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/EditTextCoeContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ControlContainer"
-        android:id="@+id/EditTextCoeContainer">
+        android:layout_below="@id/ControlContainer">
+
         <EditText
+            android:id="@+id/MainCoefficientFiller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/MainCoefficientFiller"
-            android:textAlignment="center"
+            android:hint="@string/Coefficient"
             android:inputType="numberDecimal|numberSigned"
-            android:hint="@string/Coefficient"/>
+            android:textAlignment="center" />
     </android.support.design.widget.TextInputLayout>
+
     <Button
+        android:id="@+id/ConfirmMakeFunction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ConfirmFunction"
-        android:textAlignment="center"
         android:layout_below="@id/EditTextCoeContainer"
-        android:id="@+id/ConfirmMakeFunction"
-        />
+        android:text="@string/ConfirmFunction"
+        android:textAlignment="center" />
 
 
 </RelativeLayout>

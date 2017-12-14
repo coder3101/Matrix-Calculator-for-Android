@@ -1,79 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="3dp"
     android:paddingEnd="3dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    android:paddingStart="3dp">
 
     <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
         android:id="@+id/Matrix_holder"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
         android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="@dimen/cardview_default_radius"
-        app:cardElevation="@dimen/cardview_default_elevation"
-        android:layout_height="70dp">
+        app:cardElevation="@dimen/cardview_default_elevation">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingEnd="5dp"
-        android:paddingStart="5dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/ImageForMatrix"
-        android:layout_centerVertical="true"
-        android:src="@mipmap/normal"
-        android:contentDescription="@string/about_app" />
+            <ImageView
+                android:id="@+id/ImageForMatrix"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/about_app"
+                android:paddingBottom="5dp"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:src="@mipmap/normal" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/MatrixTitle"
-        android:maxLines="1"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
-        android:textSize="19sp"
-        android:layout_marginStart="30dp"
-        android:layout_toEndOf="@id/ImageForMatrix"/>
+            <TextView
+                android:id="@+id/MatrixTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/ImageForMatrix"
+                android:fontFamily="sans-serif"
+                android:maxLines="1"
+                android:textSize="19sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/MatrixTitleRow"
-        android:text="@string/Row"
-        android:maxLines="1"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textSize="18sp"
-        android:layout_below="@id/MatrixTitle"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="30dp"
-        android:layout_toEndOf="@id/ImageForMatrix"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/MatrixTitleCol"
-        android:text="@string/Col"
-        android:maxLines="1"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textSize="18sp"
-        android:layout_below="@id/MatrixTitle"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="60dp"
-        android:layout_toEndOf="@id/MatrixTitleRow"
-        />
+            <TextView
+                android:id="@+id/MatrixTitleRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/MatrixTitle"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/ImageForMatrix"
+                android:fontFamily="sans-serif-smallcaps"
+                android:maxLines="1"
+                android:text="@string/Row"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/MatrixTitleCol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/MatrixTitle"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/MatrixTitleRow"
+                android:fontFamily="sans-serif-smallcaps"
+                android:maxLines="1"
+                android:text="@string/Col"
+                android:textSize="18sp" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

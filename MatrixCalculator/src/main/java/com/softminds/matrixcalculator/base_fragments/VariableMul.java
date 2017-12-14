@@ -87,12 +87,14 @@ public class VariableMul extends ListFragment {
         }
 
     }
-    public void UpdateRowCol(int r, int c){
-        Row= r;
-        Col =c;
+
+    public void UpdateRowCol(int r, int c) {
+        Row = r;
+        Col = c;
     }
-    public void Restore(){
-        Row =0;
-        Col =0;
+
+    public void Restore() {
+        Row = 0;
+        Col = 0;
     }
 }

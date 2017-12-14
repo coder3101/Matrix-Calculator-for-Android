@@ -51,15 +51,17 @@ public class FunctionalFragment extends ListFragment {
     int ClickPos;
     ArrayList<Matrix> SquareList;
 
-    private static class MyHandler extends Handler{
+    private static class MyHandler extends Handler {
         private WeakReference<FunctionalFragment> weakReference;
-        MyHandler(FunctionalFragment fragment){
+
+        MyHandler(FunctionalFragment fragment) {
             weakReference = new WeakReference<>(fragment);
         }
+
         @Override
-        public void handleMessage(Message msg){
+        public void handleMessage(Message msg) {
             FunctionalFragment functionalFragment = weakReference.get();
-            Intent intent = new Intent(functionalFragment.getContext(),ShowResult.class);
+            Intent intent = new Intent(functionalFragment.getContext(), ShowResult.class);
             intent.putExtras(msg.getData());
             functionalFragment.startActivity(intent);
         }
@@ -70,34 +72,32 @@ public class FunctionalFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstances) {
         super.onActivityCreated(savedInstances);
-        SquareList=new ArrayList<>();
-        for(int i = 0; i<((GlobalValues)getActivity().getApplication()).GetCompleteList().size(); i++)
-        {
-            if(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
+        SquareList = new ArrayList<>();
+        for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
+            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
                 //search only square matrix from list
-                SquareList.add(((GlobalValues)getActivity().getApplication()).GetCompleteList().get(i));
+                SquareList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
         }
-        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment,SquareList);
+        MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment, SquareList);
         getListView().setDividerHeight(1);
         setListAdapter(MatriXadapter);
 
     }
+
     @Override
-    public void onListItemClick(ListView L, View V, int position, long id)
-    {
+    public void onListItemClick(ListView L, View V, int position, long id) {
         ClickPos = position;
         Intent intent = new Intent(getContext(), FunctionMaker.class);
-        int newpos = ((GlobalValues)getActivity().getApplication()).GetCompleteList().indexOf(SquareList.get(ClickPos));
-        intent.putExtra("MATRIX_GLOBAL_INDEX",newpos );
-        startActivityForResult(intent,1452);
+        int newpos = ((GlobalValues) getActivity().getApplication()).GetCompleteList().indexOf(SquareList.get(ClickPos));
+        intent.putExtra("MATRIX_GLOBAL_INDEX", newpos);
+        startActivityForResult(intent, 1452);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode,resultCode,data);
-        if(resultCode == 1452)
-        {
-            if(((GlobalValues)getActivity().getApplication()).DonationKeyFound()) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 1452) {
+            if (((GlobalValues) getActivity().getApplication()).DonationKeyFound()) {
                 try {
                     final Function function = ((GlobalValues) getActivity().getApplication()).getFunction();
                     Runnable runnable = new Runnable() {
@@ -115,9 +115,7 @@ public class FunctionalFragment extends ListFragment {
                     Log.d("Exception : ", "Function at Global Context is Null");
                     e.printStackTrace();
                 }
-            }
-            else
-            {
+            } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setCancelable(true);
                 builder.setPositiveButton(R.string.Upgrade, new DialogInterface.OnClickListener() {
@@ -127,9 +125,9 @@ public class FunctionalFragment extends ListFragment {
                         try {
                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + ProPackage));
                             startActivity(intent);
-                            Toast.makeText(getContext(),R.string.OpeningPlay,Toast.LENGTH_SHORT).show();
-                        }catch (ActivityNotFoundException e){ //if Play store is not installed
-                            startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://play.google.com/store/apps/details?id="+ProPackage)));
+                            Toast.makeText(getContext(), R.string.OpeningPlay, Toast.LENGTH_SHORT).show();
+                        } catch (ActivityNotFoundException e) { //if Play store is not installed
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + ProPackage)));
                         }
                         dialogInterface.dismiss();
                     }
