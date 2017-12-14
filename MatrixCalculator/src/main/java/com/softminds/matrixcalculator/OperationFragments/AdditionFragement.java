@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.softminds.matrixcalculator.AdLoadListener;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
@@ -46,29 +47,30 @@ import java.util.ArrayList;
 public class AdditionFragement extends Fragment {
 
     View root;
+    CardView adCard;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
+        ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();
         //Empty the Queue
         VariableListAdd variableList = new VariableListAdd();
-       FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.add(R.id.AdapterAddContainer,variableList,"VARIABLE_ADDER");
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.add(R.id.AdapterAddContainer, variableList, "VARIABLE_ADDER");
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.commit();
-        View view =inflater.inflate(R.layout.addition_fragement, container, false);
+        View view = inflater.inflate(R.layout.addition_fragement, container, false);
         root = view;
 
-        if(!((GlobalValues)getActivity().getApplication()).DonationKeyFound()) {
+        adCard = (CardView) view.findViewById(R.id.AdvertiseMentCardadd);
+
+        if (!((GlobalValues) getActivity().getApplication()).DonationKeyFound()) {
             AdView adView = (AdView) view.findViewById(R.id.adViewAddActivity);
             AdRequest adRequest = new AdRequest.Builder().build();
+            adView.setAdListener(new AdLoadListener(adCard));
             adView.loadAd(adRequest);
-        }
-        else
-        {
-            CardView advt = (CardView)view.findViewById(R.id.AdvertiseMentCardadd);
-            ((ViewGroup)advt.getParent()).removeView(advt);
+        } else {
+            ((ViewGroup) adCard.getParent()).removeView(adCard);
         }
 
 
@@ -76,13 +78,12 @@ public class AdditionFragement extends Fragment {
         proceedAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(((GlobalValues)getActivity().getApplication()).MatrixQueue.size()>=2){
+                if (((GlobalValues) getActivity().getApplication()).MatrixQueue.size() >= 2) {
                     Intent intent = new Intent(getContext(), ShowResult.class);
                     intent.putExtras(SumAll().GetDataBundled());
                     startActivity(intent);
-                }
-                else{
-                    Toast.makeText(getContext(),R.string.Notdefined,Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), R.string.Notdefined, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -96,35 +97,34 @@ public class AdditionFragement extends Fragment {
         });
         return view;
     }
-    private Matrix SumAll(){
-        ArrayList<Matrix> buffer =((GlobalValues)getActivity().getApplication()).MatrixQueue;
-        Matrix res = new Matrix(buffer.get(1).GetRow(),buffer.get(1).GetCol(),buffer.get(1).GetType());
-        for(int i=0;i<buffer.size();i++){
+
+    private Matrix SumAll() {
+        ArrayList<Matrix> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
+        Matrix res = new Matrix(buffer.get(1).GetRow(), buffer.get(1).GetCol(), buffer.get(1).GetType());
+        for (int i = 0; i < buffer.size(); i++) {
             res.AddtoThis(buffer.get(i));
         }
         return res;
     }
-    private void RemoveFromQueue(){
+
+    private void RemoveFromQueue() {
         TextView textView = (TextView) root.findViewById(R.id.AdditionStatus);
-            String Initial = textView.getText().toString();
-            if(Initial.isEmpty()){
-                ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
-                Toast.makeText(getContext(),R.string.NothingTORemove,Toast.LENGTH_SHORT).show();
-            }
-            else {
-                if(Initial.contains("+")) {
-                    String NewName = Initial.substring(0, Initial.lastIndexOf("+"));
-                    textView.setText(NewName);
-                    ((GlobalValues)getActivity().getApplication()).MatrixQueue.remove(((GlobalValues)getActivity().getApplication()).MatrixQueue.size()-1);
-                }
-                else
-                {
-                    textView.setText(null);
-                    VariableListAdd variableListAdd = (VariableListAdd)getChildFragmentManager().findFragmentByTag("VARIABLE_ADDER");
-                    variableListAdd.RestoreClick();
-                    ((GlobalValues)getActivity().getApplication()).MatrixQueue.clear();
-                }
+        String Initial = textView.getText().toString();
+        if (Initial.isEmpty()) {
+            ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();
+            Toast.makeText(getContext(), R.string.NothingTORemove, Toast.LENGTH_SHORT).show();
+        } else {
+            if (Initial.contains("+")) {
+                String NewName = Initial.substring(0, Initial.lastIndexOf("+"));
+                textView.setText(NewName);
+                ((GlobalValues) getActivity().getApplication()).MatrixQueue.remove(((GlobalValues) getActivity().getApplication()).MatrixQueue.size() - 1);
+            } else {
+                textView.setText(null);
+                VariableListAdd variableListAdd = (VariableListAdd) getChildFragmentManager().findFragmentByTag("VARIABLE_ADDER");
+                variableListAdd.RestoreClick();
+                ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();
             }
         }
+    }
 
 }

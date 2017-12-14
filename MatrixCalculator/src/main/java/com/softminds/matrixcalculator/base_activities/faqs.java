@@ -34,14 +34,17 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.softminds.matrixcalculator.AdLoadListener;
 import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.R;
 
 public class faqs extends AppCompatActivity implements View.OnTouchListener {
 
     boolean isDark;
+    CardView adCard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -53,14 +56,16 @@ public class faqs extends AppCompatActivity implements View.OnTouchListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.help_layout);
 
+        adCard = (CardView)findViewById(R.id.AddCardFAQ);
         if(!((GlobalValues)getApplication()).DonationKeyFound()) {
             AdView faqAd = (AdView) findViewById(R.id.adViewFaq);
             AdRequest adRequest = new AdRequest.Builder().build();
+            faqAd.setAdListener(new AdLoadListener(adCard));
             faqAd.loadAd(adRequest);
+
         }
         else{
-            CardView cardView = (CardView)findViewById(R.id.AddCardFAQ);
-            ((ViewGroup)cardView.getParent()).removeView(cardView);
+            ((ViewGroup)adCard.getParent()).removeView(adCard);
             //remove cardView from main layout
         }
 
@@ -113,28 +118,6 @@ public class faqs extends AppCompatActivity implements View.OnTouchListener {
         textView10.setTextColor(id);
     }
 
-    @Deprecated
-    private void SetOnMotionEventToAll(){
-
-        //Do not use this animator but use default selectableItemBackground in foreground of cardview
-        final CardView cardView1 = (CardView) findViewById(R.id.QA1);
-        CardView cardView2 = (CardView) findViewById(R.id.QA2);
-        CardView cardView3 = (CardView) findViewById(R.id.QA3);
-        CardView cardView5 = (CardView) findViewById(R.id.QA5);
-        CardView cardView8 = (CardView) findViewById(R.id.QA8);
-        CardView cardView9 = (CardView) findViewById(R.id.QA9);
-        CardView cardView10 = (CardView) findViewById(R.id.QA10);
-
-        cardView1.setOnTouchListener(this);
-        cardView3.setOnTouchListener(this);
-        cardView2.setOnTouchListener(this);
-        cardView5.setOnTouchListener(this);
-        cardView8.setOnTouchListener(this);
-        cardView9.setOnTouchListener(this);
-        cardView10.setOnTouchListener(this);
-
-    }
-
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (motionEvent.getAction()){
@@ -143,6 +126,7 @@ public class faqs extends AppCompatActivity implements View.OnTouchListener {
                 animator.setDuration(200);
                 animator.setInterpolator(new DecelerateInterpolator());
                 animator.start();
+                view.performClick();
                 return true;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:

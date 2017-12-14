@@ -43,15 +43,10 @@
         android:layout_marginEnd="5dp"
         android:id="@+id/MainActivity_Advt_Card"
         app:cardElevation="3dp"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_below="@id/MainContent"
         app:cardBackgroundColor="@color/grey">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/NoDataAvailable"
-            android:textSize="20sp"
-            android:layout_gravity="center"/>
     <com.google.android.gms.ads.AdView
         android:id="@+id/adViewMainActivity"
         android:layout_width="match_parent"

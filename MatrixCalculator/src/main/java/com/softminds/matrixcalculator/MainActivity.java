@@ -85,6 +85,8 @@ public class MainActivity extends AppCompatActivity
     boolean OnceBackClicked=false;
     Menu NavMenuItem;
 
+    CardView adCard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -100,6 +102,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        adCard = (CardView)findViewById(R.id.MainActivity_Advt_Card);
+
     if(!((GlobalValues)getApplication()).DonationKeyFound()) {
         AdView mAdView = (AdView) findViewById(R.id.adViewMainActivity);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -108,12 +112,12 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onAdLoaded() {
                 ((GlobalValues) getApplication()).AdLoaded = true;
+                adCard.setVisibility(View.VISIBLE);
             }
         });
     }
     else {
-        CardView cv = (CardView)findViewById(R.id.MainActivity_Advt_Card);
-        cv.setVisibility(View.INVISIBLE);
+        adCard.setVisibility(View.GONE);
     }
 
 

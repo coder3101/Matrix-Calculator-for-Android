@@ -13,15 +13,11 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         app:cardElevation="3dp"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:cardBackgroundColor="@color/grey">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/NoDataAvailable"
-            android:textSize="20sp"
-            android:layout_gravity="center"/>
+
         <com.google.android.gms.ads.AdView
             android:id="@+id/adViewFiller"
             android:layout_width="match_parent"

@@ -38,6 +38,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.softminds.matrixcalculator.AdLoadListener;
 import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.MainActivity;
 import com.softminds.matrixcalculator.Matrix;
@@ -47,6 +48,8 @@ import com.softminds.matrixcalculator.R;
 import java.text.DecimalFormat;
 
 public class ShowResult extends AppCompatActivity {
+
+    CardView adCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,8 @@ public class ShowResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_layout);
 
+        adCard = (CardView) findViewById(R.id.AddCardResult);
+
         if(preferences.getBoolean("AUTO_TOAST_ENABLER",false)){
             Toast.makeText(getApplicationContext(),"Result Calculated",Toast.LENGTH_SHORT).show();
         }
@@ -66,11 +71,11 @@ public class ShowResult extends AppCompatActivity {
        if(!((GlobalValues)getApplication()).DonationKeyFound()) {
            AdView mAdView = (AdView) findViewById(R.id.adViewResult);
            AdRequest adRequest = new AdRequest.Builder().build();
+           mAdView.setAdListener(new AdLoadListener(adCard));
            mAdView.loadAd(adRequest);
        }
        else{
-           CardView cd = (CardView) findViewById(R.id.AddCardResult);
-           ((ViewGroup)cd.getParent()).removeView(cd);
+           ((ViewGroup)adCard.getParent()).removeView(adCard);
        }
 
         CardView cardView = (CardView) findViewById(R.id.DynamicCard2);
