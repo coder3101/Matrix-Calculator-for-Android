@@ -114,6 +114,7 @@ public class Matrix {
         this.name = nam;
     }
 
+    @Deprecated
     public void AddtoThis(Matrix m) {
         if (isSameOrder(m)) {
             for (int i = 0; i < m.GetRow(); i++)
@@ -122,6 +123,7 @@ public class Matrix {
         }
     }
 
+    @Deprecated
     public void SubtoThis(Matrix m) {
         if (isSameOrder(m)) {
             for (int i = 0; i < m.GetRow(); i++)
@@ -192,7 +194,6 @@ public class Matrix {
         return this.GetCol() == h.GetRow();
     }
 
-    @Nullable
     private Matrix MultipyWith(Matrix j) throws Exception {
         if (AreMultipliabe(j)) {
             Matrix m = new Matrix(this.GetRow(), j.GetCol(), this.GetType());
@@ -211,8 +212,9 @@ public class Matrix {
 
     }
 
+    @Deprecated
     public void MultiplytoThis(Matrix m) throws ExceptionInInitializerError {
-        if (this.AreMultipliabe(m)) {
+        if (AreMultipliabe(m)) {
             Matrix mh = new Matrix(this.GetRow(), m.GetCol(), this.GetType());
             for (int i = 0; i < this.GetRow(); i++)
                 for (int js = 0; js < m.GetCol(); js++) {
@@ -585,6 +587,57 @@ public class Matrix {
         return re;
     }
 
+    /*
+    Static helper methods for Subtraction and Multiplication
+     */
+
+    @Nullable
+    public static Matrix MatMul(Matrix a, Matrix b) {
+        Matrix m = new Matrix(a.GetRow(), b.GetCol(), a.GetType());
+        if (a.GetCol() == b.GetRow()) {
+            for (int i = 0; i < a.GetRow(); i++) {
+                for (int j = 0; j < b.GetCol(); j++) {
+                    m.SetElementof(0f, i, j);
+                    float temp = 0;
+                    for (int k = 0; k < a.GetCol(); k++) {
+                        temp += a.GetElementof(i, k) * b.GetElementof(k, j);
+                    }
+                    m.SetElementof(temp, i, j);
+                }
+            }
+            return m;
+        } else
+            return null;
+    }
+
+    @Nullable
+    public static Matrix MatSub(Matrix a, Matrix b) {
+        if (a.GetCol() == b.GetCol() && a.GetRow() == b.GetRow()) {
+            Matrix m = new Matrix(a.GetRow(), a.GetCol(), a.GetType());
+            for (int i = 0; i < a.GetRow(); i++) {
+                for (int j = 0; j < a.GetCol(); j++) {
+                    m.SetElementof(a.GetElementof(i, j) - b.GetElementof(i, j), i, j);
+                }
+            }
+            return m;
+        }else
+            return null;
+    }
+
+    @Nullable
+    public static Matrix Matadd(Matrix a, Matrix b) {
+        if (a.GetCol() == b.GetCol() && a.GetRow() == b.GetRow()) {
+            Matrix m = new Matrix(a.GetRow(), a.GetCol(), a.GetType());
+            for (int i = 0; i < a.GetRow(); i++) {
+                for (int j = 0; j < a.GetCol(); j++) {
+                    m.SetElementof(a.GetElementof(i, j) + b.GetElementof(i, j), i, j);
+                }
+            }
+            return m;
+        }else
+            return null;
+    }
+
     public int GetRank() throws IllegalStateException {
 
         /*
@@ -723,13 +776,13 @@ public class Matrix {
     //Overrided Methods
     @Override
     public String toString() {
-        String s = "--->";
+        StringBuilder s = new StringBuilder("--->");
         for (int i = 0; i < this.GetRow(); i++) {
             for (int j = 0; j < this.GetCol(); j++)
-                s += String.valueOf(this.GetElementof(i, j)) + " : ";
-            s += "->";
+                s.append(String.valueOf(this.GetElementof(i, j))).append(" : ");
+            s.append("->");
         }
-        return s;
+        return s.toString();
     }
 
 

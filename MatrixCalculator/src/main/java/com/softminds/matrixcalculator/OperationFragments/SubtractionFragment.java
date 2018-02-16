@@ -23,9 +23,11 @@ package com.softminds.matrixcalculator.OperationFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +37,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.softminds.matrixcalculator.AdLoadListener;
 import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
@@ -42,13 +45,15 @@ import com.softminds.matrixcalculator.base_activities.ShowResult;
 import com.softminds.matrixcalculator.base_fragments.VariableListSub;
 
 import java.util.ArrayList;
+import java.util.List;
 
+@SuppressWarnings("ConstantConditions")
 public class SubtractionFragment extends Fragment {
 
     View root;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();
         //Empty the Queue
@@ -60,21 +65,24 @@ public class SubtractionFragment extends Fragment {
         View view = inflater.inflate(R.layout.addition_fragement, container, false);
         root = view;
 
+        CardView adCard = view.findViewById(R.id.AdvertiseMentCardadd);
+
+
         if (!((GlobalValues) getActivity().getApplication()).DonationKeyFound()) {
-            AdView adView = (AdView) view.findViewById(R.id.adViewAddActivity);
+            AdView adView = view.findViewById(R.id.adViewAddActivity);
             AdRequest adRequest = new AdRequest.Builder().build();
+            adView.setAdListener(new AdLoadListener(adCard));
             adView.loadAd(adRequest);
         } else {
-            CardView advt = (CardView) view.findViewById(R.id.AdvertiseMentCardadd);
-            ((ViewGroup) advt.getParent()).removeView(advt);
+            ((ViewGroup) adCard.getParent()).removeView(adCard);
         }
 
 
-        TextView tv = (TextView) view.findViewById(R.id.TitleOfAdd);
-        TextView tv2 = (TextView) view.findViewById(R.id.SubtitleofADD);
+        TextView tv =  view.findViewById(R.id.TitleOfAdd);
+        TextView tv2 =  view.findViewById(R.id.SubtitleofADD);
         tv.setText(R.string.SubQueue);
         tv2.setText(R.string.SubTip);
-        Button proceedAdd = (Button) view.findViewById(R.id.ConfirmAdd);
+        Button proceedAdd =  view.findViewById(R.id.ConfirmAdd);
         proceedAdd.setText(R.string.Proceed);
         proceedAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +97,7 @@ public class SubtractionFragment extends Fragment {
             }
         });
 
-        Button remove = (Button) view.findViewById(R.id.RemoveLast);
+        Button remove =  view.findViewById(R.id.RemoveLast);
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,16 +109,19 @@ public class SubtractionFragment extends Fragment {
 
     private Matrix SubAll() {
         ArrayList<Matrix> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
-        Matrix res = new Matrix(buffer.get(0).GetRow(), buffer.get(0).GetCol(), buffer.get(0).GetType());
-        res.CloneFrom(buffer.get(0));
-        for (int i = 1; i < buffer.size(); i++) {
-            res.SubtoThis(buffer.get(i));
+
+        Matrix first = buffer.get(0),second;
+        second = new Matrix(buffer.get(0).GetRow(),buffer.get(0).GetCol(),buffer.get(0).GetType());
+        for (int t=1;t<buffer.size();t++) {
+                second = Matrix.Matadd(second, buffer.get(t));
         }
-        return res;
+
+        return Matrix.MatSub(first,second);
+
     }
 
     private void RemoveFromQueue() {
-        TextView textView = (TextView) root.findViewById(R.id.AdditionStatus);
+        TextView textView =  root.findViewById(R.id.AdditionStatus);
         String Initial = textView.getText().toString();
         if (Initial.isEmpty()) {
             ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();
