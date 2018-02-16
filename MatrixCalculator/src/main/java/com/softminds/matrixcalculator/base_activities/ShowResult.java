@@ -62,14 +62,14 @@ public class ShowResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_layout);
 
-        adCard = (CardView) findViewById(R.id.AddCardResult);
+        adCard = findViewById(R.id.AddCardResult);
 
         if (preferences.getBoolean("AUTO_TOAST_ENABLER", false)) {
             Toast.makeText(getApplicationContext(), "Result Calculated", Toast.LENGTH_SHORT).show();
         }
 
         if (!((GlobalValues) getApplication()).DonationKeyFound()) {
-            AdView mAdView = (AdView) findViewById(R.id.adViewResult);
+            AdView mAdView = findViewById(R.id.adViewResult);
             AdRequest adRequest = new AdRequest.Builder().build();
             mAdView.setAdListener(new AdLoadListener(adCard));
             mAdView.loadAd(adRequest);
@@ -77,7 +77,7 @@ public class ShowResult extends AppCompatActivity {
             ((ViewGroup) adCard.getParent()).removeView(adCard);
         }
 
-        CardView cardView = (CardView) findViewById(R.id.DynamicCard2);
+        CardView cardView = findViewById(R.id.DynamicCard2);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String string = sharedPreferences.getString("ELEVATE_AMOUNT", "4");
@@ -117,7 +117,7 @@ public class ShowResult extends AppCompatActivity {
         gridLayout.setLayoutParams(params1);
         cardView.addView(gridLayout);
         if (getIntent().getFloatExtra("DETERMINANT_FOR_INVERSE", 0.0f) != 0.0f) {
-            TextView textView = (TextView) findViewById(R.id.TextContainer);
+            TextView textView = findViewById(R.id.TextContainer);
             String val = "1 / " + GetText(getIntent().getFloatExtra("DETERMINANT_FOR_INVERSE", 0.0f));
             textView.setText(val);
         }

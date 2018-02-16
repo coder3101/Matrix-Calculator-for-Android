@@ -46,9 +46,9 @@ public class MultiplierSetter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplier_setter);
 
-        final EditText editText = (EditText) findViewById(R.id.MultiplierSetterInput);
-        Button button1 = (Button) findViewById(R.id.ConfirmSetFillScalar);
-        Button button2 = (Button) findViewById(R.id.CancelSetFillScalar);
+        final EditText editText = findViewById(R.id.MultiplierSetterInput);
+        Button button1 = findViewById(R.id.ConfirmSetFillScalar);
+        Button button2 = findViewById(R.id.CancelSetFillScalar);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

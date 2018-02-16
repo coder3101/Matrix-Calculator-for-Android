@@ -38,6 +38,7 @@ import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.dialog_activity.OrderChanger;
 import com.softminds.matrixcalculator.dialog_activity.RenameCreated;
 
+@SuppressWarnings("ConstantConditions")
 public class MainActivityFragmentList extends ListFragment {
 
     int position1 = -1;

@@ -49,7 +49,7 @@ public class CustomValueFiller extends AppCompatActivity {
             setTheme(R.style.AppThemeDialog);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_filler_value);
-        final EditText editText = (EditText) findViewById(R.id.CustomValue);
+        final EditText editText = findViewById(R.id.CustomValue);
 
         if (PreferenceManager.getDefaultSharedPreferences(this)
                 .getBoolean("DECIMAL_USE", true)) {
@@ -61,8 +61,8 @@ public class CustomValueFiller extends AppCompatActivity {
         if (isDark)
             editText.setTextColor(ContextCompat.getColor(this, R.color.white));
 
-        Button button = (Button) findViewById(R.id.ConfirmCustomFill);
-        Button exit = (Button) findViewById(R.id.CancelCustomFill);
+        Button button = findViewById(R.id.ConfirmCustomFill);
+        Button exit = findViewById(R.id.CancelCustomFill);
         button.setAllCaps(true);
         exit.setAllCaps(true);
         button.setHeight(50);

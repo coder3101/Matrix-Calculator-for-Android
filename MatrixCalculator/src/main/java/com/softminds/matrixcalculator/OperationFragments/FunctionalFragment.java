@@ -46,6 +46,7 @@ import com.softminds.matrixcalculator.dialog_activity.FunctionMaker;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
+@SuppressWarnings("ConstantConditions")
 public class FunctionalFragment extends ListFragment {
 
     int ClickPos;

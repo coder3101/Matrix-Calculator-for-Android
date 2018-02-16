@@ -43,6 +43,7 @@ import com.softminds.matrixcalculator.GlobalValues;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+@SuppressWarnings("ConstantConditions")
 public class TraceFragment extends ListFragment {
 
     ArrayList<Matrix> SquareList;

@@ -25,11 +25,6 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.softminds.matrixcalculator.BuildConfig;
-import com.softminds.matrixcalculator.Function;
-import com.softminds.matrixcalculator.Matrix;
-import com.softminds.matrixcalculator.MatrixAdapter;
-import com.softminds.matrixcalculator.R;
 
 import java.util.ArrayList;
 import java.util.Objects;

@@ -52,16 +52,16 @@ public class MinorChooser extends AppCompatActivity {
 
 
         if (!((GlobalValues) getApplication()).DonationKeyFound()) {
-            AdView adView = (AdView) findViewById(R.id.adViewMinor);
+            AdView adView = findViewById(R.id.adViewMinor);
             AdRequest request = new AdRequest.Builder().build();
             adView.loadAd(request);
         } else {
-            CardView cardView = (CardView) findViewById(R.id.AddCardMinor);
+            CardView cardView = findViewById(R.id.AddCardMinor);
             ((ViewGroup) cardView.getParent()).removeView(cardView);
         }
 
 
-        TextView textView = (TextView) findViewById(R.id.ViewHints);
+        TextView textView = findViewById(R.id.ViewHints);
         textView.setText(R.string.ViewHints);
         int index = getIntent().getIntExtra("INDEX", -1);
         if (getSupportActionBar() != null && index != (-1))

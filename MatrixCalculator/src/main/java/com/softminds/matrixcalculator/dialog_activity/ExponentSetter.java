@@ -47,9 +47,9 @@ public class ExponentSetter extends AppCompatActivity {
         setContentView(R.layout.exponent_setter);
 
         //References
-        Button Confirm = (Button) findViewById(R.id.ConfirmSetFill);
-        Button Cancel = (Button) findViewById(R.id.CancelSetFill);
-        final EditText editText = (EditText) findViewById(R.id.ExponentSetter);
+        Button Confirm = findViewById(R.id.ConfirmSetFill);
+        Button Cancel = findViewById(R.id.CancelSetFill);
+        final EditText editText = findViewById(R.id.ExponentSetter);
 
         //OnClickListener
         Confirm.setOnClickListener(new View.OnClickListener() {

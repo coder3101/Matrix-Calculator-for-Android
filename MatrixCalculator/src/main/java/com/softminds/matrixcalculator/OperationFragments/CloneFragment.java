@@ -37,6 +37,7 @@ import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.base_fragments.MainActivityFragmentList;
 
 
+@SuppressWarnings("ConstantConditions")
 public class CloneFragment extends ListFragment {
 
     @Override
@@ -56,7 +57,7 @@ public class CloneFragment extends ListFragment {
             ((GlobalValues) getActivity().getApplication()).GetCompleteList().add(clone);
             ((GlobalValues) getActivity().getApplication()).matrixAdapter.notifyDataSetChanged();
             Toast.makeText(getContext(), "Saved as Copy_" + m.GetName(), Toast.LENGTH_SHORT).show();
-            NavigationView view = (NavigationView) getActivity().findViewById(R.id.nav_view);
+            NavigationView view = getActivity().findViewById(R.id.nav_view);
             view.setCheckedItem(R.id.Home);
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.MainContent, new MainActivityFragmentList());

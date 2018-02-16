@@ -45,10 +45,10 @@ public class RenameCreated extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rename_created);
 
-        final EditText e = (EditText) findViewById(R.id.RenameValue);
+        final EditText e = findViewById(R.id.RenameValue);
         e.setText(getIntent().getStringExtra("TITLE_OF_THIS_FORMATION"));
-        Button yes = (Button) findViewById(R.id.ConfirmRename);
-        Button no = (Button) findViewById(R.id.CancelRename);
+        Button yes = findViewById(R.id.ConfirmRename);
+        Button no = findViewById(R.id.CancelRename);
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

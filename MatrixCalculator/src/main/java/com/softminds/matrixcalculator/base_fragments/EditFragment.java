@@ -56,7 +56,7 @@ public class EditFragment extends Fragment {
                              Bundle savedInstanceState) {
         View V = inflater.inflate(R.layout.fragment_edit, container, false);
 
-        CardView cardView = (CardView) V.findViewById(R.id.EditMatrixCard);
+        CardView cardView = V.findViewById(R.id.EditMatrixCard);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String string = sharedPreferences.getString("ELEVATE_AMOUNT", "4");
@@ -123,7 +123,7 @@ public class EditFragment extends Fragment {
                 for (int i = 0; i < number; i++)
                     for (int j = 0; j < ((GlobalValues) getActivity().getApplication()).
                             GetCompleteList().get(index).GetCol(); j++) {
-                        EditText editText = (EditText) RootView.findViewById(i * 10 + j);
+                        EditText editText = RootView.findViewById(i * 10 + j);
                         if (!editText.getText().toString().isEmpty()) {
                             ((GlobalValues) getActivity().getApplication()).
                                     GetCompleteList().get(index).
@@ -273,7 +273,7 @@ public class EditFragment extends Fragment {
         if (m != null) {
             for (int i = 0; i < m.GetRow(); i++) {
                 for (int j = 0; j < m.GetCol(); j++) {
-                    EditText e = (EditText) RootView.findViewById(i * 10 + j);
+                    EditText e = RootView.findViewById(i * 10 + j);
                     e.setText(GetText(m.GetElementof(i, j)));
                 }
             }

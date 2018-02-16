@@ -35,6 +35,7 @@ import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
 
 
+@SuppressWarnings("ConstantConditions")
 public class VariableListAdd extends ListFragment {
 
     MatrixAdapter adapter;
@@ -71,7 +72,7 @@ public class VariableListAdd extends ListFragment {
     private void AddToQueue(Matrix click) {
         try {
             @SuppressWarnings("ConstantConditions") //to suppress the null pointer exception of the  textview
-                    TextView textView = (TextView) getParentFragment().getView().findViewById(R.id.AdditionStatus);
+                    TextView textView = getParentFragment().getView().findViewById(R.id.AdditionStatus);
             String Initial = textView.getText().toString();
             if (Initial.isEmpty()) {
                 textView.setText(click.GetName());

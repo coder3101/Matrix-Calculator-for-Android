@@ -33,6 +33,7 @@ import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.base_activities.ShowResult;
 import com.softminds.matrixcalculator.dialog_activity.MultiplierSetter;
 
+@SuppressWarnings("ConstantConditions")
 public class ScalerFragment extends ListFragment {
     private int ClickPos;
 

@@ -69,8 +69,8 @@ public class ChangeLogActivity extends AppCompatActivity {
 
         setContentView(R.layout.changelog_layout);
 
-        layout = (LinearLayout) findViewById(R.id.changelog_container);
-        bar = (ProgressBar) findViewById(R.id.news_loading_pr);
+        layout = findViewById(R.id.changelog_container);
+        bar = findViewById(R.id.news_loading_pr);
 
         firebaseRemoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
                 .setDeveloperModeEnabled(BuildConfig.DEBUG)

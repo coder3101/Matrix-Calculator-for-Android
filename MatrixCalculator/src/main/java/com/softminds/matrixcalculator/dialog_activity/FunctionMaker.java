@@ -63,10 +63,10 @@ public class FunctionMaker extends AppCompatActivity {
 
 
         //Grab all Control References
-        Button proceed = (Button) findViewById(R.id.ConfirmMakeFunction);
-        final NumberPicker expo = (NumberPicker) findViewById(R.id.FunctionMakerExponent);
-        final NumberPicker deg = (NumberPicker) findViewById(R.id.FunctionMakerDegree);
-        final EditText coefficient = (EditText) findViewById(R.id.MainCoefficientFiller);
+        Button proceed = findViewById(R.id.ConfirmMakeFunction);
+        final NumberPicker expo = findViewById(R.id.FunctionMakerExponent);
+        final NumberPicker deg = findViewById(R.id.FunctionMakerDegree);
+        final EditText coefficient = findViewById(R.id.MainCoefficientFiller);
         //Put Properties to Number Picker
         expo.setValue(1);
         expo.setMinValue(1);
@@ -75,13 +75,13 @@ public class FunctionMaker extends AppCompatActivity {
         deg.setMaxValue(7);
         deg.setValue(1);
         //Grab Default References
-        final TextView ConstSign = (TextView) findViewById(R.id.ConstantSign);
-        final TextView FirstAuto = (TextView) findViewById(R.id.FirstXAuto);
+        final TextView ConstSign = findViewById(R.id.ConstantSign);
+        final TextView FirstAuto = findViewById(R.id.FirstXAuto);
         FirstAuto.setText(ConvertToExponent(getString(R.string.X)));
-        final TextView Const = (TextView) findViewById(R.id.ConstantValueFunction);
+        final TextView Const = findViewById(R.id.ConstantValueFunction);
 
         //Grab all Inactive TextViews
-        final TextView Term1 = (TextView) findViewById(R.id.CreatedXAuto1);
+        final TextView Term1 = findViewById(R.id.CreatedXAuto1);
         Term1.setText(null);
         Term1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +97,7 @@ public class FunctionMaker extends AppCompatActivity {
                 CurrentTermCoefficient.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.cardColor));
             }
         });
-        final TextView Term2 = (TextView) findViewById(R.id.CreatedXAuto2);
+        final TextView Term2 = findViewById(R.id.CreatedXAuto2);
         Term2.setText(null);
         Term2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +113,7 @@ public class FunctionMaker extends AppCompatActivity {
                 CurrentTermCoefficient.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.cardColor));
             }
         });
-        final TextView Term3 = (TextView) findViewById(R.id.CreatedXAuto3);
+        final TextView Term3 = findViewById(R.id.CreatedXAuto3);
         Term3.setText(null);
         Term3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +129,7 @@ public class FunctionMaker extends AppCompatActivity {
                 CurrentTermCoefficient.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.cardColor));
             }
         });
-        final TextView Term4 = (TextView) findViewById(R.id.CreatedXAuto4);
+        final TextView Term4 = findViewById(R.id.CreatedXAuto4);
         Term4.setText(null);
         Term4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +145,7 @@ public class FunctionMaker extends AppCompatActivity {
                 CurrentTermCoefficient.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.cardColor));
             }
         });
-        final TextView Term5 = (TextView) findViewById(R.id.CreatedXAuto5);
+        final TextView Term5 = findViewById(R.id.CreatedXAuto5);
         Term5.setText(null);
         Term5.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,7 +161,7 @@ public class FunctionMaker extends AppCompatActivity {
                 CurrentTermCoefficient.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.cardColor));
             }
         });
-        final TextView Term6 = (TextView) findViewById(R.id.CreatedXAuto6);
+        final TextView Term6 = findViewById(R.id.CreatedXAuto6);
         Term6.setText(null);
         Term6.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,7 +180,7 @@ public class FunctionMaker extends AppCompatActivity {
 
 
         //All Inactive Signs and Setting Click to Change Sign
-        final TextView Sign1 = (TextView) findViewById(R.id.AutoSign1);
+        final TextView Sign1 = findViewById(R.id.AutoSign1);
         Sign1.setText(null);
         Sign1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,7 +188,7 @@ public class FunctionMaker extends AppCompatActivity {
                 SignChanger(Sign1);
             }
         });
-        final TextView Sign2 = (TextView) findViewById(R.id.AutoSign2);
+        final TextView Sign2 = findViewById(R.id.AutoSign2);
         Sign2.setText(null);
         Sign2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,7 +196,7 @@ public class FunctionMaker extends AppCompatActivity {
                 SignChanger(Sign2);
             }
         });
-        final TextView Sign3 = (TextView) findViewById(R.id.AutoSign3);
+        final TextView Sign3 = findViewById(R.id.AutoSign3);
         Sign3.setText(null);
         Sign3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,7 +204,7 @@ public class FunctionMaker extends AppCompatActivity {
                 SignChanger(Sign3);
             }
         });
-        final TextView Sign4 = (TextView) findViewById(R.id.AutoSign4);
+        final TextView Sign4 = findViewById(R.id.AutoSign4);
         Sign4.setText(null);
         Sign4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,7 +212,7 @@ public class FunctionMaker extends AppCompatActivity {
                 SignChanger(Sign4);
             }
         });
-        final TextView Sign5 = (TextView) findViewById(R.id.AutoSign5);
+        final TextView Sign5 = findViewById(R.id.AutoSign5);
         Sign5.setText(null);
         Sign5.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,7 +220,7 @@ public class FunctionMaker extends AppCompatActivity {
                 SignChanger(Sign5);
             }
         });
-        final TextView Sign6 = (TextView) findViewById(R.id.AutoSign6);
+        final TextView Sign6 = findViewById(R.id.AutoSign6);
         Sign6.setText(null);
         Sign6.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -446,20 +446,20 @@ public class FunctionMaker extends AppCompatActivity {
         Matrix Target = ((GlobalValues) getApplication()).GetCompleteList().get(getIntent().getIntExtra("MATRIX_GLOBAL_INDEX", 0));
         Function EndUserFunction = new Function(Target.GetRow(), Target.GetCol(), Const);
         //Grab All Sign and Terms
-        TextView term1 = (TextView) findViewById(R.id.CreatedXAuto1);
-        TextView term2 = (TextView) findViewById(R.id.CreatedXAuto2);
-        TextView term3 = (TextView) findViewById(R.id.CreatedXAuto3);
-        TextView term4 = (TextView) findViewById(R.id.CreatedXAuto4);
-        TextView term5 = (TextView) findViewById(R.id.CreatedXAuto5);
-        TextView term6 = (TextView) findViewById(R.id.CreatedXAuto6);
-        TextView term = (TextView) findViewById(R.id.FirstXAuto);
+        TextView term1 = findViewById(R.id.CreatedXAuto1);
+        TextView term2 = findViewById(R.id.CreatedXAuto2);
+        TextView term3 = findViewById(R.id.CreatedXAuto3);
+        TextView term4 = findViewById(R.id.CreatedXAuto4);
+        TextView term5 = findViewById(R.id.CreatedXAuto5);
+        TextView term6 = findViewById(R.id.CreatedXAuto6);
+        TextView term = findViewById(R.id.FirstXAuto);
         //All Signs Grabbing
-        TextView sign1 = (TextView) findViewById(R.id.AutoSign1);
-        TextView sign2 = (TextView) findViewById(R.id.AutoSign2);
-        TextView sign3 = (TextView) findViewById(R.id.AutoSign3);
-        TextView sign4 = (TextView) findViewById(R.id.AutoSign4);
-        TextView sign5 = (TextView) findViewById(R.id.AutoSign5);
-        TextView sign6 = (TextView) findViewById(R.id.AutoSign6);
+        TextView sign1 = findViewById(R.id.AutoSign1);
+        TextView sign2 = findViewById(R.id.AutoSign2);
+        TextView sign3 = findViewById(R.id.AutoSign3);
+        TextView sign4 = findViewById(R.id.AutoSign4);
+        TextView sign5 = findViewById(R.id.AutoSign5);
+        TextView sign6 = findViewById(R.id.AutoSign6);
 
         //Extract terms and Push them to Function
         if (Term == 7) {

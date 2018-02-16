@@ -35,6 +35,7 @@ import com.softminds.matrixcalculator.dialog_activity.SwappingDialog;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("ConstantConditions")
 public class SwappingCompatList extends ListFragment {
 
     ArrayList<Matrix> CompatList = new ArrayList<>();

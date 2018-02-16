@@ -79,10 +79,10 @@ public class FillingMatrix extends AppCompatActivity {
         col = bundle.getInt("COL");
         row = bundle.getInt("ROW");
         setContentView(R.layout.filler);
-        adCard = (CardView) findViewById(R.id.AddCardFiller);
+        adCard = findViewById(R.id.AddCardFiller);
 
         if (!((GlobalValues) getApplication()).DonationKeyFound()) {
-            AdView adView = (AdView) findViewById(R.id.adViewFiller);
+            AdView adView = findViewById(R.id.adViewFiller);
             AdRequest adRequest = new AdRequest.Builder().build();
             adView.setAdListener(new AdLoadListener(adCard));
             adView.loadAd(adRequest);
@@ -94,11 +94,11 @@ public class FillingMatrix extends AppCompatActivity {
             ((ViewGroup) adCard.getParent()).removeView(adCard);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarFill);
+        Toolbar toolbar = findViewById(R.id.toolbarFill);
         setSupportActionBar(toolbar);
 
 
-        CardView cardView = (CardView) findViewById(R.id.DynamicCard);
+        CardView cardView = findViewById(R.id.DynamicCard);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String string = sharedPreferences.getString("ELEVATE_AMOUNT", "4");
@@ -329,7 +329,7 @@ public class FillingMatrix extends AppCompatActivity {
     public boolean MatrixError() {
         for (int i = 0; i < row; i++)
             for (int j = 0; j < col; j++) {
-                EditText editText = (EditText) findViewById(i * 10 + j);
+                EditText editText = findViewById(i * 10 + j);
                 if (editText.getText().toString().isEmpty()) {
                     Toast.makeText(getApplication(), R.string.Warning2, Toast.LENGTH_SHORT).show();
                     return true;
@@ -350,7 +350,7 @@ public class FillingMatrix extends AppCompatActivity {
         float var[][] = new float[row][col];
         for (int i = 0; i < row; i++)
             for (int j = 0; j < col; j++) {
-                EditText editText = (EditText) findViewById(i * 10 + j);
+                EditText editText = findViewById(i * 10 + j);
                 String p = editText.getText().toString();
                 var[i][j] = Float.parseFloat(p);
             }
@@ -360,7 +360,7 @@ public class FillingMatrix extends AppCompatActivity {
     public void EmptyInput(float p) {
         for (int i = 0; i < row; i++)
             for (int j = 0; j < col; j++) {
-                EditText editText = (EditText) findViewById(i * 10 + j);
+                EditText editText = findViewById(i * 10 + j);
                 if (editText.getText().toString().isEmpty()) {
                     editText.setText(String.valueOf(p));
                 }
@@ -381,7 +381,7 @@ public class FillingMatrix extends AppCompatActivity {
             case Null:
                 for (int i = 0; i < row; i++)
                     for (int j = 0; j < col; j++) {
-                        EditText editText = (EditText) findViewById(i * 10 + j);
+                        EditText editText = findViewById(i * 10 + j);
                         editText.setText(String.valueOf(0.0));
                     }
                 float variable[][] = GetIntoFloat();
@@ -398,7 +398,7 @@ public class FillingMatrix extends AppCompatActivity {
             case Diagonal:
                 for (int i = 0; i < row; i++)
                     for (int j = 0; j < col; j++) {
-                        EditText editText = (EditText) findViewById(i * 10 + j);
+                        EditText editText = findViewById(i * 10 + j);
                         if (i != j) {
                             editText.setText(String.valueOf(0.0));
                         }
@@ -407,7 +407,7 @@ public class FillingMatrix extends AppCompatActivity {
             case Identity:
                 for (int i = 0; i < row; i++)
                     for (int j = 0; j < col; j++) {
-                        EditText editText = (EditText) findViewById(i * 10 + j);
+                        EditText editText = findViewById(i * 10 + j);
                         if (i == j)
                             editText.setText(String.valueOf(1.0));
                         else
@@ -429,7 +429,7 @@ public class FillingMatrix extends AppCompatActivity {
     public void InputRandomInt() {
         for (int i = 0; i < row; i++)
             for (int j = 0; j < col; j++) {
-                EditText editText = (EditText) findViewById(i * 10 + j);
+                EditText editText = findViewById(i * 10 + j);
                 if (!NegativeAllowed())
                     editText.setText(String.valueOf(new Random().nextInt(GetMaximum() + 1 - GetMinimum()) + GetMinimum()));
                 else
@@ -440,7 +440,7 @@ public class FillingMatrix extends AppCompatActivity {
     public void InputRandomFloat() {
         for (int i = 0; i < row; i++)
             for (int j = 0; j < col; j++) {
-                EditText editText = (EditText) findViewById(i * 10 + j);
+                EditText editText = findViewById(i * 10 + j);
                 if (!NegativeAllowed())
                     editText.setText(String.valueOf(new Random().nextFloat() + new Random().nextInt(GetMaximum() - GetMinimum()) + GetMinimum()));
                 else
@@ -468,7 +468,7 @@ public class FillingMatrix extends AppCompatActivity {
     public void ClearAllValues() {
         for (int i = 0; i < row; i++)
             for (int j = 0; j < col; j++) {
-                EditText editText = (EditText) findViewById(i * 10 + j);
+                EditText editText = findViewById(i * 10 + j);
                 editText.setText("");
             }
     }
@@ -476,7 +476,7 @@ public class FillingMatrix extends AppCompatActivity {
     public boolean AllEmpty() {
         for (int i = 0; i < row; i++)
             for (int j = 0; j < col; j++) {
-                EditText editText = (EditText) findViewById(i * 10 + j);
+                EditText editText = findViewById(i * 10 + j);
                 if (!editText.getText().toString().isEmpty())
                     return false;
 

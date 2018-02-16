@@ -40,6 +40,7 @@ import com.softminds.matrixcalculator.base_activities.ShowResult;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
+@SuppressWarnings("ConstantConditions")
 public class ExponentFragment extends ListFragment {
 
     int Clicked_pos;

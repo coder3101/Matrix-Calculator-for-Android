@@ -51,11 +51,11 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_layout_fragment, parent, false);
 
         //Grab References
-        TextView Row = ((TextView) convertView.findViewById(R.id.MatrixTitleRow));
-        TextView Col = ((TextView) convertView.findViewById(R.id.MatrixTitleCol));
-        TextView Naam = ((TextView) convertView.findViewById(R.id.MatrixTitle));
-        ImageView icon = ((ImageView) convertView.findViewById(R.id.ImageForMatrix));
-        CardView cardView = ((CardView) convertView.findViewById(R.id.Matrix_holder));
+        TextView Row = convertView.findViewById(R.id.MatrixTitleRow);
+        TextView Col = convertView.findViewById(R.id.MatrixTitleCol);
+        TextView Naam = convertView.findViewById(R.id.MatrixTitle);
+        ImageView icon = convertView.findViewById(R.id.ImageForMatrix);
+        CardView cardView = convertView.findViewById(R.id.Matrix_holder);
 
         //Set Values
         @SuppressWarnings({"ConstantConditions"})

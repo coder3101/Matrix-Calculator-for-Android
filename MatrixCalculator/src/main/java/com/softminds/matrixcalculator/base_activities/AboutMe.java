@@ -51,7 +51,7 @@ public class AboutMe extends AppCompatActivity {
         else {
             findViewById(R.id.relativeLayoutAbout).setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
-        TextView textView = (TextView) findViewById(R.id.textView3);
+        TextView textView = findViewById(R.id.textView3);
         String s = "Version " + BuildConfig.VERSION_NAME;
         textView.setText(s);
 

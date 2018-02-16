@@ -85,14 +85,14 @@ public class Function {
 
     @Override
     public String toString() {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (int i = 0; i < terms.size(); i++) {
-            s += Sign(terms.get(i).getSign());
-            s += String.valueOf(terms.get(i).getCoefficient());
-            s += String.valueOf(terms.get(i).getExponent());
-            s += " ";
+            s.append(Sign(terms.get(i).getSign()));
+            s.append(String.valueOf(terms.get(i).getCoefficient()));
+            s.append(String.valueOf(terms.get(i).getExponent()));
+            s.append(" ");
         }
-        return s;
+        return s.toString();
     }
 
     private String Sign(boolean b) {

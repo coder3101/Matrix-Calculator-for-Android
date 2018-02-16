@@ -37,6 +37,7 @@ import com.softminds.matrixcalculator.base_activities.MinorChooser;
 import java.util.ArrayList;
 
 
+@SuppressWarnings("ConstantConditions")
 public class MinorFragment extends ListFragment {
 
     @Override

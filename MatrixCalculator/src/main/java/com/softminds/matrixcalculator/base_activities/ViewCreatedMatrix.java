@@ -60,10 +60,10 @@ public class ViewCreatedMatrix extends AppCompatActivity {
             setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_created_matrix);
-        adCard = (CardView) findViewById(R.id.AdCard);
+        adCard = findViewById(R.id.AdCard);
 
         if (!((GlobalValues) getApplication()).DonationKeyFound()) {
-            AdView mAdView = (AdView) findViewById(R.id.adViewCreatedView);
+            AdView mAdView = findViewById(R.id.adViewCreatedView);
             AdRequest adRequest = new AdRequest.Builder().build();
             mAdView.setAdListener(new AdLoadListener(adCard));
             mAdView.loadAd(adRequest);

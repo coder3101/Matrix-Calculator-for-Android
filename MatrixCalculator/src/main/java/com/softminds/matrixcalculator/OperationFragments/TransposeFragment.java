@@ -37,6 +37,7 @@ import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.base_activities.ShowResult;
 
+@SuppressWarnings("ConstantConditions")
 public class TransposeFragment extends ListFragment {
     int ClickPos;
 

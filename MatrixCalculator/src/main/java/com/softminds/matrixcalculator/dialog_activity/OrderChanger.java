@@ -65,8 +65,8 @@ public class OrderChanger extends AppCompatActivity {
 
 
         //Grab the References
-        final NumberPicker ChangedRow = (NumberPicker) findViewById(R.id.RowChangedOrder);
-        final NumberPicker ChangedCol = (NumberPicker) findViewById(R.id.ColChangedOrder);
+        final NumberPicker ChangedRow = findViewById(R.id.RowChangedOrder);
+        final NumberPicker ChangedCol = findViewById(R.id.ColChangedOrder);
 
 
         //Initilize with Maximum Value and Minimum Value
@@ -91,8 +91,8 @@ public class OrderChanger extends AppCompatActivity {
         //All NumberPicker Values have been Initilized and Set up.
 
         //Grab button References
-        Button CommitChanges = (Button) findViewById(R.id.CommitChanges);
-        Button CancelChanges = (Button) findViewById(R.id.NoCommitChanges);
+        Button CommitChanges = findViewById(R.id.CommitChanges);
+        Button CancelChanges = findViewById(R.id.NoCommitChanges);
 
         //setting the onclick listner to the Confirm button
         CommitChanges.setOnClickListener(new View.OnClickListener() {

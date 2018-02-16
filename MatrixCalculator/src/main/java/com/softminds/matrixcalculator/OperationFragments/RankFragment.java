@@ -41,9 +41,11 @@ import com.softminds.matrixcalculator.GlobalValues;
 
 import java.lang.ref.WeakReference;
 
+@SuppressWarnings("ConstantConditions")
 public class RankFragment extends ListFragment {
 
 
+    @SuppressWarnings("ConstantConditions")
     private static class MyHandler extends Handler {
         private WeakReference<RankFragment> weakReference;
 

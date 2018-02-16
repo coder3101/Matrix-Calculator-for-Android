@@ -40,6 +40,7 @@ import com.softminds.matrixcalculator.R;
 import java.text.DecimalFormat;
 
 
+@SuppressWarnings("ConstantConditions")
 public class ViewMatrixFragment extends Fragment {
 
 
@@ -53,7 +54,7 @@ public class ViewMatrixFragment extends Fragment {
         int index = getArguments().getInt("INDEX");
 
         View v = inflater.inflate(R.layout.view_matrix_frag, container, false);
-        CardView cardView = (CardView) v.findViewById(R.id.DynamicCardView);
+        CardView cardView = v.findViewById(R.id.DynamicCardView);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String string = sharedPreferences.getString("ELEVATE_AMOUNT", "4");

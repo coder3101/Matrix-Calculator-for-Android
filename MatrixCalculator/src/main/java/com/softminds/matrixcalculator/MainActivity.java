@@ -63,7 +63,7 @@ import com.softminds.matrixcalculator.base_activities.SettingsTab;
 import com.softminds.matrixcalculator.base_activities.faqs;
 import com.softminds.matrixcalculator.base_fragments.MainActivityFragmentList;
 import com.softminds.matrixcalculator.dialog_activity.MakeNewMatrix;
-import com.softminds.matrixcalculator.OperationFragments.AdditionFragement;
+import com.softminds.matrixcalculator.OperationFragments.AdditionFragment;
 import com.softminds.matrixcalculator.OperationFragments.AdjointFragment;
 import com.softminds.matrixcalculator.OperationFragments.DeterminantFragment;
 import com.softminds.matrixcalculator.OperationFragments.ExponentFragment;
@@ -102,10 +102,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        adCard = (CardView) findViewById(R.id.MainActivity_Advt_Card);
+        adCard = findViewById(R.id.MainActivity_Advt_Card);
 
         if (!((GlobalValues) getApplication()).DonationKeyFound()) {
-            AdView mAdView = (AdView) findViewById(R.id.adViewMainActivity);
+            AdView mAdView = findViewById(R.id.adViewMainActivity);
             AdRequest adRequest = new AdRequest.Builder().build();
             mAdView.loadAd(adRequest);
             mAdView.setAdListener(new AdListener() {
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        t = (TextView) findViewById(R.id.OpeningHint);
+        t = findViewById(R.id.OpeningHint);
 
         if (isDark)
             t.setTextColor(ContextCompat.getColor(this, R.color.white));
@@ -128,20 +128,20 @@ public class MainActivity extends AppCompatActivity
         else
             t.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         if (!((GlobalValues) getApplication()).GetCompleteList().isEmpty())
             t.setText(null);
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_main);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_main);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.syncState();
 
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View v = navigationView.getHeaderView(0);
         navigationView.setCheckedItem(R.id.Home);
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity
                 v.setBackground(ContextCompat.getDrawable(this, R.drawable.side_nav_bar));
         }
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.MainFAB);
+        FloatingActionButton floatingActionButton = findViewById(R.id.MainFAB);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_main);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_main);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity
                             ((GlobalValues) getApplication()).ClearAllMatrix();
                             actionBar.setSubtitle(null);
                             ((GlobalValues) getApplication()).AutoSaved = 1; //Re initialize AutoSave to 1
-                            TextView t = (TextView) findViewById(R.id.OpeningHint);
+                            TextView t = findViewById(R.id.OpeningHint);
                             t.setText(R.string.OpenHint);
                         }
                     });
@@ -341,7 +341,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.MainFAB);
+        FloatingActionButton fab = findViewById(R.id.MainFAB);
 
         switch (id) {
             case R.id.Home:
@@ -363,8 +363,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.add_sub:
                 //setting fragment
                 FragmentTransaction AdditionTransaction = getSupportFragmentManager().beginTransaction();
-                AdditionFragement additionFragement = new AdditionFragement();
-                AdditionTransaction.replace(R.id.MainContent, additionFragement, "ADDITION_FRAGMENT");
+                AdditionFragment additionFragment = new AdditionFragment();
+                AdditionTransaction.replace(R.id.MainContent, additionFragment, "ADDITION_FRAGMENT");
                 AdditionTransaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 AdditionTransaction.commit();
                 //setting actionbar
@@ -670,7 +670,7 @@ public class MainActivity extends AppCompatActivity
                 }
 
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_main);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_main);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -723,7 +723,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void SetMainActivity(boolean actionmenu, String MainTitle, String subtitle) {
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.MainFAB);
+        FloatingActionButton fab = findViewById(R.id.MainFAB);
         ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(actionmenu);
         actionBar.setTitle(MainTitle);
         if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())

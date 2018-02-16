@@ -46,11 +46,13 @@ import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+@SuppressWarnings("ConstantConditions")
 public class DeterminantFragment extends ListFragment {
 
     ArrayList<Matrix> SquareList;
 
     //Inner Class
+    @SuppressWarnings("ConstantConditions")
     private static class MyHandler extends Handler {
         private final WeakReference<DeterminantFragment> determinantFragmentWeakReference;// a weak Reference to Outer Fragment
 

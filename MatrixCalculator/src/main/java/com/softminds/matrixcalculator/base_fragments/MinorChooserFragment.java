@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -46,6 +47,7 @@ import com.softminds.matrixcalculator.GlobalValues;
 import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
 
+@SuppressWarnings("ALL")
 public class MinorChooserFragment extends Fragment {
 
     private static class myhandler extends Handler {
@@ -75,12 +77,12 @@ public class MinorChooserFragment extends Fragment {
     myhandler handler = new myhandler(this);
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final int index = getArguments().getInt("INDEX");
 
         View v = inflater.inflate(R.layout.view_matrix_frag, container, false);
-        CardView cardView = (CardView) v.findViewById(R.id.DynamicCardView);
+        CardView cardView = v.findViewById(R.id.DynamicCardView);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String string = sharedPreferences.getString("ELEVATE_AMOUNT", "4");

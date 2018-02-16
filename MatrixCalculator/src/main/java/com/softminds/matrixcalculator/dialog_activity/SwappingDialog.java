@@ -43,7 +43,7 @@ public class SwappingDialog extends AppCompatActivity {
             setTheme(R.style.AppThemeDialog);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.swaping_dialog);
-        TextView textView = (TextView) findViewById(R.id.SwapngMainContentComment);
+        TextView textView = findViewById(R.id.SwapngMainContentComment);
         if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
             textView.setText(R.string.OpenHint2);
         else
@@ -58,7 +58,7 @@ public class SwappingDialog extends AppCompatActivity {
     }
 
     public void SetMidText(String g) {
-        TextView textView = (TextView) findViewById(R.id.SwapngMainContentComment);
+        TextView textView = findViewById(R.id.SwapngMainContentComment);
         textView.setText(g);
     }
 }

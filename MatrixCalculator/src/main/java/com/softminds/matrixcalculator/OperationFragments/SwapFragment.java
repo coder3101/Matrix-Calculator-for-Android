@@ -33,6 +33,7 @@ import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.dialog_activity.SwappingDialog;
 
 
+@SuppressWarnings("ConstantConditions")
 public class SwapFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstances) {

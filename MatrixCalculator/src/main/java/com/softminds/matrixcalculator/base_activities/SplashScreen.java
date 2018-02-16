@@ -82,10 +82,10 @@ public class SplashScreen extends Activity {
             setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-        TextView textView = (TextView) findViewById(R.id.textView9);
+        TextView textView = findViewById(R.id.textView9);
         String s = "Version " + BuildConfig.VERSION_NAME;
         textView.setText(s);
-        RelativeLayout Root = (RelativeLayout) findViewById(R.id.splash_screen);
+        RelativeLayout Root = findViewById(R.id.splash_screen);
         try {
             if (isDark) {
                 Root.setBackgroundColor(ContextCompat.getColor(this, R.color.DarkcolorPrimaryDark));
