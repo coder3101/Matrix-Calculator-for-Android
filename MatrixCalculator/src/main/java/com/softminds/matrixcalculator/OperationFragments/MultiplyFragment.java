@@ -137,7 +137,7 @@ public class MultiplyFragment extends Fragment {
         Matrix res = new Matrix(buffer.get(0).GetRow(), buffer.get(0).GetCol(), buffer.get(0).GetType());
         res.CloneFrom(buffer.get(0));
         for (int i = 1; i < buffer.size(); i++) {
-            res = Matrix.MatMul(res, buffer.get(0));
+            res = Matrix.MatMul(res, buffer.get(i));
         }
         return res;
     }
