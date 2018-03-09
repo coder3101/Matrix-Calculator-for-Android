@@ -2,6 +2,8 @@
 
 <img src = "https://raw.github.com/coder3101/matrix-calculator-for-android/master/MatrixCalculator/src/main/res/mipmap-mdpi/mainlogo.png" height = "100" width = "100" >
 
+[![Build Status](http://coder3101.ml:8080/buildStatus/icon?job=Matrix%20Calculator)](http://coder3101.ml:8080/job/Matrix%20Calculator/)
+
 
 This is a Simple yet Powerful Matrix Calculator for Android. It's Simple and Material Design is a Key Feature and makes it unique in its Category.
 
