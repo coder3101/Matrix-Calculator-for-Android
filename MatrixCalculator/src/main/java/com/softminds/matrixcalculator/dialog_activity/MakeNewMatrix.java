@@ -78,8 +78,10 @@ public class MakeNewMatrix extends AppCompatActivity {
                     startActivityForResult(intent, RESCODE);
 
                 } else {
-                    if (((GlobalValues) getApplication()).hasProfainity(editText.getText().toString()))
-                        Toast.makeText(getApplication(), R.string.Warning7, Toast.LENGTH_SHORT).show();
+                    if (((GlobalValues) getApplication()).hasProfainity(editText.getText().toString())) {
+                        editText.setError(getString(R.string.Warning7));
+                        editText.requestFocus();
+                    }
                 }
 
 
@@ -87,7 +89,8 @@ public class MakeNewMatrix extends AppCompatActivity {
 
             private boolean NoError() {
                 if (editText.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplication(), R.string.Warning1, Toast.LENGTH_LONG).show();
+                    editText.setError(getString(R.string.Warning1));
+                    editText.requestFocus();
                     return false;
                 }
                 if ((Typespinner.getSelectedItem().toString().equals("Identity") ||
@@ -98,7 +101,8 @@ public class MakeNewMatrix extends AppCompatActivity {
                 }
                 if (editText.getText().toString().contains("+") ||
                         editText.getText().toString().contains("x") || editText.getText().toString().contains("-")) {
-                    Toast.makeText(getApplicationContext(), R.string.Warning13, Toast.LENGTH_SHORT).show();
+                    editText.setError(getString(R.string.Warning13));
+                    editText.requestFocus();
                     return false;
                 }
                 return !((GlobalValues) getApplication()).hasProfainity(editText.getText().toString());
