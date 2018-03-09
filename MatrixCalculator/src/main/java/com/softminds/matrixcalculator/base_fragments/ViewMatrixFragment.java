@@ -24,6 +24,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
@@ -32,6 +33,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.softminds.matrixcalculator.GlobalValues;
@@ -49,7 +51,7 @@ public class ViewMatrixFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         int index = getArguments().getInt("INDEX");
 
@@ -61,32 +63,40 @@ public class ViewMatrixFragment extends Fragment {
         String string2 = sharedPreferences.getString("CARD_CHANGE_KEY", "#bdbdbd");
 
         cardView.setCardElevation(Integer.parseInt(string));
-        cardView.setCardBackgroundColor(Color.parseColor(string2));
+
+        final int border = getResources().getDimensionPixelOffset(R.dimen.border_width);
 
         CardView.LayoutParams params1 = new CardView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
+        cardView.setUseCompatPadding(true);
 
         GridLayout gridLayout = new GridLayout(getContext());
-        gridLayout.setRowCount(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetRow());
-        gridLayout.setColumnCount(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetCol());
-        for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetRow(); i++) {
-            for (int j = 0; j < ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetCol(); j++) {
+        int rows = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetRow();
+        int cols = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetCol();
+
+        gridLayout.setRowCount(rows);
+        gridLayout.setColumnCount(cols);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
                 TextView textView = new TextView(getContext());
                 textView.setGravity(Gravity.CENTER);
+                textView.setBackgroundColor(Color.parseColor(string2));
                 textView.setText(SafeSubString(GetText(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetElementof(i, j)), getLength()));
-                textView.setWidth(CalculatedWidth(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetCol()));
-                textView.setTextSize(SizeReturner(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetRow(), ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetCol(),
-                        PreferenceManager.getDefaultSharedPreferences(getContext()).
-                                getBoolean("EXTRA_SMALL_FONT", false)));
+                textView.setWidth(CalculatedWidth(cols));
+                textView.setTextSize(SizeReturner(rows, cols, PreferenceManager.getDefaultSharedPreferences(getContext()).
+                        getBoolean("EXTRA_SMALL_FONT", false)));
                 textView.setHeight(CalculatedHeight(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetRow()));
                 GridLayout.Spec Row = GridLayout.spec(i, 1);
                 GridLayout.Spec Col = GridLayout.spec(j, 1);
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams(Row, Col);
+                params.leftMargin = params.topMargin = params.bottomMargin = params.rightMargin = border;
                 gridLayout.addView(textView, params);
             }
         }
         gridLayout.setLayoutParams(params1);
         cardView.addView(gridLayout);
+
+        //fixme(coder3101) attach a on-long press listener to view element in result
 
 
         // Inflate the layout for this fragment
