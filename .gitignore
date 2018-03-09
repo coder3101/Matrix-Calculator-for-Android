@@ -1,5 +1,5 @@
 *.iml
-./MatrixCalculator/google-services.json
+/MatrixCalculator/google-services.json
 .gradle
 /local.properties
 .DS_Store
