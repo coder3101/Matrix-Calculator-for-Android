@@ -42,8 +42,7 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".base_activities.SplashScreen"
-            android:screenOrientation="portrait">
+            android:name=".base_activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
