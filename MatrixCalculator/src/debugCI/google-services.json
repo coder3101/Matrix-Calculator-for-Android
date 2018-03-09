@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "999999999999",
+    "firebase_url": "https://debug-dummy.firebaseio.com",
+    "project_id": "debug-dummy",
+    "storage_bucket": "debug-dummy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999999999999:android:45b16ada1f826ed0",
+        "android_client_info": {
+          "package_name": "com.softminds.matrixcalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999999999999-debug-dummy.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softminds.matrixcalculator",
+            "certificate_hash": "UseLessHash"
+          }
+        },
+        {
+          "client_id": "999999999999-debug-dummy.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softminds.matrixcalculator",
+            "certificate_hash": "UseLessHash"
+          }
+        },
+        {
+          "client_id": "999999999999-debug-dummy.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "UseLessKey"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999999999999-debug-dummy.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

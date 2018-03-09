@@ -17,8 +17,22 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+	debugCI {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
     productFlavors {
+    }
+	
+    def param = "${build}"
+    if(param == "debugCI"){
+	 android.variantFilter { variant ->
+            	if(variant.buildType.name == 'debugCI'){
+                variant.setIgnore(true)
+            }
+        }
     }
 }
 
