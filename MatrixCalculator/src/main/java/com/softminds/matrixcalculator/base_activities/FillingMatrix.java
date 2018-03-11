@@ -33,9 +33,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.SubscriptSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -76,8 +83,14 @@ public class FillingMatrix extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Bundle bundle = getIntent().getExtras();
-        col = bundle.getInt("COL");
-        row = bundle.getInt("ROW");
+        if(bundle == null){
+            Log.wtf("FillingMatrix","How the heck, it got called ??");
+            Toast.makeText(getApplication(),R.string.unexpected_error,Toast.LENGTH_SHORT).show();
+            finish();
+        }else {
+            col = bundle.getInt("COL");
+            row = bundle.getInt("ROW");
+        }
         setContentView(R.layout.filler);
         adCard = findViewById(R.id.AddCardFiller);
 
@@ -105,7 +118,6 @@ public class FillingMatrix extends AppCompatActivity {
         String string2 = sharedPreferences.getString("CARD_CHANGE_KEY", "#bdbdbd");
 
         cardView.setCardElevation(Integer.parseInt(string));
-        cardView.setCardBackgroundColor(Color.parseColor(string2));
 
         CardView.LayoutParams params1 = new CardView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -116,11 +128,15 @@ public class FillingMatrix extends AppCompatActivity {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 EditText editText = new EditText(getApplication());
+                editText.setBackgroundColor(Color.parseColor(string2));
                 editText.setId(i * 10 + j);
                 if (isDark)
                     editText.setTextColor(ContextCompat.getColor(this, R.color.white));
                 editText.setGravity(Gravity.CENTER);
-                editText.setHint("A" + String.valueOf(i + 1) + String.valueOf(j + 1));
+                SpannableStringBuilder stringBuilder = new SpannableStringBuilder("a"+String.valueOf(i+1)+String.valueOf(j+1));
+                stringBuilder.setSpan(new SubscriptSpan(),1,3,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                stringBuilder.setSpan(new RelativeSizeSpan(0.75f),1,3,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                editText.setHint(stringBuilder);
                 if (!PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE", true)) {
                     editText.setInputType(InputType.TYPE_CLASS_NUMBER
                             | InputType.TYPE_NUMBER_FLAG_SIGNED);
@@ -143,6 +159,7 @@ public class FillingMatrix extends AppCompatActivity {
                 GridLayout.Spec Row = GridLayout.spec(i, 1);
                 GridLayout.Spec Col = GridLayout.spec(j, 1);
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams(Row, Col);
+                params.leftMargin = params.topMargin = params.bottomMargin = params.rightMargin = getResources().getDimensionPixelOffset(R.dimen.border_width);
                 gridLayout.addView(editText, params);
             }
         }
