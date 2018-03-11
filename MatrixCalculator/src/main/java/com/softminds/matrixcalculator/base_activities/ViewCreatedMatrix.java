@@ -36,6 +36,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.softminds.matrixcalculator.AdLoadListener;
 import com.softminds.matrixcalculator.GlobalValues;
+import com.softminds.matrixcalculator.MainActivity;
 import com.softminds.matrixcalculator.dialog_activity.OrderChanger;
 import com.softminds.matrixcalculator.dialog_activity.RenameCreated;
 import com.softminds.matrixcalculator.base_fragments.EditFragment;
@@ -75,16 +76,23 @@ public class ViewCreatedMatrix extends AppCompatActivity {
         int index = getIntent().getIntExtra("INDEX", -1);
 
 
-        if (getSupportActionBar() != null && index != (-1))
-            getSupportActionBar().setTitle(((GlobalValues) getApplication()).GetCompleteList().get(index).GetName());
-        ViewMatrixFragment viewMatrixFragment = new ViewMatrixFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt("INDEX", getIntent().getIntExtra("INDEX", -1));
-        viewMatrixFragment.setArguments(bundle);
-        if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.FragmentContainer, viewMatrixFragment, "VIEW_TAG").commit();
+        try {
+            if (getSupportActionBar() != null && index != (-1))
+                getSupportActionBar().setTitle(((GlobalValues) getApplication()).GetCompleteList().get(index).GetName());
+            ViewMatrixFragment viewMatrixFragment = new ViewMatrixFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("INDEX", getIntent().getIntExtra("INDEX", -1));
+            viewMatrixFragment.setArguments(bundle);
+            if (savedInstanceState == null) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.FragmentContainer, viewMatrixFragment, "VIEW_TAG").commit();
 
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Toast.makeText(getApplicationContext(), R.string.matrix_not_found, Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 

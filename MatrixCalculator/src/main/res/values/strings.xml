@@ -290,5 +290,6 @@
     <string name="low_memory_mess">Your Device is running Low on Memory. To reclaim memory, android may destroy previously created Variables. Do you want to Proceed ?</string>
     <string name="proceed_to_create">Proceed to Create</string>
     <string name="equality_op">Equality</string>
+    <string name="matrix_not_found">Oops! Created Matrix was Destroyed by Android. Maybe You are running Low on Memory</string>
 
 </resources>
