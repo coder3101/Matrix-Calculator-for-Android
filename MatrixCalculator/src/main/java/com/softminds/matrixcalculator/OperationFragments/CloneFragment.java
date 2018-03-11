@@ -64,10 +64,7 @@ public class CloneFragment extends ListFragment {
             transaction.commit();
             ((MainActivity) getActivity()).SetMainActivity(true, getString(R.string.app_name), getString(R.string.MainSubtitle));
         } else {
-            if (!((GlobalValues) getActivity().getApplication()).AdLoaded)
-                Toast.makeText(getContext(), R.string.ToAddMoreTurnData, Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(getContext(), R.string.LimitExceeds, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.LimitExceeds, Toast.LENGTH_SHORT).show();
         }
 
 
