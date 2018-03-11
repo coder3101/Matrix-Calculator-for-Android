@@ -84,7 +84,7 @@ public class ViewMatrixFragment extends Fragment {
                 textView.setWidth(CalculatedWidth(cols));
                 textView.setTextSize(SizeReturner(rows, cols, PreferenceManager.getDefaultSharedPreferences(getContext()).
                         getBoolean("EXTRA_SMALL_FONT", false)));
-                textView.setHeight(CalculatedHeight(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetRow()));
+                textView.setHeight(CalculatedHeight(rows));
                 GridLayout.Spec Row = GridLayout.spec(i, 1);
                 GridLayout.Spec Col = GridLayout.spec(j, 1);
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams(Row, Col);

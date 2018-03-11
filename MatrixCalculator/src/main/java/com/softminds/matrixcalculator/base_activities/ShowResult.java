@@ -84,33 +84,41 @@ public class ShowResult extends AppCompatActivity {
         String string2 = sharedPreferences.getString("CARD_CHANGE_KEY", "#bdbdbd");
 
         cardView.setCardElevation(Integer.parseInt(string));
-        cardView.setCardBackgroundColor(Color.parseColor(string2));
-
         CardView.LayoutParams params1 = new CardView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
         GridLayout gridLayout = new GridLayout(getApplicationContext());
-        gridLayout.setRowCount(getIntent().getExtras().getInt("ROW", 0));
-        gridLayout.setColumnCount(getIntent().getExtras().getInt("COL", 0));
-        //float var[][] = (float[][]) getIntent().getExtras().getSerializable("VALUES");
-        float var[][] = new Matrix().Expand(getIntent().getExtras().getInt("ROW", 0), getIntent().getIntExtra("COL", 0), getIntent().getFloatArrayExtra("VALUES"));
-        for (int i = 0; i < getIntent().getExtras().getInt("ROW", 0); i++) {
-            for (int j = 0; j < getIntent().getExtras().getInt("COL", 0); j++) {
+        int row, col;
+        //noinspection ConstantConditions
+        row = getIntent().getExtras().getInt("ROW", 0);
+        col = getIntent().getExtras().getInt("COL", 0);
+
+        gridLayout.setRowCount(row);
+        gridLayout.setColumnCount(col);
+
+        float var[][] = new Matrix().Expand(row, col, getIntent().getFloatArrayExtra("VALUES"));
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 TextView textView = new TextView(getApplicationContext());
+                textView.setBackgroundColor(Color.parseColor(string2));
                 textView.setGravity(Gravity.CENTER);
                 try {
-                    textView.setText("   " + GetText(var[i][j]) + "   ");
+                    String s = "   " + GetText(var[i][j]) + "   ";
+                    textView.setText(s);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d("Element", "Element in Matrix is Null");
                 }
-                textView.setTextSize(SizeReturner(getIntent().getExtras().getInt("ROW", 0), getIntent().getExtras().getInt("COL", 0),
+                textView.setTextSize(SizeReturner(row, col,
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).
                                 getBoolean("EXTRA_SMALL_FONT", false)));
-                textView.setHeight(CalculatedHeight(getIntent().getExtras().getInt("ROW", 0)));
+                textView.setHeight(CalculatedHeight(row));
+                textView.setWidth(CalculatedWidth(col));
                 GridLayout.Spec Row = GridLayout.spec(i, 1);
                 GridLayout.Spec Col = GridLayout.spec(j, 1);
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams(Row, Col);
+                params.leftMargin = params.topMargin = params.bottomMargin = params.rightMargin = getResources().getDimensionPixelOffset(R.dimen.border_width);
                 gridLayout.addView(textView, params);
             }
         }
@@ -165,10 +173,7 @@ public class ShowResult extends AppCompatActivity {
 
                     return true;
                 } else {
-                    if (!((GlobalValues) getApplication()).AdLoaded)
-                        Toast.makeText(getApplication(), R.string.ToAddMoreTurnData, Toast.LENGTH_SHORT).show();
-                    else
-                        Toast.makeText(getApplication(), R.string.LimitExceeds, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), R.string.LimitExceeds, Toast.LENGTH_SHORT).show();
                 }
         }
         return super.onOptionsItemSelected(item);
@@ -199,6 +204,32 @@ public class ShowResult extends AppCompatActivity {
         }
         return 0;
     }
+
+    public int CalculatedWidth(int a) {
+        switch (a) {
+            case 1:
+                return 150;
+            case 2:
+                return 130;
+            case 3:
+                return 120;
+            case 4:
+                return 110;
+            case 5:
+                return 100;
+            case 6:
+                return 90;
+            case 7:
+                return 80;
+            case 8:
+                return 80;
+            case 9:
+                return 74;
+
+        }
+        return 0;
+    }
+
 
     private int SizeReturner(int r, int c, boolean b) {
         if (!b) {
