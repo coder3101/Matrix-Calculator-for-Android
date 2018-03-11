@@ -26,6 +26,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.text.InputFilter;
@@ -52,7 +53,7 @@ public class EditFragment extends Fragment {
     View RootView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View V = inflater.inflate(R.layout.fragment_edit, container, false);
 
@@ -63,12 +64,13 @@ public class EditFragment extends Fragment {
         String string2 = sharedPreferences.getString("CARD_CHANGE_KEY", "#bdbdbd");
 
         cardView.setCardElevation(Integer.parseInt(string));
-        cardView.setCardBackgroundColor(Color.parseColor(string2));
 
         CardView.LayoutParams params1 = new CardView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
+        //noinspection ConstantConditions
         int index = getArguments().getInt("INDEX");
+        //noinspection ConstantConditions
         Matrix m = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index);
 
         GridLayout gridLayout = new GridLayout(getContext());
@@ -78,6 +80,7 @@ public class EditFragment extends Fragment {
             for (int j = 0; j < m.GetCol(); j++) {
                 EditText editText = new EditText(getContext());
                 editText.setId(i * 10 + j);
+                editText.setBackgroundColor(Color.parseColor(string2));
                 editText.setGravity(Gravity.CENTER);
                 if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
                     editText.setInputType(InputType.TYPE_CLASS_NUMBER
@@ -102,6 +105,7 @@ public class EditFragment extends Fragment {
                 GridLayout.Spec Row = GridLayout.spec(i, 1);
                 GridLayout.Spec Col = GridLayout.spec(j, 1);
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams(Row, Col);
+                params.leftMargin = params.topMargin = params.bottomMargin = params.rightMargin = getResources().getDimensionPixelOffset(R.dimen.border_width);
                 gridLayout.addView(editText, params);
             }
         }
@@ -115,8 +119,10 @@ public class EditFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         int number;
+        //noinspection ConstantConditions
         int index = getArguments().getInt("INDEX");
         try {
+            //noinspection ConstantConditions
             if (!((GlobalValues) getActivity().getApplication()).GetCompleteList().isEmpty()) {
                 number = ((GlobalValues) getActivity().getApplication()).
                         GetCompleteList().get(index).GetRow();
@@ -269,6 +275,7 @@ public class EditFragment extends Fragment {
     }
 
     public void RevertChanges() {
+        //noinspection ConstantConditions
         Matrix m = ((GlobalValues) getActivity().getApplication()).current_editing;
         if (m != null) {
             for (int i = 0; i < m.GetRow(); i++) {
