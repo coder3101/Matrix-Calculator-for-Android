@@ -20,6 +20,7 @@
             android:title="@string/multiply" />
         <item
             android:id="@+id/equality"
+            android:visible="false"
             android:icon="@drawable/ic_action_send_now"
             android:title="@string/equality_op" />
         <item
