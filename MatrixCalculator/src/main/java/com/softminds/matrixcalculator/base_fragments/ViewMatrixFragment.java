@@ -33,7 +33,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.softminds.matrixcalculator.GlobalValues;
@@ -95,8 +94,6 @@ public class ViewMatrixFragment extends Fragment {
         }
         gridLayout.setLayoutParams(params1);
         cardView.addView(gridLayout);
-
-        //fixme(coder3101) attach a on-long press listener to view element in result
 
 
         // Inflate the layout for this fragment
