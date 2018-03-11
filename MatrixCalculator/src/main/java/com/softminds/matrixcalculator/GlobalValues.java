@@ -74,6 +74,7 @@ public class GlobalValues extends Application {
         createdValues.clear();
         matrixAdapter.notifyDataSetChanged();
         LAST_INDEX = 0;
+        System.gc();
     }
 
     public boolean hasProfainity(String s) {
@@ -95,13 +96,8 @@ public class GlobalValues extends Application {
     }
 
     public boolean CanCreateVariable() {
-        if (DonationKeyFound())
-            return true;
-        if (AdLoaded) {
-            return (GetCompleteList().size() < 4);
-        } else {
-            return (GetCompleteList().size() < 3);
-        }
+        return DonationKeyFound() || (GetCompleteList().size() < 4);
+
     }
 
     public boolean DonationKeyFound() {
