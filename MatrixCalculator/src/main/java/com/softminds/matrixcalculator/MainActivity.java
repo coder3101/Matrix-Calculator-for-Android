@@ -20,6 +20,7 @@
 package com.softminds.matrixcalculator;
 
 
+import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -164,14 +165,26 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 if (((GlobalValues) getApplication()).CanCreateVariable()) {
-                    Intent intent = new Intent(getApplicationContext(), MakeNewMatrix.class);
-                    startActivityForResult(intent, RESULT);
-                }
-                else{
-                    if(((GlobalValues)getApplication()).GetCompleteList().size() == 3)
-                        Toast.makeText(getApplicationContext(),R.string.ToAddMoreTurnData,Toast.LENGTH_SHORT).show();
-                    else
-                        Toast.makeText(getApplicationContext(),R.string.upgrade_needed,Toast.LENGTH_LONG).show();
+                    ActivityManager.MemoryInfo memoryInfo = getAvailableMemory();
+                    if (memoryInfo != null && !memoryInfo.lowMemory) {
+                        Log.d("MainActivity","Available Memory is :"+String.valueOf(memoryInfo.availMem));
+                        Intent intent = new Intent(getApplicationContext(), MakeNewMatrix.class);
+                        startActivityForResult(intent, RESULT);
+                    } else {
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setPositiveButton(R.string.proceed_to_create, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(getApplicationContext(), MakeNewMatrix.class);
+                                        startActivityForResult(intent, RESULT);
+                                    }
+                                })
+                                .setTitle(R.string.on_low_memory)
+                                .setMessage(R.string.low_memory_mess).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.upgrade_needed, Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -190,6 +203,18 @@ public class MainActivity extends AppCompatActivity
                 PopRateDialog();
             }
         }
+
+    }
+
+    private ActivityManager.MemoryInfo getAvailableMemory() {
+        ActivityManager manager = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
+        ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+        if (manager != null) {
+            manager.getMemoryInfo(memoryInfo);
+            return memoryInfo;
+        }
+        return null;
+
 
     }
 

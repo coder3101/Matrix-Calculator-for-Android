@@ -286,5 +286,9 @@
     <string name="invalid_numbers">Matrix should only have Integers or Decimal Numbers</string>
 
     <string name="upgrade_needed">To Create More Variable Please Upgrade</string>
+    <string name="on_low_memory">Running Low on Memory</string>
+    <string name="low_memory_mess">Your Device is running Low on Memory. To reclaim memory, android may destroy previously created Variables. Do you want to Proceed ?</string>
+    <string name="proceed_to_create">Proceed to Create</string>
+    <string name="equality_op">Equality</string>
 
 </resources>
