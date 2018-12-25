@@ -56,6 +56,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
     implementation 'com.google.firebase:firebase-config:16.1.2'
 
+    implementation 'gov.nist.math:jama:1.0.3'
+
     testImplementation 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'
