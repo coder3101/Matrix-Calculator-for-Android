@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 28
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.softminds.matrixcalculator"
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 41
         versionName '3.5.13'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
