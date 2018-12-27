@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:scrollbars="none"
     tools:context="com.softminds.matrixcalculator.base_activities.ShowResult">
 
     <RelativeLayout
@@ -25,6 +26,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/TextContainer"
             android:layout_centerHorizontal="true"
+            android:scrollbars="none"
             android:fillViewport="true">
 
             <RelativeLayout

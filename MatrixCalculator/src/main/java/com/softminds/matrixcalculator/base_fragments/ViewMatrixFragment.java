@@ -70,8 +70,8 @@ public class ViewMatrixFragment extends Fragment {
         cardView.setUseCompatPadding(true);
 
         GridLayout gridLayout = new GridLayout(getContext());
-        int rows = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetRow();
-        int cols = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetCol();
+        int rows = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).getNumberOfRows();
+        int cols = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).getNumberOfCols();
 
         gridLayout.setRowCount(rows);
         gridLayout.setColumnCount(cols);
@@ -80,7 +80,7 @@ public class ViewMatrixFragment extends Fragment {
                 TextView textView = new TextView(getContext());
                 textView.setGravity(Gravity.CENTER);
                 textView.setBackgroundColor(Color.parseColor(string2));
-                textView.setText(SafeSubString(GetText(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).GetElementof(i, j)), getLength()));
+                textView.setText(SafeSubString(GetText(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).getElementOf(i, j)), getLength()));
                 textView.setWidth(CalculatedWidth(cols));
                 textView.setTextSize(SizeReturner(rows, cols, PreferenceManager.getDefaultSharedPreferences(getContext()).
                         getBoolean("EXTRA_SMALL_FONT", false)));
@@ -262,7 +262,7 @@ public class ViewMatrixFragment extends Fragment {
             return 6;
     }
 
-    private String GetText(float res) {
+    private String GetText(double res) {
 
         if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
             DecimalFormat decimalFormat = new DecimalFormat("###############");

@@ -33,10 +33,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
@@ -56,7 +54,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.softminds.matrixcalculator.AdLoadListener;
 import com.softminds.matrixcalculator.GlobalValues;
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.Type;
 import com.softminds.matrixcalculator.dialog_activity.CustomValueFiller;
 import com.softminds.matrixcalculator.R;
@@ -306,11 +304,11 @@ public class FillingMatrix extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.ConfirmCreate:
                 if (!MatrixError()) {
-                    float variable[][] = GetIntoFloat();
+                    double variable[][] = GetIntoFloat();
                     Bundle bundle = new Bundle();
                     bundle.putAll(getIntent().getExtras());
                     //bundle.putSerializable("VALUES",variable);
-                    bundle.putFloatArray("VALUES", new Matrix().Compress(variable, getIntent().getIntExtra("ROW", -1), getIntent().getIntExtra("COL", -1)));
+                    bundle.putDoubleArray("VALUES", MatrixV2.flattenValues(variable, getIntent().getIntExtra("ROW", -1), getIntent().getIntExtra("COL", -1)));
                     Intent intnt = new Intent();
                     intnt.putExtras(bundle);
                     setResult(0, intnt);
@@ -363,8 +361,8 @@ public class FillingMatrix extends AppCompatActivity {
         return false;
     }
 
-    public float[][] GetIntoFloat() {
-        float var[][] = new float[row][col];
+    public double[][] GetIntoFloat() {
+        double var[][] = new double[row][col];
         for (int i = 0; i < row; i++)
             for (int j = 0; j < col; j++) {
                 EditText editText = findViewById(i * 10 + j);
@@ -401,11 +399,11 @@ public class FillingMatrix extends AppCompatActivity {
                         EditText editText = findViewById(i * 10 + j);
                         editText.setText(String.valueOf(0.0));
                     }
-                float variable[][] = GetIntoFloat();
+                double variable[][] = GetIntoFloat();
                 Bundle bundle = new Bundle();
                 bundle.putAll(getIntent().getExtras());
                 //bundle.putSerializable("VALUES",variable);
-                bundle.putFloatArray("VALUES", new Matrix().Compress(variable, getIntent().getIntExtra("ROW", -1), getIntent().getIntExtra("COL", -1)));
+                bundle.putDoubleArray("VALUES", MatrixV2.flattenValues(variable, getIntent().getIntExtra("ROW", -1), getIntent().getIntExtra("COL", -1)));
                 Intent intnt = new Intent();
                 intnt.putExtras(bundle);
                 setResult(0, intnt);
@@ -430,11 +428,11 @@ public class FillingMatrix extends AppCompatActivity {
                         else
                             editText.setText(String.valueOf(0.0));
                     }
-                float vari[][] = GetIntoFloat();
+                double vari[][] = GetIntoFloat();
                 Bundle bundle2 = new Bundle();
                 bundle2.putAll(getIntent().getExtras());
                 //bundle2.putSerializable("VALUES",vari);
-                bundle2.putFloatArray("VALUES", new Matrix().Compress(vari, getIntent().getIntExtra("ROW", -1), getIntent().getIntExtra("COL", -1)));
+                bundle2.putDoubleArray("VALUES", MatrixV2.flattenValues(vari, getIntent().getIntExtra("ROW", -1), getIntent().getIntExtra("COL", -1)));
                 Intent intn = new Intent();
                 intn.putExtras(bundle2);
                 setResult(0, intn);

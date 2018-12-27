@@ -37,7 +37,7 @@ import android.widget.Toast;
 
 import com.softminds.matrixcalculator.Function;
 import com.softminds.matrixcalculator.GlobalValues;
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.base_activities.ShowResult;
@@ -50,7 +50,7 @@ import java.util.ArrayList;
 public class FunctionalFragment extends ListFragment {
 
     int ClickPos;
-    ArrayList<Matrix> SquareList;
+    ArrayList<MatrixV2> SquareList;
 
     private static class MyHandler extends Handler {
         private WeakReference<FunctionalFragment> weakReference;
@@ -75,7 +75,7 @@ public class FunctionalFragment extends ListFragment {
         super.onActivityCreated(savedInstances);
         SquareList = new ArrayList<>();
         for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
-            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
+            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).isSquareMatrix())
                 //search only square matrix from list
                 SquareList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
         }
@@ -104,9 +104,9 @@ public class FunctionalFragment extends ListFragment {
                     Runnable runnable = new Runnable() {
                         @Override
                         public void run() {
-                            Matrix m = function.ComputeFunction(SquareList.get(ClickPos));
+                            MatrixV2 m = function.ComputeFunction(SquareList.get(ClickPos));
                             Message message = new Message();
-                            message.setData(m.GetDataBundled());
+                            message.setData(m.getDataBundled());
                             myHandler.sendMessage(message);
                         }
                     };

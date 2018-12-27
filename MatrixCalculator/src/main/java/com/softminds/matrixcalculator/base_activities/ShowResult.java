@@ -20,17 +20,22 @@
 
 package com.softminds.matrixcalculator.base_activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.TextView;
@@ -40,8 +45,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.softminds.matrixcalculator.AdLoadListener;
 import com.softminds.matrixcalculator.GlobalValues;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.MainActivity;
-import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.R;
 
 
@@ -64,9 +69,6 @@ public class ShowResult extends AppCompatActivity {
 
         adCard = findViewById(R.id.AddCardResult);
 
-        if (preferences.getBoolean("AUTO_TOAST_ENABLER", false)) {
-            Toast.makeText(getApplicationContext(), "Result Calculated", Toast.LENGTH_SHORT).show();
-        }
 
         if (!((GlobalValues) getApplication()).DonationKeyFound()) {
             AdView mAdView = findViewById(R.id.adViewResult);
@@ -96,7 +98,11 @@ public class ShowResult extends AppCompatActivity {
         gridLayout.setRowCount(row);
         gridLayout.setColumnCount(col);
 
-        float var[][] = new Matrix().Expand(row, col, getIntent().getFloatArrayExtra("VALUES"));
+        double var[][] = MatrixV2.constructFromBundle(getIntent().getExtras()).getJamaMatrix().getArrayCopy();
+        int tsize = SizeReturner(row, col,
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).
+                        getBoolean("EXTRA_SMALL_FONT", false));
+        float widthrrc = getValueFromData(var, tsize);
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
@@ -108,13 +114,28 @@ public class ShowResult extends AppCompatActivity {
                     textView.setText(s);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.d("Element", "Element in Matrix is Null");
+                    Log.d("Element", "Element in MatrixV2 is Null");
                 }
-                textView.setTextSize(SizeReturner(row, col,
-                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).
-                                getBoolean("EXTRA_SMALL_FONT", false)));
-                textView.setHeight(CalculatedHeight(row));
-                textView.setWidth(CalculatedWidth(col));
+                textView.setTextSize(tsize);
+                textView.setHeight(ConvertTopx(24));
+                textView.setWidth(ConvertTopx(widthrrc));
+                final int rrc = i + 1, ccr = j + 1;
+                final double ress = var[i][j];
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new AlertDialog.Builder(ShowResult.this)
+                                .setMessage("Value at (" + String.valueOf(rrc) + "," + String.valueOf(ccr) + ") is : " + GetText(ress))
+                                .setTitle("Value")
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                });
                 GridLayout.Spec Row = GridLayout.spec(i, 1);
                 GridLayout.Spec Col = GridLayout.spec(j, 1);
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams(Row, Col);
@@ -132,6 +153,17 @@ public class ShowResult extends AppCompatActivity {
 
     }
 
+    private float getValueFromData(double[][] var, int tsize) {
+        int max = 0;
+        for (double a[] : var)
+            for (double b : a) {
+                int len = String.valueOf(b).length();
+                if (len > max) max = len;
+            }
+        return max * tsize * 0.7f;
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.result_actionbar, menu);
@@ -145,12 +177,12 @@ public class ShowResult extends AppCompatActivity {
 
                 if (((GlobalValues) getApplication()).CanCreateVariable()) {
                     if (AnyExponents(((/*float[][]) getIntent().getExtras().getSerializable("VALUES"))*/
-                                    new Matrix().Expand(getIntent().getExtras().getInt("ROW", 0), getIntent().getIntExtra("COL", 0), getIntent().getFloatArrayExtra("VALUES")))),
+                                    new MatrixV2().expand(getIntent().getExtras().getInt("ROW", 0), getIntent().getIntExtra("COL", 0), getIntent().getDoubleArrayExtra("VALUES")))),
                             (getIntent().getExtras().getInt("ROW", 0)), (getIntent().getExtras().getInt("COL", 0))) ||
                             !((TextView) findViewById(R.id.TextContainer)).getText().toString().isEmpty()) {
 
                         if (AnyExponents(((/*float[][]) getIntent().getExtras().getSerializable("VALUES"))*/
-                                        new Matrix().Expand(getIntent().getExtras().getInt("ROW", 0), getIntent().getIntExtra("COL", 0), getIntent().getFloatArrayExtra("VALUES")))),
+                                        new MatrixV2().expand(getIntent().getExtras().getInt("ROW", 0), getIntent().getIntExtra("COL", 0), getIntent().getDoubleArrayExtra("VALUES")))),
                                 (getIntent().getExtras().getInt("ROW", 0)), (getIntent().getExtras().getInt("COL", 0))))
                             Toast.makeText(getApplicationContext(), R.string.CannotSave, Toast.LENGTH_SHORT).show();
 
@@ -158,11 +190,10 @@ public class ShowResult extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), R.string.CannotSave2, Toast.LENGTH_SHORT).show();
 
                     } else {
-                        Matrix matrix = new Matrix();
-                        matrix.SetFromBundle(getIntent().getExtras());
+                        MatrixV2 matrix = MatrixV2.constructFromBundle(getIntent().getExtras());
                         String auto_name = "Result " + String.valueOf(((GlobalValues) getApplication()).AutoSaved);
-                        matrix.SetName(auto_name);
-                        matrix.SetType();
+                        matrix.setName(auto_name);
+                        matrix.setType();
                         ((GlobalValues) getApplication()).AddResultToGlobal(matrix);
                         Toast.makeText(getApplicationContext(), (getString(R.string.SavedAs) + " " + auto_name), Toast.LENGTH_SHORT).show();
                         Intent home = new Intent(getApplication(), MainActivity.class);
@@ -232,6 +263,8 @@ public class ShowResult extends AppCompatActivity {
 
 
     private int SizeReturner(int r, int c, boolean b) {
+//        if (!b) return 10;
+//        else return 8;
         if (!b) {
             if (r > c) {
                 switch (r) {
@@ -325,10 +358,10 @@ public class ShowResult extends AppCompatActivity {
         return 0;
     }
 
-    private boolean AnyExponents(float v[][], int r, int c) {
+    private boolean AnyExponents(double v[][], int r, int c) {
         for (int i = 0; i < r; i++)
             for (int j = 0; j < c; j++) {
-                if (Float.toString(v[i][j]).contains("E") || Float.toString(v[i][j]).contains("N") || Float.toString(v[i][j]).contains("Infinity"))
+                if (Double.toString(v[i][j]).contains("E") || Double.toString(v[i][j]).contains("N") || Double.toString(v[i][j]).contains("Infinity"))
                     return true;
                 if (v[i][j] > 999999 && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE", true))
                     return true;
@@ -336,7 +369,7 @@ public class ShowResult extends AppCompatActivity {
         return false;
     }
 
-    private String GetText(float res) {
+    private String GetText(double res) {
 
         if (!PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE", true)) {
             DecimalFormat decimalFormat = new DecimalFormat("###############");
@@ -358,5 +391,11 @@ public class ShowResult extends AppCompatActivity {
                     return String.valueOf(res);
             }
         }
+    }
+
+    private int ConvertTopx(float dp) {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        return ((int) (dp * ((float) metrics.densityDpi) / DisplayMetrics.DENSITY_DEFAULT));
+
     }
 }

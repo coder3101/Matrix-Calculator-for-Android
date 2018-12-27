@@ -7,7 +7,7 @@
     <string name="DecimalUSeID">DECIMAL_USE</string>
     <string name="ExtraSmallKey">EXTRA_SMALL_FONT</string>
     <string name="ElevateKey">ELEVATE_AMOUNT</string>
-    <string name="AutoToastKey">AUTO_TOAST_ENABLER</string>
+    <string name="PersistKey">PERSIST_ENABLER</string>
     <string name="RestoreKey">RESTORE_ALL</string>
     <string name="RoundID">ROUNDIND_INFO</string>
     <string name="Tanspose_id">TRANSPOSE_PROMPT</string>

@@ -31,10 +31,10 @@ import java.util.Objects;
 
 public class GlobalValues extends Application {
 
-    private ArrayList<Matrix> createdValues = new ArrayList<>();
-    public ArrayList<Matrix> MatrixQueue = new ArrayList<>();
+    private ArrayList<MatrixV2> createdValues = new ArrayList<>();
+    public ArrayList<MatrixV2> MatrixQueue = new ArrayList<>();
 
-    public Matrix current_editing = null;
+    public MatrixV2 current_editing = null;
     public boolean AdLoaded = false;
 
     private int LAST_INDEX = 0; //LastIndex of ArrayList
@@ -53,19 +53,19 @@ public class GlobalValues extends Application {
 
     private String TAG = this.getClass().getSimpleName();
 
-    public void AddToGlobal(Matrix mk) {
+    public void AddToGlobal(MatrixV2 mk) {
         createdValues.add(mk);
         if (matrixAdapter != null)
             matrixAdapter.notifyDataSetChanged();
         LAST_INDEX++;
     }
 
-    public void AddResultToGlobal(Matrix mk) {
+    public void AddResultToGlobal(MatrixV2 mk) {
         AddToGlobal(mk);
         AutoSaved++;
     }
 
-    public ArrayList<Matrix> GetCompleteList() {
+    public ArrayList<MatrixV2> GetCompleteList() {
 
         return createdValues;
     }
@@ -146,5 +146,7 @@ public class GlobalValues extends Application {
             Status = false;
         }
     }
+
+
 
 }

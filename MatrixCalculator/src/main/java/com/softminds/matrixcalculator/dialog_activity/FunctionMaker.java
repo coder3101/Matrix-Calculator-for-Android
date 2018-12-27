@@ -40,7 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.softminds.matrixcalculator.Function;
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
 
@@ -443,8 +443,8 @@ public class FunctionMaker extends AppCompatActivity {
     private Function GetMainFunction(int Term, float Const, boolean Sign) {
         if (!Sign) //if false means that  constant is negative
             Const = Const * (-1);
-        Matrix Target = ((GlobalValues) getApplication()).GetCompleteList().get(getIntent().getIntExtra("MATRIX_GLOBAL_INDEX", 0));
-        Function EndUserFunction = new Function(Target.GetRow(), Target.GetCol(), Const);
+        MatrixV2 Target = ((GlobalValues) getApplication()).GetCompleteList().get(getIntent().getIntExtra("MATRIX_GLOBAL_INDEX", 0));
+        Function EndUserFunction = new Function(Target.getNumberOfRows(), Target.getNumberOfCols(), Const);
         //Grab All Sign and Terms
         TextView term1 = findViewById(R.id.CreatedXAuto1);
         TextView term2 = findViewById(R.id.CreatedXAuto2);

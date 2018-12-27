@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,8 +38,14 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.softminds.matrixcalculator.BuildConfig;
 import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.MainActivity;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.R;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -105,6 +112,28 @@ public class SplashScreen extends Activity {
 
             }
         }, SPLASH_TIME_OUT);
+
+        if (PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("PERSIST_ENABLER", false)) {
+            try {
+                FileInputStream fis = getApplicationContext().openFileInput("persist_data.mat");
+                ObjectInputStream os = new ObjectInputStream(fis);
+                ArrayList<MatrixV2> vars = (ArrayList<MatrixV2>) os.readObject();
+                Log.d("TTT","ABOUT TO RESTORE "+ String.valueOf(vars.size()));
+                os.close();
+                fis.close();
+                Log.d("TTT", "Previously on MainList " + String.valueOf(((GlobalValues) getApplication()).GetCompleteList().size()));
+                ((GlobalValues) getApplication()).GetCompleteList().clear();
+                ((GlobalValues) getApplication()).GetCompleteList().addAll(vars);
+                Log.d("TTT", "Total Value " + String.valueOf(((GlobalValues) getApplication()).GetCompleteList().size()));
+                Toast.makeText(getApplicationContext(), "Restored all Variables", Toast.LENGTH_SHORT).show();
+            } catch (FileNotFoundException | ClassNotFoundException e) {
+                // Nothing to restore simply skip
+                e.printStackTrace();
+            } catch (IOException e) {
+                Toast.makeText(getApplicationContext(), "Cannot Load Persisted Variable. I/O Error", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
     }
 
     private void UpdateKey() {

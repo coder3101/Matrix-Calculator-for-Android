@@ -33,7 +33,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.softminds.matrixcalculator.GlobalValues;
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.base_activities.ShowResult;
@@ -47,7 +47,7 @@ public class InverseFragment extends ListFragment {
     final String KEY = "DETERMINANT_FOR_INVERSE";
     boolean ENABLED_NO_DECIMAL;
 
-    ArrayList<Matrix> SquareList;
+    ArrayList<MatrixV2> SquareList;
     ProgressDialog progress;
 
     private static class MyHandler extends Handler {
@@ -83,7 +83,7 @@ public class InverseFragment extends ListFragment {
         super.onActivityCreated(savedInstances);
         SquareList = new ArrayList<>();
         for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
-            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
+            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).isSquareMatrix())
                 SquareList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
         }
         MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment, SquareList);
@@ -114,10 +114,10 @@ public class InverseFragment extends ListFragment {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                Matrix res = SquareList.get(pos).Inverse(pq);
+                MatrixV2 res = SquareList.get(pos).getInverse(pq);
                 Message message = new Message();
                 if (res != null) {
-                    message.setData(res.GetDataBundled());
+                    message.setData(res.getDataBundled());
                     myHandler.sendMessage(message);
                 } else {
                     myHandler.postDelayed(new Runnable() {
@@ -140,7 +140,7 @@ public class InverseFragment extends ListFragment {
             public void run() {
                 Message message = new Message();
                 Bundle bundle = new Bundle();
-                float detr = (float) SquareList.get(i).GetDeterminant(progressDialog);
+                float detr = (float) SquareList.get(i).getDeterminant(progressDialog);
                 if (detr == 0.0f) {
                     myHandler.postDelayed(new Runnable() {
                         @Override
@@ -152,8 +152,8 @@ public class InverseFragment extends ListFragment {
                 } else {
                     progressDialog.setProgress(0);
                     bundle.putFloat("DETERMINANT", detr);
-                    Matrix res = SquareList.get(i).ReturnAdjoint(progressDialog);
-                    bundle.putAll(res.GetDataBundled());
+                    MatrixV2 res = SquareList.get(i).getAdjoint(progressDialog);
+                    bundle.putAll(res.getDataBundled());
                     message.setData(bundle);
                     myHandler.sendMessage(message);
                 }

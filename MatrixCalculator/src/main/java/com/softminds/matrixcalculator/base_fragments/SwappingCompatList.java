@@ -27,7 +27,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
@@ -38,16 +38,16 @@ import java.util.ArrayList;
 @SuppressWarnings("ConstantConditions")
 public class SwappingCompatList extends ListFragment {
 
-    ArrayList<Matrix> CompatList = new ArrayList<>();
+    ArrayList<MatrixV2> CompatList = new ArrayList<>();
 
     @Override
     public void onActivityCreated(Bundle savedInstances) {
         super.onActivityCreated(savedInstances);
         for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
             if (getArguments().getInt("ROW_INDEX") == ((GlobalValues) getActivity().
-                    getApplication()).GetCompleteList().get(i).GetRow() &&
+                    getApplication()).GetCompleteList().get(i).getNumberOfRows() &&
                     getArguments().getInt("COL_INDEX") == ((GlobalValues) getActivity()
-                            .getApplication()).GetCompleteList().get(i).GetCol() && getArguments()
+                            .getApplication()).GetCompleteList().get(i).getNumberOfCols() && getArguments()
                     .getInt("POSITION") != (((GlobalValues) getActivity().getApplication())
                     .GetCompleteList().indexOf(((GlobalValues) getActivity().getApplication())
                             .GetCompleteList().get(i)))) {
@@ -64,11 +64,11 @@ public class SwappingCompatList extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Matrix clickedmatrix = ((GlobalValues) getActivity().getApplication()).
+        MatrixV2 clickedmatrix = ((GlobalValues) getActivity().getApplication()).
                 GetCompleteList().get(((GlobalValues) getActivity().getApplication())
                 .GetCompleteList().indexOf(CompatList.get(position)));
-        Matrix original = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(getArguments().getInt("POSITION"));
-        original.SwapWith(clickedmatrix);
+        MatrixV2 original = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(getArguments().getInt("POSITION"));
+        original.swapValues(clickedmatrix);
         Toast.makeText(getActivity(), R.string.SwapSucc, Toast.LENGTH_SHORT).show();
         onDetach();
     }

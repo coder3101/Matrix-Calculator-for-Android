@@ -58,8 +58,8 @@ public class ScalerFragment extends ListFragment {
         if (res == 1054) {
             Intent intent = new Intent(getContext(), ShowResult.class);
             intent.putExtras(((GlobalValues) getActivity().getApplication()).
-                    GetCompleteList().get(ClickPos).ReturnScaler
-                    (data.getFloatExtra("MULTIPLIER_VAL", 0)).GetDataBundled());
+                    GetCompleteList().get(ClickPos).getScalarMultiplied
+                    (data.getFloatExtra("MULTIPLIER_VAL", 0)).getDataBundled());
             startActivity(intent);
         }
     }

@@ -83,7 +83,7 @@ public class MainActivityFragmentList extends ListFragment {
                 position1 = info.position;
                 Intent rename = new Intent(getContext(), RenameCreated.class);
                 rename.putExtra("TITLE_OF_THIS_FORMATION", ((GlobalValues) getActivity().
-                        getApplication()).GetCompleteList().get(info.position).GetName());
+                        getApplication()).GetCompleteList().get(info.position).getName());
                 startActivityForResult(rename, 100);
                 break;
             case R.id.QuickChange:
@@ -100,7 +100,7 @@ public class MainActivityFragmentList extends ListFragment {
         super.onActivityResult(requestcode, resultCode, data);
         if (resultCode == 100) {
             ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position1).
-                    SetName(data.getStringExtra("NEW_NAME_FOR_THIS_MATRIX"));
+                    setName(data.getStringExtra("NEW_NAME_FOR_THIS_MATRIX"));
             ((GlobalValues) getActivity().getApplication()).matrixAdapter.notifyDataSetChanged();
 
         }

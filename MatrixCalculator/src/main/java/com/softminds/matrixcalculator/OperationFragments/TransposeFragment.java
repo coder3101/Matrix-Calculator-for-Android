@@ -31,7 +31,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
@@ -56,13 +56,13 @@ public class TransposeFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
         if (PreferenceManager.getDefaultSharedPreferences(getActivity()).
                 getBoolean("TRANSPOSE_PROMPT", true) && ((GlobalValues) getActivity().
-                getApplication()).GetCompleteList().get(position).is_squareMatrix()) {
+                getApplication()).GetCompleteList().get(position).isSquareMatrix()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle(R.string.TransposePrompt);
             builder.setPositiveButton(R.string.Yup, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(ClickPos).SquareTranspose();
+                    ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(ClickPos).transposeEquals();
                     Toast.makeText(getActivity(), R.string.SuccessTranspose, Toast.LENGTH_SHORT).show();
                     dialogInterface.dismiss();
                 }
@@ -72,18 +72,18 @@ public class TransposeFragment extends ListFragment {
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();
                     Intent i2 = new Intent(getContext(), ShowResult.class);
-                    Matrix original = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(ClickPos);
-                    i2.putExtras(original.Transpose().GetDataBundled());
+                    MatrixV2 original = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(ClickPos);
+                    i2.putExtras(original.transpose().getDataBundled());
                     startActivity(i2);
                 }
             });
             builder.setMessage(R.string.SquareTransPrompt);
             builder.show();
-        } else //Non Square Matrix to Transpose
+        } else //Non Square MatrixV2 to transpose
         {
             Intent i2 = new Intent(getContext(), ShowResult.class);
-            Matrix original = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(ClickPos);
-            i2.putExtras(original.Transpose().GetDataBundled());
+            MatrixV2 original = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(ClickPos);
+            i2.putExtras(original.transpose().getDataBundled());
             startActivity(i2);
         }
 
@@ -95,7 +95,7 @@ public class TransposeFragment extends ListFragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 120) //User Said Yes
         {
-            ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(ClickPos).SquareTranspose();
+            ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(ClickPos).transposeEquals();
             Toast.makeText(getActivity(), R.string.SuccessTranspose, Toast.LENGTH_SHORT).show();
         }
     }

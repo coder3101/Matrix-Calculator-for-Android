@@ -37,7 +37,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.softminds.matrixcalculator.AdLoadListener;
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.base_activities.ShowResult;
@@ -87,7 +87,7 @@ public class MultiplyFragment extends Fragment {
             public void onClick(View view) {
                 if (((GlobalValues) getActivity().getApplication()).MatrixQueue.size() >= 2) {
                     Intent intent = new Intent(getContext(), ShowResult.class);
-                    intent.putExtras(MultiplyAll().GetDataBundled());
+                    intent.putExtras(MultiplyAll().getDataBundled());
                     startActivity(intent);
                 } else {
                     Toast.makeText(getContext(), R.string.Notdefined, Toast.LENGTH_SHORT).show();
@@ -117,8 +117,8 @@ public class MultiplyFragment extends Fragment {
                 textView.setText(NewName);
                 ((GlobalValues) getActivity().getApplication()).MatrixQueue.remove(((GlobalValues) getActivity().getApplication()).MatrixQueue.size() - 1);
                 int pos = ((GlobalValues) getActivity().getApplication()).MatrixQueue.size();
-                int r = ((GlobalValues) getActivity().getApplication()).MatrixQueue.get(pos - 1).GetRow();
-                int c = ((GlobalValues) getActivity().getApplication()).MatrixQueue.get(pos - 1).GetCol();
+                int r = ((GlobalValues) getActivity().getApplication()).MatrixQueue.get(pos - 1).getNumberOfRows();
+                int c = ((GlobalValues) getActivity().getApplication()).MatrixQueue.get(pos - 1).getNumberOfCols();
                 VariableMul child = ((VariableMul) getChildFragmentManager().findFragmentByTag("VARIABLE_ADDER_MUL"));
                 if (child != null) {
                     child.UpdateRowCol(r, c);
@@ -132,13 +132,13 @@ public class MultiplyFragment extends Fragment {
         }
     }
 
-    private Matrix MultiplyAll() {
-        ArrayList<Matrix> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
-        Matrix res = new Matrix(buffer.get(0).GetRow(), buffer.get(0).GetCol(), buffer.get(0).GetType());
-        res.CloneFrom(buffer.get(0));
-        for (int i = 1; i < buffer.size(); i++) {
-            res = Matrix.MatMul(res, buffer.get(i));
-        }
+    private MatrixV2 MultiplyAll() {
+        ArrayList<MatrixV2> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
+        MatrixV2 res = new MatrixV2(buffer.get(0).getNumberOfRows(), buffer.get(0).getNumberOfCols(), buffer.get(0).getType());
+        res.cloneFrom(buffer.get(0));
+        for (int i = 1; i < buffer.size(); i++)
+            res.multiplyToThis(buffer.get(i));
+
         return res;
     }
 }

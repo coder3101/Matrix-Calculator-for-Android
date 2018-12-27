@@ -38,7 +38,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.softminds.matrixcalculator.GlobalValues;
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 
@@ -49,7 +49,7 @@ import java.util.ArrayList;
 @SuppressWarnings("ConstantConditions")
 public class DeterminantFragment extends ListFragment {
 
-    ArrayList<Matrix> SquareList;
+    ArrayList<MatrixV2> SquareList;
 
     //Inner Class
     @SuppressWarnings("ConstantConditions")
@@ -113,7 +113,7 @@ public class DeterminantFragment extends ListFragment {
         super.onActivityCreated(savedInstances);
         SquareList = new ArrayList<>();
         for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
-            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
+            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).isSquareMatrix())
                 SquareList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
         }
         MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment, SquareList);
@@ -137,7 +137,7 @@ public class DeterminantFragment extends ListFragment {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                double var = SquareList.get(pos).GetDeterminant(px);
+                double var = SquareList.get(pos).getDeterminant(px);
                 Message message = new Message();
                 Bundle bundle = new Bundle();
                 bundle.putDouble("RESULTANT", var);

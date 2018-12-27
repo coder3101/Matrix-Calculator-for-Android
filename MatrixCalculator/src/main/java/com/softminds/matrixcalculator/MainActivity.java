@@ -22,6 +22,7 @@ package com.softminds.matrixcalculator;
 
 import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -54,9 +55,13 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.softminds.matrixcalculator.OperationFragments.AbsoluteValueFragment;
 import com.softminds.matrixcalculator.OperationFragments.CloneFragment;
 import com.softminds.matrixcalculator.OperationFragments.FunctionalFragment;
-import com.softminds.matrixcalculator.OperationFragments.MinorFragment;
+import com.softminds.matrixcalculator.OperationFragments.NormFreb;
+import com.softminds.matrixcalculator.OperationFragments.NormInfinity;
+import com.softminds.matrixcalculator.OperationFragments.NormOne;
+import com.softminds.matrixcalculator.OperationFragments.NormTwo;
 import com.softminds.matrixcalculator.OperationFragments.RankFragment;
 import com.softminds.matrixcalculator.OperationFragments.TraceFragment;
 import com.softminds.matrixcalculator.base_activities.AboutMe;
@@ -74,6 +79,14 @@ import com.softminds.matrixcalculator.OperationFragments.SubtractionFragment;
 import com.softminds.matrixcalculator.OperationFragments.SwapFragment;
 import com.softminds.matrixcalculator.OperationFragments.ScalerFragment;
 import com.softminds.matrixcalculator.OperationFragments.TransposeFragment;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity
@@ -167,7 +180,7 @@ public class MainActivity extends AppCompatActivity
                 if (((GlobalValues) getApplication()).CanCreateVariable()) {
                     ActivityManager.MemoryInfo memoryInfo = getAvailableMemory();
                     if (memoryInfo != null && !memoryInfo.lowMemory) {
-                        Log.d("MainActivity","Available Memory is :"+String.valueOf(memoryInfo.availMem));
+                        Log.d("MainActivity", "Available Memory is :" + String.valueOf(memoryInfo.availMem));
                         Intent intent = new Intent(getApplicationContext(), MakeNewMatrix.class);
                         startActivityForResult(intent, RESULT);
                     } else {
@@ -273,8 +286,26 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (OnceBackClicked)
+            if (OnceBackClicked) {
+                if (PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("PERSIST_ENABLER", false)) {
+                    ArrayList<MatrixV2> vars = ((GlobalValues) getApplication()).GetCompleteList();
+                    Log.d("TTT", "About to save " + String.valueOf(vars.size()));
+                    try {
+                        FileOutputStream fos = getApplicationContext().openFileOutput("persist_data.mat", Context.MODE_PRIVATE);
+                        ObjectOutputStream os = new ObjectOutputStream(fos);
+                        os.writeObject(vars);
+                        os.close();
+                        fos.close();
+                    } catch (FileNotFoundException e) {
+                        Toast.makeText(getApplicationContext(), "Failed to Persist. File Not Found Error", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        Toast.makeText(getApplicationContext(), " Failed to Persist. I/O Error", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
                 super.onBackPressed();
+            }
             else {
                 Toast.makeText(getApplicationContext(), R.string.ClickToExit, Toast.LENGTH_SHORT).show();
                 OnceBackClicked = true;
@@ -612,27 +643,77 @@ public class MainActivity extends AppCompatActivity
                 else
                     t.setText(null);
                 break;
-            case R.id.MinorsofMat:
-                FragmentTransaction MinorTransaction = getSupportFragmentManager().beginTransaction();
-                MinorTransaction.replace(R.id.MainContent, new MinorFragment(), "MINOR_FRAGMENT");
-                MinorTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                MinorTransaction.commit();
-                //Actionbar
+
+            case R.id.norm1:
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                NormOne one = new NormOne();
+                transaction.replace(R.id.MainContent, one, "NORM_ONE_FRAGMENT");
+                transaction.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                transaction.commit();
                 ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
-                actionBar.setTitle(R.string.Minor_detr);
+                actionBar.setTitle(R.string.normOne);
                 actionBar.setSubtitle(null);
                 if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
                     t.setText(R.string.OpenHint2);
-                else {
-                    if (isAnyVariableSquare())
-                        t.setText(null);
-                    else
-                        t.setText(R.string.NoSupport);
-                }
-                fab.hide();
+                else
+                    t.setText(null);
+                break;
+            case R.id.norm2:
+                FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
+                NormTwo two = new NormTwo();
+                transaction2.replace(R.id.MainContent, two, "NORM_TWO_FRAGMENT");
+                transaction2.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                transaction2.commit();
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.normTwo);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
+                break;
+            case R.id.normFrb:
+                FragmentTransaction transaction3 = getSupportFragmentManager().beginTransaction();
+                NormFreb three = new NormFreb();
+                transaction3.replace(R.id.MainContent, three, "NORM_FREB_FRAGMENT");
+                transaction3.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                transaction3.commit();
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.normFreb);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
+                break;
+            case R.id.normInf:
+                FragmentTransaction transaction4 = getSupportFragmentManager().beginTransaction();
+                NormInfinity infty = new NormInfinity();
+                transaction4.replace(R.id.MainContent, infty, "NORM_INF_FRAGMENT");
+                transaction4.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                transaction4.commit();
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.normInfinity);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
                 break;
 
-
+            case R.id.AbsoluteVal:
+                FragmentTransaction transaction5 = getSupportFragmentManager().beginTransaction();
+                transaction5.replace(R.id.MainContent, new AbsoluteValueFragment(), "ABSOLUTE_VALUE");
+                transaction5.setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                transaction5.commit();
+                ActionbarMenu.findItem(R.id.ClearAllVar).setVisible(false);
+                actionBar.setTitle(R.string.AbsoluteVal);
+                actionBar.setSubtitle(null);
+                if (((GlobalValues) getApplication()).GetCompleteList().isEmpty())
+                    t.setText(R.string.OpenHint2);
+                else
+                    t.setText(null);
+                break;
             case R.id.functional:
                 FragmentTransaction FunctionalTransaction = getSupportFragmentManager().beginTransaction();
                 FunctionalFragment ff = new FunctionalFragment();
@@ -707,9 +788,8 @@ public class MainActivity extends AppCompatActivity
             if (data != null) {
                 Bundle AllData = new Bundle();
                 AllData.putAll(data.getExtras());
-                Matrix m = new Matrix();
                 try {
-                    m.SetFromBundle(AllData);
+                    MatrixV2 m = MatrixV2.constructFromBundle(AllData);
                     ((GlobalValues) getApplication()).AddToGlobal(m); //Sending the things to Global Reference
                     if (actionBar.getSubtitle() == null)
                         actionBar.setSubtitle(R.string.MainSubtitle);
@@ -742,7 +822,7 @@ public class MainActivity extends AppCompatActivity
 
     protected boolean isAnyVariableSquare() {
         for (int i = 0; i < ((GlobalValues) getApplication()).GetCompleteList().size(); i++)
-            if (((GlobalValues) getApplication()).GetCompleteList().get(i).is_squareMatrix())
+            if (((GlobalValues) getApplication()).GetCompleteList().get(i).isSquareMatrix())
                 return true;
         return false;
     }

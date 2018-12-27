@@ -35,7 +35,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
@@ -46,7 +46,7 @@ import java.util.ArrayList;
 @SuppressWarnings("ConstantConditions")
 public class TraceFragment extends ListFragment {
 
-    ArrayList<Matrix> SquareList;
+    ArrayList<MatrixV2> SquareList;
     String TAG = this.getClass().getSimpleName();
 
     @Override
@@ -54,7 +54,7 @@ public class TraceFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         SquareList = new ArrayList<>();
         for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
-            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
+            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).isSquareMatrix())
                 SquareList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
         }
 
@@ -75,7 +75,7 @@ public class TraceFragment extends ListFragment {
     }
 
     private void RunToGetTrace(int position, ProgressDialog progressDialog) {
-        double result = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position).GetTrace();
+        double result = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position).getTrace();
         final String formatted = GetText(result);
         progressDialog.dismiss();
         String formatted2 = getString(R.string.trace_is) + " " + formatted;

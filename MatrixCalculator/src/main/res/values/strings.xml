@@ -66,8 +66,8 @@
     <string name="CardElevate">Card Elevation</string>
     <string name="CardElevateDesc">Change the Elevation of Matrix Card, more the value more 3-D Matrix will look. </string>
     <string name="other">Extra Settings</string>
-    <string name="AutoToast">Result Toast</string>
-    <string name="AutoToastDesc">Display a Toast Message after a Result has been Calculated</string>
+    <string name="AutoPersist">Persist Variables (Pro Only)</string>
+    <string name="AutoPersistDesc">Persists a Matrix Variable even after application closes</string>
     <string name="RestoreDefault">Restore</string>
     <string name="RestoreInfo">Restore All Settings to Default</string>
     <string name="title2">Calculations</string>
@@ -111,7 +111,7 @@
     <string name="NotSquare">Provided Matrix must be a Square Matrix</string>
 
 
-    <!-- Title bar of Filler Matrix-->
+    <!-- Title bar of Filler LegacyMatrix-->
     <string name="RandomInput">Fill Random Integers</string>
     <string name="RandomInputFloat">Fill Random Decimals</string>
     <string name="FillallAs1">Fill Empty Cells with 1</string>
@@ -291,5 +291,13 @@
     <string name="equality_op">Equality</string>
     <string name="matrix_not_found">Oops! Created Matrix was Destroyed by Android. Maybe You are running Low on Memory</string>
     <string name="unexpected_error">Unexpected Error</string>
+    <string name="normOne">First Norm</string>
+    <string name="normTwo">Second Norm</string>
+    <string name="normFreb">Frobenious Norm</string>
+    <string name="normInfinity">Infinity Norm</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="AbsoluteVal">Absolute Value</string>
 
 </resources>

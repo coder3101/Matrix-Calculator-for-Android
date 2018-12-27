@@ -24,7 +24,7 @@ package com.softminds.matrixcalculator;
 import java.util.ArrayList;
 
 public class Function {
-    private Matrix ConstantMatrix;
+    private MatrixV2 ConstantMatrix;
     private ArrayList<Terms> terms;
 
     private static class Terms {
@@ -52,9 +52,9 @@ public class Function {
     }
 
     public Function(int R, int C, float Const) {
-        ConstantMatrix = new Matrix(R, C, Type.Normal);
-        ConstantMatrix.MakeIdentity();
-        ConstantMatrix.ScalarMultiply(Const);
+        ConstantMatrix = new MatrixV2(R, C, Type.Normal);
+        ConstantMatrix.makeIdentity();
+        ConstantMatrix.scalarMultiplication(Const);
         terms = new ArrayList<>();
     }
 
@@ -63,23 +63,23 @@ public class Function {
         terms.add(t);
     }
 
-    public Matrix ComputeFunction(Matrix operand) {
-        Matrix OriginalCopy = new Matrix(operand.GetRow(), operand.GetCol(), operand.GetType());
-        OriginalCopy.CloneFrom(operand);
-        Matrix Resultant = new Matrix(operand.GetRow(), operand.GetCol(), operand.GetType());
-        Resultant.MakeNull();
+    public MatrixV2 ComputeFunction(MatrixV2 operand) {
+        MatrixV2 OriginalCopy = new MatrixV2(operand.getNumberOfRows(), operand.getNumberOfCols(), operand.getType());
+        OriginalCopy.cloneFrom(operand);
+        MatrixV2 Resultant = new MatrixV2(operand.getNumberOfRows(), operand.getNumberOfCols(), operand.getType());
+        Resultant.makeNull();
         for (int i = 0; i < terms.size(); i++) {
-            operand.CloneFrom(OriginalCopy);
+            operand.cloneFrom(OriginalCopy);
             int expo = terms.get(i).getExponent();
             boolean s = terms.get(i).getSign();
-            operand.Raiseto(expo);
+            operand.raisedToPower(expo);
             if (s)
-                operand.ScalarMultiply(1 * terms.get(i).getCoefficient());
+                operand.scalarMultiplication(1 * terms.get(i).getCoefficient());
             else
-                operand.ScalarMultiply(-1 * terms.get(i).getCoefficient());
-            Resultant.AddtoThis(operand);
+                operand.scalarMultiplication(-1 * terms.get(i).getCoefficient());
+            Resultant.addToThis(operand);
         }
-        Resultant.AddtoThis(ConstantMatrix);
+        Resultant.addToThis(ConstantMatrix);
         return Resultant;
     }
 

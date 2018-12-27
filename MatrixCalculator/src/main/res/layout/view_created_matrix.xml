@@ -35,6 +35,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/AdCard"
         android:scrollbars="none"
+        android:fillViewport="true"
         android:layout_centerHorizontal="true">
 
         <HorizontalScrollView

@@ -36,16 +36,16 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class MatrixAdapter extends ArrayAdapter<Matrix> {
+public class MatrixAdapter extends ArrayAdapter<MatrixV2> {
 
-    public MatrixAdapter(Context context, int t, ArrayList<Matrix> matrices) {
+    public MatrixAdapter(Context context, int t, ArrayList<MatrixV2> matrices) {
         super(context, t, matrices);
     }
 
     @Override
     @NonNull
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        final Matrix m = getItem(position);
+        final MatrixV2 m = getItem(position);
 
         if (convertView == null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_layout_fragment, parent, false);
@@ -59,8 +59,8 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
 
         //Set Values
         @SuppressWarnings({"ConstantConditions"})
-        String r = "Row : " + String.valueOf(m.GetRow());
-        String c = "Column : " + String.valueOf(m.GetCol());
+        String r = "Row : " + String.valueOf(m.getNumberOfRows());
+        String c = "Column : " + String.valueOf(m.getNumberOfCols());
         if (PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DARK_THEME_KEY", false)) {
             Row.setTextColor(Color.WHITE);
             Col.setTextColor(Color.WHITE);
@@ -70,13 +70,13 @@ public class MatrixAdapter extends ArrayAdapter<Matrix> {
         }
         Row.setText(r);
         Col.setText(c);
-        m.SetType();
-        Naam.setText(m.GetName());
-        icon.setImageResource(m.GetDrawable(m.GetType()));
+        m.setType();
+        Naam.setText(m.getName());
+        icon.setImageResource(m.getDrawable(m.getType()));
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), m.GetType().toString() + " Matrix", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), m.getType().toString() + " MatrixV2", Toast.LENGTH_SHORT).show();
             }
         });
 

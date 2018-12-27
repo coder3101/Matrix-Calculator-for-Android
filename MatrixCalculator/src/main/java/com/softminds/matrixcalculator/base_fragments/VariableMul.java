@@ -29,7 +29,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
@@ -53,32 +53,32 @@ public class VariableMul extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Matrix m = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position);
+        MatrixV2 m = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position);
         if (Row == 0 || Col == 0) {
-            Row = m.GetRow();
-            Col = m.GetCol();
+            Row = m.getNumberOfRows();
+            Col = m.getNumberOfCols();
             AddToQueue(m);
         } else {
-            if (Col == m.GetRow()) {
+            if (Col == m.getNumberOfRows()) {
                 AddToQueue(m);
-                Row = m.GetRow();
-                Col = m.GetCol();
+                Row = m.getNumberOfRows();
+                Col = m.getNumberOfCols();
             } else {
-                Toast.makeText(getContext(), "Select a Matrix with " + String.valueOf(Col) + " Row", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Select a MatrixV2 with " + String.valueOf(Col) + " Row", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    private void AddToQueue(Matrix click) {
+    private void AddToQueue(MatrixV2 click) {
         try {
             @SuppressWarnings("ConstantConditions") //to suppress the null pointer exception of the  textview
                     TextView textView = getParentFragment().getView().findViewById(R.id.AdditionStatus);
             String Initial = textView.getText().toString();
             if (Initial.isEmpty()) {
-                textView.setText(click.GetName());
+                textView.setText(click.getName());
                 ((GlobalValues) getActivity().getApplication()).MatrixQueue.add(click);
             } else {
-                String Complete = Initial + " x " + click.GetName();
+                String Complete = Initial + " x " + click.getName();
                 textView.setText(Complete);
                 ((GlobalValues) getActivity().getApplication()).MatrixQueue.add(click);
             }

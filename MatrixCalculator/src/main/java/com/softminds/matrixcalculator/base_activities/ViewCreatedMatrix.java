@@ -78,7 +78,7 @@ public class ViewCreatedMatrix extends AppCompatActivity {
 
         try {
             if (getSupportActionBar() != null && index != (-1))
-                getSupportActionBar().setTitle(((GlobalValues) getApplication()).GetCompleteList().get(index).GetName());
+                getSupportActionBar().setTitle(((GlobalValues) getApplication()).GetCompleteList().get(index).getName());
             ViewMatrixFragment viewMatrixFragment = new ViewMatrixFragment();
             Bundle bundle = new Bundle();
             bundle.putInt("INDEX", getIntent().getIntExtra("INDEX", -1));
@@ -140,7 +140,7 @@ public class ViewCreatedMatrix extends AppCompatActivity {
                 return true;
             case R.id.Rename:
                 Intent intent = new Intent(getApplicationContext(), RenameCreated.class);
-                intent.putExtra("TITLE_OF_THIS_FORMATION", ((GlobalValues) getApplication()).GetCompleteList().get(index).GetName());
+                intent.putExtra("TITLE_OF_THIS_FORMATION", ((GlobalValues) getApplication()).GetCompleteList().get(index).getName());
                 startActivityForResult(intent, 100);
                 return true;
             case R.id.RevertChanges:
@@ -167,7 +167,7 @@ public class ViewCreatedMatrix extends AppCompatActivity {
             int index = getIntent().getExtras().getInt("INDEX", -1);
             if (index != (-1)) {
                 ((GlobalValues) getApplication()).GetCompleteList().get(index).
-                        SetName(data.getStringExtra("NEW_NAME_FOR_THIS_MATRIX"));
+                        setName(data.getStringExtra("NEW_NAME_FOR_THIS_MATRIX"));
                 ((GlobalValues) getApplication()).matrixAdapter.notifyDataSetChanged();
                 finish();
             }

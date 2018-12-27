@@ -20,8 +20,9 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <meta-data
-            android:name="google_analytics_adid_collection_enabled"
-            android:value="false" />
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2985268992686393~8371779866"
+            />
 
         <activity
             android:name=".MainActivity"
@@ -101,11 +102,6 @@
             android:parentActivityName=".MainActivity"
             android:label="@string/FunctionalTitle"
             android:theme="@style/AppThemeDialog"/>
-        <activity
-            android:name=".base_activities.MinorChooser"
-            android:label="@string/Minor"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme"/>
         <activity android:name=".ChangeLogActivity"
             android:label="@string/NewsUp"
             android:theme="@style/AppTheme"

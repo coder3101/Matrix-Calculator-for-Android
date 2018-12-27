@@ -46,8 +46,8 @@ public class SwapFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Bundle bundle = new Bundle();
-        bundle.putInt("ROW_INDEX", ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position).GetRow());
-        bundle.putInt("COL_INDEX", ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position).GetCol());
+        bundle.putInt("ROW_INDEX", ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position).getNumberOfRows());
+        bundle.putInt("COL_INDEX", ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position).getNumberOfCols());
         bundle.putInt("POSITION", position);
         Intent intent = new Intent(getContext(), SwappingDialog.class);
         intent.putExtras(bundle);

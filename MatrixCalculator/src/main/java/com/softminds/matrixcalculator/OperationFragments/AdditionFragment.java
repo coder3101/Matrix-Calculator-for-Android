@@ -37,7 +37,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.softminds.matrixcalculator.AdLoadListener;
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.base_activities.ShowResult;
@@ -82,7 +82,7 @@ public class AdditionFragment extends Fragment {
             public void onClick(View view) {
                 if (((GlobalValues) getActivity().getApplication()).MatrixQueue.size() >= 2) {
                     Intent intent = new Intent(getContext(), ShowResult.class);
-                    intent.putExtras(SumAll().GetDataBundled());
+                    intent.putExtras(SumAll().getDataBundled());
                     startActivity(intent);
                 } else {
                     Toast.makeText(getContext(), R.string.Notdefined, Toast.LENGTH_SHORT).show();
@@ -100,12 +100,11 @@ public class AdditionFragment extends Fragment {
         return view;
     }
 
-    private Matrix SumAll() {
-        ArrayList<Matrix> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
-        Matrix s = new Matrix(buffer.get(0).GetRow(),buffer.get(0).GetCol(),buffer.get(0).GetType());
-        for (int i = 0; i < buffer.size(); i++) {
-            s = Matrix.Matadd(s,buffer.get(i));
-        }
+    private MatrixV2 SumAll() {
+        ArrayList<MatrixV2> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
+        MatrixV2 s = new MatrixV2(buffer.get(0).getNumberOfRows(), buffer.get(0).getNumberOfCols(), buffer.get(0).getType());
+        for (int i = 0; i < buffer.size(); i++)
+            s.addToThis(buffer.get(i));
         return s;
     }
 

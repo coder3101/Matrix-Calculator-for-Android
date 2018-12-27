@@ -42,7 +42,7 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 
 import com.softminds.matrixcalculator.GlobalValues;
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.R;
 
 import java.text.DecimalFormat;
@@ -71,13 +71,13 @@ public class EditFragment extends Fragment {
         //noinspection ConstantConditions
         int index = getArguments().getInt("INDEX");
         //noinspection ConstantConditions
-        Matrix m = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index);
+        MatrixV2 m = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index);
 
         GridLayout gridLayout = new GridLayout(getContext());
-        gridLayout.setRowCount(m.GetRow());
-        gridLayout.setColumnCount(m.GetCol());
-        for (int i = 0; i < m.GetRow(); i++) {
-            for (int j = 0; j < m.GetCol(); j++) {
+        gridLayout.setRowCount(m.getNumberOfRows());
+        gridLayout.setColumnCount(m.getNumberOfCols());
+        for (int i = 0; i < m.getNumberOfRows(); i++) {
+            for (int j = 0; j < m.getNumberOfCols(); j++) {
                 EditText editText = new EditText(getContext());
                 editText.setId(i * 10 + j);
                 editText.setBackgroundColor(Color.parseColor(string2));
@@ -95,12 +95,12 @@ public class EditFragment extends Fragment {
                     editText.setTextSize(SizeReturner(3, 3, PreferenceManager.getDefaultSharedPreferences(getContext()).
                             getBoolean("EXTRA_SMALL_FONT", false)));
                 } else {
-                    editText.setWidth(ConvertTopx(CalculatedWidth(m.GetCol())));
-                    editText.setTextSize(SizeReturner(m.GetRow(), m.GetCol(),
+                    editText.setWidth(ConvertTopx(CalculatedWidth(m.getNumberOfCols())));
+                    editText.setTextSize(SizeReturner(m.getNumberOfRows(), m.getNumberOfCols(),
                             PreferenceManager.getDefaultSharedPreferences(getContext()).
                                     getBoolean("EXTRA_SMALL_FONT", false)));
                 }
-                editText.setText(SafeSubString(GetText(m.GetElementof(i, j)), getLength()));
+                editText.setText(SafeSubString(GetText(m.getElementOf(i, j)), getLength()));
                 editText.setSingleLine();
                 GridLayout.Spec Row = GridLayout.spec(i, 1);
                 GridLayout.Spec Col = GridLayout.spec(j, 1);
@@ -125,23 +125,23 @@ public class EditFragment extends Fragment {
             //noinspection ConstantConditions
             if (!((GlobalValues) getActivity().getApplication()).GetCompleteList().isEmpty()) {
                 number = ((GlobalValues) getActivity().getApplication()).
-                        GetCompleteList().get(index).GetRow();
+                        GetCompleteList().get(index).getNumberOfRows();
                 for (int i = 0; i < number; i++)
                     for (int j = 0; j < ((GlobalValues) getActivity().getApplication()).
-                            GetCompleteList().get(index).GetCol(); j++) {
+                            GetCompleteList().get(index).getNumberOfCols(); j++) {
                         EditText editText = RootView.findViewById(i * 10 + j);
                         if (!editText.getText().toString().isEmpty()) {
                             ((GlobalValues) getActivity().getApplication()).
                                     GetCompleteList().get(index).
-                                    SetElementof(((Float.parseFloat(((EditText)
+                                    setElementOf(((Float.parseFloat(((EditText)
                                             RootView.findViewById(i * 10 + j)).
                                             getText().toString()))), i, j);
                         } else
-                            ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).SetElementof(0f, i, j);
+                            ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).setElementOf(0f, i, j);
                     }
 
             }
-            ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).SetType();
+            ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(index).setType();
             ((GlobalValues) getActivity().getApplication()).matrixAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();
@@ -250,7 +250,7 @@ public class EditFragment extends Fragment {
 
     }
 
-    private String GetText(float res) {
+    private String GetText(double res) {
 
         if (!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DECIMAL_USE", true)) {
             DecimalFormat decimalFormat = new DecimalFormat("###############");
@@ -276,12 +276,12 @@ public class EditFragment extends Fragment {
 
     public void RevertChanges() {
         //noinspection ConstantConditions
-        Matrix m = ((GlobalValues) getActivity().getApplication()).current_editing;
+        MatrixV2 m = ((GlobalValues) getActivity().getApplication()).current_editing;
         if (m != null) {
-            for (int i = 0; i < m.GetRow(); i++) {
-                for (int j = 0; j < m.GetCol(); j++) {
+            for (int i = 0; i < m.getNumberOfRows(); i++) {
+                for (int j = 0; j < m.getNumberOfCols(); j++) {
                     EditText e = RootView.findViewById(i * 10 + j);
-                    e.setText(GetText(m.GetElementof(i, j)));
+                    e.setText(GetText(m.getElementOf(i, j)));
                 }
             }
         }

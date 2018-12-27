@@ -34,7 +34,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
@@ -55,7 +55,7 @@ public class RankFragment extends ListFragment {
 
         @Override
         public void handleMessage(Message msg) {
-            final int rank = msg.getData().getInt("CALCULATED_RANK", -1);
+            final double rank = msg.getData().getDouble("CALCULATED_RANK", -1);
             final String mes = "Rank of Matrix is : " + String.valueOf(rank);
 
             final AlertDialog.Builder builder = new AlertDialog.Builder(weakReference.get().getContext());
@@ -106,11 +106,11 @@ public class RankFragment extends ListFragment {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                Matrix mat = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos);
-                int rank = mat.GetRank();
+                MatrixV2 mat = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos);
+                double rank = mat.getRank();
                 Message message = new Message();
                 Bundle bundle = new Bundle();
-                bundle.putInt("CALCULATED_RANK", rank);
+                bundle.putDouble("CALCULATED_RANK", rank);
                 message.setData(bundle);
                 handler.sendMessage(message);
             }

@@ -30,9 +30,9 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.dialog_activity.ExponentSetter;
 import com.softminds.matrixcalculator.GlobalValues;
-import com.softminds.matrixcalculator.Matrix;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.base_activities.ShowResult;
@@ -44,7 +44,7 @@ import java.util.ArrayList;
 public class ExponentFragment extends ListFragment {
 
     int Clicked_pos;
-    ArrayList<Matrix> SquareList;
+    ArrayList<MatrixV2> SquareList;
 
     private static class MyHandler extends Handler {
         private final WeakReference<ExponentFragment> exponentFragmentWeakReference;
@@ -70,7 +70,7 @@ public class ExponentFragment extends ListFragment {
         super.onActivityCreated(savedInstances);
         SquareList = new ArrayList<>();
         for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
-            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
+            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).isSquareMatrix())
                 SquareList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
         }
         MatrixAdapter MatriXadapter = new MatrixAdapter(getActivity(), R.layout.list_layout_fragment, SquareList);
@@ -104,14 +104,14 @@ public class ExponentFragment extends ListFragment {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                Matrix res = new Matrix(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos).GetRow()
-                        , ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos).GetCol()
-                        , ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos).GetType());
-                res.CloneFrom(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos));
-                res.Raiseto(exponent);
+                MatrixV2 res = new MatrixV2(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos).getNumberOfRows()
+                        , ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos).getNumberOfCols()
+                        , ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos).getType());
+                res.cloneFrom(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(pos));
+                res.raisedToPower(exponent);
                 progressDialog.dismiss();
                 Message message = new Message();
-                message.setData(res.GetDataBundled());
+                message.setData(res.getDataBundled());
                 handler.sendMessage(message);
             }
         };

@@ -30,7 +30,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.softminds.matrixcalculator.MainActivity;
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
@@ -51,12 +51,12 @@ public class CloneFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         if (((GlobalValues) getActivity().getApplication()).CanCreateVariable()) {
-            Matrix m = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position);
-            Matrix clone;
-            clone = m.ExactClone("Copy_" + m.GetName());
+            MatrixV2 m = ((GlobalValues) getActivity().getApplication()).GetCompleteList().get(position);
+            MatrixV2 clone;
+            clone = m.exactClone("Copy_" + m.getName());
             ((GlobalValues) getActivity().getApplication()).GetCompleteList().add(clone);
             ((GlobalValues) getActivity().getApplication()).matrixAdapter.notifyDataSetChanged();
-            Toast.makeText(getContext(), "Saved as Copy_" + m.GetName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Saved as Copy_" + m.getName(), Toast.LENGTH_SHORT).show();
             NavigationView view = getActivity().findViewById(R.id.nav_view);
             view.setCheckedItem(R.id.Home);
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();

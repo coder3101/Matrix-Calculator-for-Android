@@ -37,14 +37,13 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.softminds.matrixcalculator.AdLoadListener;
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.GlobalValues;
 import com.softminds.matrixcalculator.base_activities.ShowResult;
 import com.softminds.matrixcalculator.base_fragments.VariableListSub;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @SuppressWarnings("ConstantConditions")
 public class SubtractionFragment extends Fragment {
@@ -77,18 +76,18 @@ public class SubtractionFragment extends Fragment {
         }
 
 
-        TextView tv =  view.findViewById(R.id.TitleOfAdd);
-        TextView tv2 =  view.findViewById(R.id.SubtitleofADD);
+        TextView tv = view.findViewById(R.id.TitleOfAdd);
+        TextView tv2 = view.findViewById(R.id.SubtitleofADD);
         tv.setText(R.string.SubQueue);
         tv2.setText(R.string.SubTip);
-        Button proceedAdd =  view.findViewById(R.id.ConfirmAdd);
+        Button proceedAdd = view.findViewById(R.id.ConfirmAdd);
         proceedAdd.setText(R.string.Proceed);
         proceedAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (((GlobalValues) getActivity().getApplication()).MatrixQueue.size() >= 2) {
                     Intent intent = new Intent(getContext(), ShowResult.class);
-                    intent.putExtras(SubAll().GetDataBundled());
+                    intent.putExtras(SubAll().getDataBundled());
                     startActivity(intent);
                 } else {
                     Toast.makeText(getContext(), R.string.Notdefined, Toast.LENGTH_SHORT).show();
@@ -96,7 +95,7 @@ public class SubtractionFragment extends Fragment {
             }
         });
 
-        Button remove =  view.findViewById(R.id.RemoveLast);
+        Button remove = view.findViewById(R.id.RemoveLast);
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,21 +105,20 @@ public class SubtractionFragment extends Fragment {
         return view;
     }
 
-    private Matrix SubAll() {
-        ArrayList<Matrix> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
+    private MatrixV2 SubAll() {
+        ArrayList<MatrixV2> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
 
-        Matrix first = buffer.get(0),second;
-        second = new Matrix(buffer.get(0).GetRow(),buffer.get(0).GetCol(),buffer.get(0).GetType());
-        for (int t=1;t<buffer.size();t++) {
-                second = Matrix.Matadd(second, buffer.get(t));
-        }
-
-        return Matrix.MatSub(first,second);
+        MatrixV2 first = buffer.get(0), second;
+        second = new MatrixV2(buffer.get(0).getNumberOfRows(), buffer.get(0).getNumberOfCols(), buffer.get(0).getType());
+        for (int t = 1; t < buffer.size(); t++)
+            second.multiplyToThis(buffer.get(t));
+        first.subToThis(second);
+        return first;
 
     }
 
     private void RemoveFromQueue() {
-        TextView textView =  root.findViewById(R.id.AdditionStatus);
+        TextView textView = root.findViewById(R.id.AdditionStatus);
         String Initial = textView.getText().toString();
         if (Initial.isEmpty()) {
             ((GlobalValues) getActivity().getApplication()).MatrixQueue.clear();

@@ -19,14 +19,13 @@
             android:icon="@drawable/ic_action_send_now"
             android:title="@string/multiply" />
         <item
-            android:id="@+id/equality"
-            android:visible="false"
-            android:icon="@drawable/ic_action_send_now"
-            android:title="@string/equality_op" />
-        <item
             android:id="@+id/ScalerMulti"
             android:icon="@drawable/ic_action_send_now"
             android:title="@string/ScalerMult" />
+        <item
+            android:id="@+id/AbsoluteVal"
+            android:icon="@drawable/ic_action_send_now"
+            android:title="@string/AbsoluteVal" />
         <item
             android:id="@+id/Swap"
             android:icon="@drawable/ic_action_send_now"
@@ -52,10 +51,6 @@
             android:icon="@drawable/ic_action_send_now"
             android:title="@string/trace_text" />
         <item
-            android:id="@+id/MinorsofMat"
-            android:icon="@drawable/ic_action_send_now"
-            android:title="@string/Minor_detr"/>
-        <item
             android:id="@+id/inverse"
             android:icon="@drawable/ic_action_send_now"
             android:title="@string/inverse" />
@@ -67,13 +62,37 @@
         <item
             android:id="@+id/RankofMat1"
             android:icon="@drawable/ic_action_send_now"
-            android:visible="false"
             android:title="@string/RankofMat"/>
-        <!--Enable Rank after modifying the algorithm-->
+
+        <item
+            android:id="@+id/norm1"
+            android:icon="@drawable/ic_action_send_now"
+            android:title="@string/normOne"/>
+
+        <item
+            android:id="@+id/norm2"
+            android:icon="@drawable/ic_action_send_now"
+            android:title="@string/normTwo"/>
+
+        <item
+            android:id="@+id/normFrb"
+            android:icon="@drawable/ic_action_send_now"
+            android:title="@string/normFreb"/>
+
+        <item
+            android:id="@+id/normInf"
+            android:icon="@drawable/ic_action_send_now"
+            android:title="@string/normInfinity"/>
+
+        <!--<item-->
+            <!--android:id="@+id/RankofMat1"-->
+            <!--android:icon="@drawable/ic_action_send_now"-->
+            <!--android:title="@string/RankofMat"/>-->
         <item
             android:id="@+id/functional"
             android:icon="@drawable/ic_action_send_now"
             android:title="@string/function" />
+
     </group>
     <group android:id="@+id/helpcat">
         <item
@@ -85,14 +104,35 @@
             android:id="@+id/nav_report"
             android:visible="false"
             android:icon="@drawable/ic_action_warning"/>
-    <item
-        android:title="@string/LabelHelp"
-        android:id="@+id/nav_help"
-        android:icon="@drawable/ic_action_good"/>
-    <item
-        android:title="@string/upgrade"
-        android:id="@+id/upgrade"
-        android:icon="@drawable/ic_action_favorite"/>
+        <item
+            android:title="@string/LabelHelp"
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_action_good"/>
+        <item
+            android:title="@string/upgrade"
+            android:id="@+id/upgrade"
+            android:icon="@drawable/ic_action_favorite"/>
     </group>
+
+    <!--</group>-->
+    <!--<group android:id="@+id/helpcat">-->
+        <!--<item-->
+            <!--android:id="@+id/NewsAnnon"-->
+            <!--android:icon="@drawable/ic_action_event"-->
+            <!--android:title="@string/NewsUp"/>-->
+        <!--<item-->
+            <!--android:title="@string/direct_feedback"-->
+            <!--android:id="@+id/nav_report"-->
+            <!--android:visible="false"-->
+            <!--android:icon="@drawable/ic_action_warning"/>-->
+    <!--<item-->
+        <!--android:title="@string/LabelHelp"-->
+        <!--android:id="@+id/nav_help"-->
+        <!--android:icon="@drawable/ic_action_good"/>-->
+    <!--<item-->
+        <!--android:title="@string/upgrade"-->
+        <!--android:id="@+id/upgrade"-->
+        <!--android:icon="@drawable/ic_action_favorite"/>-->
+    <!--</group>-->
 
 </menu>

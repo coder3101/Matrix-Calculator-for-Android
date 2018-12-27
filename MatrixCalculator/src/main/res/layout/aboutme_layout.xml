@@ -43,6 +43,7 @@
         android:layout_below="@id/slogan_text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
+        android:visibility="gone"
         android:text="@string/about_app"
         android:textColor="@android:color/white" />
 

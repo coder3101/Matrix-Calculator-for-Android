@@ -31,7 +31,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.softminds.matrixcalculator.GlobalValues;
-import com.softminds.matrixcalculator.Matrix;
+import com.softminds.matrixcalculator.MatrixV2;
 import com.softminds.matrixcalculator.MatrixAdapter;
 import com.softminds.matrixcalculator.R;
 import com.softminds.matrixcalculator.base_activities.ShowResult;
@@ -65,14 +65,14 @@ public class AdjointFragment extends ListFragment {
 
     MyHandler myhandler = new MyHandler(this);
 
-    ArrayList<Matrix> SquareList;
+    ArrayList<MatrixV2> SquareList;
 
     @Override
     public void onActivityCreated(Bundle savedInstances) {
         super.onActivityCreated(savedInstances);
         SquareList = new ArrayList<>();
         for (int i = 0; i < ((GlobalValues) getActivity().getApplication()).GetCompleteList().size(); i++) {
-            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).is_squareMatrix())
+            if (((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i).isSquareMatrix())
                 //if square matrix is present them only ajoint can be found hence only square matrix being selected
                 SquareList.add(((GlobalValues) getActivity().getApplication()).GetCompleteList().get(i));
         }
@@ -97,7 +97,7 @@ public class AdjointFragment extends ListFragment {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                Bundle bundle = SquareList.get(pos).ReturnAdjoint(px).GetDataBundled();
+                Bundle bundle = SquareList.get(pos).getAdjoint(px).getDataBundled();
                 Message message = new Message();
                 message.setData(bundle);
                 progress = px;
