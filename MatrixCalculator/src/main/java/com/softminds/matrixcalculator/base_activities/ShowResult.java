@@ -370,14 +370,14 @@ public class ShowResult extends AppCompatActivity {
     }
 
     private String GetText(double res) {
-
         if (!PreferenceManager.getDefaultSharedPreferences(this).getBoolean("DECIMAL_USE", true)) {
             DecimalFormat decimalFormat = new DecimalFormat("###############");
             return decimalFormat.format(res);
         } else {
             switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(this).getString("ROUNDIND_INFO", "0"))) {
                 case 0:
-                    return String.valueOf(res);
+                    DecimalFormat zeroth = new DecimalFormat("########.######");
+                    return zeroth.format(res);
                 case 1:
                     DecimalFormat single = new DecimalFormat("########.#");
                     return single.format(res);

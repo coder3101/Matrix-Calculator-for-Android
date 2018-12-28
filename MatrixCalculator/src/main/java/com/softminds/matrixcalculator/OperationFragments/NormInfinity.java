@@ -99,7 +99,8 @@ public class NormInfinity extends ListFragment {
         } else {
             switch (Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("ROUNDIND_INFO", "0"))) {
                 case 0:
-                    return String.valueOf(res);
+                    DecimalFormat zeroth = new DecimalFormat("########.######");
+                    return zeroth.format(res);
                 case 1:
                     DecimalFormat single = new DecimalFormat("########.#");
                     return single.format(res);
