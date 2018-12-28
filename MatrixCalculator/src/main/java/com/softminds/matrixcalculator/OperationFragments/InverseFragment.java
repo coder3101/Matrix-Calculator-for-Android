@@ -112,7 +112,7 @@ public class InverseFragment extends ListFragment {
                 RunAndGetDeterminantWithAdjoint(position, progressDialog);
             else
                 RunNewGetInverse(position, progressDialog);
-        } else
+        } else {
             new AlertDialog.Builder(getContext())
                     .setMessage("The Determinant of the matrix was Zero and Hence its Inverse does not exist")
                     .setTitle("No Inverse Exist")
@@ -123,6 +123,8 @@ public class InverseFragment extends ListFragment {
                         }
                     })
                     .show();
+            progressDialog.dismiss();
+        }
 
     }
 
