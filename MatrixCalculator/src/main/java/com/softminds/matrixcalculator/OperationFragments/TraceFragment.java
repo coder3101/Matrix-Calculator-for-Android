@@ -124,7 +124,8 @@ public class TraceFragment extends ListFragment {
                     DecimalFormat triple = new DecimalFormat("########.###");
                     return triple.format(res);
                 default:
-                    return String.valueOf(res);
+                    DecimalFormat fourth = new DecimalFormat("########.#####");
+                    return fourth.format(res);
             }
         }
     }
