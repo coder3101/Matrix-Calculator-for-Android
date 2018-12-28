@@ -212,8 +212,11 @@ public class MatrixV2 implements Serializable {
     }
 
     public void multiplyToThis(MatrixV2 other) throws RuntimeExecutionException {
-        if (canBeMultiplied(other))
+        if (canBeMultiplied(other)) {
             this.jamaMatrix = this.jamaMatrix.times(other.jamaMatrix);
+            this.numberOfCols = this.jamaMatrix.getColumnDimension();
+            this.numberOfRows = this.jamaMatrix.getRowDimension();
+        }
         else
             throw new RuntimeException("multiplyToThis cannot be performed as they are not multipliable");
 
@@ -255,6 +258,8 @@ public class MatrixV2 implements Serializable {
     public void makeAdjoint(ProgressDialog px) {
         px.setIndeterminate(true);
         this.jamaMatrix = this.jamaMatrix.inverse().times(this.jamaMatrix.det());
+        this.numberOfRows = this.jamaMatrix.getRowDimension();
+        this.numberOfCols = this.jamaMatrix.getColumnDimension();
     }
 
     public MatrixV2 getAdjoint(ProgressDialog px) {
@@ -262,9 +267,11 @@ public class MatrixV2 implements Serializable {
         return MatrixV2.constructFromJamaMatrix(this.jamaMatrix.inverse().times(this.jamaMatrix.det()));
     }
 
-    public MatrixV2 getInverse(ProgressDialog px) {
+    public MatrixV2 getInverse(ProgressDialog px) throws RuntimeException {
         px.setIndeterminate(true);
+        if(this.jamaMatrix.det() != 0)
         return MatrixV2.constructFromJamaMatrix(this.jamaMatrix.inverse());
+        else throw new RuntimeException("Cannot Determine Inverse. Det is 0");
     }
 
     public void raisedToPower(int a) {

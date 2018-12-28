@@ -96,7 +96,7 @@
         android:title="@string/other">
         <SwitchPreference
             android:key="@string/PersistKey"
-            android:summary="@string/AutoPersist"
+            android:summary="@string/AutoPersistDesc"
             android:enabled="false"
             android:title="@string/AutoPersist"
             android:defaultValue="false"/>

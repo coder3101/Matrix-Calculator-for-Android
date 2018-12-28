@@ -136,9 +136,9 @@ public class MultiplyFragment extends Fragment {
         ArrayList<MatrixV2> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
         MatrixV2 res = new MatrixV2(buffer.get(0).getNumberOfRows(), buffer.get(0).getNumberOfCols(), buffer.get(0).getType());
         res.cloneFrom(buffer.get(0));
+        //buffer.get(0).copyTo(res);
         for (int i = 1; i < buffer.size(); i++)
             res.multiplyToThis(buffer.get(i));
-
         return res;
     }
 }

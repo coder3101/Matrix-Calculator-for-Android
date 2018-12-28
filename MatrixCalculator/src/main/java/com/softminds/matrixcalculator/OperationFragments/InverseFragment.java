@@ -20,7 +20,9 @@
 package com.softminds.matrixcalculator.OperationFragments;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -104,10 +106,24 @@ public class InverseFragment extends ListFragment {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         progress = progressDialog;
-        if (ENABLED_NO_DECIMAL)
-            RunAndGetDeterminantWithAdjoint(position, progressDialog);
-        else
-            RunNewGetInverse(position, progressDialog);
+
+        if (SquareList.get(position).getJamaMatrix().det() != 0) {
+            if (ENABLED_NO_DECIMAL)
+                RunAndGetDeterminantWithAdjoint(position, progressDialog);
+            else
+                RunNewGetInverse(position, progressDialog);
+        } else
+            new AlertDialog.Builder(getContext())
+                    .setMessage("The Determinant of the matrix was Zero and Hence its Inverse does not exist")
+                    .setTitle("No Inverse Exist")
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .show();
+
     }
 
     public void RunNewGetInverse(final int pos, final ProgressDialog pq) {
