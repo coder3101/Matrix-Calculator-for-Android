@@ -17,6 +17,7 @@ package com.softminds.matrixcalculator;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.tasks.RuntimeExecutionException;
 
@@ -263,8 +264,23 @@ public class MatrixV2 implements Serializable {
 
     public MatrixV2 getAdjoint(ProgressDialog px) {
         px.setIndeterminate(true);
-        Matrix adj = this.jamaMatrix.solve(Matrix.identity(this.numberOfRows, this.numberOfCols).times(this.jamaMatrix.det()));
-        return MatrixV2.constructFromJamaMatrix(adj);
+        if (this.jamaMatrix.det() != 0) {
+            Matrix adj = this.jamaMatrix.solve(Matrix.identity(this.numberOfRows, this.numberOfCols).times(this.jamaMatrix.det()));
+            return MatrixV2.constructFromJamaMatrix(adj);
+        } else {
+            Log.d("TTT","Envoking");
+            LegacyMatrix matrix = new LegacyMatrix(this.numberOfRows, this.numberOfCols, this.type);
+            for (int i = 0; i < this.numberOfRows; i++)
+                for (int j = 0; j < this.numberOfCols; j++)
+                    matrix.setElementOf((float) this.jamaMatrix.get(i, j), i, j);
+            px.setIndeterminate(false);
+            LegacyMatrix mat = matrix.getAdjoint(px);
+            Matrix jma = new Matrix(this.numberOfRows, this.numberOfCols);
+            for (int i = 0; i < this.numberOfRows; i++)
+                for (int j = 0; j < this.numberOfCols; j++)
+                    jma.set(i, j, mat.getElementOf(i, j));
+            return MatrixV2.constructFromJamaMatrix(jma);
+        }
     }
 
     public MatrixV2 getInverse(ProgressDialog px) throws RuntimeException {
