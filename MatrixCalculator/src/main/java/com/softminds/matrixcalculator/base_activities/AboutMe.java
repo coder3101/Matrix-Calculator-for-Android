@@ -58,7 +58,6 @@ public class AboutMe extends AppCompatActivity {
     }
 
     public void showSources(View view) {
-
         Intent sources = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/coder3101/Matrix-Calculator-for-Android"));
         startActivity(Intent.createChooser(sources, "View Sources using"));
 
