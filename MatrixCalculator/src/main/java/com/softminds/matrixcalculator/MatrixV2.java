@@ -293,8 +293,10 @@ public class MatrixV2 implements Serializable {
     public void raisedToPower(int a) throws RuntimeException {
         if (isSquareMatrix()) {
             if (a == 0) this.jamaMatrix = Matrix.identity(numberOfRows, numberOfCols);
+            else //noinspection StatementWithEmptyBody
+                if(a == 1){}
             else
-                for (int t = 0; t < a; t++)
+                for (int t = 1; t < a; t++)
                     this.jamaMatrix = this.jamaMatrix.times(this.jamaMatrix);
         } else
             throw new RuntimeException("raisedToPower should not be called on non square matrices.");
