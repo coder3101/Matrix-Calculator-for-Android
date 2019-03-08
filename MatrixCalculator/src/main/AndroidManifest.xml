@@ -4,8 +4,8 @@
     package="com.softminds.matrixcalculator">
 
     <!--Permission-->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 
     <application
@@ -13,27 +13,29 @@
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/mainlogo"
-        android:roundIcon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2985268992686393~8371779866"
-            />
+            android:value="ca-app-pub-2985268992686393~8371779866" />
+
 
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".base_activities.AboutMe"
             android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".base_fragments.Settings" />
+        <activity android:name=".base_fragments.Settings" />
         <activity
             android:name=".base_activities.SettingsTab"
             android:label="@string/action_settings"
@@ -46,9 +48,8 @@
         <activity
             android:name=".base_activities.FillingMatrix"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-            android:name=".base_activities.SplashScreen">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".base_activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -99,13 +100,14 @@
             android:theme="@style/AppThemeDialog" />
         <activity
             android:name=".dialog_activity.FunctionMaker"
-            android:parentActivityName=".MainActivity"
             android:label="@string/FunctionalTitle"
-            android:theme="@style/AppThemeDialog"/>
-        <activity android:name=".ChangeLogActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeDialog" />
+        <activity
+            android:name=".ChangeLogActivity"
             android:label="@string/NewsUp"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

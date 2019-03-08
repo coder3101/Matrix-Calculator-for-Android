@@ -108,12 +108,12 @@ public class SubtractionFragment extends Fragment {
     private MatrixV2 SubAll() {
         ArrayList<MatrixV2> buffer = ((GlobalValues) getActivity().getApplication()).MatrixQueue;
 
-        MatrixV2 first = buffer.get(0), second;
-        second = new MatrixV2(buffer.get(0).getNumberOfRows(), buffer.get(0).getNumberOfCols(), buffer.get(0).getType());
+        MatrixV2 first = buffer.get(0);
+        MatrixV2 second = new MatrixV2(buffer.get(0).getNumberOfRows(), buffer.get(0).getNumberOfCols(), buffer.get(0).getType());
+        second.cloneFrom(first);
         for (int t = 1; t < buffer.size(); t++)
-            second.multiplyToThis(buffer.get(t));
-        first.subToThis(second);
-        return first;
+            second.subToThis(buffer.get(t));
+        return second;
 
     }
 
