@@ -35,7 +35,7 @@ You can Contribute in the Project by Forking and Creating a Pull Request.
 ### Prerequisites
 
 * Must have a Good/Moderate Knowledge of Android and JAVA
-* Must have Installed Android Studio 2.3  or higher version
+* Must have Installed Android Studio 2.4  or higher version
 * Knowledge of Github and its Basic Functionalities
 
 
